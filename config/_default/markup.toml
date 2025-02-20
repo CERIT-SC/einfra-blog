@@ -1,13 +1,41 @@
-[goldmark.renderer]
-  hardWraps = false
-  unsafe = false # change to true to enable inclusion of rawHTML and math functions
-  xhtml = false
+defaultMarkdownHandler = "goldmark"
+
 [highlight]
-  codeFences = true
-  guessSyntax = false
-  hl_Lines = ""
-  lineNoStart = 1
-  lineNos = true
-  lineNumbersInTable = false
-  noClasses = false
-  tabWidth = 2
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ""
+    lineAnchors = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = false
+    noClasses = false
+    tabWidth = 2
+    ## Update the 'create:syntax' command in package.json to modify the style
+    ## The first two lines have been modified to remove the background color
+    # style = "monokailight" 
+
+[goldmark]
+    [goldmark.extensions]
+        definitionList = true
+        footnote = true
+        linkify = true
+        strikethrough = true
+        table = true
+        taskList = true
+        typographer = true
+    [goldmark.extensions.passthrough]
+        enable = true
+    [goldmark.extensions.passthrough.delimiters]
+        block = [['\[', '\]'], ['$$', '$$']]
+        inline = [['\(', '\)'], ['$', '$']]
+    [goldmark.parser]
+        autoHeadingID = true
+        autoHeadingIDType = 'github'
+        wrapStandAloneImageWithinParagraph = false
+    [goldmark.parser.attribute]
+        block = true
+    [goldmark.renderer]
+        hardWraps = false
+        unsafe = false
+        xhtml = false
