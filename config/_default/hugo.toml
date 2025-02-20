@@ -67,11 +67,6 @@ home = ["HTML", "RSS", "REDIR", "netlify", "server"]
     disabled = false
     simple = true
 
-  [privacy.twitter]
-    disabled = false
-    enableDNT = true
-    simple = true
-
   [privacy.instagram]
     disabled = false
     simple = true
