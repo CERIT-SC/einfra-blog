@@ -1,0 +1,12 @@
+baseURL = 'https://blog.cerit.io'
+languageCode = 'en-us'
+title = 'Frontiers of Research Computing: The e-INFRA CZ Blog'
+theme = 'newsroom'
+canonifyurls = true
+[pagination]
+disableAliases = false
+pagerSize = 10
+path = 'page'
+
+[permalinks]
+pages = ':filename/'
