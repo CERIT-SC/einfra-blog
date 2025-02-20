@@ -2,7 +2,7 @@
 title = "About e-INFRA CZ"
 date = "2014-04-09"
 image = "/images/einfra.png"
-# url = "/about/" # override permalinks section of hugo.toml file
+author = "e-INFRA CZ"
 +++
 
 
