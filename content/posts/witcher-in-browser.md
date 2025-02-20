@@ -11,3 +11,8 @@ categories = [ "Development", "Applications"]
 # NVIDIA GeForce NOW on Premise?
 
 Yes, it is possible! 
+
+
+# See the Result
+
+{{< youtube UNiEZSw_3KE >}}
