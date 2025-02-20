@@ -6,7 +6,7 @@
 # mainSections = ["blog", "docs"] see https://gohugo.io/functions/where/#mainsections
 # uncomment the line below will disable darkmode by default.
 # uncomment and set value below to either "light" or "dark" to make default mode dark.
-defaultMode = "dark" # Note that the UI control for toggling darkmode will remain in place. This way, the user can decide which mode they would like to use while browsing your website
+defaultMode = "light" # Note that the UI control for toggling darkmode will remain in place. This way, the user can decide which mode they would like to use while browsing your website
 logo = "/images/logo.svg" # if the value is an empty string, the site title will be shown instead
 faviconsDir = "images/icons/" # with a trailing slash
 blogDir = "posts" # edit
