@@ -1,0 +1,31 @@
+{{/* Adapted from https://gohugo.io/render-hooks/blockquotes/#alerts */}}
+
+{{ $icons := dict
+    "caution" "fa hand"
+    "important" "fas exclamation"
+    "note" "fas circle-info"
+    "tip" "fa lightbulb"
+    "warning" "fas triangle-exclamation"
+}}
+
+{{ if eq .Type "alert" }}
+    {{ $alert := .AlertType }}
+    {{ $icon := (index $icons $alert) }}
+
+    <blockquote class="blockquote-alert blockquote-alert-{{ $alert }}">
+        <p class="blockquote-alert-heading">
+            {{ with $icon }} 
+                {{ partial "assets/icon.html" (dict "icon" (printf "%s fa-fw" .)) }}
+                {{ or (i18n $alert) (title $alert) }}
+            {{ else }}
+                {{ title $alert }}
+                {{ warnf "Unsupported alert type: '%s'. See %s" $alert $.Position }}
+            {{ end }}
+        </p>
+    {{ trim .Text "\n\r" | safeHTML }}
+    </blockquote>
+{{ else }}
+    <blockquote class="blockquote">
+        {{ trim .Text "\n\r" | safeHTML }}
+    </blockquote>
+{{ end }}

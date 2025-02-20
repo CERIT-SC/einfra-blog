@@ -1,0 +1,8 @@
+_vendor/
+exampleSite/public/
+public/
+resources/
+
+.DS_store
+.hugo_build.lock
+.hvm

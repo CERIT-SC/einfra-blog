@@ -1,0 +1,24 @@
+comment: >-
+  Bundles a JavaScript file for client-side processing. Scripts can be included
+  as critical, core, or optional file.
+arguments:
+  page:
+    type:
+      - '*hugolib.pageState'
+      - '*hugolib.pageForShortcode'
+    optional: false
+    comment: Context of the current page.
+  type:
+    type: select
+    default: core
+    optional: true
+    comment: >-
+      Type of script bundle. Critical scripts are included in the page header
+      and are loaded immediately. Core scripts are bundled by category and are
+      loaded asynchronously. Optional scripts are loaded individually on the
+      pages that require them. They use the synchronization method as defined
+      in their containing module.
+    values:
+      - critical
+      - core
+      - optional

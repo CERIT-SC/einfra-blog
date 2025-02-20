@@ -1,0 +1,166 @@
+comment: >-
+  Displays a grid of Bootstrap cards with 1 to 5 columns. The cards are rendered
+  using a provided list of pages. Cards on the same row are aligned to each
+  other. The grid renders pages up to a provided maximum amount. The remaining
+  items are accessible via either a paginator or button to a list page (default
+  behavior). Be aware a page can only contain one paginator at a time.
+arguments:
+  page:
+    type:
+      - '*hugolib.pageState'
+      - '*hugolib.pageForShortcode'
+    optional: true
+    comment: Context of the current page.
+    group: partial
+  title:
+    type: string
+    optional: true
+    comment: Title of the card group.
+  gutter:
+    type: int
+    optional: true
+    default: 4
+    comment: Gutter between columns in a group.
+    options:
+      min: 0
+      max: 5
+    release: v0.19.0
+  list:
+    type:
+      - 'page.Pages'
+      - 'resource.Resources'
+      - '[]map[string]interface {}'
+    optional: true
+    comment: Array of pages or structured content to be rendered as cards.
+    group: partial
+  cards:
+    type: string
+    optional: true
+    comment: String of rendered cards.
+    group: partial
+  max:
+    type: int
+    optional: true
+    comment: Maximum number of cards to display.
+    group: partial
+    options:
+      min: 1
+  cols:
+    type: select
+    optional: true
+    default: "3"
+    comment: Number of grid columns.
+    options:
+      values:
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+        - "5"
+        - "auto"
+    release: v0.19.0
+  paginate:
+    type: bool
+    optional: true
+    comment: >-
+      Flag indicating if pagination should be added to the card group, if the
+      list exceeds the maximum number of cards to display. 
+    group: partial
+  pagination:
+    type: int
+    optional: true
+    comment: >-
+      Number of elements per page in pagination, overrides site settings.
+    group: partial
+    options:
+      min: 1
+    release: v0.23.12
+  href:
+    type: string
+    optional: true
+    comment: >-
+      Address for the button or hyperlink. If set, a button is added if the
+      list exceeds the maximum number of cards to display.
+    group: partial
+  hrefTitle:
+    type: string
+    optional: true
+    comment: >-
+      Title of the button or hyperlink as companion to href.
+    group: partial
+  separator:
+    type: bool
+    optional: true
+    comment: >-
+      Flag to indicate a horizontal line should be added between items on small
+      screens.
+  wrapper:
+    type: string
+    default: p-0
+    optional: true
+    comment: >-
+      Class attributes of the wrapper element, e.g. `p-4 px-xxl-0`.
+  responsive:
+    type: bool
+    optional: true
+    default: true
+    comment: >-
+      Flag indicating if the number of columns should be responsive, defaults to
+      `true`.
+  buttonType:
+    type: select
+    optional: true
+    default: button
+    release: v0.23.18
+    comment: Type of the button elements.
+    options:
+      values:
+        - link
+        - button
+  scroll:
+    type: bool
+    optional: true
+    comment: >-
+      Enables horizontal scrolling of the cards. By default, the card group
+      wraps any cards beyond the amount of defined columns to a new line. When
+      `scroll` is set to true, a horizontal scroll bar is added instead.
+  spacer:
+    type: bool
+    optional: true
+    comment: >-
+      Inserts a spacer before the card.
+    release: v0.24.16
+    group: partial
+  hook:
+    type: string
+    optional: true
+    default: assets/card.html
+    comment: Render hook for the card partial.
+    group: partial
+  bento:
+    type: bool
+    optional: true
+    default: false
+    comment: >-
+      Trigger to use a bento-style layout instead of default grid layout.
+    release: v0.27.0
+  valign:
+    type: select
+    optional: true
+    comment: >-
+      Defines the vertical card alignment, only applicable in bento layout.
+    release: v0.27.0
+    options:
+      values:
+        - start
+        - center
+        - end
+  styles:
+    type:
+      - '[]map[string]interface {}'
+    optional: true
+    comment: >-
+      Styles to apply to the individual cards. Supported elements are `ratio`,
+      `orientation`, `portrait`, and `width`. The styles are rotated when the
+      amount of cards exceeds the available amount of styles.
+    release: v0.27.0

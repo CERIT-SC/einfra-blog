@@ -1,0 +1,29 @@
+.img-wrap {
+    overflow: hidden;
+    position: relative;
+}
+
+.img-wrap img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-img-h100 {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mirrorred {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.background-img {
+    --overlay-offset: #{$overlay-offset};
+
+    height: calc(100vh - var(--overlay-offset));
+    width: 100vw;
+    object-fit: cover;
+}
