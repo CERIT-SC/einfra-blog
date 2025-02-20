@@ -2,6 +2,8 @@ resourcedir = '../resources/'
 title = "Frontiers of Research Computing: The e-INFRA CZ Blog'"
 enableGitInfo = false
 
+theme = "hinode"
+
 # additional settings
 baseURL = "https://blog.cerit.io/"
 canonifyURLs = false
