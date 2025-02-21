@@ -36,7 +36,7 @@
 
 [navigation]
     anchor = true
-    logo = "/img/logo_icon.svg"
+    logo = "/img/logo.svg"
     color = "body"
     fixed = true
     offset = "5.5rem"
