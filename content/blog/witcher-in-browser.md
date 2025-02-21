@@ -76,23 +76,17 @@ Selkies also includes a sample web interface that connects a user’s web browse
 
 For more details, refer to the [quick start guide](https://selkies-project.github.io/selkies-gstreamer/start/).  
 
----
-
 ### Image Encoding
 
 Capturing and encoding images is a resource-intensive process. To ensure a smooth user experience, hardware acceleration is essential, as CPU-based H.264 encoders are not fast enough for real-time 1080p video. Since CPU-based encoding cannot fully leverage parallel processing, we use NVIDIA GPUs to accelerate both image capture and encoding.  
 
 However, data center compute GPUs such as the A100 and H100 lack video encoding capabilities, making them unsuitable for this purpose. Instead, we use NVIDIA A40, A10, or L4 GPUs for acceleration.  
 
----
-
 ### Image Capture
 
 We have improved the original image capture and encoding pipeline, which previously relied on GStreamer's `ximagesrc` plugin. This plugin uses the `XGetShmImage` call to the X11 server, which is a synchronous operation. Although this function takes only about 4ms per 1080p frame, at 60 FPS, it blocks the X11 server for approximately 25% of the available frame time. This results in a 25% performance degradation and noticeable lag in the remote X11 session.  
 
 Another drawback of this approach is that uncompressed frame data is transferred from GPU to CPU memory—a slow operation—only to be immediately transferred back to GPU memory for encoding. This places additional strain on the system bus and further degrades performance.  
-
----
 
 #### NVIDIA Capture SDK
 
@@ -114,5 +108,14 @@ To showcase the capabilities of our project, we also tested running a computer g
 
 {{< youtube id="UNiEZSw_3KE" autoplay=false autotitle=false title="Witcher" >}}
 
+## Final Thoughts  
 
-## Final Thoughts
+- As mentioned above, using a web browser has some drawbacks. The most significant issue is that the largest latency comes from the browser buffers (around 100ms), and there is very little that can be done to mitigate this. Moreover, there are basically no alternative WebRTC implementations available, such as standalone applications. Even if such an option exists, it still relies on a web browser core. Additionally, users often open multiple tabs, and different tabs may further increase latency and introduce lags in the displayed frame. This happens because browsers do not seem to prioritize the tab running the WebRTC stream.  
+
+- Encoding bitrate has a direct impact on video and image quality. A reasonable bitrate of around **10 Mbps for 1080p** is more than acceptable for video games or remote desktop video content. However, text, menus, or terminal applications may still exhibit visible compression artifacts. The most notable quality issue arises from differences between the remote and local screen resolutions. For example, if the remote resolution is **1080p** but the local display is **4K**, the image may appear slightly blurry. In such cases, **VNC provides far better image quality**. Additionally, H.264 compression struggles with solid-colored areas, creating "snow-like" artifacts.  
+
+- **4K frames at 60 FPS** are particularly challenging for both the remote and client sides. On the remote side, encoding a **4K frame takes about 11ms**, and at **60 FPS**, the system has only **16ms** in total to process a single frame—leaving just **4–5ms** for transmission to the client. On the client side, if the web browser cannot utilize hardware acceleration, a CPU-based decoder will likely be too slow to handle a **4K 60 FPS** video stream.  
+
+- **Does it matter whether we use 30 FPS or 60 FPS?** Yes, it does. The remote side is always at least **one frame behind** because the frame must be drawn before it can be captured. Similarly, on the local side, the frame must be drawn and flipped before appearing on the screen. At **30 FPS**, a single frame takes **33ms (1/30 sec)**, resulting in a total latency of at least **66ms**. At **60 FPS**, each frame takes **16ms (1/60 sec)**, reducing total latency to **32ms**.  
+
+- **Can we use compression other than H.264?** It depends. **VP8 and VP9** are generally supported but often provide **worse subjective quality** than H.264. **H.265 (HEVC)** should offer better quality, but it must be **explicitly supported by the browser**—WebRTC support for H.265 is independent of standard video playback capabilities. An even better option would be **AV1 compression**, but beyond browser support, **the encoding hardware must also support it**. **NVIDIA** has offered AV1 encoding since the **Ada** generation, which includes **L4, L40, and L40s** datacenter hardware—but not the **A40**.  
