@@ -100,7 +100,19 @@ To overcome these issues, we replaced `ximagesrc` with the [NVIDIA Capture SDK](
 
 We implemented this solution as a GStreamer plugin, which is available on [GitHub](https://github.com/CERIT-SC/gstreamer-nvimagesrc).  
 
+## Deployment  
 
-## See the Result
+Our entire solution is deployed on our Kubernetes platform as a Rancher application. For more details, see our [documentation](https://docs.cerit.io/en/docs/rancher-apps/desktop).  
+
+Using this approach, we provide scientists with easy access to desktop applications such as [Blender](https://www.blender.org/), [MATLAB](https://www.mathworks.com/products/matlab.html), and [ANSYS](https://www.ansys.com/)—allowing them to leverage the computing power of the e-INFRA CZ data center directly from a web browser.  
+
+For deployment manifests, visit our [GitHub Rancher repository](https://github.com/CERIT-SC/rancher-apps).  
+
+To showcase the capabilities of our project, we also tested running a computer game, [The Witcher 2](https://www.thewitcher.com/en/witcher2). Although an older title, it has a native Linux version and demands significant computing resources. Whether surprising or not, the game runs seamlessly in a web browser, offering an experience comparable to NVIDIA GeForce Now 🚀.
+
+## See the Result  
 
 {{< youtube id="UNiEZSw_3KE" autoplay=false autotitle=false title="Witcher" >}}
+
+
+## Final Thoughts
