@@ -1,9 +1,9 @@
 title = "Hinode"
-copyright = "Copyright © 2022 - 2025 Mark Dumay."
+copyright = "Copyright © e-INFRA CZ"
 enableGitInfo = true
 
 # additional settings
-baseURL = "https://example.com/"
+baseURL = "https://blog.cerit.io"
 canonifyURLs = false
 enableEmoji = true
 enableRobotsTXT = true
@@ -68,11 +68,6 @@ home = ["HTML", "RSS", "REDIR", "netlify", "server"]
     disabled = false
     simple = true
 
-  [privacy.twitter]
-    disabled = false
-    enableDNT = true
-    simple = true
-
   [privacy.instagram]
     disabled = false
     simple = true
@@ -83,8 +78,6 @@ home = ["HTML", "RSS", "REDIR", "netlify", "server"]
 
 [services]
   [services.instagram]
-    disableInlineCSS = true
-  [services.twitter]
     disableInlineCSS = true
   [services.googleAnalytics]
     # ID = "G-xxxxxxxxxx"
