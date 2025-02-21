@@ -102,7 +102,7 @@ Using this approach, we provide scientists with easy access to desktop applicati
 
 For deployment manifests, visit our [GitHub Rancher repository](https://github.com/CERIT-SC/rancher-apps).  
 
-To showcase the capabilities of our project, we also tested running a computer game, [The Witcher 2](https://www.thewitcher.com/en/witcher2). Although an older title, it has a native Linux version and demands significant computing resources. Whether surprising or not, the game runs seamlessly in a web browser, offering an experience comparable to NVIDIA GeForce Now 🚀.
+To showcase the capabilities of our project, we also tested running a computer game, [The Witcher 2](https://www.thewitcher.com/en/witcher2). Although an older title, it has a native Linux version and demands significant computing resources. Whether surprising or not, the game runs seamlessly in a web browser, offering an experience comparable to NVIDIA GeForce NOW 🚀.
 
 ## See the Result  
 
