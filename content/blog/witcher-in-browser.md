@@ -8,7 +8,7 @@ tags: ["WebRTC", "Remote Desktop", "CERIT-SC"]
 colormode: true
 ---
 
-# NVIDIA GeForce NOW On-Premise? Yes, It's Possible!  
+# NVIDIA GeForce NOW On-Premise?<br/>Yes, It's Possible!  
 
 We successfully implemented an open-source alternative to NVIDIA's closed GeForce NOW system on a Linux platform using NVIDIA hardware.  
 
