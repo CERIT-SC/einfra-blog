@@ -12,6 +12,7 @@ colormode: true
 
 Yes, it is possible! 
 
+We used open source software to provide very similar result to the closed NVIDIA system.
 
 ## See the Result
 
