@@ -68,6 +68,38 @@ For remote desktops and game streaming, WebRTC offers significant advantages ove
 
 WebRTC’s real-time performance, adaptive streaming, and security make it a powerful solution for remote desktops and game streaming. However, as we’ll explore later, relying solely on a web browser does come with some trade-offs.
 
+## Selkies Project
+
+The [Selkies](https://github.com/selkies-project) project provides a full-stack remote desktop solution based on the WebRTC protocol. It leverages the [GStreamer](https://gstreamer.freedesktop.org/) multimedia framework on the remote side to capture screen and audio, encode them into an audio/video stream (preferably H.264 + Opus), and transmit them to the client.  
+
+Selkies also includes a sample web interface that connects a user’s web browser to the remote desktop, enabling keyboard and mouse event forwarding from the client to the remote system. Additionally, a reference STUN/TURN server implementation is provided, which must be deployed on a public address to facilitate communication when both the remote desktop and the user are behind firewalls or private networks.  
+
+For more details, refer to the [quick start guide](https://selkies-project.github.io/selkies-gstreamer/start/).  
+
+---
+
+### Image Encoding
+
+Capturing and encoding images is a resource-intensive process. To ensure a smooth user experience, hardware acceleration is essential, as CPU-based H.264 encoders are not fast enough for real-time 1080p video. Since CPU-based encoding cannot fully leverage parallel processing, we use NVIDIA GPUs to accelerate both image capture and encoding.  
+
+However, data center compute GPUs such as the A100 and H100 lack video encoding capabilities, making them unsuitable for this purpose. Instead, we use NVIDIA A40, A10, or L4 GPUs for acceleration.  
+
+---
+
+### Image Capture
+
+We have improved the original image capture and encoding pipeline, which previously relied on GStreamer's `ximagesrc` plugin. This plugin uses the `XGetShmImage` call to the X11 server, which is a synchronous operation. Although this function takes only about 4ms per 1080p frame, at 60 FPS, it blocks the X11 server for approximately 25% of the available frame time. This results in a 25% performance degradation and noticeable lag in the remote X11 session.  
+
+Another drawback of this approach is that uncompressed frame data is transferred from GPU to CPU memory—a slow operation—only to be immediately transferred back to GPU memory for encoding. This places additional strain on the system bus and further degrades performance.  
+
+---
+
+#### NVIDIA Capture SDK
+
+To overcome these issues, we replaced `ximagesrc` with the [NVIDIA Capture SDK](https://developer.nvidia.com/capture-sdk). This SDK can capture frames directly from the GPU framebuffer and, when used with [NVENC](https://developer.nvidia.com/video-codec-sdk), returns an encoded video stream that is significantly smaller than the raw uncompressed frame.  
+
+We implemented this solution as a GStreamer plugin, which is available on [GitHub](https://github.com/CERIT-SC/gstreamer-nvimagesrc).  
+
 
 ## See the Result
 
