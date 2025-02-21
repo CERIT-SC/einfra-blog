@@ -16,13 +16,13 @@ We successfully implemented an open-source alternative to NVIDIA's closed GeForc
 
 Remote desktops have been around for a long time. The need to connect from a local computer to a remote machine with a graphical interface is well-established. Various solutions exist for Linux-based operating systems, including:  
 
-- **X11 Forwarding & Tunneling** -– Simple but inefficient, often slow.  
-- **VNC (TigerVNC, RealVNC, etc.)** -– Ideal for basic desktop tasks (terminals, office applications) due to high image quality (no compression artifacts) and low latency (smooth mouse and keyboard response).  
+- **X11 Forwarding & Tunneling** – Simple but inefficient, often slow.  
+- **VNC (TigerVNC, RealVNC, etc.)** – Ideal for basic desktop tasks (terminals, office applications) due to high image quality (no compression artifacts) and low latency (smooth mouse and keyboard response).  
 
 However, even VNC has its limitations:  
 
-1. **Inefficiency for Dynamic Content** 0– VNC struggles when large portions of the screen frequently change.  
-2. **Lack of 3D Acceleration Support** –0 Rendering 3D-accelerated content remotely requires transferring frames at high rates (e.g., 60 FPS for a smooth experience).  
+1. **Inefficiency for Dynamic Content** – VNC struggles when large portions of the screen frequently change.  
+2. **Lack of 3D Acceleration Support** – Rendering 3D-accelerated content remotely requires transferring frames at high rates (e.g., 60 FPS for a smooth experience).  
 3. **Bandwidth Constraints** – To match HDMI-level quality, we need:  
    - **1080p (1920×1080) at 60 FPS** → up to **3 Gbps**  
    - **4K (3840×2160) at 60 FPS** → up to **12 Gbps**  
