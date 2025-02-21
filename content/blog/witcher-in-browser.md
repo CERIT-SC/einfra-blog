@@ -14,4 +14,4 @@ Yes, it is possible!
 
 ## See the Result
 
-{{< youtube UNiEZSw_3KE >}}
+{{< youtube id="UNiEZSw_3KE" autoplay=false autotitle=false title="Witcher" >}}

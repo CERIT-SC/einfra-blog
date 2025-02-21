@@ -1,5 +1,4 @@
 ---
-author: Mark Dumay
 title: Welcome to Hinode!
 description: A clean documentation and blog theme for your Hugo site based on Bootstrap 5.
 thumbnail:
@@ -9,7 +8,8 @@ thumbnail:
     origin: https://unsplash.com/photos/ZX6BPboJrYk
     originName: Unsplash
 actions:
-  about:
-    url: "about"
-    title: "About"
+  get-started:
+    url: "https://gethinode.com/docs"
+    title: "Get started"
+    icon: "fas book-open"
 ---
