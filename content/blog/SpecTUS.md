@@ -4,7 +4,7 @@ title: 'Breaking Down Barriers in Mass Spectrometry'
 thumbnail: '/img/spectus/specTUS-method-s.jpeg'
 author: "Ivana Krenkova"
 description: "SpecTUS -- a new tool in da house"
-tags: ["CERIT-SC", "SpecTUS", "Research"]
+tags: ["Ivana Křenková", "CERIT-SC", "SpecTUS", "Research"]
 colormode: true
 ---
 
