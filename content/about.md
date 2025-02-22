@@ -8,7 +8,7 @@ author: "e-INFRA CZ"
 
 Stay at the cutting edge of research computing with e-INFRA CZ! Our blog showcases the latest advancements in high-performance computing, data storage solutions, and innovative applications for scientific research.
 
-Discover new technologies, best practices, and success stories from our infrastructure. Whether you're a researcher, developer, or IT professional, join us as we push the boundaries of computational science and foster collaboration in the academic community.**
+Discover new technologies, best practices, and success stories from our infrastructure. Whether you're a researcher, developer, or IT professional, join us as we push the boundaries of computational science and foster collaboration in the academic community.
 
 ## Who We Are 
 
