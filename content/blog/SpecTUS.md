@@ -1,6 +1,6 @@
 ---
 date: '2025-02-22T14:26:32Z'
-title: 'Breaking Down Barriers in Mass Spectrometry: Introducing SpecTUS'
+title: 'Breaking Down Barriers in Mass Spectrometry — Introducing SpecTUS'
 thumbnail: '/img/specTUS/specTUS-method.png'
 author: "Ivana Krenkova"
 description: "New tool in Mass Spectrometry"
