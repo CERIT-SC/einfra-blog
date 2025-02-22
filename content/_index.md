@@ -2,7 +2,7 @@
 title: e-INFRA CZ Blog
 description: Frontiers of Research Computing
 thumbnail:
-    url: /img/capybara-clustery-grafika.jpg
+    url: /img/capybara-clustery-grafika-m-2800x1200.webp
     author: Lukáš Hejtmánek
 actions:
   get-started:
