@@ -15,21 +15,21 @@ In today’s fast-paced world of science and technology, spotting and understand
 We introduced **SpecTUS: Spectral Translator for Unknown Structures** —- a cutting-edge breakthrough tool that aims to revolutionize how we identify compounds using mass spectrometry.
 
 
-# What is SpecTUS? 
+## What is SpecTUS? 
 
 Think of SpecTUS as a smart translator for scientists. It's a powerful tool that uses advanced technology to transform complicated data from mass spectrometry —- a way of analyzing compounds —- into clear, useful information about molecular structures. Traditionally, scientists have had to rely on databases of known compounds, but SpecTUS can decipher unknown compounds without needing those references.
 
 SpecTUS is a sophisticated deep learning model designed to translate mass spectra data into molecular structures. Simply put, it takes the information from gas chromatography-mass spectrometry (GC-MS), which analyzes compounds, and turns that data into a readable format for scientists, effectively identifying unknown structures without relying on traditional reference databases. 
 
 
-# Why Choose SpecTUS?
+## Why Choose SpecTUS?
 
 One of the most exciting things about SpecTUS is that it can handle compounds that aren’t in existing databases. Old methods usually match new data against what’s already known. If there’s no match, they hit a wall. SpecTUS jumps over this challenge by predicting what the compound might be based purely on its spectral data, filling in gaps that others can't. 
 
 When tested, SpecTUS shone brightly. It correctly guessed 43% of compounds on its first try from a massive test set, and when given more chances, it reached a 65% accuracy rate—far better than older methods. 
 
 
-# How Does SpecTUS Work? 
+## How Does SpecTUS Work? 
 
 It uses a combination of machine learning algorithms and large datasets to learn patterns in mass spectra and generate corresponding molecular structures. This approach has the potential to revolutionize the field of mass spectrometry by enabling faster and more accurate analysis of complex substances. 
 
@@ -41,14 +41,14 @@ SpecTUS is based on an encoder-decoder transformer model—a type of neural netw
 
 The model uses a technique called "denoising" to remove noise from the spectrum and improve its quality. It then applies a series of machine learning algorithms to predict the most likely molecular structure. 
 
-# Why is This Important? 
+## Why is This Important? 
 
 SpecTUS has endless potential uses. In drug development, it speeds up the discovery of new treatments. In environmental science, it helps detect pollutants swiftly. In forensics, it can quickly figure out mystery substances. Plus, it runs smoothly on various devices—from high-powered equipment to regular computers—making it accessible and easy to use for everyone who needs it.
 
 Moreover, SpecTUS operates efficiently on different hardware, from high-end GPUs to standard CPUs. This makes it accessible for various users, allowing for rapid spectra analysis without complex infrastructure. 
 
 
-# Benefits of SpecTUS 
+## Benefits of SpecTUS 
 
 SpecTUS has several benefits over traditional methods of mass spectrometry analysis: 
 
@@ -58,7 +58,7 @@ SpecTUS has several benefits over traditional methods of mass spectrometry analy
      
 
 
-# Future Prospects 
+## Future Prospects 
 
 The future for SpecTUS is bright. There are opportunities to enhance its capabilities by incorporating higher-quality data and expanding its preliminary datasets. These improvements could boost accuracy and open up more avenues for its use in different scientific areas. 
 
@@ -66,7 +66,7 @@ In summary, SpecTUS is a groundbreaking tool in the realm of spectral analysis, 
 
 
      
-# References 
+## References 
 
 For more information about SpecTUS, please refer to the following resources: 
 
