@@ -1,6 +1,6 @@
 ---
-title: The e-INFRA CZ Blog
-description: Learn about news in e-INFRA CZ
+title: e-INFRA CZ Blog
+description: Frontiers of Research Computing
 thumbnail:
     url: /img/einfra.png
     author: Lukáš Hejtmánek
