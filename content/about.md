@@ -1,7 +1,7 @@
 ---
 title: "About e-INFRA CZ"
 date: "2014-04-09"
-thumbnail: "/img/einfra.png"
+thumbnail: "/img/capybara-clustery-grafika.jpg"
 author: "e-INFRA CZ"
 ---
 Stay at the cutting edge of research computing with e-INFRA CZ! Our blog showcases the latest advancements in high-performance computing, data storage solutions, and innovative applications for scientific research. 
