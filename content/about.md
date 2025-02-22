@@ -4,8 +4,21 @@ date: "2014-04-09"
 thumbnail: "/img/capybara-clustery-grafika-m.jpg"
 author: "e-INFRA CZ"
 ---
-Stay at the cutting edge of research computing with e-INFRA CZ! Our blog showcases the latest advancements in high-performance computing, data storage solutions, and innovative applications for scientific research.  
+Stay at the cutting edge of research computing with e-INFRA CZ! Our blog showcases the latest advancements in high-performance computing, data storage solutions, and innovative applications for scientific research.
 
-Discover new technologies, best practices, and success stories from our infrastructure. Whether you're a researcher, developer, or IT professional, join us as we push the boundaries of computational science and foster collaboration in the academic community.
+Discover new technologies, best practices, and success stories from our infrastructure. Whether you're a researcher, developer, or IT professional, join us as we push the boundaries of computational science and foster collaboration in the academic community.**
+
+### Who We Are 
 
 We are a unique e-infrastructure for research and development in the Czech Republic, which represents a transparent environment providing complex capacities and resources for the transmission, storage and processing of scientific data to all entities engaged in research and development, regardless of which industry they work within. As such, it constitutes a communication, information, storage and computing platform for research and development at the national and international levels and provides an extensive and comprehensive portfolio of ICT services, without which modern research and development cannot be realised.
+
+### About CERIT-SC
+
+[CERIT-SC](https://docs.cerit.io/en/docs/platform/overview), with CESNET and IT4Innovations, are the three e-infrastructures that constitute the national e-INFRA CZ research infrastructure. As part of our commitment to providing innovative and reliable services, CERIT-SC offers comprehensive support for Kubernetes, a leading container orchestration platform. Our team of experts is available to assist with deployment, management, and troubleshooting of Kubernetes clusters, ensuring that all applications run smoothly and efficiently.
+
+```
+Address
+Center CERIT-SC (Scientific Cloud)
+Institute of Computer Science, Masaryk University, Šumavská 15 Brno, Czech Republic
+https://www.cerit-sc.cz
+```
