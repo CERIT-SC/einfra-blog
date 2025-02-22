@@ -1,5 +1,5 @@
 ---
-date: '2025-02-22T14:26:32Z'
+date: '2025-02-22T12:26:32Z'
 title: 'Breaking Down Barriers in Mass Spectrometry — Introducing SpecTUS'
 thumbnail: '/img/specTUS/specTUS-method.png'
 author: "Ivana Krenkova"
@@ -7,6 +7,7 @@ description: "New tool in Mass Spectrometry"
 tags: ["Mass Spectrometry", "SpecTUS", "CERIT-SC"]
 colormode: true
 ---
+
 # Spotlight on SpecTUS: A Game-Changer in Identifying Chemical Compounds 
 
 In today’s fast-paced world of science and technology, spotting and understanding chemical compounds is incredibly important. Whether it's for creating new medicines, checking environmental safety, or solving crimes, knowing exactly what a chemical compound is can be vital. 
