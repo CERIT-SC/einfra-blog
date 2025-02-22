@@ -18,7 +18,7 @@ Introducing **SpecTUS: Spectral Translator for Unknown Structures**—a cutting-
 
 Think of SpecTUS as a smart translator for scientists. It's a powerful tool that uses advanced technology to transform complicated data from mass spectrometry—a way of analyzing compounds—into clear, useful information about molecular structures. Traditionally, scientists have had to rely on databases of known compounds, but SpecTUS can decipher unknown compounds without needing those references.
 
-SpecTUS is a sophisticated deep learning model designed to translate mass spectra data into molecular structures. Simply put, it takes the information from gas chromatography-mass spectrometry (GC-MS), which analyzes compounds, and turns that data into a readable format for #scientists, effectively identifying unknown structures without relying on traditional reference #databases. 
+SpecTUS is a sophisticated deep learning model designed to translate mass spectra data into molecular structures. Simply put, it takes the information from gas chromatography-mass spectrometry (GC-MS), which analyzes compounds, and turns that data into a readable format for scientists, effectively identifying unknown structures without relying on traditional reference databases. 
 
 It uses a combination of machine learning algorithms and large datasets to learn patterns in mass spectra and generate corresponding molecular structures. This approach has the potential to revolutionize the field of mass spectrometry by enabling faster and more accurate analysis of complex substances. 
 
