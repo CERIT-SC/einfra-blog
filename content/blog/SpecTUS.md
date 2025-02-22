@@ -13,8 +13,6 @@ In the ever-evolving world of scientific research and technology, the identifica
 
 We developed **SpecTUS: Spectral Translator for Unknown Structures**—a breakthrough tool that aims to revolutionize how we identify compounds using Mass Spectrometry. 
 
-'/img/specTUS/specTUS-method.png'
-
 
 # What is SpecTUS? 
 
