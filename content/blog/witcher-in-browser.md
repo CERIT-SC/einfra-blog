@@ -10,7 +10,7 @@ colormode: true
 
 # NVIDIA GeForce NOW On-Premise?<br/>Yes, It's Possible!  
 
-We successfully implemented an open-source alternative to NVIDIA's closed GeForce NOW system on a Linux platform using NVIDIA hardware.  
+We successfully deployed an open-source alternative to NVIDIA's closed GeForce NOW system on a Linux platform using NVIDIA hardware.  
 
 ## Remote Desktops  
 
