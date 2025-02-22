@@ -1,7 +1,7 @@
 ---
 date: '2025-02-22T14:26:32Z'
 title: 'Breaking Down Barriers in Mass Spectrometry: Introducing SpecTUS'
-thumbnail: '/img/witcher/screen1.png'
+thumbnail: '/img/specTUS/specTUS-method.png'
 author: "Ivana Krenkova"
 description: "New tool in Mass Spectrometry"
 tags: ["Mass Spectrometry", "SpecTUS", "CERIT-SC"]
@@ -13,12 +13,11 @@ In the ever-evolving world of scientific research and technology, the identifica
 
 We developed **SpecTUS: Spectral Translator for Unknown Structures**—a breakthrough tool that aims to revolutionize how we identify compounds using Mass Spectrometry. 
 
-'/img/specTUS/screen1.png'
+'/img/specTUS/specTUS-method.png'
 
 
 # What is SpecTUS? 
 
-What is SpecTUS? 
 
 SpecTUS is a sophisticated deep learning model designed to translate mass spectra data into molecular structures. Simply put, it takes the information from gas chromatography-mass spectrometry (GC-MS), which analyzes compounds, and turns that data into a readable format for scientists, effectively identifying unknown structures without relying on traditional reference databases. 
 
