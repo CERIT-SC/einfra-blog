@@ -41,9 +41,9 @@ The model uses a technique called "denoising" to remove noise from the spectrum 
 
 ## Why is This Important? 
 
-SpecTUS has endless potential uses. In drug development, it speeds up the discovery of new treatments. In environmental science, it helps detect pollutants swiftly. In forensics, it can quickly figure out mystery substances. Plus, it runs smoothly on various devices—from high-powered equipment to regular computers—making it accessible and easy to use for everyone who needs it.
+SpecTUS has endless potential uses. In drug development, it speeds up the discovery of new treatments. In environmental science, it helps detect pollutants swiftly. In forensics, it can quickly figure out mystery substances. 
 
-Moreover, SpecTUS operates efficiently on different hardware, from high-end GPUs to standard CPUs. This makes it accessible for various users, allowing for rapid spectra analysis without complex infrastructure. 
+Plus, it runs smoothly on different hardware—from high-end GPUs to standard CPUs—making it accessible and easy to use, allowing rapid spectra analysis without complex infrastructure. 
 
 
 ## Benefits of SpecTUS 
