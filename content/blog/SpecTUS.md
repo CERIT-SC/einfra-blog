@@ -1,6 +1,6 @@
 ---
 date: '2025-02-22T12:26:32Z'
-title: 'Breaking Down Barriers in Mass Spectrometry'
+title: 'Mass Spectrometry Breakthroughs'
 thumbnail: '/img/spectus/specTUS-method-s.jpeg'
 author: "Ivana Krenkova"
 description: "SpecTUS: a new tool in da house"
