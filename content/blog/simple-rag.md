@@ -106,3 +106,21 @@ The Docker file and Kubernetes deployment script are available on our [GitHub re
 
 #### Chat Interface
 
+We leveraged the chat implementation from [Fumadocs](https://github.com/fuma-nama/fumadocs/tree/dev/apps/docs/components/ai). Since it natively supports only the [Inkeep AI API](https://inkeep.com/), we modified the component to work with the OpenAI API and integrated embedding functionality.
+
+The chat flow operates as follows:  
+- If the given prompt is the first question, an embedding context is created, appended to the prompt, and sent to the LLM.  
+- Otherwise, the message is sent directly to the LLM along with the full conversation history (questions and answers), enabling users to ask detailed follow-up questions.
+
+Additionally, we implemented three answer-generation variants:
+
+1. **Local embeddings** combined with the **OpenAI GPT-4o-mini** model.  
+2. **Local embeddings** combined with the **local LLaMA 3.3** model.  
+3. A **local DeepSeek R1** model with a fixed context about our local Kubernetes infrastructure and related components (such as Docker and Helm) for answering generic questions.
+
+For embeddings, we experimented with the following models:  
+- `mxbai-embed-large:latest`  
+- `nomic-embed-text:latest`  
+
+The chat interface implementation can be found in our [GitHub repository](https://github.com/CERIT-SC/fumadocs) under the `components/ai` folder.
+
