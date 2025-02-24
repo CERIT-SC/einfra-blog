@@ -27,7 +27,8 @@ https://www.cerit-sc.cz
 ```
 
 ## About CESNET
-We deliver advanced ICT services for science, research, and education. As pioneers of the first academic networks nearly 30 years ago, we maintain them to this day, ensure secure access, and provide robust environments for data storage, high-performance computing, and team collaboration. Our members include public universities and the Academy of Sciences of the Czech Republic.
+
+CESNET delivers cutting-edge ICT services tailored for science, research, and education. As pioneers of the first academic networks nearly 30 years ago, we continue to develop and maintain them, ensuring secure access and seamless connectivity. Our expertise extends to providing robust environments for data storage, high-performance computing, and efficient team collaboration, empowering innovation and discovery.
 
 ```
 Address
