@@ -66,3 +66,22 @@ Since many documentation systems use **Markdown**, we can leverage libraries tha
 For more on Markdown-based text splitting, check out the [MarkdownTextSplitter](https://python.langchain.com/api_reference/text_splitters/markdown/langchain_text_splitters.markdown.MarkdownTextSplitter.html).  
 
 Additionally, you can explore various [text splitting experiments](https://github.com/FullStackRetrieval-com/RetrievalTutorials/blob/main/tutorials/LevelsOfTextSplitting/5_Levels_Of_Text_Splitting.ipynb) in this Jupyter Notebook.
+
+### Implementation
+
+Let's dive into the implementation, which is composed of several key components: the Embedder, the Embedding API and database, and the chat interface.
+
+#### The Embedder
+
+We developed a simple embedder for our Markdown documentation in **MDX** format, utilizing **MarkdownTextSplitter** for text segmentation. The implementation is available on the [CERIT-SC GitHub repository](https://github.com/CERIT-SC/fumadocs/blob/master/scripts/embed.py). It is designed to work with documentation following the [Fumadocs](https://github.com/fuma-nama/fumadocs) structure.
+
+We also extended the usual metadata collected for each document to enhance searchability and retrieval. Specifically, we store:
+
+- **Document title** – Extracted directly from the MDX format, allowing for better display in search results.  
+- **Chunk number** – Helps reconstruct a broader context when needed.  
+- **Language** – Indicates the language of the document for multilingual support.  
+- **Path** – The relative URL of the document on the web, enabling direct source linking.  
+
+#### The Embedding API and Database
+
+
