@@ -86,4 +86,23 @@ We also extended the usual metadata collected for each document to enhance searc
 
 #### The Embedding API and Database
 
+For our embedding API, we utilized the [Embedbase](https://embedbase.xyz/) project. Besides a paid API, it also provides an open-source implementation available on [GitHub](https://github.com/different-ai/embedbase), allowing for self-hosting. The Embedbase requires access to a database and certain AI model APIs.
+
+We made some modifications to the code, as it includes built-in support for authentication tokens, which wasn't necessary for our internal use, given our IP-limited access. Additionally, we addressed database support. By default, Embedbase utilizes [Supabase](https://supabase.com/), which offers both a paid service and a free self-hosted option. The self-hosted setup can be complex, ultimately running a PostgreSQL database with the `pg_vector` extension. Fortunately, Embedbase also supports direct connection to PostgreSQL, making it feasible to directly deploy a PostgreSQL instance and integrate it with Embedbase. However, it's important to note that the PostgreSQL configuration in Embedbase is marked as experimental and requires specifying the number of vector dimensions in advance.
+
+The original version of Embedbase supports the OpenAI API and Cohere API. For the OpenAI API, it uses an older Python module, which does not support connecting to various OpenAI API compatible providers.
+
+**Final Modifications:**
+
+1. Removed `Firebase` authentication.
+2. Updated the `OpenAI` module to the latest version, which allows specifying the base URL for the OpenAI API. This update enables the use of local OpenAI-compatible deployments, such as `Ollama`.
+3. Enhanced the PostgreSQL module to retry communication with the database in case of connection drops, such as during a server restart. We also added the capability to assemble a complete text document from chunks, facilitating the provision of a full document as context.
+
+For the database, we deployed a simple PostgreSQL instance using our Kubernetes [CloudNativePG](https://cloudnative-pg.io/) operator and enabled the `pg_vector` extension.
+
+> Note: If we want to experiment with a different embedding model, the entire setup must be redeployed, as embeddings from different models are not compatible and vector dimensions vary, which necessitates different SQL table schemas.
+
+The Docker file and Kubernetes deployment script are available on our [GitHub repository](https://github.com/CERIT-SC/embedbase).
+
+#### Chat Interface
 
