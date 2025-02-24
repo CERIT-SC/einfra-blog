@@ -11,7 +11,9 @@ colormode: true
 
 There are two kinds of people in the world: those who write documentation, hoping others will read and understand it, and those who need information but struggle to find it in massive, complex manuals. Unfortunately, the reality is that documentation often becomes overwhelming, and users looking for a simple answer can easily get lost. This is why most electronic documentation systems include at least a basic search function. 
 
-To be honest, the initial version of the CERIT-SC Kubernetes documentation lacked this feature. But even with a search function, users must know what to look for and often need to input the exact phrasing to find relevant results. 
+To be honest, the initial version of the CERIT-SC Kubernetes documentation lacked this feature. But even with a search function, users must know what to look for and often need to input the exact phrasing to find relevant results.
+
+If you're already familiar with RAG concepts, feel free to skip ahead to the [Implementation](#implementation) section.
 
 ## AI to the Rescue?
 
