@@ -124,3 +124,20 @@ For embeddings, we experimented with the following models:
 
 The chat interface implementation can be found in our [GitHub repository](https://github.com/CERIT-SC/fumadocs) under the `components/ai` folder.
 
+## Results
+
+If you have a valid [MetaCentrum account](https://docs.cerit.io/en/docs/platform/access), you can try the chat interface yourself at [https://docs.cerit.io](https://docs.cerit.io).  
+
+Below are some example interactions to give you a preview:  
+
+### Chat question about Ansys, evaluated by the LLaMA model:  
+![Figure1](/img/rag/llama.png)  
+
+### Generic chat question about Deployment, evaluated by the DeepSeek R1 model:  
+![Figure2](/img/rag/deepseek.png)  
+
+### Occasionally, responses may not be as expected—especially due to the limitations of Czech language support in LLMs:  
+![Figure3](/img/rag/beberapa.png)  
+
+### And just to clarify—we don’t cook pasta:  
+![Figure4](/img/rag/testoviny.png)  
