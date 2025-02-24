@@ -140,4 +140,11 @@ Below are some example interactions to give you a preview:
 ![Figure3](/img/rag/beberapa.png)  
 
 ### And just to clarify—we don’t cook pasta:  
-![Figure4](/img/rag/testoviny.png)  
+![Figure4](/img/rag/testoviny.png)
+
+## Final Thoughts  
+
+- Further benchmarking and evaluation of various models, particularly multilingual ones, will be necessary.  
+- Exploring advanced techniques such as [re-ranking](https://medium.com/@csakash03/mastering-re-ranking-for-superior-llm-rag-retrieval-a-comprehensive-guide-931daf0c68f7) and [multi-agentic RAG](https://towardsdatascience.com/multi-agentic-rag-with-hugging-face-code-agents-005822122930/) is an ongoing area of interest.  
+- Fine-tuning embedding models is also under consideration, especially for non-English languages.  
+
