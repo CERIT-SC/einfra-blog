@@ -45,3 +45,24 @@ Thus, **optimizing the amount of context** is crucial—too little might lead to
 
 Ultimately, the effectiveness of RAG depends on **providing the right context**—no more, no less. Proper document selection, retrieval tuning, and efficient context management are what make the difference between an AI assistant that truly helps and one that gets lost in the noise.
 
+For shorter texts, we could theoretically use the entire text as context. However, even with short documents, there's a major constraint: the **context size limit** of the embedding model. And the situation here is quite restrictive. Some embedding models support as little as **500 tokens (about 2,000 characters)**, while others allow **1,000 to 8,000 tokens**. A few larger models offer **32k-token** context windows, but these models are significantly larger in size, requiring more memory and computational resources. In contrast, smaller-context models are more lightweight and efficient.
+
+### Embedding Model Limitations
+
+Another key factor is **embedding dimensions**, which determine how much information can be stored in an embedding vector. This refers to the number of numerical values in the vector representation of the text. Typical embedding models have fewer than **4,000 dimensions**, with some exceptions reaching around **9,000**. However, compressing a **32k-token** document into a **9,000-dimension** vector inevitably leads to information loss, which can reduce the accuracy of similarity searches.
+
+**Language support** is another critical consideration. Most embedding models are optimized for English, but if you need to process other languages—such as Czech—you’ll need a model trained on that language or a **multilingual** embedding model.
+
+For details on different embedding models, their context sizes, and relative performance, check the [Hugging Face embedding models leaderboard](https://huggingface.co/spaces/mteb/leaderboard).
+
+### Document Splitting: The Key to Effective Retrieval
+
+If we are limited to models with **500-1,000 token** context windows, even short texts may need to be split into smaller **chunks**. Proper document splitting is crucial: each chunk should contain enough information to enable effective similarity searches while remaining within the model's constraints.
+
+While manually splitting text would likely yield the best results, it's impractical—especially for documentation that frequently updates. Automatic splitting is a challenging problem, and there isn’t a universally effective **"magic text splitter."**
+
+Since many documentation systems use **Markdown**, we can leverage libraries that understand Markdown structure and split the text accordingly. A best practice is to allow **overlapping chunks** to ensure that relevant context isn’t lost at chunk boundaries.  
+
+For more on Markdown-based text splitting, check out the [MarkdownTextSplitter](https://python.langchain.com/api_reference/text_splitters/markdown/langchain_text_splitters.markdown.MarkdownTextSplitter.html).  
+
+Additionally, you can explore various [text splitting experiments](https://github.com/FullStackRetrieval-com/RetrievalTutorials/blob/main/tutorials/LevelsOfTextSplitting/5_Levels_Of_Text_Splitting.ipynb) in this Jupyter Notebook.
