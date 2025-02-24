@@ -16,11 +16,22 @@ We are a unique e-infrastructure for research and development in the Czech Repub
 
 ## About CERIT-SC
 
-[CERIT-SC](https://docs.cerit.io/en/docs/platform/overview), with CESNET and IT4Innovations, are the three e-infrastructures that constitute the national e-INFRA CZ research infrastructure. As part of our commitment to providing innovative and reliable services, CERIT-SC offers comprehensive support for Kubernetes, a leading container orchestration platform. Our team of experts is available to assist with deployment, management, and troubleshooting of Kubernetes clusters, ensuring that all applications run smoothly and efficiently.
+[CERIT-SC](https://docs.cerit.io/en/docs/platform/overview), with [CESNET](https://www.cesnet.cz/) and IT4Innovations, are the three e-infrastructures that constitute the national e-INFRA CZ research infrastructure. As part of our commitment to providing innovative and reliable services, CERIT-SC offers comprehensive support for Kubernetes, a leading container orchestration platform. Our team of experts is available to assist with deployment, management, and troubleshooting of Kubernetes clusters, ensuring that all applications run smoothly and efficiently.
+Furthermore, we actively engage in research collaborations with researchers from various academic institutions, fostering a dynamic exchange of ideas and expertise to advance the development of cutting-edge technologies and solutions. By working closely with the academic community, we aim to drive innovation and push the boundaries of what is possible in the field of e-infrastructures and beyond.
 
 ```
 Address
 Center CERIT-SC (Scientific Cloud)
 Institute of Computer Science, Masaryk University, Šumavská 15 Brno, Czech Republic
 https://www.cerit-sc.cz
+```
+
+## About CESNET
+We deliver advanced ICT services for science, research, and education. As pioneers of the first academic networks nearly 30 years ago, we maintain them to this day, ensure secure access, and provide robust environments for data storage, high-performance computing, and team collaboration. Our members include public universities and the Academy of Sciences of the Czech Republic.
+
+```
+Address
+CESNET, zájmové sdružení právnických osob
+Generála Píky 430/26, 160 00 Praha 6
+https://www.cesnet.cz
 ```
