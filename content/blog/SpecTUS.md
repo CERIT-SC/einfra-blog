@@ -22,7 +22,7 @@ A mass spectrometer ionizes atoms and molecules with a high-energy electron beam
 
 ![Figure2](/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png)
 
-## Knowing problems in Mass Spectrometry
+## Known problems in Mass Spectrometry
 
 Databases of mass spectra, used for identifying and quantifying substances, have contained the following numbers of molecules over the years: 
 
