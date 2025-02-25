@@ -24,16 +24,26 @@ A mass spectrometer ionizes atoms and molecules with a high-energy electron beam
 
 ![Figure2](/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png)
 
-## How MS works?
+## How MS works: Example with Sugar
+
+Sugar is something we consume every day, but have you ever stopped to think about what it's really made of? Is it just a sweet substance, or is there more to it? Using mass spectrometry, we can uncover the secrets of sugar and discover what lies behind its sweet taste. 
+
+The MS process is relatively straightforward: 
 
 ![Figure3](/img/spectus/cukr.png)
 
+* Ionization: The sugar is first ionized, which means electrons are added or removed to create charged particles.
+* Separation: These charged particles are then separated according to their mass and charge using a magnetic field.
+
 ![Figure4](/img/spectus/molekuly-rozbite.png)
+ 
+* Detection: Finally, the intensity of each particle is measured, and a spectrum is created that shows the composition of sugar.
 
+Using MS, we can determine that sucrose has a molecular weight of around 342 g/mol. This means that its mass spectrum will show a signal at approximately m/z 342, where m is the mass of the molecule and z is its charge. The presence of this signal indicates that the sample contains sucrose. 
+
+In addition to determining the molecular weight of sucrose, MS can also be used to detect impurities in the sample. If the sugar is not pure, the mass spectrum may show additional signals corresponding to other compounds present in the sample. By comparing these signals to databases of known compounds, we can identify the impurities and determine their concentrations. These databases contain information about the mass spectra of thousands of compounds, including sugars, amino acids, and other biomolecules. By comparing the mass spectrum of our sample to these databases, we can identify the compounds present in the sample and determine their molecular weights. 
+     
 ![Figure5](/img/spectus/cukr_spec2_solo.png)
-
-
-
 
 ## Limitation in Compound Identification in Mass Spectrometry
 
