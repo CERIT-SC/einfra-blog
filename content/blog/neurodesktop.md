@@ -7,7 +7,7 @@ tags: ["Kristián Kováč", "CERIT-SC", "Neurodesktop", "Singluarity", "Kubernet
 colormode: true
 ---
 
-# Improving Neurodesktop for Kubernetes: Running Applications as Native Pods
+# Improving Neurodesktop for Kubernetes: Running applications as native pods
 
 [Neurodesktop](https://www.neurodesk.org/) was originally designed to run each application using Singularity containers, ensuring isolated execution and simplified application distribution. However, this approach presents challenges in our Kubernetes deployment, where running Singularity containers would require pods to be launched under the root user. This setup would not be ideal due to security concerns and the additional complexity of managing containers inside other containers. 
 
@@ -19,7 +19,7 @@ Neurodesktop is a containerized computational environment designed to provide re
 
 Users can access Neurodesktop through their web browser, eliminating the need for local installation and enabling remote accessibility from anywhere. It seamlessly integrates with JupyterHub, allowing researchers to transition between Jupyter notebooks and a full graphical interface. By leveraging containerization, Neurodesktop provides a portable, efficient, and scalable solution that allows users to focus on their scientific work without worrying about software configuration and compatibility issues.
 
-## The Challenge: Running Applications in Kubernetes
+## The Challenge: Running applications in Kubernetes
 
 While Singularity is effective in standalone environments, its integration into Kubernetes presented significant challenges. The primary issue is the requirement for privilege escalation, making it incompatible with the security model of Kubernetes, which does not allow pods to run with elevated privileges in a secure and manageable way. 
 
@@ -27,7 +27,7 @@ Additionally, Singularity's approach of nesting containers within the other (mai
 
 Given these constraints, a more Kubernetes-native solution was necessary to enhance Neurodesktop’s security and scalability in a Kubernetes environment.
 
-## The Solution: Running Applications as Native Pods
+## The Solution: Running applications as Native Pods
 
 To resolve these challenges, we re-engineered Neurodesktop’s execution model, transitioning from a Singularity-based architecture to one where each application runs as its own Kubernetes pod. Each user accesses Neurodesktop through a primary JupyterHub-managed pod, which serves as their main working environment. When an application is launched, a dedicated Kubernetes pod is dynamically created for that application, ensuring an isolated and efficient runtime. 
 
