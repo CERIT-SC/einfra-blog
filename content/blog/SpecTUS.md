@@ -30,7 +30,7 @@ Sugar is something we consume every day, but have you ever stopped to think abou
 
 The MS process is relatively straightforward: 
 
-![Figure3](/img/spectus/cukr.png)
+(/img/spectus/cukr.png)
 
 * Ionization: The sugar is first ionized, which means electrons are added or removed to create charged particles.
 * Separation: These charged particles are then separated according to their mass and charge using a magnetic field.
