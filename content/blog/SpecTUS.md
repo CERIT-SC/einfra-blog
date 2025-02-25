@@ -23,7 +23,7 @@ Using mass spectrometry data, we can estimate an element's average atomic mass a
 
 A mass spectrometer ionizes atoms and molecules with a high-energy electron beam and then deflects the ions through a magnetic field based on their mass-to-charge ratios '(m/z)'.
 
-![Figure2](/img/spectus/-Vysokorozlysujici-GC-HRMS_l.webp)
+![Figure2](/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png)
 
 
 ## What is SpecTUS? 
