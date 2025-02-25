@@ -28,9 +28,9 @@ A mass spectrometer ionizes atoms and molecules with a high-energy electron beam
 
 Databases of mass spectra, used for identifying and quantifying substances, have contained the following numbers of molecules over the years: 
 
-     1970: 12 thousand molecules
-     1990: 54 thousand molecules
-     2023: 900 thousand molecules
+* 1970: 12 thousand molecules
+* 1990: 54 thousand molecules
+* 2023: 900 thousand molecules
      
 This growth in database size is mainly due to advances in technology and increasing interest in mass spectrometry. The databases are now available online and are continually updated. 
 
