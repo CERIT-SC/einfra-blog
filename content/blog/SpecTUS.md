@@ -25,6 +25,20 @@ A mass spectrometer ionizes atoms and molecules with a high-energy electron beam
 
 ![Figure2](/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png)
 
+## Knowing problems in Mass Spectrometry
+
+Databases of mass spectra, used for identifying and quantifying substances, have contained the following numbers of molecules over the years: 
+
+     1970: 12 thousand molecules
+     1990: 54 thousand molecules
+     2023: 900 thousand molecules
+     
+This growth in database size is mainly due to advances in technology and increasing interest in mass spectrometry. The databases are now available online and are continually updated. 
+
+It is estimated that there are approximately 10^9 (1 billion) known "small" molecules. These molecules are defined as substances with a molecular weight less than 500 u (unified atomic mass units).
+
+It is estimated that there are approximately 10^60 possible molecules that can be synthesized or found in nature. This number is enormous and suggests that there are still many unknown substances waiting to be discovered. 
+
 
 ## What is SpecTUS? 
 
