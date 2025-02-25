@@ -155,3 +155,6 @@
 
 [links]
     hinode = "https://gethinode.com"
+
+[thumbnails]
+    ratio = ""
