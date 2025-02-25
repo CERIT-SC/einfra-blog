@@ -1,7 +1,7 @@
 ---
 date: '2025-02-22T12:26:32Z'
 title: 'Mass Spectrometry Breakthroughs'
-thumbnail: '/img/spectus/ms-eng2.png'
+thumbnail: '/img/spectus/alchymista_v_knihovne1.jpeg'
 author: "Ivana Krenkova"
 description: "SpecTUS: a new tool in da house"
 tags: ["Ivana Křenková", "CERIT-SC", "SpecTUS", "Research"]
@@ -16,6 +16,8 @@ We introduced **SpecTUS: Spectral Translator for Unknown Structures**, a cutting
 
 ## What is Mass Spectrometry?
 In the analytical technique of mass spectrometry, atoms or molecules are ionized using a high-energy electron beam and then separated based on their mass-to-charge ratios (m/z). The results are presented as a mass spectrum, which shows the relative abundances of the ions on the y-axis and their m/z ratios on the x-axis. This data can be used to calculate the exact masses of the atoms or molecules in the sample.
+
+![Figure1](/img/spectus/ms-eng2.png)
 
 Using mass spectrometry data, we can estimate an element's average atomic mass and determine its identity. 
 A mass spectrometer ionizes atoms and molecules with a high-energy electron beam and then deflects the ions through a magnetic field based on their mass-to-charge ratios (m/z).
