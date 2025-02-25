@@ -1,7 +1,7 @@
 ---
 date: '2025-02-22T12:26:32Z'
 title: 'Mass Spectrometry Breakthroughs'
-thumbnail: '/img/spectus/spalchymista_v_knihovne.jpeg'
+thumbnail: '/img/spectus/alchymista_v_knihovne.jpeg'
 author: "Ivana Krenkova"
 description: "SpecTUS: a new tool in da house"
 tags: ["Ivana Křenková", "CERIT-SC", "SpecTUS", "Research"]
