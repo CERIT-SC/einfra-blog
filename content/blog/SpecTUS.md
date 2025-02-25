@@ -18,7 +18,7 @@ We introduced **SpecTUS: Spectral Translator for Unknown Structures**, a cutting
 In the analytical technique of mass spectrometry, atoms or molecules are ionized using a high-energy electron beam and then separated based on their mass-to-charge ratios (m/z). The results are presented as a mass spectrum, which shows the relative abundances of the ions on the y-axis and their m/z ratios on the x-axis. This data can be used to calculate the exact masses of the atoms or molecules in the sample.
 
 Using mass spectrometry data, we can estimate an element's average atomic mass and determine its identity. 
-A mass spectrometer ionizes atoms and molecules with a high-energy electron beam and then deflects the ions through a magnetic field based on their mass-to-charge ratios '(m/z)'.
+A mass spectrometer ionizes atoms and molecules with a high-energy electron beam and then deflects the ions through a magnetic field based on their mass-to-charge ratios (m/z).
 
 ![Figure2](/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png)
 
