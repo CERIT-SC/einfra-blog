@@ -24,7 +24,7 @@ A mass spectrometer ionizes atoms and molecules with a high-energy electron beam
 
 ![Figure2](/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png)
 
-## How MS works: Example with Sugar
+### How MS works: Example with Sugar
 
 Sugar is something we consume every day, but have you ever stopped to think about what it's really made of? Is it just a sweet substance, or is there more to it? Using mass spectrometry, we can uncover the secrets of sugar and discover what lies behind its sweet taste. 
 
@@ -45,7 +45,7 @@ In addition to determining the molecular weight of sucrose, MS can also be used 
      
 ![Figure5](/img/spectus/cukr_spec2_solo.png)
 
-## Limitation in Compound Identification in Mass Spectrometry
+### Limitation in Compound Identification in Mass Spectrometry
 
 Databases of mass spectra, used for identifying and quantifying substances, have contained the following numbers of molecules over the years: 
 
