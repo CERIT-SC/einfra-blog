@@ -20,6 +20,9 @@ The results are presented as a mass spectrum, which displays the relative abunda
 
 ![Figure1](/img/spectus/ms-eng2.png)
 
+
+{{< image src="/img/spectus/ms-eng2.png" class="rounded" wrapper="text-center w-40" >}}
+
 The spectrum is fairly unique for any compound and it can be used to identify it reliably.
 Mass spectrometers are usually coupled with a chromatographic column, which separates compounds in the sample from one another, so that the measured mass spectra
 are not mixed.
