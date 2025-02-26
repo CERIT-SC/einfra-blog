@@ -99,6 +99,8 @@ SpecTUS has several benefits over traditional methods of mass spectrometry analy
 
 The future for SpecTUS is bright. There are opportunities to enhance its capabilities by incorporating higher-quality data and expanding its preliminary datasets. These improvements could boost accuracy and open up more avenues for its use in different scientific areas. 
 
+## Conclusion
+
 In summary, SpecTUS is a groundbreaking tool in the realm of spectral analysis, offering a smart and effective way to identify chemical compounds that go beyond what traditional database methods can do. As research and technology advance, tools like SpecTUS will play a crucial role in deepening our understanding of the chemical world. 
 
 
