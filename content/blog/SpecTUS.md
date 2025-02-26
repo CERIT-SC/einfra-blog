@@ -22,8 +22,6 @@ In the analytical technique of mass spectrometry, atoms or molecules are ionize
 Using mass spectrometry data, we can estimate an element's average atomic mass and determine its identity. 
 A mass spectrometer ionizes atoms and molecules with a high-energy electron beam and then deflects the ions through a magnetic field based on their mass-to-charge ratios (m/z).
 
-![Figure2](/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png)
-
 {{< image src="/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png" ratio="4x3" class="col-12 col-md-6" wrapper="text-center w-40" >}}
 
 ### How MS works: Example with Sugar
