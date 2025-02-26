@@ -31,9 +31,9 @@ The MS process is relatively straightforward:
 
 ![Figure3](/img/spectus/sugar.png)
 
-* Ionization: The sugar is first ionized, which means electrons are added or removed to create charged particles.
-* Separation: These charged particles are then separated according to their mass and charge using a magnetic field.
-* Detection: Finally, the intensity of each particle is measured, and a spectrum is created that shows the composition of sugar.
+* **Ionization**: The sugar is first ionized, which means electrons are added or removed to create charged particles.
+* **Separation**: These charged particles are then separated according to their mass and charge using a magnetic field.
+* **Detection**: Finally, the intensity of each particle is measured, and a spectrum is created that shows the composition of sugar.
 
 ![Figure5](/img/spectus/sugar-spec2-solo.png)
 
