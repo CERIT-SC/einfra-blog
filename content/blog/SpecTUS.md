@@ -4,7 +4,7 @@ title: 'Machine Learning in Mass Spectrometry'
 thumbnail: '/img/spectus/alchymista_v_knihovne1.jpeg'
 author: "Ivana Krenkova"
 description: "SpecTUS: a new tool in da house"
-tags: ["Ivana Křenková", "CERIT-SC", "SpecTUS", "Research"]
+tags: ["Ivana Křenková", "CERIT-SC", "SpecTUS", "Machine Learning", "Research"]
 colormode: true
 ---
 
