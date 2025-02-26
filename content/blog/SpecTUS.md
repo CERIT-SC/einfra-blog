@@ -15,30 +15,31 @@ In today’s fast-paced world of science and technology, spotting and understand
 We introduced **SpecTUS: Spectral Translator for Unknown Structures**, a cutting-edge breakthrough tool that aims to revolutionize how we identify compounds using mass spectrometry.
 
 ## What is Mass Spectrometry?
-Mass spectrometry (MS) is an analytical technique where atoms or molecules are ionized using a high-energy electron beam and then separated based on their mass-to-charge ratios (m/z). The results are presented as a mass spectrum, which displays the relative abundances of the ions on the y-axis and their m/z ratios on the x-axis. This data is used to calculate the exact masses of atoms or molecules in a sample.
+Mass spectrometry (MS) is an analytical technique based on breaking up molecules into fragments whose masses are measured (technically, the ratio of mass and charge, m/z, is measured but usually z = 1, making no difference).
+The results are presented as a mass spectrum, which displays the relative abundances of the ions on the y-axis and their m/z ratios on the x-axis. 
 
 ![Figure1](/img/spectus/ms-eng2.png)
 
-By analyzing mass spectrometry data, we can estimate an element's average atomic mass and determine its identity. A mass spectrometer ionizes atoms and molecules with a high-energy electron beam and then deflects the ions through a magnetic field based on their m/z ratios.
+The spectrum is fairly unique for any compound and it can be used to identify it reliably.
+Mass spectrometers are usually coupled with a chromatographic column, which separates compounds in the sample from one another, so that the measured mass spectra
+are not mixed.
 
 {{< image src="/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png" ratio="4x3" class="col-12 col-md-6" wrapper="text-center w-40" >}}
 
 ### How MS Works: Example with Sugar
-Sugar is something we consume every day, but have you ever wondered what it's really made of? Using mass spectrometry, we can uncover its composition.
+Sucrose (ordinary sugar) is something we consume every day, but given a glass of sweet tasting drink, have you ever wondered what it's really made of? Using mass spectrometry, we can uncover its composition.
 
 The MS process is relatively straightforward: 
 
 ![Figure3](/img/spectus/sugar.png)
 
-* **Ionization**:  Sugar molecules are ionized by adding or removing electrons, creating charged particles.
-* **Separation**: These charged particles are separated by their mass-to-charge ratios using a magnetic field.
-* **Detection**: The intensity of each particle is measured, generating a spectrum that reveals the sugar's composition.
+* **Ionization**:  Molecules in the sample are exposed to some stress, e.g. a hi-energy electron beam, which breaks them up into charged fragments (ions).
+* **Mass measurement**: Leveraging some laws of physics, e.g. that lighter ions are more deflected by mangetic field than heavy ones, m/z of the ions is measured together with their relative abundance.
+* **Data processing**: Depending on the specific method, data acquired in the previous step may not represent the mass spectrum directly; they have to be processed, denoised, deconvoluted etc. 
 
 ![Figure5](/img/spectus/sugar-spec2-solo.png)
 
-In addition to determining the molecular weight of sucrose, MS can also be used to detect impurities in the sample. If the sugar is not pure, the mass spectrum may show additional signals corresponding to other compounds present in the sample. 
-
-By comparing these signals to databases of known compounds, we can identify the impurities and determine their concentrations. These databases contain information about the mass spectra of thousands of compounds, including sugars, amino acids, and other biomolecules. By comparing the mass spectrum of our sample to these databases, we can identify the compounds present in the sample and determine their molecular weights. 
+By comparing the acquired spectra to databases of known compounds, we can identify which compounds were present in the sample, including their concentrations. These databases contain information about the mass spectra of thousands of compounds, including sugars, amino acids, hormones, environmental polutants, and other biologically relevant compounds. 
      
 
 ### Limitation in Compound Identification in Mass Spectrometry
@@ -47,7 +48,7 @@ Databases of mass spectra, used for identifying and quantifying substances, have
 * 1990: 54 thousand molecules
 * 2023: 900 thousand molecules
      
-Despite this growth, the estimated number of small molecules (molecular weight < 500 u) is around **10⁹** (1 billion), while the number of possible molecules is approximately **10⁶⁰**. This immense chemical space suggests many unknown substances are yet to be discovered.
+Despite this growth, the number of known small molecules (molecular weight < 500 u) is around **10⁹** (1 billion), while the number of possible molecules of these sizes is approximately **10⁶⁰**. This immense chemical space suggests that given an arbitrary compound in the sample, the probability to find its spectrum in the database is still ridiculously low.
 
 
 ## What is SpecTUS? 
