@@ -37,7 +37,7 @@
 [navigation]
     anchor = true
     logo = "/img/logo-einfra.svg"
-    color = "body"
+    color = "dark"
     fixed = true
     offset = "5.5rem"
     search = true
