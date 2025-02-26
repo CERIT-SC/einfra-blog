@@ -25,7 +25,6 @@ A mass spectrometer ionizes atoms and molecules with a high-energy electron beam
 {{< image src="/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png" ratio="4x3" class="col-12 col-md-6" wrapper="text-center w-40" >}}
 
 ### How MS works: Example with Sugar
-
 Sugar is something we consume every day, but have you ever stopped to think about what it's really made of? Is it just a sweet substance, or is there more to it? Using mass spectrometry, we can uncover the secrets of sugar and discover what lies behind its sweet taste. 
 
 The MS process is relatively straightforward: 
@@ -38,12 +37,12 @@ The MS process is relatively straightforward:
 
 ![Figure5](/img/spectus/sugar-spec2-solo.png)
 
-In addition to determining the molecular weight of sucrose, MS can also be used to detect impurities in the sample. If the sugar is not pure, the mass spectrum may show additional signals corresponding to other compounds present in the sample. By comparing these signals to databases of known compounds, we can identify the impurities and determine their concentrations. These databases contain information about the mass spectra of thousands of compounds, including sugars, amino acids, and other biomolecules. By comparing the mass spectrum of our sample to these databases, we can identify the compounds present in the sample and determine their molecular weights. 
+In addition to determining the molecular weight of sucrose, MS can also be used to detect impurities in the sample. If the sugar is not pure, the mass spectrum may show additional signals corresponding to other compounds present in the sample. 
+
+By comparing these signals to databases of known compounds, we can identify the impurities and determine their concentrations. These databases contain information about the mass spectra of thousands of compounds, including sugars, amino acids, and other biomolecules. By comparing the mass spectrum of our sample to these databases, we can identify the compounds present in the sample and determine their molecular weights. 
      
 
-
 ### Limitation in Compound Identification in Mass Spectrometry
-
 Databases of mass spectra, used for identifying and quantifying substances, have contained the following numbers of molecules over the years: 
 
 * 1970: 12 thousand molecules
