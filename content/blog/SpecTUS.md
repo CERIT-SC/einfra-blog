@@ -36,8 +36,6 @@ The MS process is relatively straightforward:
 * Separation: These charged particles are then separated according to their mass and charge using a magnetic field.
 * Detection: Finally, the intensity of each particle is measured, and a spectrum is created that shows the composition of sugar.
 
-TODO Using MS, we can determine that sucrose has a molecular weight of around 100 g/mol. This means that its mass spectrum will show a signal at approximately m/z 100, where m is the mass of the molecule and z is its charge. The presence of this signal indicates that the sample contains sucrose. 
-
 ![Figure5](/img/spectus/cukr_spec2_solo.png)
 
 In addition to determining the molecular weight of sucrose, MS can also be used to detect impurities in the sample. If the sugar is not pure, the mass spectrum may show additional signals corresponding to other compounds present in the sample. By comparing these signals to databases of known compounds, we can identify the impurities and determine their concentrations. These databases contain information about the mass spectra of thousands of compounds, including sugars, amino acids, and other biomolecules. By comparing the mass spectrum of our sample to these databases, we can identify the compounds present in the sample and determine their molecular weights. 
