@@ -24,7 +24,7 @@ The spectrum is fairly unique for any compound and it can be used to identify it
 Mass spectrometers are usually coupled with a chromatographic column, which separates compounds in the sample from one another, so that the measured mass spectra
 are not mixed.
 
-{{< image src="/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png" ratio="4x3" class="col-12 col-md-6" wrapper="text-center w-40" >}}
+{{< image src="/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png" ratio="4x3" class="rounded col-12 col-md-6" wrapper="text-center w-40" >}}
 
 ### How MS Works: Example with Sugar
 Sucrose (ordinary sugar) is something we consume every day, but given a glass of sweet tasting drink, have you ever wondered what it's really made of? Using mass spectrometry, we can uncover its composition.
