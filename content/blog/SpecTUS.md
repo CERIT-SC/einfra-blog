@@ -24,7 +24,7 @@ A mass spectrometer ionizes atoms and molecules with a high-energy electron beam
 
 ![Figure2](/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png)
 
-{{< image src="/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png" ratio="4x3" class="col-6 col-md-3" wrapper="text-center w-40" >}}
+{{< image src="/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png" ratio="4x3" class="col-12 col-md-6" wrapper="text-center w-40" >}}
 
 ### How MS works: Example with Sugar
 
