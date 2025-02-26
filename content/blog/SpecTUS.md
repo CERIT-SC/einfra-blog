@@ -24,7 +24,7 @@ A mass spectrometer ionizes atoms and molecules with a high-energy electron beam
 
 {{< image src="/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png" ratio="4x3" class="col-12 col-md-6" wrapper="text-center w-40" >}}
 
-### How MS works: Example with Sugar
+### How MS Works: Example with Sugar
 Sugar is something we consume every day, but have you ever stopped to think about what it's really made of? Is it just a sweet substance, or is there more to it? Using mass spectrometry, we can uncover the secrets of sugar and discover what lies behind its sweet taste. 
 
 The MS process is relatively straightforward: 
