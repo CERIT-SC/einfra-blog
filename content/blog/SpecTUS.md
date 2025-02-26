@@ -1,6 +1,6 @@
 ---
 date: '2025-02-22T12:26:32Z'
-title: 'Mass Spectrometry Breakthroughs'
+title: 'Machine Learning in Mass Spectrometry'
 thumbnail: '/img/spectus/alchymista_v_knihovne1.jpeg'
 author: "Ivana Krenkova"
 description: "SpecTUS: a new tool in da house"
