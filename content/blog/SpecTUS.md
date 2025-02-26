@@ -47,11 +47,7 @@ Databases of mass spectra, used for identifying and quantifying substances, have
 * 1990: 54 thousand molecules
 * 2023: 900 thousand molecules
      
-This growth in database size is mainly due to advances in technology and increasing interest in mass spectrometry. The databases are now available online and are continually updated. 
-
-It is estimated that there are approximately 10^9 (1 billion) known "small" molecules. These molecules are defined as substances with a molecular weight less than 500 u (unified atomic mass units).
-
-It is estimated that there are approximately 10^60 possible molecules that can be synthesized or found in nature. This number is enormous and suggests that there are still many unknown substances waiting to be discovered. 
+Despite this growth, the estimated number of small molecules (molecular weight < 500 u) is around **10⁹** (1 billion), while the number of possible molecules is approximately **10⁶⁰**. This immense chemical space suggests many unknown substances are yet to be discovered.
 
 
 ## What is SpecTUS? 
