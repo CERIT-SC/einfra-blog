@@ -15,25 +15,24 @@ In today’s fast-paced world of science and technology, spotting and understand
 We introduced **SpecTUS: Spectral Translator for Unknown Structures**, a cutting-edge breakthrough tool that aims to revolutionize how we identify compounds using mass spectrometry.
 
 ## What is Mass Spectrometry?
-In the analytical technique of mass spectrometry, atoms or molecules are ionized using a high-energy electron beam and then separated based on their mass-to-charge ratios (m/z). The results are presented as a mass spectrum, which shows the relative abundances of the ions on the y-axis and their m/z ratios on the x-axis. This data can be used to calculate the exact masses of the atoms or molecules in the sample.
+Mass spectrometry (MS) is an analytical technique where atoms or molecules are ionized using a high-energy electron beam and then separated based on their mass-to-charge ratios (m/z). The results are presented as a mass spectrum, which displays the relative abundances of the ions on the y-axis and their m/z ratios on the x-axis. This data is used to calculate the exact masses of atoms or molecules in a sample.
 
 ![Figure1](/img/spectus/ms-eng2.png)
 
-Using mass spectrometry data, we can estimate an element's average atomic mass and determine its identity. 
-A mass spectrometer ionizes atoms and molecules with a high-energy electron beam and then deflects the ions through a magnetic field based on their mass-to-charge ratios (m/z).
+By analyzing mass spectrometry data, we can estimate an element's average atomic mass and determine its identity. A mass spectrometer ionizes atoms and molecules with a high-energy electron beam and then deflects the ions through a magnetic field based on their m/z ratios.
 
 {{< image src="/img/spectus/Recetox-Vysokorozlysujici-GC-HRMS_l.png" ratio="4x3" class="col-12 col-md-6" wrapper="text-center w-40" >}}
 
 ### How MS Works: Example with Sugar
-Sugar is something we consume every day, but have you ever stopped to think about what it's really made of? Is it just a sweet substance, or is there more to it? Using mass spectrometry, we can uncover the secrets of sugar and discover what lies behind its sweet taste. 
+Sugar is something we consume every day, but have you ever wondered what it's really made of? Using mass spectrometry, we can uncover its composition.
 
 The MS process is relatively straightforward: 
 
 ![Figure3](/img/spectus/sugar.png)
 
-* **Ionization**: The sugar is first ionized, which means electrons are added or removed to create charged particles.
-* **Separation**: These charged particles are then separated according to their mass and charge using a magnetic field.
-* **Detection**: Finally, the intensity of each particle is measured, and a spectrum is created that shows the composition of sugar.
+* **Ionization**:  Sugar molecules are ionized by adding or removing electrons, creating charged particles.
+* **Separation**: These charged particles are separated by their mass-to-charge ratios using a magnetic field.
+* **Detection**: The intensity of each particle is measured, generating a spectrum that reveals the sugar's composition.
 
 ![Figure5](/img/spectus/sugar-spec2-solo.png)
 
@@ -43,8 +42,7 @@ By comparing these signals to databases of known compounds, we can identify the 
      
 
 ### Limitation in Compound Identification in Mass Spectrometry
-Databases of mass spectra, used for identifying and quantifying substances, have contained the following numbers of molecules over the years: 
-
+Databases of mass spectra, used for identifying and quantifying substances, have expanded significantly over the years:
 * 1970: 12 thousand molecules
 * 1990: 54 thousand molecules
 * 2023: 900 thousand molecules
