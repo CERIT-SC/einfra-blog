@@ -8,6 +8,7 @@
       "button",
       "code",
       "div",
+      "em",
       "footer",
       "form",
       "h1",
@@ -301,11 +302,13 @@
       "future-prospects",
       "generic-chat-question-about-deployment-evaluated-by-the-deepseek-r1-model",
       "how-does-spectus-work",
+      "how-it-works",
       "how-ms-works-example-with-sugar",
       "image-capture",
       "image-encoding",
       "implementation",
       "improving-neurodesktop-for-kubernetes-running-applications-as-native-pods",
+      "introduction",
       "limitation-in-compound-identification-in-mass-spectrometry",
       "more-isnt-always-better",
       "navbar-0-collapse",
@@ -314,6 +317,7 @@
       "nvidia-capture-sdk",
       "nvidia-geforce-now-on-premisebryes-its-possible",
       "occasionally-responses-may-not-be-as-expectedespecially-due-to-the-limitations-of-czech-language-support-in-llms",
+      "overview-of-the-web-application",
       "rag-a-smarter-approach",
       "references",
       "remote-desktops",
@@ -338,6 +342,7 @@
       "who-we-are",
       "why-choose-spectus",
       "why-is-this-important",
+      "why-protein-structure-prediction-matters",
       "why-use-webrtc-for-remote-desktops-and-game-streaming"
     ]
   }
