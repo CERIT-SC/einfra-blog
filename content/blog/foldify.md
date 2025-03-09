@@ -11,7 +11,7 @@ colormode: true
 
 Protein structure prediction is a fundamental aspect of bioinformatics and molecular biology, with significant applications in drug discovery, disease research, and synthetic biology. However, traditional computational methods can be complex and resource-intensive, making them difficult for many researchers to access.
 
-To overcome these challenges, advanced computational engines have been developed to predict protein structures efficiently using computer algorithms. One of the most successful engines is AlphaFold, created by developers at Google DeepMind.
+To overcome these challenges, advanced computational engines have been developed to predict protein structures efficiently using computer algorithms. One of the most successful engines is [AlphaFold](https://deepmind.google/technologies/alphafold/), created by developers at Google DeepMind.
 
 Our platform incorporates AlphaFold models, including AlphaFold2 and AlphaFold3, along with optimized versions of ColabFold, OmegaFold, and ESMFold. These tools usually operate through terminal scripts, which can be difficult for researchers without a computer science background. To address this, our platform offers a user-friendly graphical interface that makes it easier for users to execute predictions.
 
@@ -27,7 +27,7 @@ Foldify, our web application, streamlines the protein structure prediction proce
 
 ### Multiple Prediction Models in One Place
 
-The Foldify platform offers a variety of folding tools, including AlphaFold3, AlphaFold2, ColabFold, and others. This provides users with the flexibility to select the tools that best fit their specific needs, unlike the original AlphaFold Server from Google, which only supports AlphaFold3.
+The Foldify platform offers a variety of folding tools, including AlphaFold3, AlphaFold2, ColabFold, and others. This provides users with the flexibility to select the tools that best fit their specific needs, unlike the original [AlphaFold Server](https://alphafoldserver.com/) from Google, which only supports AlphaFold3.
 
 ### User-Friendly Interface
 
@@ -35,7 +35,7 @@ Foldify provides a user-friendly graphic interface for form submissions, elimina
 
 ### Built-In 3D Visualization
 
-View and analyze predicted protein structures directly in your browser with the Mol* Viewer. There's no need to download large files for visualizations. With Foldify, you can easily view protein structures online using the popular Mol* visualization toolkit, which is also utilized by UniProt, the world's leading resource for protein sequences.
+View and analyze predicted protein structures directly in your browser with the built-in [Mol\* Viewer](https://molstar.org/). There's no need to download large files for visualizations. With Foldify, you can easily view protein structures online using the popular Mol\* visualization toolkit, which is also utilized by [UniProt](https://www.uniprot.org/), the world's leading resource for protein sequences.
 
 ### Real-Time Monitoring
 
