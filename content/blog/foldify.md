@@ -3,7 +3,7 @@ date: "2025-03-06T13:14:44Z"
 title: "Web Application for Protein Structure Prediction"
 thumbnail: "/img/foldify/thumbnail.png"
 description: "AlphaFold prediction tools in a browser."
-tags: ["Romana Ďuráčiová", "CERIT-SC", "AlphaFold3", "Protein Prediction", "Kubernetes", "Bioinformatics"]
+tags: ["Romana Ďuráčiová, Kristián Kováč", "CERIT-SC", "AlphaFold3", "Protein Prediction", "Kubernetes", "Bioinformatics"]
 colormode: true
 ---
 
@@ -58,11 +58,12 @@ Find more in our [documentation](https://docs-ng.cerit.io/en/docs/web-apps/foldi
 
 ![Figure2](/img/foldify/result-foldify.png)
 
-# AlphaFold3 Optimization
+# Optimizing AlphaFold3 in Kubernetes
 
-Our platform is deployed on a Kubernetes cluster, where all computation jobs run. After a successful submission, resources are reserved, and predictions can start.
+Our platform is deployed on a Kubernetes cluster, where all computation jobs run. However, protein prediction is computationally demanding, and shared memory within the cluster can be a limiting factor. To optimize AlphaFold3 computations, we restructured the execution of the pipeline in Kubernetes. Previously, the entire computation was executed within a single Kubernetes pod. Now, the pipeline is distributed across multiple pods, with two primary pods handling the CPU and GPU computations separately. The GPU pod is only spawned after the long-running CPU phase is completed, preventing inefficient GPU reservation while CPU tasks are still running. Furthermore, the CPU-intensive stage is further divided, ensuring that each `jackhmmer` and `hmmsearch` process runs in its own dedicated pod. The granularity allows for better resource utilization, as completed pods release their allocated resources, thereby enhancing overall performance.
+ 
 
-However, protein prediction is computationally demanding, and sometimes, the shared memory in a cluster is insufficient. As a result, we decided to optimize AlphaFold3 computations. At the beginning of each job, the required amounts of both GPU and CPU memory are reserved. Until now, these resources have not been utilized efficiently; CPU-based tasks have run first while the reserved GPU memory has remained idle, waiting for the second phase of computation. To address this issue, we separated the CPU and GPU computation parts, which prevented resource blocking and enabled parallel execution. This optimization significantly improved efficiency and reduced overall processing time.
+Our platform is deployed on a Kubernetes cluster, where all computation jobs run. However, protein prediction is computationally demanding, and shared memory within the cluster can be a limiting factor. To optimize AlphaFold3 computations, we restructured the execution of the pipeline in Kubernetes. Previously, the entire computation was executed within a single Kubernetes pod. Now, the pipeline is distributed across multiple pods, with two primary pods handling the CPU and GPU computations separately. The GPU pod is only spawned after the long-running CPU phase is completed, preventing inefficient GPU reservation while CPU tasks are still running. Furthermore, the CPU-intensive stage is further divided, ensuring each subprocess runs in its dedicated pod. The granularity allows for better resource utilization as completed pods release their allocated resources, thereby enhancing overall performance.
 
 # Conclusion
 
