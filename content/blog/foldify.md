@@ -54,13 +54,15 @@ Foldify simplifies the prediction process by breaking it down into easy, intuiti
 5. **Monitor Progress:** Track the status of your job in real-time on the Dashboard.
 6. **Download or Visualize Results:** Once the job is complete, you can download the results or explore the 3D structure and computation parameters directly in the web interface.
 
+Find more in our [documentation](https://docs-ng.cerit.io/en/docs/web-apps/foldify).
+
 ![Figure2](/img/foldify/result-foldify.png)
 
 # AlphaFold3 Optimization
 
 Our platform is deployed on a Kubernetes cluster, where all computation jobs run. After a successful submission, resources are reserved, and predictions can start.
 
-However, protein prediction is computationally demanding, and sometimes, the shared memory in a cluster is insufficient. As a result, we decided to optimize AlphaFold3 computations. At the beginning of each job, the required amounts of both GPU and CPU memory are reserved. However, these resources were not utilized efficiently; CPU-based tasks ran first while the reserved GPU memory remained idle, waiting for the second phase of computation. To address this issue, we separated the CPU and GPU computation parts, which prevented resource blocking and enabled parallel execution. This optimization significantly improved efficiency and reduced overall processing time.
+However, protein prediction is computationally demanding, and sometimes, the shared memory in a cluster is insufficient. As a result, we decided to optimize AlphaFold3 computations. At the beginning of each job, the required amounts of both GPU and CPU memory are reserved. Until now, these resources have not been utilized efficiently; CPU-based tasks have run first while the reserved GPU memory has remained idle, waiting for the second phase of computation. To address this issue, we separated the CPU and GPU computation parts, which prevented resource blocking and enabled parallel execution. This optimization significantly improved efficiency and reduced overall processing time.
 
 # Conclusion
 
