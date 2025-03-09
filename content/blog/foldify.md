@@ -59,10 +59,7 @@ Find more in our [documentation](https://docs-ng.cerit.io/en/docs/web-apps/foldi
 ![Figure2](/img/foldify/result-foldify.png)
 
 # Optimizing AlphaFold3 in Kubernetes
-
-Our platform is deployed on a Kubernetes cluster, where all computation jobs run. However, protein prediction is computationally demanding, and shared memory within the cluster can be a limiting factor. To optimize AlphaFold3 computations, we restructured the execution of the pipeline in Kubernetes. Previously, the entire computation was executed within a single Kubernetes pod. Now, the pipeline is distributed across multiple pods, with two primary pods handling the CPU and GPU computations separately. The GPU pod is only spawned after the long-running CPU phase is completed, preventing inefficient GPU reservation while CPU tasks are still running. Furthermore, the CPU-intensive stage is further divided, ensuring that each `jackhmmer` and `hmmsearch` process runs in its own dedicated pod. The granularity allows for better resource utilization, as completed pods release their allocated resources, thereby enhancing overall performance.
  
-
 Our platform is deployed on a Kubernetes cluster, where all computation jobs run. However, protein prediction is computationally demanding, and shared memory within the cluster can be a limiting factor. To optimize AlphaFold3 computations, we restructured the execution of the pipeline in Kubernetes. Previously, the entire computation was executed within a single Kubernetes pod. Now, the pipeline is distributed across multiple pods, with two primary pods handling the CPU and GPU computations separately. The GPU pod is only spawned after the long-running CPU phase is completed, preventing inefficient GPU reservation while CPU tasks are still running. Furthermore, the CPU-intensive stage is further divided, ensuring each subprocess runs in its dedicated pod. The granularity allows for better resource utilization as completed pods release their allocated resources, thereby enhancing overall performance.
 
 # Conclusion
