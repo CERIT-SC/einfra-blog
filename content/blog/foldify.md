@@ -1,8 +1,8 @@
 ---
 date: "2025-03-06T13:14:44Z"
-title: "Protein Structure Prediction: A Web Application for Researchers"
+title: "Web Application for Protein Structure Prediction"
 thumbnail: "/img/foldify/thumbnail.png"
-description: "Web application that simplifies protein structure prediction with AlphaFold tools."
+description: "AlphaFold prediction tools in a browser."
 tags: ["Romana Ďuráčiová", "CERIT-SC", "AlphaFold3", "Protein Prediction", "Kubernetes", "Bioinformatics"]
 colormode: true
 ---
@@ -25,19 +25,19 @@ Traditional experimental methods, such as X-ray crystallography and cryo-electro
 
 Foldify, our web application, streamlines the protein structure prediction process, making it faster and more user-friendly. It also provides real-time feedback to guide users in case of incorrect input. Key features of the application include:
 
-## Multiple Prediction Models in One Place
+### Multiple Prediction Models in One Place
 
 The Foldify platform offers a variety of folding tools, including AlphaFold3, AlphaFold2, ColabFold, and others. This provides users with the flexibility to select the tools that best fit their specific needs, unlike the original AlphaFold Server from Google, which only supports AlphaFold3.
 
-## User-Friendly Interface
+### User-Friendly Interface
 
 Foldify provides a user-friendly graphic interface for form submissions, eliminating the need for complicated command-line inputs. The required data is minimal, and each input format is clearly explained with guiding instructions and helpful hints. Additionally, the system offers error feedback and input validation before you submit your data for computation to prevent the most common mistakes.
 
-## Built-In 3D Visualization
+### Built-In 3D Visualization
 
 View and analyze predicted protein structures directly in your browser with the Mol* Viewer. There's no need to download large files for visualizations. With Foldify, you can easily view protein structures online using the popular Mol* visualization toolkit, which is also utilized by UniProt, the world's leading resource for protein sequences.
 
-## Real-Time Monitoring
+### Real-Time Monitoring
 
 Monitor prediction progress in real time through a status indicator on your Dashboard. Users can check job status, view updates in console logs within the detailed computation view, and receive email notifications upon prediction completion.
 
