@@ -25,5 +25,4 @@ The example below demonstrates **Jupyter Notebook** running in split-screen mode
 | - I need access to shared storages                   | - I have everything on USB flash                         |
 | - I want to run my code in maintained environment    | - I am multitasking ninja and maintain everything myself |
 | - I want to share and colaborate on my code and data | - I always work alone!                                   |
-{.table-borderless}
 {{< /table >}}
