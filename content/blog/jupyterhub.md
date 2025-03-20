@@ -15,3 +15,14 @@ Jupyter Notebook is a widely recognized and well-established graphical interface
 The example below demonstrates **Jupyter Notebook** running in split-screen mode. On the left side, the basic launcher interface is visible, while the right side displays a notebook containing simple cells with Python code and its corresponding output.
 
 ![jupyter-notebook](/img/jupyterhub/notebook1.png)
+
+## JupyterHub in Infrastructure – Or Why Should I Care?
+
+{{< table wrap=true >}}
+| I shoud if                                           | I should not if                                          |
+| - I need HW I do not posses, e.g., NVIDIA H100 GPU   | - I already have home supercomputer                      |
+| - I need access to shared storages                   | - I have everything on USB flash                         |
+| - I want to run my code in maintained environment    | - I am multitasking ninja and maintain everything myself |
+| - I want to share and colaborate on my code and data | - I always work alone!                                   |
+{{< /table >}}
+{.table-borderless}
