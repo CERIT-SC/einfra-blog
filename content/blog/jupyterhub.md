@@ -16,6 +16,8 @@ The example below demonstrates **Jupyter Notebook** running in split-screen mode
 
 ![jupyter-notebook](/img/jupyterhub/notebook1.png)
 
+---
+
 ## JupyterHub in Infrastructure – Or Why Should I Care?
 
 {{< table wrap=true >}}
