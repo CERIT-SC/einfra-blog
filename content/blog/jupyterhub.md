@@ -21,7 +21,7 @@ The example below demonstrates **Jupyter Notebook** running in split-screen mode
 {{< table wrap=true >}}
 | I shoud if                                                      | I should not if                                                  |
 |-----------------------------------------------------------------|------------------------------------------------------------------|
-| * I need hardware I don’t currently have, e.g., NVIDIA H100 GPU | * I already have a powerful home supercomputer                   |
+| <ul><li>I need hardware I don’t currently have, e.g., NVIDIA H100 GPU</li></ul> | * I already have a powerful home supercomputer                   |
 | * I need access to shared storages                              | * I keep everything on a USB flash drive                         |
 | * I want to run my code in a managed environment                | * I prefer managing everything myself, like a multitasking ninja |
 | * I want to share and collaborate on my code and data           | * I always work alone and don’t need collaboration               |
