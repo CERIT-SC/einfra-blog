@@ -19,10 +19,10 @@ The example below demonstrates **Jupyter Notebook** running in split-screen mode
 ## JupyterHub in Infrastructure – Or Why Should I Care?
 
 {{< table wrap=true >}}
-| I shoud if                                           | I should not if                                          |
-|------------------------------------------------------|----------------------------------------------------------|
-| - I need HW I do not posses, e.g., NVIDIA H100 GPU   | - I already have home supercomputer                      |
-| - I need access to shared storages                   | - I have everything on USB flash                         |
-| - I want to run my code in maintained environment    | - I am multitasking ninja and maintain everything myself |
-| - I want to share and colaborate on my code and data | - I always work alone!                                   |
+| I shoud if                                                      | I should not if                                                  |
+|-----------------------------------------------------------------|------------------------------------------------------------------|
+| - I need hardware I don’t currently have, e.g., NVIDIA H100 GPU | - I already have a powerful home supercomputer                   |
+| - I need access to shared storages                              | - I keep everything on a USB flash drive                         |
+| - I want to run my code in a managed environment                | - I prefer managing everything myself, like a multitasking ninja |
+| - I want to share and collaborate on my code and data           | - I always work alone and don’t need collaboration               |
 {{< /table >}}
