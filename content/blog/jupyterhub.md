@@ -70,4 +70,52 @@ Each instance features **user access control** via **groups and SSO**. Depending
 
 - **Usage Statistics**  
   - Number of **available GPUs**, as they are a scarce resource.  
-  - **Resource consumption metrics** in **CZK** over the past **90 days**.  
+  - **Resource consumption metrics** in **CZK** over the past **90 days**.
+
+## Special Features  
+
+### Persistent Images  
+- We **do not remove old Docker images** and retain previous versions, ensuring users have a **reproducible environment**.  
+
+### Non-Jupyter Notebooks  
+JupyterHub allows integration with additional software tools, enabling users to work with:  
+
+- **RStudio**  
+  - We offer multiple **RStudio** images within JupyterHub, allowing users to launch RStudio instead of a Jupyter Notebook.  
+
+- **MATLAB**  
+  - MathWorks provides a proxy that integrates **MATLAB** into JupyterHub, enabling users to run a full graphical MATLAB session in a web browser.  
+
+- **Classic Linux Desktop**  
+  - Using [noVNC](https://novnc.com/), it is possible to run an entire **remote Linux desktop** within JupyterHub.  
+
+- **TensorBoard**  
+  - For **TensorFlow**, users can utilize **TensorBoard** within a Jupyter Notebook, accessing it similarly to a standard Notebook.  
+
+- **Google Colab Environment**  
+  - We provide a **Google Colab-compatible** Docker image, allowing users to run the same environment as **Google Colab**—without its limitations—on our **on-premise infrastructure**.  
+
+### Special Storage Options  
+- Some instances have **pre-configured storage access**, where different user groups have distinct permissions:  
+  - A **restricted** group may access only their *home* directory and a *shared* (optionally read-only) storage.  
+  - Another group may have **full access** to all *home* directories and shared storage with **read-write** permissions.  
+
+### Running Additional Jobs  
+- Some instances allow access to the **Kubernetes API**, enabling users to spawn additional background jobs **without requiring extra credentials**.  
+- **Resource quotas** can be enforced on both **Notebooks** and **jobs** to manage resource usage.  
+
+### AI Integration  
+- Our main JupyterHub instance integrates **[Jupyter-AI](https://jupyter-ai.readthedocs.io/en/latest/)**, providing access to **GPT-4o-Mini** and **GPT-4o** language models to assist with coding and problem-solving.  
+
+### VS Code Integration  
+- Some Docker images come with **[code-server](https://coder.com/)** pre-installed, allowing users to work in a **VS Code-like environment** instead of the standard JupyterLab interface.  
+
+### SSH Access  
+- If **external access** to a running Notebook instance is required, users can launch an instance with an appropriate Docker image and **connect via SSH**.  
+- Due to **IPv4 address exhaustion**, this feature is currently **limited to IPv6 access only**.  
+- SSH access can be useful for connecting a **local instance of VS Code** to a running Notebook instance.  
+
+### NBGrader  
+- **TBD.**  
+
+
