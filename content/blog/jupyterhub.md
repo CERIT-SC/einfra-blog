@@ -25,3 +25,17 @@ The example below demonstrates **Jupyter Notebook** running in split-screen mode
 |---------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
 | <ul><li>I prefer a modern UI for computing.</li><li>I require hardware I don’t currently own, such as an NVIDIA H100 GPU.</li><li>I need access to shared storages.</li><li>I want to run my code in a managed environment.</li><li>I want to share and collaborate on my code and data.</li></ul> | <ul><li>I enjoy working with Bash scripting.</li><li>I already have a powerful home supercomputer.</li><li>I keep everything on a USB flash drive.</li><li>I prefer managing everything myself, like a multitasking ninja</li><li>I always work alone and don’t need collaboration</li></ul>                   |
 {{< /table >}}
+
+### Courses
+
+Have you ever encountered a course—such as one for RStudio—that starts with a long list of pre-flight checks?
+
+- Install R and RStudio on your computer, often involving multiple steps.
+  - You may need to resolve hardware architecture issues (e.g., x86_64, ARM64, or Apple Silicon).
+- Download a script and open it in RStudio.
+- Install the required packages.
+  - Handle dependency issues manually, since R does not automatically install necessary system and development libraries.
+  - Some R packages take a long time to install.
+- Remember where everything is installed, so you can run RStudio when the course begins.
+
+By packaging such a course into a **JupyterHub instance**, students only need a functional web browser. Everything else—software, dependencies, and environment setup—can be preconfigured by the course maintainer. This setup is also scalable, ensuring a smooth experience regardless of the number of participants.
