@@ -74,6 +74,8 @@ Each instance features **user access control** via **groups and SSO**. Depending
 
 ## Special Features  
 
+The following special features are available in some or all of the JupyterHub instances we manage.  
+
 ### Persistent Images  
 - We **do not remove old Docker images** and retain previous versions, ensuring users have a **reproducible environment**.  
 
@@ -116,6 +118,6 @@ JupyterHub allows integration with additional software tools, enabling users to 
 - SSH access can be useful for connecting a **local instance of VS Code** to a running Notebook instance.  
 
 ### NBGrader  
-- **TBD.**  
+- TBD  
 
 
