@@ -122,7 +122,11 @@ The following special features are available in some or all of the JupyterHub in
 
 - **Installing Packages**  
   - Most images come with [Conda](https://anaconda.org/anaconda/conda) pre-installed, allowing users to install additional packages easily.  
-  - Our images are configured to support the `sudo` command, enabling users to install system packages within a running Notebook. However, these installations are **temporary** and will be lost when the Notebook is restarted.  
+  - Our images are configured to support the `sudo` command, enabling users to install system packages within a running Notebook. However, these installations are **temporary** and will be lost when the Notebook is restarted.
+
+- **Automatic Cleanup of Unused Notebook Instances**  
+  - We have developed a custom controller that **monitors resource usage** and **notifies users** about idle Notebooks with low activity.  
+  - If no action is taken, the Notebook is **automatically terminated** after a few days, freeing up resources.  
 
 # In Preparation  
 
@@ -130,7 +134,12 @@ The following special features are available in some or all of the JupyterHub in
   - We are developing a **Welcome overlay** that will summarize a user's recent activities when reopening an old Notebook.  
   - We are working on an **automatic Docker image builder** that generates custom images based on user requests.  
     - Example request: *I need a Notebook image based on Ubuntu 24.04 with Python 3.12 and CUDA 12.8.*  
-    - The AI will generate a `Dockerfile`, build the Docker image, and push it to our Docker registry, making it available in JupyterHub.  
+    - The AI will generate a `Dockerfile`, build the Docker image, and push it to our Docker registry, making it available in JupyterHub.
+
+- **Even Better UI Design**  
+  - We are currently **revamping the UI** to enhance usability and improve the overall experience.  
+    - The **image selector** will be **searchable** and more intuitive.  
+    - **Improved personal usage statistics** will be available directly within JupyterHub pages.  
 
 # Instances on Demand
 
