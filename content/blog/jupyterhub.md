@@ -120,4 +120,8 @@ The following special features are available in some or all of the JupyterHub in
 - **NBGrader**
   - TBD  
 
+# Instances on Demand
 
+Users can deploy **simple JupyterHub instances** on their own within our Kubernetes infrastructure. However, this basic setup comes with some limitations, such as **restricted storage options** and **no user isolation** when accessing the Kubernetes API.  
+
+For a **fully featured setup** with advanced capabilities, users can request a custom deployment by contacting us at [k8s@cerit-sc.cz](mailto:k8s@cerit-sc.cz).  
