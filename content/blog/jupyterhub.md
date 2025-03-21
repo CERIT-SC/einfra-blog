@@ -118,7 +118,19 @@ The following special features are available in some or all of the JupyterHub in
   - SSH access can be useful for connecting a **local instance of VS Code** to a running Notebook instance.  
 
 - **NBGrader**
-  - TBD  
+  - TBD
+
+- **Installing Packages**  
+  - Most images come with [Conda](https://anaconda.org/anaconda/conda) pre-installed, allowing users to install additional packages easily.  
+  - Our images are configured to support the `sudo` command, enabling users to install system packages within a running Notebook. However, these installations are **temporary** and will be lost when the Notebook is restarted.  
+
+# In Preparation  
+
+- **Enhanced AI Integration**  
+  - We are developing a **Welcome overlay** that will summarize a user's recent activities when reopening an old Notebook.  
+  - We are working on an **automatic Docker image builder** that generates custom images based on user requests.  
+    - Example request: *I need a Notebook image based on Ubuntu 24.04 with Python 3.12 and CUDA 12.8.*  
+    - The AI will generate a `Dockerfile`, build the Docker image, and push it to our Docker registry, making it available in JupyterHub.  
 
 # Instances on Demand
 
