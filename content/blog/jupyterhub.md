@@ -89,7 +89,8 @@ The following special features are available in some or all of the JupyterHub in
     - MathWorks provides a proxy that integrates **MATLAB** into JupyterHub, enabling users to run a full graphical MATLAB session in a web browser.  
 
   - **Classic Linux Desktop**  
-    - Using [noVNC](https://novnc.com/), it is possible to run an entire **remote Linux desktop** within JupyterHub.  
+    - Using [noVNC](https://novnc.com/), it is possible to run an entire **remote Linux desktop** within JupyterHub.
+    - See our [Neurodesktop blog](/blog/neurodesktop/) for an example.
 
   - **TensorBoard**  
     - For **TensorFlow**, users can utilize **TensorBoard** within a Jupyter Notebook, accessing it similarly to a standard Notebook.  
