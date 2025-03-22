@@ -108,9 +108,7 @@ The following special features are available in some or all of the JupyterHub in
 
 - **AI Integration**
   - Our main JupyterHub instance integrates **[Jupyter-AI](https://jupyter-ai.readthedocs.io/en/latest/)**, providing access to **GPT-4o-Mini** and **GPT-4o** language models to assist with coding and problem-solving.
-  <br/><br/>
-  ![ai-chat](/img/jupyterhub/aichat.png) 
-  <br/><br/>
+    {{< image src="img/jupyterhub/aichat.png" mode="false" class="rounded-3 mt-3" >}}
 
 - **VS Code Integration**
   - Some Docker images come with **[code-server](https://coder.com/)** pre-installed, allowing users to work in a **VS Code-like environment** instead of the standard JupyterLab interface.  
@@ -133,7 +131,7 @@ The following special features are available in some or all of the JupyterHub in
   - Notebook instances do not have a **fixed running time limit**, allowing users to work without interruption unless resources are idle for extended periods.  
   - We have developed a custom controller that **monitors resource usage** and **notifies users** about idle Notebooks with low activity.  
   - If no action is taken, the Notebook is **automatically terminated** after a few days, freeing up resources.
-    {{< image src="img/jupyterhub/idlecleanup.png" mode="false" caption="Morning cleanup of unused notebooks" class="rounded" figclass="mt-2" >}}
+    {{< image src="img/jupyterhub/idlecleanup.png" mode="false" caption="Morning cleanup of unused notebooks" class="rounded-3 mt-3" >}}
 
 - **Exposing Web Servers from Notebooks**  
   - We enable the exposure of web (HTTP) servers running inside a Notebook to a public URL, similar to Cloudflare.  
