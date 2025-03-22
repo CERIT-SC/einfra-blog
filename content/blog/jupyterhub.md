@@ -86,7 +86,8 @@ The following special features are available in some or all of the JupyterHub in
     - We offer multiple **RStudio** images within JupyterHub, allowing users to launch RStudio instead of a Jupyter Notebook.  
 
   - **MATLAB**  
-    - MathWorks provides a proxy that integrates **MATLAB** into JupyterHub, enabling users to run a full graphical MATLAB session in a web browser.  
+    - MathWorks provides a proxy that integrates **MATLAB** into JupyterHub, enabling users to run a full graphical MATLAB session in a web browser.
+      {{< image src="img/jupyterhub/matlab.png" mode="false" caption="MATLAB running in a web browser via JupyterHub." class="rounded-3 mt-3" >}}
 
   - **Classic Linux Desktop**  
     - Using [noVNC](https://novnc.com/), it is possible to run an entire **remote Linux desktop** within JupyterHub.
