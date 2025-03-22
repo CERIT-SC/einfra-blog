@@ -118,7 +118,8 @@ The following special features are available in some or all of the JupyterHub in
   - SSH access can be useful for connecting a **local instance of VS Code** to a running Notebook instance.  
 
 - **NBGrader**
-  - TBD
+  - [NBGrader](https://nbgrader.readthedocs.io/en/stable/) is a tool designed to enhance course support, allowing instructors to create notebook-based assignments with coding exercises and written responses.  
+  - We have extended and adapted this tool for seamless integration with our Notebook instances.  
 
 - **Installing Packages**  
   - Most images come with [Conda](https://anaconda.org/anaconda/conda) pre-installed, allowing users to install additional packages easily.  
@@ -127,7 +128,11 @@ The following special features are available in some or all of the JupyterHub in
 - **Automatic Cleanup of Unused Notebook Instances**
   - Notebook instances do not have a **fixed running time limit**, allowing users to work without interruption unless resources are idle for extended periods.  
   - We have developed a custom controller that **monitors resource usage** and **notifies users** about idle Notebooks with low activity.  
-  - If no action is taken, the Notebook is **automatically terminated** after a few days, freeing up resources.  
+  - If no action is taken, the Notebook is **automatically terminated** after a few days, freeing up resources.
+
+- **Exposing Web Servers from Notebooks**  
+  - We enable the exposure of web (HTTP) servers running inside a Notebook to a public URL, similar to Cloudflare.  
+  - The exposed server will be assigned the domain `<name>.flare.cloud.e-infra.cz` and will automatically receive an SSL certificate.  
 
 # In Preparation  
 
