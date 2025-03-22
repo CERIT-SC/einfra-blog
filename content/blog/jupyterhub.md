@@ -159,3 +159,17 @@ Users can deploy **simple JupyterHub instances** on their own within our Kuberne
 For a **fully featured setup** with advanced capabilities, users can request a custom deployment by contacting us at [k8s@cerit-sc.cz](mailto:k8s@cerit-sc.cz).
 
 ## Final Thougts
+
+We have taken a different approach to resource usage compared to traditional HPC centers, where each job—including Jupyter Notebooks—is restricted to a fixed runtime, regardless of actual usage. This forces users to carefully plan their work.  
+
+Instead, our approach eliminates time limits for running Notebooks, focusing on resource utilization instead. When a Notebook remains idle for a significant period, we notify the user and, after some time, terminate it. This shifts the burden of resource management from users to platform maintainers, which remains a challenging task. In fact, we have an ongoing Ph.D. research project dedicated to this problem.  
+
+Below, you can see a few anonymized examples demonstrating how users appreciate and take advantage of long-running Notebooks.  
+
+|Name           | State | Created Days Ago |
+|---------------|-------| ---------------- |
+|jupyter-to.....|Running| 59d              |
+|jupyter-sk.....|Running| 30d              |
+|jupyter-on.....|Running| 49d              |
+|jupyter-ze.....|Running| 20d              |
+|jupyter-52.....|Running| 18d              |
