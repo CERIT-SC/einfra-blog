@@ -113,7 +113,8 @@ The following special features are available in some or all of the JupyterHub in
     {{< image src="img/jupyterhub/aichat.png" mode="false" class="rounded-3 my-3" >}}
 
 - **VS Code Integration**
-  - Some Docker images come with **[code-server](https://coder.com/)** pre-installed, allowing users to work in a **VS Code-like environment** instead of the standard JupyterLab interface.  
+  - Some Docker images come with **[code-server](https://coder.com/)** pre-installed, allowing users to work in a **VS Code-like environment** instead of the standard JupyterLab interface.
+    {{< image src="img/jupyterhub/vscode.png" mode="false" caption="VS Code running in a web browser via JupyterHub." class="rounded-3 mt-3" >}}
 
 - **SSH Access**
   - If **external access** to a running Notebook instance is required, users can launch an instance with an appropriate Docker image and **connect via SSH**.  
