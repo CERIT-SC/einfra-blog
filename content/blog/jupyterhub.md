@@ -127,6 +127,7 @@ The following special features are available in some or all of the JupyterHub in
 - **Installing Packages**  
   - Most images come with [Conda](https://anaconda.org/anaconda/conda) pre-installed, allowing users to install additional packages easily.  
   - Our images are configured to support the `sudo` command, enabling users to install system packages within a running Notebook. However, these installations are **temporary** and will be lost when the Notebook is restarted.
+  - Check out our [Dockerfile sources](https://github.com/CERIT-SC/docker-images/tree/main/jupyternotebooks).
 
 - **Automatic Cleanup of Unused Notebook Instances**
   - Notebook instances do not have a **fixed running time limit**, allowing users to work without interruption unless resources are idle for extended periods.  
