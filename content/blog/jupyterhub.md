@@ -107,7 +107,9 @@ The following special features are available in some or all of the JupyterHub in
   - **Resource quotas** can be enforced on both **Notebooks** and **jobs** to manage resource usage.  
 
 - **AI Integration**
-  - Our main JupyterHub instance integrates **[Jupyter-AI](https://jupyter-ai.readthedocs.io/en/latest/)**, providing access to **GPT-4o-Mini** and **GPT-4o** language models to assist with coding and problem-solving.  
+  - Our main JupyterHub instance integrates **[Jupyter-AI](https://jupyter-ai.readthedocs.io/en/latest/)**, providing access to **GPT-4o-Mini** and **GPT-4o** language models to assist with coding and problem-solving.
+
+  ![ai-chat](/img/jupyterhub/aichat.png) 
 
 - **VS Code Integration**
   - Some Docker images come with **[code-server](https://coder.com/)** pre-installed, allowing users to work in a **VS Code-like environment** instead of the standard JupyterLab interface.  
