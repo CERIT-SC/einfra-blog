@@ -5,7 +5,7 @@ thumbnail: '/img/jupyterhub/thumbnail.png'
 description: "Running customized instances of JupyterHub"
 tags: ["Lukáš Hejtmánek", "CERIT-SC", "JupyterHub", "Kubernetes", "Customization"]
 colormode: true
-draft: true
+draft: false
 ---
 
 ## Jupyter
