@@ -167,7 +167,7 @@ Instead, our approach eliminates time limits for running Notebooks, focusing on 
 Below, you can see a few anonymized examples demonstrating how users appreciate and take advantage of long-running Notebooks.  
 
 |Name           | State | Created Days Ago |
-|---------------|-------|:----------------:|
+|---------------|:-----:|-----------------:|
 |jupyter-to.....|Running| 59d              |
 |jupyter-sk.....|Running| 30d              |
 |jupyter-on.....|Running| 49d              |
