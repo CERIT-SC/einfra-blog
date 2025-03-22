@@ -1,5 +1,5 @@
 ---
-date: '2025-03-20T14:00:00Z'
+date: '2025-03-22T10:00:00Z'
 title: 'JupyterHub on Demand'
 thumbnail: '/img/jupyterhub/thumbnail.png'
 description: "Running customized instances of JupyterHub"
@@ -8,7 +8,7 @@ colormode: true
 draft: true
 ---
 
-# Jupyter
+## Jupyter
 
 Jupyter Notebook is a widely recognized and well-established graphical interface primarily used for programming in Python, although its original intent was to support a combination of Julia, Python, and R (hence the name *Jupyter*). Its popularity stems largely from its accessibility—users can easily run it via a web browser, which appears to be the only prerequisite beyond basic infrastructure. For multi-user environments, **JupyterHub** comes into play as a customizable web interface, providing access to the underlying infrastructure needed to run Jupyter Notebooks for multiple users. It offers essential features such as user authentication, resource management, and oversight of notebook lifecycles, making it an ideal solution for collaborative or shared computing environments.
 
@@ -18,7 +18,7 @@ The example below demonstrates **Jupyter Notebook** running in split-screen mode
 
 ---
 
-## JupyterHub in Infrastructure – Or Why Should I Care?
+### JupyterHub in Infrastructure – Or Why Should I Care?
 
 {{< table wrap=true >}}
 | I shoud if:                                                                     | I should not if:                                                                 |
@@ -26,7 +26,7 @@ The example below demonstrates **Jupyter Notebook** running in split-screen mode
 | <ul><li>I prefer a modern UI for computing.</li><li>I require hardware I don’t currently own, such as an NVIDIA H100 GPU.</li><li>I need access to shared storages.</li><li>I want to run my code in a managed environment.</li><li>I want to share and collaborate on my code and data.</li></ul> | <ul><li>I enjoy working with Bash scripting.</li><li>I already have a powerful home supercomputer.</li><li>I keep everything on a USB flash drive.</li><li>I prefer managing everything myself, like a multitasking ninja</li><li>I always work alone and don’t need collaboration</li></ul>                   |
 {{< /table >}}
 
-### Courses
+#### Courses
 
 Have you ever encountered a course—such as one for RStudio—that starts with a long list of pre-flight checks?
 
@@ -41,13 +41,13 @@ Have you ever encountered a course—such as one for RStudio—that starts with 
 
 By packaging such a course into a **JupyterHub instance**, students only need a functional web browser. Everything else—software, dependencies, and environment setup—can be preconfigured by the course maintainer. This setup is also scalable, ensuring a smooth experience regardless of the number of participants.
 
-# Here Comes the Hotstepper
+## Here Comes the Hotstepper
 
 We provide **managed JupyterHub instances** running in **Kubernetes** on **CERIT-SC**. Our primary instance is available at [https://hub.cloud.e-infra.cz](https://hub.cloud.e-infra.cz), alongside several customized instances accessible via custom URLs.  
 
 Each instance features **user access control** via **groups and SSO**. Depending on the instance, various configuration options are available. However, not all options are selectable in every instance—some use predefined defaults.  
 
-## Features and Options  
+### Features and Options  
 
 - **Notebook Instance Limits**  
   - Some instances allow only **one Jupyter Notebook per user**.  
@@ -72,7 +72,7 @@ Each instance features **user access control** via **groups and SSO**. Depending
   - Number of **available GPUs**, as they are a scarce resource.  
   - **Resource consumption metrics** in **CZK** over the past **90 days**.
 
-## Special Features  
+### Special Features  
 
 The following special features are available in some or all of the JupyterHub instances we manage.  
 
@@ -138,7 +138,7 @@ The following special features are available in some or all of the JupyterHub in
   - We enable the exposure of web (HTTP) servers running inside a Notebook to a public URL, similar to Cloudflare.  
   - The exposed server will be assigned the domain `<name>.flare.cloud.e-infra.cz` and will automatically receive an SSL certificate.  
 
-# In Preparation  
+## In Preparation  
 
 - **Enhanced AI Integration**  
   - We are developing a **Welcome overlay** that will summarize a user's recent activities when reopening an old Notebook.  
@@ -151,8 +151,10 @@ The following special features are available in some or all of the JupyterHub in
     - The **image selector** will be **searchable** and more intuitive.  
     - **Improved personal usage statistics** will be available directly within JupyterHub pages.  
 
-# Instances on Demand
+## Instances on Demand
 
 Users can deploy **simple JupyterHub instances** on their own within our Kubernetes infrastructure. However, this basic setup comes with some limitations, such as **restricted storage options** and **no user isolation** when accessing the Kubernetes API.  
 
-For a **fully featured setup** with advanced capabilities, users can request a custom deployment by contacting us at [k8s@cerit-sc.cz](mailto:k8s@cerit-sc.cz).  
+For a **fully featured setup** with advanced capabilities, users can request a custom deployment by contacting us at [k8s@cerit-sc.cz](mailto:k8s@cerit-sc.cz).
+
+## Final Thougts
