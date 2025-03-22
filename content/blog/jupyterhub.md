@@ -174,4 +174,4 @@ Below, you can see a few anonymized examples demonstrating how users appreciate 
 |jupyter-ze.....|Running| 20d              |
 |jupyter-52.....|Running| 18d              |
 
-
+We believe that our central JupyterHub instance is a fully featured and versatile tool for most users. Additionally, on-demand instances offer a great solution for research groups and laboratories, supporting their research while also enabling them to create study courses for their researchers and future colleagues among university students.
