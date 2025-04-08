@@ -5,7 +5,7 @@ thumbnail: '/img/ceph/ceph.png'
 description: "High Availability and scalability of Ceph S3 with ExaBGP, HAProxy, and multiple RGW instances"
 tags: ["Michal Strnad", "Jan Horníček", "CESNET", "CEPH", "S3", "HAProxy"]
 colormode: true
-draft: true
+draft: false
 ---
 
 ## High Availability and scalability of Ceph S3 with ExaBGP, HAProxy, and multiple RGW instances
