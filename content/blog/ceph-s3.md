@@ -157,51 +157,7 @@ If we put together all the described components, we can construct the
 following diagram, which shows the entire path from the client to data
 access in Ceph.
 
-```
-              +-----------------------------+
-              |           Clients           |
-              |   (Browsers, Apps, etc.)    |
-              +-------------+---------------+
-                            |
-                            v
-            +-------------------------------+
-            |         DNS Round-Robin       |
-            |   s3.example.cz -> A record   |
-            |   192.0.2.101 / 102 / 103     |
-            +---------------+---------------+
-                            |
-      +---------------------+----------------------+
-      |                     |                      |
-      v                     v                      v
-+-------------+       +-------------+       +-------------+
-|  Server A   |       |  Server B   |       |   Server C  |
-| 192.0.2.101 |       | 192.0.2.102 |       | 192.0.2.103 |
-+------+------+       +------+------+       +------+------+
-       |                     |                     |
-       | ExaBGP              | ExaBGP              | ExaBGP
-       | (BGP Announce)      | (BGP Announce)      | (BGP Announce)
-       v                     v                     v
-+------------+       +------------+       +------------+
-|  HAProxy   |       |  HAProxy   |       |  HAProxy   |
-+-----+------+       +-----+------+       +-----+------+
-      |                    |                    |
-      |  Load Balance      |  Load Balance      |  Load Balance
-      v                    v                    v
-  +----------+      +----------+       +----------+
-  | RGW 1    |      | RGW 1    |       | RGW 1    |
-  | RGW 2    |      | RGW 2    |       | RGW 2    |
-  | ...      |      | ...      |       | ...      |
-  +----------+      +----------+       +----------+
-       \                |                  /
-        \               |                 /
-         v              v                v
-             +-----------------------+
-             |      Ceph Cluster     |
-             |    (RADOS backend)    |
-             +-----------------------+
-```
-
-
+![schema](/img/ceph/ceph_s3.svg)
 
 ### Summary
 
