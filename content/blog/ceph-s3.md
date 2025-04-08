@@ -75,11 +75,11 @@ first. In our case, the domain s3.example.cz is configured with multiple
 A records, each pointing to the public IP address of a different server
 handling the S3 protocol:
 
-s3.example.cz. IN A 192.0.2.101
+- s3.example.cz. IN A 192.0.2.101
 
-s3.example.cz. IN A 192.0.2.102
+- s3.example.cz. IN A 192.0.2.102
 
-s3.example.cz. IN A 192.0.2.103
+- s3.example.cz. IN A 192.0.2.103
 
 When performing DNS resolution the clients obtain one of these IP
 addresses (depending on resolver policy), which results in basic load
@@ -180,7 +180,7 @@ access in Ceph.
        |                     |                     |
        | ExaBGP              | ExaBGP              | ExaBGP
        | (BGP Announce)      | (BGP Announce)      | (BGP Announce)
-       v                     v                   V  v
+       v                     v                     v
 +------------+       +------------+       +------------+
 |  HAProxy   |       |  HAProxy   |       |  HAProxy   |
 +-----+------+       +-----+------+       +-----+------+
