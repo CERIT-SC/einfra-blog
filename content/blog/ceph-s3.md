@@ -1,7 +1,7 @@
 ---
 date: '2025-04-08T11:00:00Z'
 title: 'High Available Ceph S3'
-thumbnail: '/img/jupyterhub/thumbnail.png'
+thumbnail: '/img/ceph/ceph.svg'
 description: "High Availability and scalability of Ceph S3 with ExaBGP, HAProxy, and multiple RGW instances"
 tags: ["Michal Strnad", "Jan Horníček", "CESNET", "CEPH", "S3", "HAProxy"]
 colormode: true
