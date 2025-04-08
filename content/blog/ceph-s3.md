@@ -10,26 +10,26 @@ draft: true
 
 ## High Availability and scalability of Ceph S3 with ExaBGP, HAProxy, and multiple RGW instances
 
-****Building your own S3-compatible object storage with Ceph offers
+**Building your own S3-compatible object storage with Ceph offers
 great flexibility, but it also requires careful planning to ensure high
 availability, scalability, and reliability. In this article, we'll take
 a closer look at a practical architecture that uses ExaBGP, HAProxy, and
 multiple RGW instances on each server to create a setup that can handle
-growing demands while maintaining performance and uptime.****
+growing demands while maintaining performance and uptime.**
 
-### **What is Ceph?**
+### What is Ceph?
 
-****Ceph**** is an open-source, software-defined storage platform
-designed for ****scalability****, ****resilience****, and
-****flexibility****. Unlike traditional storage solutions such as SANs,
+**Ceph** is an open-source, software-defined storage platform
+designed for **scalability**, **resilience**, and
+**flexibility**. Unlike traditional storage solutions such as SANs,
 tape libraries, or monolithic disk arrays, Ceph doesn't rely on
 expensive specialized hardware. Instead, it distributes data across
-****many commodity servers****, each with its own set of ****standard
-hard drives or SSDs****.
+**many commodity servers**, each with its own set of **standard
+hard drives or SSDs**.
 
 This approach provides not only cost efficiency (it depends on the
-chosen architecture and hardware), but also ****true horizontal
-scalability**** --- you can grow capacity and performance simply by
+chosen architecture and hardware), but also **true horizontal
+scalability** --- you can grow capacity and performance simply by
 adding more servers and disks. Ceph automatically handles replication,
 failure recovery, and data distribution, making it well-suited for
 cloud-native workloads, backup storage, and internal object storage
@@ -37,7 +37,7 @@ services.
 
 ### What is the S3 Protocol?
 
-****S3**** is a RESTful object storage protocol originally developed by
+**S3** is a RESTful object storage protocol originally developed by
 Amazon Web Services, now widely adopted as the industry standard for
 cloud storage APIs. It allows clients to store and retrieve files
 (objects) in buckets (top-level "directories") via simple HTTP-based
@@ -45,8 +45,8 @@ operations such as PUT, GET, DELETE, and LIST.
 
 Thanks to its popularity and ecosystem support, many tools and
 applications integrate with S3 out of the box. Ceph includes a component
-called ****Rados Gateway (RGW)****, which provides a fully
-****S3-compatible API**** on top of Ceph's distributed backend. This
+called **Rados Gateway (RGW)**, which provides a fully
+**S3-compatible API** on top of Ceph's distributed backend. This
 makes it possible to create public or private, scalable S3 storage
 clouds that working seamlessly with existing tools like the AWS CLI,
 rclone, or backup software --- while retaining full control over your
@@ -129,9 +129,9 @@ applications or business units without physically isolating them.
 
 To ensure high availability and granular control over traffic
 distribution, each physical server in the cluster runs an instance of
-****ExaBGP****, a programmable BGP daemon. These ExaBGP daemons
-establish ****BGP sessions**** with the nearest upstream routers or L3
-switches. This enables servers to ****advertise or withdraw**** IP
+**ExaBGP**, a programmable BGP daemon. These ExaBGP daemons
+establish **BGP sessions** with the nearest upstream routers or L3
+switches. This enables servers to **advertise or withdraw** IP
 addresses in real-time, based on their own health state and internal
 logic.
 
