@@ -157,7 +157,7 @@ If we put together all the described components, we can construct the
 following diagram, which shows the entire path from the client to data
 access in Ceph.
 
-{{< image src="img/ceph/ceph_s3.png" mode="false" class="rounded-3 mt-3" >}}
+{{< image src="img/ceph/ceph_s3.png" mode="false" class="rounded-3 mt-3 w-96" >}}
 
 ### Summary
 
