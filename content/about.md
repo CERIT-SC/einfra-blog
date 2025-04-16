@@ -35,3 +35,13 @@ CESNET, zájmové sdružení právnických osob
 Generála Píky 430/26, 160 00 Praha 6
 https://www.cesnet.cz
 ```
+
+### About IT4I
+[IT4Innovations National Supercomputing Center](https://www.it4i.cz) is located at VSB – Technical University of Ostrava. It is one of the leading research, development, and innovation centers in the Czech Republic. The center focuses on high-performance computing (HPC), high-performance data analytics (HPDA), artificial intelligence (AI), and quantum computing (QC). It explores their applications in science, industry, and society. IT4Innovations operates the most powerful supercomputing systems in the country.
+
+```
+Address
+IT4Innovations National Supercomputing Center
+Studentská 6231/1B 708 00 Ostrava-Poruba
+https://www.it4i.cz
+```
