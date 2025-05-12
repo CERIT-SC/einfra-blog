@@ -39,8 +39,8 @@ Unfortunately, there is no setting analogous to `fsGroup`—such as a hypothetic
 
 Some applications, such as `ssh` and `psql` (the PostgreSQL command-line client), enforce strict file ownership and permission rules. For example:
 
-- `ssh` requires the `authorized_keys` file to be owned by the correct user and not readable by group or others.
-- `psql` requires `.pgpass` to be owned by the user and similarly restricts group or world-readable permissions.
+- `ssh` requires the `authorized_keys` file to be owned by the correct user and not writeable by group.
+- `psql` requires `.pgpass` to be owned by the user and not readable by group or others.
 
 Files mounted from a `Secret` (or `ConfigMap`, though not recommended for sensitive data) are always owned by `root`. Even when `fsGroup` is used to grant group access, it is often insufficient, as these applications explicitly check for user ownership and strict permission settings.
 
@@ -55,7 +55,9 @@ While these workarounds functionally solve the problem, they introduce complexit
 
 #### A Better Solution
 
-A feature like `fsUser` would allow mounted files to be assigned the correct ownership automatically, simplifying deployments and improving security by eliminating the need for post-mount fixes.
+A feature like `fsUser` would allow mounted files to be assigned the correct ownership automatically, simplifying deployments and improving security by eliminating the need for post-mount fixes. 
+
+**Therefore, we proposed our very first KEP.**
 
 ## Kubernetes Enhancement Proposal (KEP)
 
