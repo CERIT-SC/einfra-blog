@@ -1,11 +1,11 @@
 ---
-date: '2025-05-12T22:00:00Z'
+date: '2025-05-12T23:00:00Z'
 title: 'KEP: fsUser'
 thumbnail: '/img/kep/kep.png'
 description: "Kubernetes Enhancement Proposal: securityContext fsUser"
 tags: ["Lukáš Hejtmánek", "Dušan Úradník","CERIT-SC", "Kubernetes", "KEP", "Security"]
 colormode: true
-draft: true
+draft: false
 ---
 
 ## Kubernetes `securityContext`
