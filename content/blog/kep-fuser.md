@@ -1,6 +1,6 @@
 ---
 date: '2025-05-12T22:00:00Z'
-title: 'KEP: fUser'
+title: 'KEP: fsUser'
 thumbnail: '/img/kep/kep.png'
 description: "Kubernetes Enhancement Proposal: securityContext fsUser"
 tags: ["Lukáš Hejtmánek", "Dušan Úradník","CERIT-SC", "Kubernetes", "KEP", "Security"]
@@ -75,4 +75,10 @@ The KEP process typically begins with a virtual meeting with the relevant **Spec
 
 Once submitted, the PR is subject to review by the community. Feedback and suggestions are expected, and the proposal must be revised accordingly before it can be accepted.
 
+## `fsUser` KEP
 
+We proposed a KEP that extends the Pod-level `securityContext` by introducing a new field: `fsUser`. This field would allow users to specify the user ID (UID) that should own files within mounted volumes—similar to how `fsGroup` sets the group ownership.
+
+We successfully presented the concept of `fsUser` during a [SIG Storage meeting](https://docs.google.com/document/d/1-8KEG8AjAgKznS9NFm3qWqkGyCHmvU6HVl0sk5hwoAE/edit?tab=t.0#heading=h.k4uvxr6ssid4), and subsequently submitted a [KEP Pull Request](https://github.com/kubernetes/enhancements/pull/5281).
+
+We believe this proposal will be well-received and ultimately improve the Kubernetes ecosystem by simplifying secure file access for containers. We're proud that our team is contributing to making Kubernetes even better.
