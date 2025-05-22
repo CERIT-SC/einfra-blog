@@ -1,7 +1,7 @@
 ---
 date: '2025-05-22T12:26:32Z'
 title: 'Introducing CERIT-SC AI Tools'
-thumbnail: '/img/spectus/alchymista_v_knihovne1.jpeg'
+thumbnail: '/img/chat-ai/chat-ai.png'
 description: "Smart, Secure, and Ready for Research"
 tags: ["Lukáš Hejtmánek", "Ivana Křenková", "CERIT-SC", "AI", "RAG", "WebUI"]
 colormode: true
