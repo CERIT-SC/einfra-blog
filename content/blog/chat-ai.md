@@ -24,7 +24,7 @@ The interface is intuitive and supports multiple languages, including **Czech**.
 
 ➡️ Try it here: [chat.ai.e-infra.cz](https://chat.ai.e-infra.cz/)
 
-{< image src="/img/chat-ai/chat-ai.png" class="rounded" wrapper="text-center w-40" >}}
+{{< image src="/img/chat-ai/chat-ai.png" class="rounded" wrapper="text-center w-40" >}}
 
 ### Dedicated WebUI Clones for Institutions
 
