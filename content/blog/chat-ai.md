@@ -5,7 +5,7 @@ thumbnail: '/img/chat-ai/chat-ai2.png'
 description: "Smart, Secure, and Ready for Research"
 tags: ["Lukáš Hejtmánek, Ivana Křenková", "CERIT-SC", "AI", "RAG", "WebUI"]
 colormode: true
-draft: true
+draft: false
 ---
 # Introducing CERIT-SC AI Tools: Smart, Secure, and Ready for Research
 
