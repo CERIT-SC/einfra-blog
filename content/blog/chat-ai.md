@@ -69,6 +69,8 @@ Our AI tools are fully integrated into the platforms many researchers already us
 
 🚀 Access it here: [hub.cloud.e-infra.cz](https://hub.cloud.e-infra.cz/hub/home)
 
+{{< image src="img/jupyterhub/aichat.png" mode="false" class="rounded-3 my-3" >}}
+
 ## AI-Powered Documentation
 
 Need help navigating our infrastructure or solving common issues? Visit our updated documentation portal:  
