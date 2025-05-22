@@ -26,32 +26,19 @@ The interface is intuitive and supports multiple languages, including **Czech**.
 
 {{< image src="/img/chat-ai/chat-ai.png" class="rounded" wrapper="text-center w-40" >}}
 
-### Dedicated WebUI Clones for Institutions
-
-We are also able to deploy **dedicated instances (clones) of our WebUI** for specific user groups and institutions. This ensures even more control over usage, configuration, and access.  
-📌 **Charles University** is one of the first institutions currently benefiting from this customized deployment.
-
-
-## Built for Developers and Power Users
-
-Behind the sleek interface lies a set of **robust, REST-based APIs**—fully documented and **OpenAI-compatible**—that make it easy to connect your own applications or scripts. This flexibility empowers you to build, experiment, and deploy AI-assisted workflows that fit your research goals.
-
-📌 Learn more about API: [OpenAI-compatible API](https://docs.cerit.io/en/docs/web-apps/chat-ai)
-
-## Models That Match Your Needs
-
 We provide both a **stable set of language models** (like **LLaMA 3.3**) and an **experimental track** where new models are tested and evaluated. If your research team has specific requirements, we’re open to including additional models based on relevance and demand. Just let us know!
 
-## Key Features at a Glance
+### Key Features at a Glance
 
 - **Open WebUI**: Chat interface similar to popular AI tools  
 - **Combined web and arXiv search**: Get AI-enhanced answers from online and academic sources  
 - **Image generation**: Create visual content with text prompts  
 - **Document RAG**: Upload your own PDFs and ask questions based on their content  
 - **OpenAI-compatible API**: Seamless integration with your custom apps  
-- **Secure access**: Requires a valid MetaCenter account  
+- **Secure access**: Requires a valid MetaCenter account
 
-## Why Choose Our AI Services?
+
+### Why Choose Our AI Services?
 
 While commercial AI platforms are fast and convenient, they often raise serious questions around **data privacy** and **vendor lock-in**. In contrast, our AI tools:
 
@@ -61,11 +48,28 @@ While commercial AI platforms are fast and convenient, they often raise serious 
 
 📌 Learn more about privacy: [Data Privacy at CERIT-SC](https://docs.cerit.io/en/docs/web-apps/chat-ai#data-privacy)
 
-## Integrated with Your Research Environment
+### Dedicated WebUI Clones for Institutions
+
+We are also able to deploy **dedicated instances (clones) of our WebUI** for specific user groups and institutions. This ensures even more control over usage, configuration, and access.  
+📌 **Charles University** is one of the first institutions currently benefiting from this customized deployment.
+
+### Optional: Commercial AI Integration
+
+For user groups with specific needs, we offer **prepaid access** to commercial models like OpenAI or Anthropic—accessible through the same unified interface.
+
+
+## API Capability for Power Users
+
+Behind the sleek interface lies a set of **robust, REST-based APIs**—fully documented and **OpenAI-compatible**—that make it easy to connect your own applications or scripts. This flexibility empowers you to build, experiment, and deploy AI-assisted workflows that fit your research goals.
+
+📌 Learn more about API: [OpenAI-compatible API](https://docs.cerit.io/en/docs/web-apps/chat-ai)
+
+## Extended AI Integration
 
 Our AI tools are fully integrated into the platforms many researchers already use.
 
 Our **JupyterHub environment**, running in Kubernetes, includes the Notebook *Intelligence extension*, preconfigured to use our in-house models (such as *Command-A*). Users can easily switch to other models or APIs with their own API keys. 
+
 Similarly, **RStudio** users can access AI functionality via the *gpt-studio* extension, also preconfigured and customizable.
 
 🚀 Access it here: [hub.cloud.e-infra.cz](https://hub.cloud.e-infra.cz/hub/home)
@@ -80,10 +84,6 @@ Our updated documentation portal (https://docs.e-infra.cz) features an AI-powere
 
 {{< image src="/img/chat-ai/docs-einfra.png" class="rounded" wrapper="text-center w-40" >}}
 
-
-## Optional: Commercial AI Integration
-
-For user groups with specific needs, we offer **prepaid access** to commercial models like OpenAI or Anthropic—accessible through the same unified interface.
 
 ---
 
