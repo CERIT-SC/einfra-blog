@@ -3,7 +3,7 @@ date: '2025-05-22T10:26:32Z'
 title: 'Introducing CERIT-SC AI Tools'
 thumbnail: '/img/chat-ai/chat-ai2.png'
 description: "Smart, Secure, and Ready for Research"
-tags: ["Lukáš Hejtmánek", "Ivana Křenková", "CERIT-SC", "AI", "RAG", "WebUI"]
+tags: ["Lukáš Hejtmánek, Ivana Křenková", "CERIT-SC", "AI", "RAG", "WebUI"]
 colormode: true
 draft: true
 ---
@@ -23,6 +23,8 @@ At the heart of our AI offering is the **Open WebUI platform**—a secure, on-pr
 The interface is intuitive and supports multiple languages, including **Czech**. Whether you're a researcher looking to analyze complex documents or a developer integrating AI into your workflows, Open WebUI is ready for you.
 
 ➡️ Try it here: [chat.ai.e-infra.cz](https://chat.ai.e-infra.cz/)
+
+{< image src="/img/chat-ai/chat-ai.png" class="rounded" wrapper="text-center w-40" >}}
 
 ### Dedicated WebUI Clones for Institutions
 
