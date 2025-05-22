@@ -36,6 +36,7 @@ We are also able to deploy **dedicated instances (clones) of our WebUI** for spe
 
 Behind the sleek interface lies a set of **robust, REST-based APIs**—fully documented and **OpenAI-compatible**—that make it easy to connect your own applications or scripts. This flexibility empowers you to build, experiment, and deploy AI-assisted workflows that fit your research goals.
 
+📌 Learn more about API: [OpenAI-compatible API](https://docs.cerit.io/en/docs/web-apps/chat-ai)
 
 ## Models That Match Your Needs
 
@@ -58,11 +59,11 @@ While commercial AI platforms are fast and convenient, they often raise serious 
 - **Never share your data** with third-party services  
 - Offer **transparent operations**, governed by the Czech academic community  
 
-📌 Learn more about privacy: [Data Privacy at CERIT-SC](https://docs.e-infra.cz)
+📌 Learn more about privacy: [Data Privacy at CERIT-SC](https://docs.cerit.io/en/docs/web-apps/chat-ai#data-privacy)
 
 ## Integrated with Your Research Environment
 
-Our AI tools are fully integrated into the platforms many researchers already use:
+Our AI tools are fully integrated into the platforms many researchers already use.
 
 Our **JupyterHub environment**, running in Kubernetes, includes the Notebook *Intelligence extension*, preconfigured to use our in-house models (such as *Command-A*). Users can easily switch to other models or APIs with their own API keys. 
 Similarly, **RStudio** users can access AI functionality via the *gpt-studio* extension, also preconfigured and customizable.
