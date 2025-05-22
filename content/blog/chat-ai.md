@@ -64,8 +64,8 @@ While commercial AI platforms are fast and convenient, they often raise serious 
 
 Our AI tools are fully integrated into the platforms many researchers already use:
 
-- **JupyterHub**: With the *Notebook Intelligence* extension, you can use in-house AI models like *Command-A* directly in your notebooks. Prefer something else? Easily switch using your own API keys.  
-- **RStudio**: Thanks to the *gpt-studio* extension, AI assistance is also available in your favorite data science environment.
+Our **JupyterHub environment**, running in Kubernetes, includes the Notebook *Intelligence extension*, preconfigured to use our in-house models (such as *Command-A*). Users can easily switch to other models or APIs with their own API keys. 
+Similarly, **RStudio** users can access AI functionality via the *gpt-studio* extension, also preconfigured and customizable.
 
 🚀 Access it here: [hub.cloud.e-infra.cz](https://hub.cloud.e-infra.cz/hub/home)
 
@@ -73,10 +73,12 @@ Our AI tools are fully integrated into the platforms many researchers already us
 
 ## AI-Powered Documentation
 
-Need help navigating our infrastructure or solving common issues? Visit our updated documentation portal:  
+Our updated documentation portal (https://docs.e-infra.cz) features an AI-powered chatbot capable of answering questions based on the documentation, and in some cases, offering solutions to common infrastructure issues. This service is actively evolving, with new features being added regularly.
+
 📚 [docs.e-infra.cz](https://docs.e-infra.cz)
 
-It now features an **AI-powered assistant** that can answer questions, suggest solutions, and help you get the most out of our services.
+{{< image src="/img/chat-ai/docs-einfra.png" class="rounded" wrapper="text-center w-40" >}}
+
 
 ## Optional: Commercial AI Integration
 
