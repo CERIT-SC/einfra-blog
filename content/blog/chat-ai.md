@@ -23,9 +23,16 @@ The interface is intuitive and supports multiple languages, including **Czech**.
 
 ➡️ Try it here: [chat.ai.e-infra.cz](https://chat.ai.e-infra.cz/)
 
+### Dedicated WebUI Clones for Institutions
+
+We are also able to deploy **dedicated instances (clones) of our WebUI** for specific user groups and institutions. This ensures even more control over usage, configuration, and access.  
+📌 **Charles University** is one of the first institutions currently benefiting from this customized deployment.
+
+
 ## Built for Developers and Power Users
 
 Behind the sleek interface lies a set of **robust, REST-based APIs**—fully documented and **OpenAI-compatible**—that make it easy to connect your own applications or scripts. This flexibility empowers you to build, experiment, and deploy AI-assisted workflows that fit your research goals.
+
 
 ## Models That Match Your Needs
 
@@ -33,12 +40,12 @@ We provide both a **stable set of language models** (like **LLaMA 3.3**) and an 
 
 ## Key Features at a Glance
 
-- ✅ **Open WebUI**: Chat interface similar to popular AI tools  
-- 🔍 **Combined web and arXiv search**: Get AI-enhanced answers from online and academic sources  
-- 🖼️ **Image generation**: Create visual content with text prompts  
-- 📄 **Document RAG**: Upload your own PDFs and ask questions based on their content  
-- 🧩 **OpenAI-compatible API**: Seamless integration with your custom apps  
-- 🔐 **Secure access**: Requires a valid [MetaCenter](https://metavo.metacentrum.cz/) account  
+- **Open WebUI**: Chat interface similar to popular AI tools  
+- **Combined web and arXiv search**: Get AI-enhanced answers from online and academic sources  
+- **Image generation**: Create visual content with text prompts  
+- **Document RAG**: Upload your own PDFs and ask questions based on their content  
+- **OpenAI-compatible API**: Seamless integration with your custom apps  
+- **Secure access**: Requires a valid MetaCenter account  
 
 ## Why Choose Our AI Services?
 
@@ -74,12 +81,10 @@ For user groups with specific needs, we offer **prepaid access** to commercial m
 
 ## Learn More and Get Started
 
-Explore our full AI offering, including tutorials, guides, and real-world examples:
-
-- 🧠 [AI Chat Web App at CERIT-SC](https://docs.cerit-sc.cz/en/docs/web-apps/chat-ai)  
+- 🧠 [Documentation: AI Chat at CERIT-SC](https://docs.cerit-sc.cz/en/docs/web-apps/chat-ai)  
 - ✍️ [Blog post: Simple RAG with Open WebUI](https://blog.e-infra.cz/blog/simple-rag/)  
 
-We believe in **empowering researchers** with tools that are not only cutting-edge but also ethical, transparent, and community-driven. With CERIT-SC AI tools, your research stays **smart, secure, and entirely under your control**.
+
 
 
 
