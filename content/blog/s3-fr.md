@@ -5,7 +5,7 @@ thumbnail: '/img/s3-fr/big_data_gpt.png'
 description: "Storing and Handling Big Data"
 tags: ["Jan Pospíšil", "User Experience", "S3", "FR CESNET", "ZCU"]
 colormode: true
-draft: true
+draft: false
 ---
 
 # Storing and Handling Big Data in S3 Object Storage for MetaCentrum Workflows
