@@ -5,7 +5,7 @@ thumbnail: '/img/wandb-fr/wandb.png'
 description: "Integrated Monitoring via Weights & Biases"
 tags: ["Jan Pospíšil", "User Experience", "AI", "FR CESNET", "ZCU"]
 colormode: true
-draft: true
+draft: false
 ---
 
 # Training Neural Networks using MetaCentrum with Integrated Monitoring via Weights & Biases
