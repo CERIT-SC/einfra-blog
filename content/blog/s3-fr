@@ -1,5 +1,5 @@
 ---
-date: '2025-05-28T08:00:32Z'
+date: '2025-05-27T10:00:32Z'
 title: 'S3 Object Storage for MetaCentrum Workflows'
 thumbnail: '/img/s3-fr/big_data_gpt.png'
 description: "Storing and Handling Big Data"
@@ -9,6 +9,7 @@ draft: true
 ---
 
 # Storing and Handling Big Data in S3 Object Storage for MetaCentrum Workflows
+
 > 💡 **Note** 
 > This blog post is brought to you directly by our users as part of our ongoing effort to share knowledge and real-world experience across the community. 
 > The content you’re about to read is the result of a project supported through the FR CESNET (Development Fund).
@@ -82,6 +83,7 @@ endpoint_url = "https://s3.clX.du.cesnet.cz"
 region_name = "us-east-1"
 
 mb = 1024 ** 2
+
 # Adjust the multipart threshold and chunk size as needed
 config = TransferConfig(multipart_threshold=50 * mb, multipart_chunksize=50 * mb, use_threads=True)
 
