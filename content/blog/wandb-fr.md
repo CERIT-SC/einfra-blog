@@ -1,5 +1,5 @@
 ---
-date: '2025-05-27T08:00:32Z'
+date: '2025-05-26T08:00:32Z'
 title: 'Training Neural Networks using MetaCentrum'
 thumbnail: '/img/wandb-fr/wandb.png'
 description: "Integrated Monitoring via Weights & Biases"
