@@ -3,7 +3,7 @@ date: '2025-05-27T08:00:32Z'
 title: 'Training Neural Networks using MetaCentrum'
 thumbnail: '/img/wandb-fr/wandb.png'
 description: "Integrated Monitoring via Weights & Biases"
-tags: ["Jan Pospíšil", "User Experience", "AI", "FR CESNET"]
+tags: ["Jan Pospíšil", "User Experience", "AI", "FR CESNET", "ZCU"]
 colormode: true
 draft: true
 ---
@@ -24,7 +24,7 @@ In this post, we will show you how to combine MetaCentrum’s HPC resources with
 
 Weights & Biases ([WandB](https://wandb.ai/)) is a platform designed to help machine learning practitioners track their experiments, visualize results, and collaborate more effectively.
 
-It provides tools for logging hyperparameters, metrics, and artifacts, making it easier to reproduce experiments and share results with your team.
+It provides tools for logging hyperparameters, metrics, and artefacts, making it easier to reproduce experiments and share results with your team.
 
 ## Setting Up WandB
 
@@ -69,7 +69,7 @@ for epoch in range(num_epochs):
 ## Integrating WandB into MetaCentrum jobs
 
 When running your training scripts on MetaCentrum, you have already integrated the WandB initialization and logging into your training code by following the steps above.
-Now you need to ensure that your job scripts are set up to log you into WandB correctly and that the WandB run is properly configured to save logs and possible artifacts.
+Now you need to ensure that your job scripts are set up to log you into WandB correctly and that the WandB run is properly configured to save logs and possible artefacts.
 
 ### Example Job Script
 Here is an example of how you might set up a job script to run your WandB-enabled training script on MetaCentrum:
@@ -93,7 +93,7 @@ python your_training_script.py
 Once your job is running, you can monitor the progress of your experiments in real-time on the WandB dashboard.
 You can visualize metrics, compare runs, and analyze hyperparameter effects directly in your web browser.
 
-Once your job completes, you can also visualize the results and compare different runs to see how changes in hyperparameters affect model performance as you can see in the example exported image below:
+Once your job completes, you can also visualize the results and compare different runs to see how changes in hyperparameters affect model performance, as you can see in the example exported image below:
 
 {{< image src="/img/wandb-fr/wandb_example.png" class="rounded" wrapper="text-center w-40" >}}
 
