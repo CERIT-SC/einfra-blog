@@ -1,7 +1,7 @@
 ---
 date: '2025-05-27T08:00:32Z'
 title: 'Training Neural Networks using MetaCentrum'
-thumbnail: '/img/wandb/wandb.png'
+thumbnail: '/img/wandb-fr/wandb.png'
 description: "Integrated Monitoring via Weights & Biases"
 tags: ["Jan Pospíšil", "User Experience", "AI", "FR CESNET"]
 colormode: true
@@ -95,7 +95,7 @@ You can visualize metrics, compare runs, and analyze hyperparameter effects dire
 
 Once your job completes, you can also visualize the results and compare different runs to see how changes in hyperparameters affect model performance as you can see in the example exported image below:
 
-{{< image src="/img/wandb/wandb_example.png" class="rounded" wrapper="text-center w-40" >}}
+{{< image src="/img/wandb-fr/wandb_example.png" class="rounded" wrapper="text-center w-40" >}}
 
 ## Conclusion
 
