@@ -14,10 +14,6 @@ draft: true
 > This blog post is brought to you directly by our users as part of our ongoing effort to share knowledge and real-world experience across the community. 
 > The content you’re about to read is the result of a project supported through the FR CESNET (Development Fund).
 
-{{< alert color="info" >}}
-This blog post is brought to you directly by our users as part of our ongoing effort to share knowledge and real-world experience across the community. The content you’re about to read is the result of a project supported through the FR CESNET (Development Fund).
-{{< /alert >}}
-
 
 Training deep learning models is not just about raw compute – it is about observability, reproducibility, and efficiency.
 When you run neural network experiments at scale on MetaCentrum, keeping track of performance metrics, hyperparameters, and model versions can quickly get out of hand.
