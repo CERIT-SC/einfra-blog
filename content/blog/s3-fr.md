@@ -1,5 +1,5 @@
 ---
-date: '2025-05-27T10:00:32Z'
+date: '2025-05-26T10:00:32Z'
 title: 'S3 Object Storage for MetaCentrum Workflows'
 thumbnail: '/img/s3-fr/big_data_gpt.png'
 description: "Storing and Handling Big Data"
