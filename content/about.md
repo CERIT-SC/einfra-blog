@@ -46,3 +46,5 @@ IT4Innovations National Supercomputing Center
 Studentská 6231/1B 708 00 Ostrava-Poruba
 https://www.it4i.cz
 ```
+
+{{< image src="/img/e-infra-footer-partner-logos.svg" class="rounded" wrapper="text-center" >}}
