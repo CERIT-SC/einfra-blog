@@ -10,7 +10,7 @@ TODO
 - [ ] example in intro
 - [ ] check embedding model descriptions table
 - [ ] pictures or illustrations
-- [ ] MAP
+- [ ] MRR@5
 - [ ] implementation - lang detect on local models
 - [ ] results
 - [ ] webui
@@ -32,13 +32,13 @@ Illustration of embedder role. [Source](https://www.clarifai.com/blog/what-is-ra
 
 ## How do embedders differ?
 
-Embedders vary in architecture, language support, and vector dimensionality. For example, OpenAI’s `text-embedding-ada-002` produces 1536-dimensional vectors and supports many languages, while `jina-embeddings-v3` outputs 768-dimensional vectors and is optimized for English technical content. Some models are trained broadly on internet text, others on specialized domains like code or documentation.
+Embedders vary in many aspects like architecture, language support, and vector dimensionality. For example, OpenAI’s `text-embedding-ada-002` produces 1536-dimensional vectors and supports many languages, while `jina-embeddings-v3` outputs 768-dimensional vectors and is optimized for English technical content. Some models are trained broadly on internet text, others on specialized domains like code or documentation - it is not always a simple decision, which model is the best for a given purpose.
 
 These differences affect how well they capture context and retrieve relevant chunks. Multilingual support matters if queries include Czech terms; vector length impacts storage and search speed.
 
 ## What we did
 ### Models
-We tested these models:
+We tested these models below. The ones from OpenAI are paid  (e.g., $0.02–$0.13 per million tokens, which is roughly $0.02–$0.13 per ~7,500 prompts of 100 words), the other models are open-source.
  
 | Name                                                                                  | Provider     | Dimensions | About                                |
 |---------------------------------------------------------------------------------------|--------------|------------------|--------------------------------------|
@@ -54,7 +54,7 @@ We tested these models:
 
 
 ### Testing methodology
-We created our custom testing dataset both for czech and english - we decided to simulate user's questions by asking a GPT-4o to generate questions that can be answered using a specific document (by document we mean a single mdx file).
+We created our custom testing dataset both for czech and english - we decided to **simulate user's questions** by asking a GPT-4o to generate questions that can be answered using mainly a specific document (by document we mean a single mdx file).
 The dataset consists of 5 questions for each document. There are separate datasets for both languages and different style, see the examples table below. The first two question styles were quite specific and long, the other two intended to simulate real user's behavior by using shor prompts or incomplete sentences.
 
 | Style | Czech | English |
@@ -66,9 +66,9 @@ The dataset consists of 5 questions for each document. There are separate datase
 
 The embedder was then given the question, and returned 5 most relevant documents. We considered that **only one** document is relevant, although in reality the answer may partially be found in more of these (or at least in both czech and english copy of the same content).
 
-We use Recall@5 metric: if the relevant document appears in the top 5, it counts as a hit; otherwise, it's a miss.
+We used **Recall@5** metric: if the relevant document appears in the top 5, it counts as a hit; otherwise, it's a miss.
 
-Additionally, the MRR@5 (Mean reciprocal rank) can be used to compare the position (it's better to have the relevant document retrieved on 1st than 5th position).
+Additionally, the **MRR@5** (Mean reciprocal rank) can be used to compare the position (it's better to have the relevant document retrieved on 1st than 5th position).
 
 ### Implementation
 We continued with the same structure as [before](https://blog.cerit.io/blog/simple-rag/#the-embedding-api-and-database), the only change was that we stored vectors of different multidimensionality in the same database. 
