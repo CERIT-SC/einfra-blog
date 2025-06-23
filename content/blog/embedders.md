@@ -13,6 +13,8 @@ TODO
 - [ ] MAP
 - [ ] implementation - lang detect on local models
 - [ ] results
+- [ ] webui
+- [ ] smaller images
 
 # Embedders
 In [this](https://blog.cerit.io/blog/simple-rag/) article from February, we learned about how we implemented embedders to improve chatbots. Here we describe our next steps.
@@ -24,6 +26,9 @@ In consequence, the chatbot helps the user solving the issue.
 
 For example, when typing "xyz" to the chatbot, the embedder should say "Use these documents to answer." 
 and provide the chatbot with e. g. 5 documents (Omero.dmx, Kubectl.mdx,...)
+
+![image](https://github.com/user-attachments/assets/05973438-2d3f-44d1-b8ea-00f17767d77a)
+Illustration of embedder role. [Source](https://www.clarifai.com/blog/what-is-rag-retrieval-augmented-generation)
 
 ## How do embedders differ?
 
@@ -42,22 +47,32 @@ We tested these models:
 | [text-embedding-ada-002](https://platform.openai.com/docs/models/text-embedding-ada-002) | OpenAI       | 1536  | Widely used, general-purpose model   |
 | [mxbai-embed-large:latest](https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1)   | Mixedbread   | 1024   | Open-source, performant embeddings   |
 | [jina-embeddings-v3](https://jina.ai/news/jina-embeddings-v3-a-frontier-multilingual-embedding-model/) | Jina | 1024  | Multilingual, search-optimized model |
-| [multilingual-e5-large-instruct](https://huggingface.co/intfloat/multilingual-e5-large-instruct) | intfloat | 1024  | Instruction-tuned multilingual model |
-| [nomic-embed-text-v1.5](https://www.nomic.ai/blog/posts/nomic-embed-text-v1)             | Nomic        | 768 | Open-source model for efficient embeddings |
-| [qwen3-embedding-4b](https://deepinfra.com/Qwen/Qwen3-Embedding-4B)                       | Alibaba/Qwen | 2560  | Powerful model from the Qwen3 family       |
+| [multilingual-e5-large-instruct](https://huggingface.co/intfloat/multilingual-e5-large-instruct) | intfloat | 1024  |
+| [nomic-embed-text-v1.5](https://www.nomic.ai/blog/posts/nomic-embed-text-v1)             | Nomic        | 768 |
+| [qwen3-embedding-4b](https://deepinfra.com/Qwen/Qwen3-Embedding-4B)                       | Alibaba/Qwen | 2560  |
 
 
 
 ### Testing methodology
-We created our custom testing dataset both for czech and english - we decided to simulate user's questions by asking a GPT-4o to generate questions that can be answered using a specific document.
+We created our custom testing dataset both for czech and english - we decided to simulate user's questions by asking a GPT-4o to generate questions that can be answered using a specific document (by document we mean a single mdx file).
+The dataset consists of 5 questions for each document. There are separate datasets for both languages and different style, see the examples table below. The first two question styles were quite specific and long, the other two intended to simulate real user's behavior by using shor prompts or incomplete sentences.
 
-MAP - Mean average precision
+| Style | Czech | English |
+|-------|-------|---------|
+| 1     | Jakým způsobem je možné nasadit databázi Postgres pro aplikaci Omero v Kubernetes?      | How do you create a secret for the Postgres database user and password for Omero?        |
+| 2     |  Jaké jsou dvě hlavní komponenty potřebné pro spuštění aplikace Omero v Kubernetes?     |   Why is the second option of running Omero images manually preferred for Kubernetes over using docker-compose?      |
+| 3     | Co dělat, když je databáze pomalá při zpracování zátěže?      |  Postgres random password vs explicit password?       |
+| 4     | omero web ingress konfigurace      |  omero docker options       |
 
+The embedder was then given the question, and returned 5 most relevant documents. We considered that **only one** document is relevant, although in reality the answer may partially be found in more of these (or at least in both czech and english copy of the same content).
 
+We use Recall@5 metric: if the relevant document appears in the top 5, it counts as a hit; otherwise, it's a miss.
+
+Additionally, the MRR@5 (Mean reciprocal rank) can be used to compare the position (it's better to have the relevant document retrieved on 1st than 5th position).
 
 ### Implementation
 We continued with the same structure as [before](https://blog.cerit.io/blog/simple-rag/#the-embedding-api-and-database), the only change was that we stored vectors of different multidimensionality in the same database. 
-For models that were running at vllm API, we also implemented language detection - if the query language was czech, the db search was pruned to only czech language, which should both improve the results and speedup the search.
+For models that were running at vllm API, we also implemented language detection - if the query language was czech, the db search space was pruned to only czech language, which should both improve the results and speedup the search.
 
 ## Results
 Some were as expected, some surprised us.
