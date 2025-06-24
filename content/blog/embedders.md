@@ -20,7 +20,7 @@ TODO
 # Embedders
 In [this](https://blog.cerit.io/blog/simple-rag/) article from February, we learned about how we implemented embedders to improve chatbots. Here we describe our next steps.
 
-We furhter experimented with more embedding models, as there is a lot of different ones. 
+We further experimented with more embedding models, as there is a lot of different ones. 
 We wanted to see, which model fits our purposes the best:
 process the Markdown documentation in a way so that the chatbot is provided with the most relevant documents possible, 
 In consequence, the chatbot helps the user solving the issue.
@@ -84,10 +84,16 @@ For models that were running at vllm API, we also implemented language detection
 ## Results
 Some were as expected, some surprised us.
 
-**Language detection** applied to open-source models did not improved the results. The reason may be ...
+### Language detection 
+Automatic language detection applied to open-source models did not improved the results. The reason may be ...
 
+### Czech queries
 As was expected, models varied in handling czech queries. **The best one for czech was qwen3-embedding-4b**, which returned the correct document in almost 92 % of cases in top 5, and was followed by all models from OpenAI.
 ![image](https://github.com/user-attachments/assets/814623f2-1676-494e-ada7-8aa758103dbc)
+
+### English queries
+The best performance on our documentation showed OpenAI models.
+
 
 To conclude, it is best to use XY for RAG over our CERIT-SC documentation.
 
