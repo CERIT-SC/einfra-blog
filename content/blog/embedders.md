@@ -14,7 +14,8 @@ TODO
 - [ ] implementation - lang detect on local models
 - [ ] results
 - [ ] webui
-- [ ] smaller images
+- [x] smaller images
+- [ ] check tokens price statement
 
 # Embedders
 In [this](https://blog.cerit.io/blog/simple-rag/) article from February, we learned about how we implemented embedders to improve chatbots. Here we describe our next steps.
@@ -24,8 +25,8 @@ We wanted to see, which model fits our purposes the best:
 process the Markdown documentation in a way so that the chatbot is provided with the most relevant documents possible, 
 In consequence, the chatbot helps the user solving the issue.
 
-For example, when typing "xyz" to the chatbot, the embedder should say "Use these documents to answer." 
-and provide the chatbot with e. g. 5 documents (Omero.dmx, Kubectl.mdx,...)
+For example, when asking the chatbot "How can I access Omero from the command line?", the embedder should say "Use these documents to answer." 
+and provide the chatbot with e. g. 5 documents (Omero.dmx, Kubectl.mdx,...). Ideally, the Omero.mdx would be on the first position as most relevant.
 
 ![image](https://github.com/user-attachments/assets/05973438-2d3f-44d1-b8ea-00f17767d77a)
 Illustration of embedder role. [Source](https://www.clarifai.com/blog/what-is-rag-retrieval-augmented-generation)
@@ -38,7 +39,7 @@ These differences affect how well they capture context and retrieve relevant chu
 
 ## What we did
 ### Models
-We tested these models below. The ones from OpenAI are paid  (e.g., $0.02–$0.13 per million tokens, which is roughly $0.02–$0.13 per ~7,500 prompts of 100 words), the other models are open-source.
+We tested these models below. The ones from OpenAI are paid  (e.g., $0.02–$0.13 per million tokens, which is roughly $0.02–$0.13 per ~7,500 prompts of 100 words FACT_CHECK), the other models are open-source and are running at https://vllm.ai.e-infra.cz/v1/embeddings. FACT_CHECK
  
 | Name                                                                                  | Provider     | Dimensions | About                                |
 |---------------------------------------------------------------------------------------|--------------|------------------|--------------------------------------|
@@ -54,6 +55,7 @@ We tested these models below. The ones from OpenAI are paid  (e.g., $0.02–$0.1
 
 
 ### Testing methodology
+#### Testing datasets
 We created our custom testing dataset both for czech and english - we decided to **simulate user's questions** by asking a GPT-4o to generate questions that can be answered using mainly a specific document (by document we mean a single mdx file).
 The dataset consists of 5 questions for each document. There are separate datasets for both languages and different style, see the examples table below. The first two question styles were quite specific and long, the other two intended to simulate real user's behavior by using shor prompts or incomplete sentences.
 
@@ -66,16 +68,26 @@ The dataset consists of 5 questions for each document. There are separate datase
 
 The embedder was then given the question, and returned 5 most relevant documents. We considered that **only one** document is relevant, although in reality the answer may partially be found in more of these (or at least in both czech and english copy of the same content).
 
-We used **Recall@5** metric: if the relevant document appears in the top 5, it counts as a hit; otherwise, it's a miss.
+#### Metrics
+We used following metrics for evaluation:
 
-Additionally, the **MRR@5** (Mean reciprocal rank) can be used to compare the position (it's better to have the relevant document retrieved on 1st than 5th position).
+| **Metric**    | **Description**                                                             | **Interpretation**                                                           |
+| ------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **Recall\@1** | Fraction of queries where the correct document is ranked **1st**            | Strict accuracy; model must return correct result at top                     |
+| **Recall\@5** | Fraction of queries where the correct document is ranked in **top 5**       | Lenient success; model must include correct result among first 5             |
+| **MRR\@5**    | Mean of the inverse rank of the correct document if ranked within **top 5** |Rank-sensitive score; higher is better; rewards placing correct result earlier|
 
 ### Implementation
-We continued with the same structure as [before](https://blog.cerit.io/blog/simple-rag/#the-embedding-api-and-database), the only change was that we stored vectors of different multidimensionality in the same database. 
-For models that were running at vllm API, we also implemented language detection - if the query language was czech, the db search space was pruned to only czech language, which should both improve the results and speedup the search.
+We continued with the same structure as [before](https://blog.cerit.io/blog/simple-rag/#the-embedding-api-and-database), the only change was that we stored vectors of different dimensionality in the same database. 
+For models that were running at vllm API, we also implemented language detection - if the query language was czech, the db search space was pruned to only czech language, which should both improve the results and speed up the search.
 
 ## Results
 Some were as expected, some surprised us.
+
+**Language detection** applied to open-source models did not improved the results. The reason may be ...
+
+As was expected, models varied in handling czech queries. **The best one for czech was qwen3-embedding-4b**, which returned the correct document in almost 92 % of cases in top 5, and was followed by all models from OpenAI.
+![image](https://github.com/user-attachments/assets/814623f2-1676-494e-ada7-8aa758103dbc)
 
 To conclude, it is best to use XY for RAG over our CERIT-SC documentation.
 
