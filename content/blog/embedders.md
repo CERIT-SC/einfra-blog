@@ -69,13 +69,20 @@ The dataset consists of 5 questions for each document. There are separate datase
 The embedder was then given the question, and returned 5 most relevant documents. We considered that **only one** document is relevant, although in reality the answer may partially be found in more of these (or at least in both czech and english copy of the same content).
 
 #### Metrics
-We used following metrics for evaluation:
+We considered following metrics for evaluation:
 
 | **Metric**    | **Description**                                                             | **Interpretation**                                                           |
 | ------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | **Recall\@1** | Fraction of queries where the correct document is ranked **1st**            | Strict accuracy; model must return correct result at top                     |
 | **Recall\@5** | Fraction of queries where the correct document is ranked in **top 5**       | Lenient success; model must include correct result among first 5             |
 | **MRR\@5**    | Mean of the inverse rank of the correct document if ranked within **top 5** |Rank-sensitive score; higher is better; rewards placing correct result earlier|
+
+All the comparisons were made based on MRR@5, as it extends the information we get from R@5 (in case there is maximally one document relevant).
+
+#### Visualization
+To visualize the embeddings, we applied **Principal Component Analysis (PCA)** to reduce the high-dimensional embeddings down to two dimensions for plotting. 
+PCA helps reveal how embeddings are distributed in space by projecting them along the directions that capture the most variance. 
+While it simplifies the structure, it gives a useful approximation of how close or distant points are in the original space.
 
 ### Implementation
 We continued with the same structure as [before](https://blog.cerit.io/blog/simple-rag/#the-embedding-api-and-database), the only change was that we stored vectors of different dimensionality in the same database. 
@@ -85,7 +92,13 @@ For models that were running at vllm API, we also implemented language detection
 Some were as expected, some surprised us.
 
 ### Language detection 
-Automatic language detection applied to open-source models did not improved the results. The reason may be ...
+Automatic language detection applied to open-source models **did not improved** the results. 
+One possible reason is that the embeddings of the same document in Czech and English were very different (i.e., far apart in the embedding space). As a result, even without narrowing the search to a specific language (e.g., Czech), the embedding in the other language (e.g., English) would still not have been selected, because its similarity score would have been too low anyway.
+
+In the figure below, we plotted embeddings of Czech (blue) and English (orange) documents across several models. Dashed lines connect translations of the same document.
+Most models show clear separation between languages, meaning Czech and English embeddings are far apart. This explains why language detection did not improved these models - they separate languages on their own. However, `jina-embeddings-v3` and `qwen3-embedding-4b` keep translations closer together, likely due to differences in training.
+![image](https://github.com/user-attachments/assets/e64b8fb9-5adf-447f-9532-f835a8acf90d)
+Even though language detection did not improved retrieval, it can still enhance time needed to compare the documents.
 
 ### Czech queries
 As was expected, models varied in handling czech queries. **The best one for czech was qwen3-embedding-4b**, which returned the correct document in almost 92 % of cases in top 5, and was followed by all models from OpenAI.
