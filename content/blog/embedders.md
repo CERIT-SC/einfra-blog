@@ -7,14 +7,7 @@ colormode: true
 draft: true
 ---
 TODO
-- [ ] example in intro
 - [ ] check embedding model descriptions table
-- [ ] pictures or illustrations
-- [ ] MRR@5
-- [ ] implementation - lang detect on local models
-- [ ] results
-- [ ] webui
-- [x] smaller images
 - [ ] check tokens price statement
 
 # Embedders
@@ -34,24 +27,24 @@ Illustration of embedder role. [Source](https://www.clarifai.com/blog/what-is-ra
 ## How do embedders differ?
 
 Embedders vary in many aspects like architecture, language support, and vector dimensionality. For example, OpenAI’s `text-embedding-ada-002` produces 1536-dimensional vectors and supports many languages, while `jina-embeddings-v3` outputs 768-dimensional vectors and is optimized for English technical content. Some models are trained broadly on internet text, others on specialized domains like code or documentation - it is not always a simple decision, which model is the best for a given purpose.
+In case of our database ([pgvector](https://github.com/pgvector/pgvector?tab=readme-ov-file#indexing)), problematic are longer vectors, because the indexing is not supported for them - at it makes the search slower.
 
 These differences affect how well they capture context and retrieve relevant chunks. Multilingual support matters if queries include Czech terms; vector length impacts storage and search speed.
 
 ## What we did
 ### Models
-We tested these models below. The ones from OpenAI are paid  (e.g., $0.02–$0.13 per million tokens, which is roughly $0.02–$0.13 per ~7,500 prompts of 100 words FACT_CHECK), the other models are open-source and are running at https://vllm.ai.e-infra.cz/v1/embeddings. FACT_CHECK
+We tested these models below. The ones from OpenAI are paid  (e.g., $0.02–$0.13 per million tokens, which is roughly $0.02–$0.13 per ~7,500 prompts of 100 words), the other models are open-source. 
  
-| Name                                                                                  | Provider     | Dimensions | About                                |
-|---------------------------------------------------------------------------------------|--------------|------------------|--------------------------------------|
-| [text-embedding-3-small](https://platform.openai.com/docs/models/text-embedding-3-small) | OpenAI       | 1536   | Lightweight embedding model          |
-| [text-embedding-3-large](https://platform.openai.com/docs/models/text-embedding-3-large) | OpenAI       | 3072   | High-performance embedding model     |
-| [text-embedding-ada-002](https://platform.openai.com/docs/models/text-embedding-ada-002) | OpenAI       | 1536  | Widely used, general-purpose model   |
-| [mxbai-embed-large:latest](https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1)   | Mixedbread   | 1024   | Open-source, performant embeddings   |
-| [jina-embeddings-v3](https://jina.ai/news/jina-embeddings-v3-a-frontier-multilingual-embedding-model/) | Jina | 1024  | Multilingual, search-optimized model |
+| Name                                                                                  | Provider     | Dimensions | 
+|---------------------------------------------------------------------------------------|--------------|------------------|
+| [text-embedding-3-small](https://platform.openai.com/docs/models/text-embedding-3-small) | OpenAI       | 1536   | 
+| [text-embedding-3-large](https://platform.openai.com/docs/models/text-embedding-3-large) | OpenAI       | 3072   | 
+| [text-embedding-ada-002](https://platform.openai.com/docs/models/text-embedding-ada-002) | OpenAI       | 1536  | 
+| [mxbai-embed-large:latest](https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1)   | Mixedbread   | 1024   | 
+| [jina-embeddings-v3](https://jina.ai/news/jina-embeddings-v3-a-frontier-multilingual-embedding-model/) | Jina | 1024  | 
 | [multilingual-e5-large-instruct](https://huggingface.co/intfloat/multilingual-e5-large-instruct) | intfloat | 1024  |
 | [nomic-embed-text-v1.5](https://www.nomic.ai/blog/posts/nomic-embed-text-v1)             | Nomic        | 768 |
 | [qwen3-embedding-4b](https://deepinfra.com/Qwen/Qwen3-Embedding-4B)                       | Alibaba/Qwen | 2560  |
-
 
 
 ### Testing methodology
@@ -69,15 +62,17 @@ The dataset consists of 5 questions for each document. There are separate datase
 The embedder was then given the question, and returned 5 most relevant documents. We considered that **only one** document is relevant, although in reality the answer may partially be found in more of these (or at least in both czech and english copy of the same content).
 
 #### Metrics
-We considered following metrics for evaluation:
+For evaluation, we used a single metric: **Mean Reciprocal Rank at 5 (MRR@5)**.
 
-| **Metric**    | **Description**                                                             | **Interpretation**                                                           |
-| ------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| **Recall\@1** | Fraction of queries where the correct document is ranked **1st**            | Strict accuracy; model must return correct result at top                     |
-| **Recall\@5** | Fraction of queries where the correct document is ranked in **top 5**       | Lenient success; model must include correct result among first 5             |
-| **MRR\@5**    | Mean of the inverse rank of the correct document if ranked within **top 5** |Rank-sensitive score; higher is better; rewards placing correct result earlier|
+MRR@5 = (1 / N) * Σ (1 / rank)
+- **N** is the total number of queries.
+- **rank** is the position (1 to 5) of the correct document in the top 5 results.
+- If the correct document is not in the top 5, the reciprocal rank is 0.
 
-All the comparisons were made based on MRR@5, as it extends the information we get from R@5 (in case there is maximally one document relevant).
+This tells us how well the embedder ranked the correct document among the top 5 results. If the correct document is ranked 1st, it gets a score of 1.0; if it’s 2nd, the score is 0.5; 3rd is 0.33, and so on. If the correct document is not in the top 5, the score is 0.
+
+We chose MRR@5 because it not only checks if the correct document is found, but also rewards placing it higher in the results — giving us a better sense of ranking quality than simple recall.
+
 
 #### Visualization
 To visualize the embeddings, we applied **Principal Component Analysis (PCA)** to reduce the high-dimensional embeddings down to two dimensions for plotting. 
@@ -124,7 +119,9 @@ In short, **clearer questions help retrieval** — vague or keyword-only queries
 ![image](https://github.com/user-attachments/assets/7b915367-8d14-4a0e-b30e-4ea3d4aca5da)
 
 
-##
-To conclude, it is best to use XY for RAG over our CERIT-SC documentation.
+## Conclusion
+To sum up, we compared several embedding models to see which one retrieves the most relevant documentation based on a user’s question. The results showed clear differences between models — some worked better for Czech, others for English.
+We also saw that longer, more specific questions helped with finding the right documents. Language detection didn’t improve the results for open-source models, since Czech and English versions of the same content were already far apart in the embedding space.
+These findings help us better understand how embedders behave and will guide us in choosing the right models for future use.
 
-## You can try it here
+![image](https://github.com/user-attachments/assets/3137439e-f330-4bcb-a0ae-404f544718ae)
