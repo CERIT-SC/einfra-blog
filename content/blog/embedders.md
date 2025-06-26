@@ -3,6 +3,7 @@ date: 2025-06-26
 title: 'The Best Embedding Model for CERIT-SC Documentation?'
 description: "We tested multiple embedding models to find out which retrieves the most relevant documents from CERIT-SC docs for chatbot use. Here's what we learned from evaluating OpenAI, Jina, Qwen, and more."
 tags: [embedding, rag, chatbot, evaluation, openai, qwen, documentation]
+thumbnail:
 colormode: true
 draft: true
 ---
@@ -10,13 +11,13 @@ draft: true
 # Embedders
 In [this](https://blog.cerit.io/blog/simple-rag/) article from February, we learned about how we implemented embedders to improve chatbots using RAG. Here we describe our next steps.
 
-We further experimented with more embedding models, as there are a lot of different ones. 
+We experimented with more embedding models, as there are a lot of different ones. 
 We wanted to see which embedding model is best suited to our purpose:
 
-**To find the embedding model that returns the most relevant parts from CERIT-SC documentation when a user asks a question, so the chatbot can generate an answer based on these docs. In consequence, the chatbot helps to solve the user's issue effectively.** 
+**To find the embedding model that best returns the most relevant parts of the CERIT-SC documentation for a user's question, so the chatbot can use them to provide a helpful answer.**
 
 For example, when asking the chatbot "How can I access Omero from the command line?", the embedder should say "Use these documents to answer." 
-and provide the chatbot with e. g. 5 documents (Omero.dmx, Kubectl.mdx,...). Ideally, the Omero.mdx would be on the first position as most relevant.
+and provide the chatbot with 5 documents (Omero.dmx, Kubectl.mdx,...). Ideally, the Omero.mdx would be on the first position as most relevant.
 ![image](https://github.com/user-attachments/assets/87d86f05-5924-43e6-b172-a3d2750350b2)
 Illustration of embedder role. [Source](https://www.clarifai.com/blog/what-is-rag-retrieval-augmented-generation)
 
@@ -65,7 +66,7 @@ MRR@5 = (1 / N) * Σ (1 / rank)
 - **rank** is the position (1 to 5) of the correct document in the top 5 results.
 - If the correct document is not in the top 5, the reciprocal rank is 0.
 
-This told us how well the embedder ranked the correct document among the top 5 results. If the correct document is ranked 1st, it gets a score of 1.0; if it’s 2nd, the score is 0.5; 3rd is 0.33, and so on. If the correct document is not in the top 5, the score is 0.
+This showed us how well the embedder ranked the correct document among the top 5 results. If the correct document is ranked 1st, it gets a score of 1.0; if it’s 2nd, the score is 0.5; 3rd is 0.33, and so on. If the correct document is not in the top 5, the score is 0.
 
 We chose MRR@5 because it not only checks if the correct document is found, but also rewards placing it higher in the results — giving us a better sense of ranking quality than simple recall.
 
@@ -73,12 +74,18 @@ We chose MRR@5 because it not only checks if the correct document is found, but 
 #### Visualization
 To visualize the embeddings, we applied **Principal Component Analysis (PCA)** to reduce the high-dimensional embeddings down to two dimensions for plotting. 
 PCA helps reveal how embeddings are distributed in space by projecting them along the directions that capture the most variance. 
-While it simplifies the structure a lot (e. g. from 1024 to 2 dimensions), it gives a useful approximation of how close or distant points are in the original space.
+While it simplifies the structure a lot (e.g. from 1024 to 2 dimensions), it gives a useful approximation of how close or distant points are in the original space.
 
 ### Implementation
 We continued with the same implementation as [before](https://blog.cerit.io/blog/simple-rag/#the-embedding-api-and-database), using API and PostgreSQL with pg_vector extension - the only change was that we stored vectors of different dimensionality in the same database. 
 
-We also implemented **automatic language detection** - if the query language was Czech, the db search space was pruned to only Czech language, which was expected to both improve the results and to speed up the search. For that we used [langdetect](https://pypi.org/project/langdetect/). After recognizing the language, a "where" clause was added to search query used for retrieving documents.
+We also added **automatic language detection** - if the query language was Czech, the db search space was pruned to only Czech language, which was expected to both improve the results and to speed up the search a little. For that we used [langdetect](https://pypi.org/project/langdetect/) library. After recognizing the language, a "where" clause was added to search query used for retrieving documents. This filtering was applied after the database returned results, so sometimes fewer than the requested number of documents were ultimately included in the final result set.
+
+> **Note:**  
+> Although the system requests the top 5 results (`top_k = 5`) from the database, the final output may contain fewer than 5 documents.  
+> This happens because multiple top-ranked chunks may belong to the same original document (identified by the same `metadata['path']`).  
+> The application merges such chunks after retrieval, returning only one entry per document to avoid redundancy.
+
 
 ## Results
 Some were as expected, some surprised us.
@@ -95,12 +102,15 @@ The best performance on our documentation showed OpenAI models. It is interestin
 
 
 ### Language detection 
-Automatic language detection improved only results of `jina-embeddings-v3` and `qwen3-embedding-4b` models. After visualizing the embedding space, we found the explanation.
+Automatic language detection significanlty improved only results of `jina-embeddings-v3`🔵  and `qwen3-embedding-4b`🟤 models in english queries. After visualizing the embedding space, we found partial explanation, why only these two. 
 
-It did not enhance cases where the embeddings of the same document in Czech and English were very different (i.e., far apart in the embedding space). As a result, even without narrowing the search to a specific language (e.g., Czech), the embedding in the other language (e.g., English) would still not have been selected, because its similarity score would have been too low anyway.
+Also notice that Czech queries of question variant 4 (short keywords) worsen the retrieval a lot. The reason probably is that by searching for specific program names or errors ("konfigurace Omero ingress"), English is mostly used and detected and therefore, correct Czech doc can never be retrieved.
+![image](https://github.com/user-attachments/assets/1a36df24-a255-4262-bc84-b04a4b2d6a5c)
+
+Automatic language detection did not enhance cases where the embeddings of the same document in Czech and English were very different (i.e., far apart in the embedding space). As a result, even without narrowing the search to a specific language (e.g., Czech), the embedding in the other language (e.g., English) would still not have been selected, because its similarity score would have been too low anyway.
 
 In the figure below, we plotted embeddings of Czech (blue) and English (orange) documents across several models using PCA. Dashed lines connect translations of the same document.
-Most models show clear separation between languages, meaning Czech and English embeddings are far apart. This explains why language detection did not improve them - they separate languages on their own. However, `jina-embeddings-v3` and `qwen3-embedding-4b` keep translations closer together, likely due to differences in training (and limit of PCA - the projection itself). Therefore, their performance was improved.
+Most models show clear separation between languages, meaning Czech and English embeddings are far apart (even though the meanings are the same, the embeddings are shifted). This explains why language detection did not improve them - they separate languages on their own. However, `jina-embeddings-v3` and `qwen3-embedding-4b` keep translations closer together which explains why their performance was improved.
 ![image](https://github.com/user-attachments/assets/e64b8fb9-5adf-447f-9532-f835a8acf90d)
 Implementing automatic language detection helped in cases where model does not distinguish embedding between languages.
 
@@ -123,7 +133,7 @@ Overall, all three models from OpenAI performed the best, followed by `qwen3-emb
 
 ## Conclusion
 To sum up, we compared several embedding models to see which one retrieves the most relevant documents based on a user’s question. The results showed clear differences between models — some worked better for Czech, others for English.
-We also saw that **longer, more specific questions** helped with finding the right documents. **Language detection** didn’t improve the results for open-source models, since Czech and English versions of the same content were already far apart in the embedding space.
+We also saw that **longer, more specific questions** helped with finding the right documents. **Language detection** improved results of only specific models, since for others Czech and English versions of the same content were already far apart in the embedding space.
 These findings help us better understand how embedders behave and guide us in choosing the right models for future use.
 
 
