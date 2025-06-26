@@ -1,15 +1,17 @@
 ---
 date: 2025-06-26
 title: 'The Best Embedding Model for CERIT-SC Documentation?'
-description: "We tested multiple embedding models to find out which retrieves the most relevant documents from CERIT-SC docs for chatbot use. Here's what we learned from evaluating OpenAI, Jina, Qwen, and more."
-tags: [embedding, rag, chatbot, evaluation, openai, qwen, documentation]
-thumbnail:
+description: "We tested multiple embedding models with CERIT-SC documentation."
+tags: [embedding, RAG, CERIT-SC]
+thumbnail:!![image](https://github.com/user-attachments/assets/7b2b9ae9-800b-4a6f-b242-73c2dfb8af68)
+
 colormode: true
 draft: true
 ---
+![image](https://github.com/user-attachments/assets/0d242db5-434e-45d0-9b1a-9a3bca5a6d5b)
 
 # Embedders
-In [this](https://blog.cerit.io/blog/simple-rag/) article from February, we learned about how we implemented embedders to improve chatbots using RAG. Here we describe our next steps.
+To understand the context, please read [this](https://blog.cerit.io/blog/simple-rag/) article from February, where we learned about how we implemented embedders to improve chatbots using RAG. Here we describe our next steps.
 
 We experimented with more embedding models, as there are a lot of different ones. 
 We wanted to see which embedding model is best suited to our purpose:
@@ -19,7 +21,7 @@ We wanted to see which embedding model is best suited to our purpose:
 For example, when asking the chatbot "How can I access Omero from the command line?", the embedder should say "Use these documents to answer." 
 and provide the chatbot with 5 documents (Omero.dmx, Kubectl.mdx,...). Ideally, the Omero.mdx would be on the first position as most relevant.
 ![image](https://github.com/user-attachments/assets/87d86f05-5924-43e6-b172-a3d2750350b2)
-Illustration of embedder role. [Source](https://www.clarifai.com/blog/what-is-rag-retrieval-augmented-generation)
+Illustration of embedder role, RAG. [Source](https://www.clarifai.com/blog/what-is-rag-retrieval-augmented-generation)
 
 ## How do embedders differ?
 
