@@ -11,12 +11,11 @@ TODO
 - [ ] check tokens price statement
 
 # Embedders
-In [this](https://blog.cerit.io/blog/simple-rag/) article from February, we learned about how we implemented embedders to improve chatbots. Here we describe our next steps.
+In [this](https://blog.cerit.io/blog/simple-rag/) article from February, we learned about how we implemented embedders to improve chatbots using RAG. Here we describe our next steps.
 
 We further experimented with more embedding models, as there is a lot of different ones. 
-We wanted to see, which model fits our purposes the best:
-process the Markdown documentation in a way so that the chatbot is provided with the most relevant documents possible, 
-In consequence, the chatbot helps the user solving the issue.
+We wanted to see, which embedding model fits our purposes the best:
+**To find the embedding model that returns the most relevant patrs from CERIT-SC documentation when a user asks a question, so the chatbot can generate answer based on these docs. In consequence, the chatbot helps to solve user's issue effectively. **
 
 For example, when asking the chatbot "How can I access Omero from the command line?", the embedder should say "Use these documents to answer." 
 and provide the chatbot with e. g. 5 documents (Omero.dmx, Kubectl.mdx,...). Ideally, the Omero.mdx would be on the first position as most relevant.
@@ -27,13 +26,13 @@ Illustration of embedder role. [Source](https://www.clarifai.com/blog/what-is-ra
 ## How do embedders differ?
 
 Embedders vary in many aspects like architecture, language support, and vector dimensionality. For example, OpenAI’s `text-embedding-ada-002` produces 1536-dimensional vectors and supports many languages, while `jina-embeddings-v3` outputs 768-dimensional vectors and is optimized for English technical content. Some models are trained broadly on internet text, others on specialized domains like code or documentation - it is not always a simple decision, which model is the best for a given purpose.
-In case of our database ([pgvector](https://github.com/pgvector/pgvector?tab=readme-ov-file#indexing)), problematic are longer vectors, because the indexing is not supported for them - at it makes the search slower.
+In case of our database ([pgvector](https://github.com/pgvector/pgvector?tab=readme-ov-file#indexing)), problematic are longer vectors, because the indexing is not supported for them - and it makes the search slower.
 
-These differences affect how well they capture context and retrieve relevant chunks. Multilingual support matters if queries include Czech terms; vector length impacts storage and search speed.
+These differences affect how well the embedders capture context and retrieve relevant chunks. Multilingual support matters if queries include Czech terms; vector length impacts storage and search speed.
 
 ## What we did
 ### Models
-We tested these models below. The ones from OpenAI are paid  (e.g., $0.02–$0.13 per million tokens, which is roughly $0.02–$0.13 per ~7,500 prompts of 100 words), the other models are open-source. 
+We tested these models below. The ones from OpenAI are paid  (e.g. $0.02–$0.13 per million tokens, which is roughly $0.02–$0.13 per ~7,500 prompts of 100 words), the other models are open-source. 
  
 | Name                                                                                  | Provider     | Dimensions | 
 |---------------------------------------------------------------------------------------|--------------|------------------|
@@ -49,7 +48,7 @@ We tested these models below. The ones from OpenAI are paid  (e.g., $0.02–$0.1
 
 ### Testing methodology
 #### Testing datasets
-We created our custom testing dataset both for czech and english - we decided to **simulate user's questions** by asking a GPT-4o to generate questions that can be answered using mainly a specific document (by document we mean a single mdx file).
+We created our custom testing dataset both for czech and english - we decided to **simulate user's questions** by asking a GPT-4o to generate questions that can be answered using mainly a specific document (by document we mean a single mdx file from CERIT-SC documentation).
 The dataset consists of 5 questions for each document. There are separate datasets for both languages and different style, see the examples table below. The first two question styles were quite specific and long, the other two intended to simulate real user's behavior by using shor prompts or incomplete sentences.
 
 | Style | Czech | English |
@@ -59,7 +58,7 @@ The dataset consists of 5 questions for each document. There are separate datase
 | 3     | Co dělat, když je databáze pomalá při zpracování zátěže?      |  Postgres random password vs explicit password?       |
 | 4     | omero web ingress konfigurace      |  omero docker options       |
 
-The embedder was then given the question, and returned 5 most relevant documents. We considered that **only one** document is relevant, although in reality the answer may partially be found in more of these (or at least in both czech and english copy of the same content).
+The embedder was then given the question, and returned 5 most relevant documents using the cosine similarity metric. We considered that **only one** document is relevant, although in reality the answer may partially be found in more of these (or at least in both czech and english copy of the same content). The ground truth were generated questions described above.
 
 #### Metrics
 For evaluation, we used a single metric: **Mean Reciprocal Rank at 5 (MRR@5)**.
@@ -80,14 +79,14 @@ PCA helps reveal how embeddings are distributed in space by projecting them alon
 While it simplifies the structure a lot (e. g. from 1024 to 2 dimensions), it gives a useful approximation of how close or distant points are in the original space.
 
 ### Implementation
-We continued with the same structure as [before](https://blog.cerit.io/blog/simple-rag/#the-embedding-api-and-database), the only change was that we stored vectors of different dimensionality in the same database. 
-For models that were running at vllm API, we also implemented language detection - if the query language was czech, the db search space was pruned to only czech language, which should both improve the results and speed up the search.
+We continued with the same structure as [before](https://blog.cerit.io/blog/simple-rag/#the-embedding-api-and-database), using PostgreSQL with pg_vector extension - the only change was that we stored vectors of different dimensionality in the same database. 
+For models that were running at vllm API (all except OpenAI), we also implemented language detection - if the query language was czech, the db search space was pruned to only czech language, which was expected to both improve the results and speed up the search.
 
 ## Results
 Some were as expected, some surprised us.
 
 ### Czech queries
-As was expected, models varied in handling czech queries. **The best one for czech was qwen3-embedding-4b**, which has overall MRR@5 equal to 0.83 - that means, that correct documents were on average returned at 1/0.83 = 1.2 position. 
+Models varied in handling czech queries. **The best one for czech was qwen3-embedding-4b**, which has overall MRR@5 equal to 0.83 - that means, that correct document was on average returned at 1/0.83 = 1.2 position. 
 Not much worse were all the models from OpenAI.
 ![image](https://github.com/user-attachments/assets/75bba1f0-560f-4f17-9b0b-6cfd194d2329)
 
@@ -101,13 +100,13 @@ The best performance on our documentation showed OpenAI models.
 Automatic language detection applied to open-source models **did not improved** the results. 
 One possible reason is that the embeddings of the same document in Czech and English were very different (i.e., far apart in the embedding space). As a result, even without narrowing the search to a specific language (e.g., Czech), the embedding in the other language (e.g., English) would still not have been selected, because its similarity score would have been too low anyway.
 
-In the figure below, we plotted embeddings of Czech (blue) and English (orange) documents across several models. Dashed lines connect translations of the same document.
-Most models show clear separation between languages, meaning Czech and English embeddings are far apart. This explains why language detection did not improved these models - they separate languages on their own. However, `jina-embeddings-v3` and `qwen3-embedding-4b` keep translations closer together, likely due to differences in training (and limit of PCA - projection itself).
+In the figure below, we plotted embeddings of Czech (blue) and English (orange) documents across several models usin PCA. Dashed lines connect translations of the same document.
+Most models show clear separation between languages, meaning Czech and English embeddings are far apart. This explains why language detection did not improved these models - they separate languages on their own. However, `jina-embeddings-v3` and `qwen3-embedding-4b` keep translations closer together, likely due to differences in training (and limit of PCA - the projection itself).
 ![image](https://github.com/user-attachments/assets/e64b8fb9-5adf-447f-9532-f835a8acf90d)
 Even though language detection did not improved retrieval, it can still enhance time needed to compare the documents with query.
 
 ### Chunks
-Each document is split into chunks, which are individually embedded and compared to the query. However, when returning results through the API, all matching chunks from the same document are combined to reconstruct the full document.
+Each document is split into chunks, which are individually embedded and compared to the query (see [here](https://blog.cerit.io/blog/simple-rag/#document-splitting-the-key-to-effective-retrieval)). However, when returning results through the API, all matching chunks from the same document are combined to reconstruct the full document.
 Therefore, the chatbot searches for the answer within the context of the entire original document — and it's generally better if chunks from the same document are embedded close together, as this reflects semantic consistency and improves retrieval accuracy.
 On the other hand, if a document contains multiple unrelated sections (e.g., FAQ or multi-topic pages), chunk separation might be desirable — but then it is better to treat each section as its own "document."
 ![image](https://github.com/user-attachments/assets/eeae55d4-5d6c-4142-9f41-d1aa382f6a6f)
