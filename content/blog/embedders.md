@@ -1,6 +1,6 @@
 ---
 date: 2025-06-26
-title: 'Which Embedding Model Works Best for CERIT-SC Documentation?'
+title: 'The Best Embedding Model for CERIT-SC Documentation?'
 description: "We tested multiple embedding models to find out which retrieves the most relevant documents from CERIT-SC docs for chatbot use. Here's what we learned from evaluating OpenAI, Jina, Qwen, and more."
 tags: [embedding, rag, chatbot, evaluation, openai, qwen, documentation]
 colormode: true
@@ -11,13 +11,13 @@ draft: true
 In [this](https://blog.cerit.io/blog/simple-rag/) article from February, we learned about how we implemented embedders to improve chatbots using RAG. Here we describe our next steps.
 
 We further experimented with more embedding models, as there are a lot of different ones. 
-We wanted to see which embedding model fits our purposes the best:
-**To find the embedding model that returns the most relevant parts from CERIT-SC documentation when a user asks a question, so the chatbot can generate an answer based on these docs. In consequence, the chatbot helps to solve the user's issue effectively. **
+We wanted to see which embedding model is best suited to our purpose:
+
+**To find the embedding model that returns the most relevant parts from CERIT-SC documentation when a user asks a question, so the chatbot can generate an answer based on these docs. In consequence, the chatbot helps to solve the user's issue effectively.** 
 
 For example, when asking the chatbot "How can I access Omero from the command line?", the embedder should say "Use these documents to answer." 
 and provide the chatbot with e. g. 5 documents (Omero.dmx, Kubectl.mdx,...). Ideally, the Omero.mdx would be on the first position as most relevant.
-
-![image](https://github.com/user-attachments/assets/05973438-2d3f-44d1-b8ea-00f17767d77a)
+![image](https://github.com/user-attachments/assets/87d86f05-5924-43e6-b172-a3d2750350b2)
 Illustration of embedder role. [Source](https://www.clarifai.com/blog/what-is-rag-retrieval-augmented-generation)
 
 ## How do embedders differ?
@@ -76,8 +76,9 @@ PCA helps reveal how embeddings are distributed in space by projecting them alon
 While it simplifies the structure a lot (e. g. from 1024 to 2 dimensions), it gives a useful approximation of how close or distant points are in the original space.
 
 ### Implementation
-We continued with the same structure as [before](https://blog.cerit.io/blog/simple-rag/#the-embedding-api-and-database), using PostgreSQL with pg_vector extension - the only change was that we stored vectors of different dimensionality in the same database. 
-For models that were running at vllm API (all except OpenAI), we also implemented language detection - if the query language was Czech, the db search space was pruned to only Czech language, which was expected to both improve the results and to speed up the search.
+We continued with the same implementation as [before](https://blog.cerit.io/blog/simple-rag/#the-embedding-api-and-database), using API and PostgreSQL with pg_vector extension - the only change was that we stored vectors of different dimensionality in the same database. 
+
+We also implemented **automatic language detection** - if the query language was Czech, the db search space was pruned to only Czech language, which was expected to both improve the results and to speed up the search. For that we used [langdetect](https://pypi.org/project/langdetect/). After recognizing the language, a "where" clause was added to search query used for retrieving documents.
 
 ## Results
 Some were as expected, some surprised us.
@@ -94,13 +95,14 @@ The best performance on our documentation showed OpenAI models. It is interestin
 
 
 ### Language detection 
-Automatic language detection applied to open-source models **did not improve** the results. 
-One possible reason is that the embeddings of the same document in Czech and English were very different (i.e., far apart in the embedding space). As a result, even without narrowing the search to a specific language (e.g., Czech), the embedding in the other language (e.g., English) would still not have been selected, because its similarity score would have been too low anyway.
+Automatic language detection improved only results of `jina-embeddings-v3` and `qwen3-embedding-4b` models. After visualizing the embedding space, we found the explanation.
+
+It did not enhance cases where the embeddings of the same document in Czech and English were very different (i.e., far apart in the embedding space). As a result, even without narrowing the search to a specific language (e.g., Czech), the embedding in the other language (e.g., English) would still not have been selected, because its similarity score would have been too low anyway.
 
 In the figure below, we plotted embeddings of Czech (blue) and English (orange) documents across several models using PCA. Dashed lines connect translations of the same document.
-Most models show clear separation between languages, meaning Czech and English embeddings are far apart. This explains why language detection did not improve these models - they separate languages on their own. However, `jina-embeddings-v3` and `qwen3-embedding-4b` keep translations closer together, likely due to differences in training (and limit of PCA - the projection itself).
+Most models show clear separation between languages, meaning Czech and English embeddings are far apart. This explains why language detection did not improve them - they separate languages on their own. However, `jina-embeddings-v3` and `qwen3-embedding-4b` keep translations closer together, likely due to differences in training (and limit of PCA - the projection itself). Therefore, their performance was improved.
 ![image](https://github.com/user-attachments/assets/e64b8fb9-5adf-447f-9532-f835a8acf90d)
-Even though language detection did not improved retrieval, it can still enhance time needed to compare the documents with query.
+Implementing automatic language detection helped in cases where model does not distinguish embedding between languages.
 
 ### Chunks
 Each document is split into chunks, which are individually embedded and compared to the query (see [here](https://blog.cerit.io/blog/simple-rag/#document-splitting-the-key-to-effective-retrieval)). However, when returning results through the API, all matching chunks from the same document are combined to reconstruct the full document.
