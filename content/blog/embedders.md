@@ -1,8 +1,8 @@
 ---
 date: '2025-06-27'
-title: 'The Best Embedding Model for CERIT-SC Documentation?'
+title: 'AI docs search'
 description: "Testing embedding models with CERIT-SC documentation."
-tags: ["Šárka Blaško","embedding", "RAG", "CERIT-SC"]
+tags: ["Šárka Blaško","embedding", "RAG", "CERIT-SC", "AI"]
 thumbnail: '/img/embedders/intro.png'
 colormode: true
 draft: true
