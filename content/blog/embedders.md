@@ -2,13 +2,11 @@
 date: 2025-06-26
 title: 'The Best Embedding Model for CERIT-SC Documentation?'
 description: "We tested multiple embedding models with CERIT-SC documentation."
-tags: [embedding, RAG, CERIT-SC]
-thumbnail:!![image](https://github.com/user-attachments/assets/7b2b9ae9-800b-4a6f-b242-73c2dfb8af68)
-
+tags: ["Šárka Blaško","embedding", "RAG", "CERIT-SC"]
+thumbnail:'/img/embedders/intro.png'
 colormode: true
 draft: true
 ---
-![image](https://github.com/user-attachments/assets/0d242db5-434e-45d0-9b1a-9a3bca5a6d5b)
 
 # Embedders
 To understand the context, please read [this](https://blog.cerit.io/blog/simple-rag/) article from February, where we learned about how we implemented embedders to improve chatbots using RAG. Here we describe our next steps.
@@ -20,7 +18,7 @@ We wanted to see which embedding model is best suited to our purpose:
 
 For example, when asking the chatbot "How can I access Omero from the command line?", the embedder should say "Use these documents to answer." 
 and provide the chatbot with 5 documents (Omero.dmx, Kubectl.mdx,...). Ideally, the Omero.mdx would be on the first position as most relevant.
-![image](https://github.com/user-attachments/assets/87d86f05-5924-43e6-b172-a3d2750350b2)
+{{< image src="/img/embedders/illustration.png" class="rounded w-60" wrapper="text-center" >}}
 Illustration of embedder role, RAG. [Source](https://www.clarifai.com/blog/what-is-rag-retrieval-augmented-generation)
 
 ## How do embedders differ?
@@ -95,43 +93,43 @@ Some were as expected, some surprised us.
 ### Czech queries
 Models varied in handling Czech queries. **The best one for Czech was `qwen3-embedding-4b`**, which has overall MRR@5 equal to 0.83 - that means that the correct document was on average returned at 1/0.83 = 1.2 position. 
 Not much worse were all the models from OpenAI.
-![image](https://github.com/user-attachments/assets/75bba1f0-560f-4f17-9b0b-6cfd194d2329)
-
+{{< image src="/img/embedders/czech.png" class="rounded w-60" wrapper="text-center" >}}
 
 ### English queries
 The best performance on our documentation showed OpenAI models. It is interesting that their performance was quite similar: more dimensions does not necessarily mean better model. 
-![image](https://github.com/user-attachments/assets/a7b7a878-5167-4afa-b6f3-6ae1294be882)
-
+{{< image src="/img/embedders/english.png" class="rounded w-60" wrapper="text-center" >}}
 
 ### Language detection 
 Automatic language detection significanlty improved only results of `jina-embeddings-v3`🔵  and `qwen3-embedding-4b`🟤 models in english queries. After visualizing the embedding space, we found partial explanation, why only these two. 
 
 Also notice that Czech queries of question variant 4 (short keywords) worsen the retrieval a lot. The reason probably is that by searching for specific program names or errors ("konfigurace Omero ingress"), English is mostly used and detected and therefore, correct Czech doc can never be retrieved.
-![image](https://github.com/user-attachments/assets/1a36df24-a255-4262-bc84-b04a4b2d6a5c)
+{{< image src="/img/embedders/langdetect.png" class="rounded w-60" wrapper="text-center" >}}
 
 Automatic language detection did not enhance cases where the embeddings of the same document in Czech and English were very different (i.e., far apart in the embedding space). As a result, even without narrowing the search to a specific language (e.g., Czech), the embedding in the other language (e.g., English) would still not have been selected, because its similarity score would have been too low anyway.
 
 In the figure below, we plotted embeddings of Czech (blue) and English (orange) documents across several models using PCA. Dashed lines connect translations of the same document.
 Most models show clear separation between languages, meaning Czech and English embeddings are far apart (even though the meanings are the same, the embeddings are shifted). This explains why language detection did not improve them - they separate languages on their own. However, `jina-embeddings-v3` and `qwen3-embedding-4b` keep translations closer together which explains why their performance was improved.
-![image](https://github.com/user-attachments/assets/e64b8fb9-5adf-447f-9532-f835a8acf90d)
+{{< image src="/img/embedders/PCA.png" class="rounded w-60" wrapper="text-center" >}}
+
 Implementing automatic language detection helped in cases where model does not distinguish embedding between languages.
 
 ### Chunks
 Each document is split into chunks, which are individually embedded and compared to the query (see [here](https://blog.cerit.io/blog/simple-rag/#document-splitting-the-key-to-effective-retrieval)). However, when returning results through the API, all matching chunks from the same document are combined to reconstruct the full document.
 Therefore, the chatbot searches for the answer within the context of the entire original document — and it's generally better if chunks from the same document are embedded close together, as this reflects semantic consistency and improves retrieval accuracy.
 On the other hand, if a document contains multiple unrelated sections (e.g., FAQ or multi-topic pages), chunk separation might be desirable — it is better to treat each section as its own "document."
-![image](https://github.com/user-attachments/assets/eeae55d4-5d6c-4142-9f41-d1aa382f6a6f)
+{{< image src="/img/embedders/chunks.png" class="rounded w-60" wrapper="text-center" >}}
+
 This is rather a note for future experimenting and interesting visualization, we do not want to draw any conclusions based on that.
 
 ### Query styles
 The chart shows that the way a question is phrased significantly affects retrieval performance. Longer and more detailed questions (like in QV1 and QV2) generally led to better results, as they provided more context for matching relevant content. Shorter, user-like prompts (QV3) caused a slight decline, while very brief or incomplete queries (QV4) proved most difficult for the models to handle. 
 In short, **clearer questions help retrieval** — vague or keyword-only queries make it harder for models to find the right document.
-![image](https://github.com/user-attachments/assets/7b915367-8d14-4a0e-b30e-4ea3d4aca5da)
+{{< image src="/img/embedders/variants.png" class="rounded w-60" wrapper="text-center" >}}
 
 ### The best model?
-Overall, all three models from OpenAI performed the best, followed by `qwen3-embedding-4b`. Different performances suggest that we may further try using different model for different language.
-![image](https://github.com/user-attachments/assets/e35a5183-7200-42c5-9f5b-fb775b2230fd) ![image](https://github.com/user-attachments/assets/3137439e-f330-4bcb-a0ae-404f544718ae)
-
+Overall, all three models from OpenAI performed the best for CERIT-SC documentation, followed by `qwen3-embedding-4b`. Different performances suggest that we may further try using different model for different language.
+{{< image src="/img/embedders/overall.png" class="rounded w-60" wrapper="text-center" >}}
+{{< image src="/img/embedders/overall2.png" class="rounded w-60" wrapper="text-center" >}}
 
 ## Conclusion
 To sum up, we compared several embedding models to see which one retrieves the most relevant documents based on a user’s question. The results showed clear differences between models — some worked better for Czech, others for English.
