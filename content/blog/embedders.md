@@ -1,7 +1,7 @@
 ---
-date: 2025-06-26
+date: '2025-06-27'
 title: 'The Best Embedding Model for CERIT-SC Documentation?'
-description: "We tested multiple embedding models with CERIT-SC documentation."
+description: "Testing embedding models with CERIT-SC documentation."
 tags: ["Šárka Blaško","embedding", "RAG", "CERIT-SC"]
 thumbnail:'/img/embedders/intro.png'
 colormode: true
@@ -16,8 +16,9 @@ We wanted to see which embedding model is best suited to our purpose:
 
 **To find the embedding model that best returns the most relevant parts of the CERIT-SC documentation for a user's question, so the chatbot can use them to provide a helpful answer.**
 
-For example, when asking the chatbot "How can I access Omero from the command line?", the embedder should say "Use these documents to answer." 
-and provide the chatbot with 5 documents (Omero.dmx, Kubectl.mdx,...). Ideally, the Omero.mdx would be on the first position as most relevant.
+...the embedder should return the most relevant documents (e.g., Omero.mdx) that the chatbot can then use to answer the query."
+
+For example, when asking the chatbot "How can I access Omero from the command line?", the embedder should return the most relevant documents (Omero.dmx, Kubectl.mdx,...) that the chatbot can then use to answer the query. Ideally, the Omero.mdx would be on the first position as most relevant.
 {{< image src="/img/embedders/illustration.png" class="rounded w-60" wrapper="text-center" >}}
 Illustration of embedder role, RAG. [Source](https://www.clarifai.com/blog/what-is-rag-retrieval-augmented-generation)
 
@@ -30,7 +31,7 @@ These differences affect how well the embedders capture context and retrieve rel
 
 ## What we did
 ### Models
-We tested these models below. The ones from OpenAI are paid  (e.g. $0.02–$0.13 per million tokens, which is roughly $0.02–$0.13 per ~7,500 prompts of 100 words), the other models are open-source. 
+We tested these models below. The ones from OpenAI are paid (roughly $0.02–$0.13 for processing 7,500 prompts, each around 100 words), the other models are open-source. 
  
 | Name                                                                                  | Provider     | Dimensions | 
 |---------------------------------------------------------------------------------------|--------------|------------------|
@@ -56,7 +57,7 @@ The dataset consists of 5 questions for each document. There are separate datase
 | 3     | Co dělat, když je databáze pomalá při zpracování zátěže?      |  Postgres random password vs explicit password?       |
 | 4     | omero web ingress konfigurace      |  omero docker options       |
 
-The embedder was then given the question, and returned 5 most relevant documents using the cosine similarity metric. We considered that **only one** document was relevant, although in reality the answer may partially be found in more of these (or at least in both Czech and English copy of the same content). The ground truth were generated questions described above.
+The embedder was then given the question, and returned 5 most relevant documents using the cosine similarity metric. We assumed that **only one** document was relevant, although in reality the answer may partially be found in more of these (or at least in both Czech and English copy of the same content). The ground truth were generated questions described above.
 
 #### Metrics
 For evaluation, we used a single metric: **Mean Reciprocal Rank at 5 (MRR@5)**.
@@ -100,12 +101,12 @@ The best performance on our documentation showed OpenAI models. It is interestin
 {{< image src="/img/embedders/english.png" class="rounded w-60" wrapper="text-center" >}}
 
 ### Language detection 
-Automatic language detection significanlty improved only results of `jina-embeddings-v3`🔵  and `qwen3-embedding-4b`🟤 models in english queries. After visualizing the embedding space, we found partial explanation, why only these two. 
+Automatic language detection significanty improved only results of `jina-embeddings-v3`🔵  and `qwen3-embedding-4b`🟤 models in english queries. After visualizing the embedding space, we found partial explanation for why only these two models benefited.
 
 Also notice that Czech queries of question variant 4 (short keywords) worsen the retrieval a lot. The reason probably is that by searching for specific program names or errors ("konfigurace Omero ingress"), English is mostly used and detected and therefore, correct Czech doc can never be retrieved.
 {{< image src="/img/embedders/langdetect.png" class="rounded w-60" wrapper="text-center" >}}
 
-Automatic language detection did not enhance cases where the embeddings of the same document in Czech and English were very different (i.e., far apart in the embedding space). As a result, even without narrowing the search to a specific language (e.g., Czech), the embedding in the other language (e.g., English) would still not have been selected, because its similarity score would have been too low anyway.
+Automatic language detection did not enhance cases where the embeddings of the same document in Czech and English were very different (i.e., far apart in the embedding space). As a result, even without narrowing the search to a specific language (e.g., Czech), the embedding in the other language (e.g., English) would still have scored too low in similarity to be selected, even without language filtering.
 
 In the figure below, we plotted embeddings of Czech (blue) and English (orange) documents across several models using PCA. Dashed lines connect translations of the same document.
 Most models show clear separation between languages, meaning Czech and English embeddings are far apart (even though the meanings are the same, the embeddings are shifted). This explains why language detection did not improve them - they separate languages on their own. However, `jina-embeddings-v3` and `qwen3-embedding-4b` keep translations closer together which explains why their performance was improved.
@@ -119,7 +120,7 @@ Therefore, the chatbot searches for the answer within the context of the entire 
 On the other hand, if a document contains multiple unrelated sections (e.g., FAQ or multi-topic pages), chunk separation might be desirable — it is better to treat each section as its own "document."
 {{< image src="/img/embedders/chunks.png" class="rounded w-60" wrapper="text-center" >}}
 
-This is rather a note for future experimenting and interesting visualization, we do not want to draw any conclusions based on that.
+This finding suggests a possible pattern worth exploring, but more testing is needed before drawing conclusions.
 
 ### Query styles
 The chart shows that the way a question is phrased significantly affects retrieval performance. Longer and more detailed questions (like in QV1 and QV2) generally led to better results, as they provided more context for matching relevant content. Shorter, user-like prompts (QV3) caused a slight decline, while very brief or incomplete queries (QV4) proved most difficult for the models to handle. 
