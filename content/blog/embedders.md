@@ -11,12 +11,10 @@ draft: true
 # Embedders
 To understand the context, please read [this](https://blog.cerit.io/blog/simple-rag/) article from February, where we learned about how we implemented embedders to improve chatbots using RAG. Here we describe our next steps.
 
-We experimented with more embedding models, as there are a lot of different ones. 
+We experimented with a wider range of embedding models, as many different options are available.
 We wanted to see which embedding model is best suited to our purpose:
 
 **To find the embedding model that best returns the most relevant parts of the CERIT-SC documentation for a user's question, so the chatbot can use them to provide a helpful answer.**
-
-...the embedder should return the most relevant documents (e.g., Omero.mdx) that the chatbot can then use to answer the query."
 
 For example, when asking the chatbot "How can I access Omero from the command line?", the embedder should return the most relevant documents (Omero.dmx, Kubectl.mdx,...) that the chatbot can then use to answer the query. Ideally, the Omero.mdx would be on the first position as most relevant.
 {{< image src="/img/embedders/illustration.png" class="rounded w-60" wrapper="text-center" >}}
@@ -48,9 +46,9 @@ We tested these models below. The ones from OpenAI are paid (roughly $0.02–$0.
 ### Testing methodology
 #### Testing datasets
 We created our custom testing dataset both for Czech and English - we decided to **simulate user's questions** by asking a GPT-4o to generate questions that can be answered using mainly a specific document (by document we mean a single mdx file from CERIT-SC documentation).
-The dataset consists of 5 questions for each document. There are separate datasets for both languages and different style, see the examples table below. The first two question styles were quite specific and long, the other two were intended to simulate real user's behavior by using shor prompts or incomplete sentences.
+The dataset consists of 5 questions for each document. There are separate datasets for both languages and different style, see the examples in the table below. The first two question variants were quite specific and long, the other two were intended to simulate real user's behavior by using shor prompts or incomplete sentences.
 
-| Style | Czech | English |
+| Variant | Czech | English |
 |-------|-------|---------|
 | 1     | Jakým způsobem je možné nasadit databázi Postgres pro aplikaci Omero v Kubernetes?      | How do you create a secret for the Postgres database user and password for Omero?        |
 | 2     |  Jaké jsou dvě hlavní komponenty potřebné pro spuštění aplikace Omero v Kubernetes?     |   Why is the second option of running Omero images manually preferred for Kubernetes over using docker-compose?      |
@@ -122,7 +120,7 @@ On the other hand, if a document contains multiple unrelated sections (e.g., FAQ
 
 This finding suggests a possible pattern worth exploring, but more testing is needed before drawing conclusions.
 
-### Query styles
+### Question variants
 The chart shows that the way a question is phrased significantly affects retrieval performance. Longer and more detailed questions (like in QV1 and QV2) generally led to better results, as they provided more context for matching relevant content. Shorter, user-like prompts (QV3) caused a slight decline, while very brief or incomplete queries (QV4) proved most difficult for the models to handle. 
 In short, **clearer questions help retrieval** — vague or keyword-only queries make it harder for models to find the right document.
 {{< image src="/img/embedders/variants.png" class="rounded w-60" wrapper="text-center" >}}
