@@ -101,7 +101,7 @@ The best performance on our documentation showed OpenAI models. It is interestin
 ### Language detection 
 Automatic language detection significanty improved only results of `jina-embeddings-v3`🔵  and `qwen3-embedding-4b`🟤 models in english queries. After visualizing the embedding space, we found partial explanation for why only these two models benefited.
 
-Also notice that Czech queries of question variant 4 (short keywords) worsen the retrieval a lot. The reason probably is that by searching for specific program names or errors ("konfigurace Omero ingress"), English is mostly used and detected and therefore, correct Czech doc can never be retrieved.
+Also notice that language detection on Czech queries of question variant 4 (short keywords) worsen the retrieval a lot. The reason probably is that by searching for specific program names or errors ("konfigurace Omero ingress"), English is mostly used and detected and therefore, correct Czech document can never be retrieved.
 {{< image src="/img/embedders/langdetect.png" class="rounded w-60" wrapper="text-center" >}}
 
 Automatic language detection did not enhance cases where the embeddings of the same document in Czech and English were very different (i.e., far apart in the embedding space). As a result, even without narrowing the search to a specific language (e.g., Czech), the embedding in the other language (e.g., English) would still have scored too low in similarity to be selected, even without language filtering.
@@ -114,7 +114,7 @@ Implementing automatic language detection helped in cases where model does not d
 
 ### Chunks
 Each document is split into chunks, which are individually embedded and compared to the query (see [here](https://blog.cerit.io/blog/simple-rag/#document-splitting-the-key-to-effective-retrieval)). However, when returning results through the API, all matching chunks from the same document are combined to reconstruct the full document.
-Therefore, the chatbot searches for the answer within the context of the entire original document — and it's generally better if chunks from the same document are embedded close together, as this reflects semantic consistency and improves retrieval accuracy.
+Therefore, the chatbot searches for the answer within the context of the entire original document — so it's generally better if chunks from the same document are embedded close together, as this reflects semantic consistency and improves retrieval accuracy.
 On the other hand, if a document contains multiple unrelated sections (e.g., FAQ or multi-topic pages), chunk separation might be desirable — it is better to treat each section as its own "document."
 {{< image src="/img/embedders/chunks.png" class="rounded w-60" wrapper="text-center" >}}
 
