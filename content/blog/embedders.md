@@ -41,3 +41,19 @@ We tested these models below. The ones from OpenAI are paid (roughly &dollar;0.0
 | [multilingual-e5-large-instruct](https://huggingface.co/intfloat/multilingual-e5-large-instruct) | intfloat | 1024  |
 | [nomic-embed-text-v1.5](https://www.nomic.ai/blog/posts/nomic-embed-text-v1)             | Nomic        | 768 |
 | [qwen3-embedding-4b](https://deepinfra.com/Qwen/Qwen3-Embedding-4B)                       | Alibaba/Qwen | 2560  |
+
+### Testing methodology
+
+#### Testing datasets
+
+We created our custom testing dataset both for Czech and English -- we decided to **simulate user's questions** by asking a GPT-4o to generate questions that can be answered using mainly a specific document (by document we mean a single mdx file from CERIT-SC documentation).
+The dataset consists of 5 questions for each document. There are separate datasets for both languages and different style, see the examples in the table below. The first two question variants were quite specific and long, the other two were intended to simulate real user's behavior by using shor prompts or incomplete sentences.
+
+| Variant | Czech | English |
+|-------|-------|---------|
+| 1     | Jakým způsobem je možné nasadit databázi Postgres pro aplikaci Omero v Kubernetes?      | How do you create a secret for the Postgres database user and password for Omero?        |
+| 2     |  Jaké jsou dvě hlavní komponenty potřebné pro spuštění aplikace Omero v Kubernetes?     |   Why is the second option of running Omero images manually preferred for Kubernetes over using docker-compose?      |
+| 3     | Co dělat, když je databáze pomalá při zpracování zátěže?      |  Postgres random password vs explicit password?       |
+| 4     | omero web ingress konfigurace      |  omero docker options       |
+
+The embedder was then given the question, and returned 5 most relevant documents using the cosine similarity metric. We assumed that **only one** document was relevant, although in reality the answer may partially be found in more of these (or at least in both Czech and English copy of the same content). The ground truth were generated questions described above.
