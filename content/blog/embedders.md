@@ -84,3 +84,29 @@ We also added **automatic language detection** -- if the query language was Czec
 > Although the system requests the top 5 results (`top_k = 5`) from the database, the final output may contain fewer than 5 documents.
 > This happens because multiple top-ranked chunks may belong to the same original document (identified by the same `metadata['path']`).
 > The application merges such chunks after retrieval, returning only one entry per document to avoid redundancy.
+
+## Results
+Some were as expected, some surprised us.
+
+### Czech queries
+Models varied in handling Czech queries. **The best one for Czech was `qwen3-embedding-4b`**, which has overall MRR@5 equal to 0.83 -- that means that the correct document was on average returned at 1/0.83 = 1.2 position.
+Not much worse were all the models from OpenAI.
+{{< image src="/img/embedders/czech.png" class="rounded w-60" wrapper="text-center" >}}
+
+### English queries
+The best performance on our documentation showed OpenAI models. It is interesting that their performance was quite similar: more dimensions does not necessarily mean better model.
+{{< image src="/img/embedders/english.png" class="rounded w-60" wrapper="text-center" >}}
+
+### Language detection
+Automatic language detection significanty improved only results of `jina-embeddings-v3`🔵  and `qwen3-embedding-4b`🟤 models in english queries. After visualizing the embedding space, we found partial explanation for why only these two models benefited.
+
+Also notice that language detection on Czech queries of question variant 4 (short keywords) worsen the retrieval a lot. The reason probably is that by searching for specific program names or errors ("konfigurace Omero ingress"), English is mostly used and detected and therefore, correct Czech document can never be retrieved.
+{{< image src="/img/embedders/langdetect.png" class="rounded w-60" wrapper="text-center" >}}
+
+Automatic language detection did not enhance cases where the embeddings of the same document in Czech and English were very different (i.e., far apart in the embedding space). As a result, even without narrowing the search to a specific language (e.g., Czech), the embedding in the other language (e.g., English) would still have scored too low in similarity to be selected, even without language filtering.
+
+In the figure below, we plotted embeddings of Czech (blue) and English (orange) documents across several models using PCA. Dashed lines connect translations of the same document.
+Most models show clear separation between languages, meaning Czech and English embeddings are far apart (even though the meanings are the same, the embeddings are shifted). This explains why language detection did not improve them -- they separate languages on their own. However, `jina-embeddings-v3` and `qwen3-embedding-4b` keep translations closer together which explains why their performance was improved.
+{{< image src="/img/embedders/PCA.png" class="rounded w-60" wrapper="text-center" >}}
+
+Implementing automatic language detection helped in cases where model does not distinguish embedding between languages.
