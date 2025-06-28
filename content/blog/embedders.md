@@ -110,3 +110,26 @@ Most models show clear separation between languages, meaning Czech and English e
 {{< image src="/img/embedders/PCA.png" class="rounded w-60" wrapper="text-center" >}}
 
 Implementing automatic language detection helped in cases where model does not distinguish embedding between languages.
+
+### Chunks
+Each document is split into chunks, which are individually embedded and compared to the query (see [here](https://blog.cerit.io/blog/simple-rag/#document-splitting-the-key-to-effective-retrieval)). However, when returning results through the API, all matching chunks from the same document are combined to reconstruct the full document.
+Therefore, the chatbot searches for the answer within the context of the entire original document -- so it's generally better if chunks from the same document are embedded close together, as this reflects semantic consistency and improves retrieval accuracy.
+On the other hand, if a document contains multiple unrelated sections (e.g., FAQ or multi-topic pages), chunk separation might be desirable -- it is better to treat each section as its own "document."
+{{< image src="/img/embedders/chunks.png" class="rounded w-60" wrapper="text-center" >}}
+
+This finding suggests a possible pattern worth exploring, but more testing is needed before drawing conclusions.
+
+### Question variants
+The chart shows that the way a question is phrased significantly affects retrieval performance. Longer and more detailed questions (like in QV1 and QV2) generally led to better results, as they provided more context for matching relevant content. Shorter, user-like prompts (QV3) caused a slight decline, while very brief or incomplete queries (QV4) proved most difficult for the models to handle.
+In short, **clearer questions help retrieval** -- vague or keyword-only queries make it harder for models to find the right document.
+{{< image src="/img/embedders/variants.png" class="rounded w-60" wrapper="text-center" >}}
+
+### The best model?
+Overall, all three models from OpenAI performed the best for CERIT-SC documentation, followed by `qwen3-embedding-4b`. Different performances suggest that we may further try using different model for different language.
+{{< image src="/img/embedders/overall.png" class="rounded w-60" wrapper="text-center" >}}
+{{< image src="/img/embedders/overall2.png" class="rounded w-60" wrapper="text-center" >}}
+
+## Conclusion
+To sum up, we compared several embedding models to see which one retrieves the most relevant documents based on a user’s question. The results showed clear differences between models -- some worked better for Czech, others for English.
+We also saw that **longer, more specific questions** helped with finding the right documents. **Language detection** improved results of only specific models, since for others Czech and English versions of the same content were already far apart in the embedding space.
+These findings help us better understand how embedders behave and guide us in choosing the right models for future use.
