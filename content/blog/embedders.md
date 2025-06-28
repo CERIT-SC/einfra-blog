@@ -60,7 +60,6 @@ The embedder was then given the question, and returned 5 most relevant documents
 #### Metrics
 For evaluation, we used a single metric: **Mean Reciprocal Rank at 5 (MRR@5)**.
 
-MRR@5 = (1 / N) * Σ (1 / rank)
 - **N** is the total number of queries.
 - **rank** is the position (1 to 5) of the correct document in the top 5 results.
 - If the correct document is not in the top 5, the reciprocal rank is 0.
@@ -76,9 +75,9 @@ PCA helps reveal how embeddings are distributed in space by projecting them alon
 While it simplifies the structure a lot (e.g. from 1024 to 2 dimensions), it gives a useful approximation of how close or distant points are in the original space.
 
 ### Implementation
-We continued with the same implementation as [before](https://blog.cerit.io/blog/simple-rag/#the-embedding-api-and-database), using API and PostgreSQL with pg_vector extension - the only change was that we stored vectors of different dimensionality in the same database. 
+We continued with the same implementation as [before](https://blog.cerit.io/blog/simple-rag/#the-embedding-api-and-database), using API and PostgreSQL with `pg_vector` extension -- the only change was that we stored vectors of different dimensionality in the same database. 
 
-We also added **automatic language detection** - if the query language was Czech, the db search space was pruned to only Czech language, which was expected to both improve the results and to speed up the search a little. For that we used [langdetect](https://pypi.org/project/langdetect/) library. After recognizing the language, a "where" clause was added to search query used for retrieving documents. This filtering was applied after the database returned results, so sometimes fewer than the requested number of documents were ultimately included in the final result set.
+We also added **automatic language detection** -- if the query language was Czech, the db search space was pruned to only Czech language, which was expected to both improve the results and to speed up the search a little. For that we used [langdetect](https://pypi.org/project/langdetect/) library. After recognizing the language, a "where" clause was added to search query used for retrieving documents. This filtering was applied after the database returned results, so sometimes fewer than the requested number of documents were ultimately included in the final result set.
 
 > **Note:**  
 > Although the system requests the top 5 results (`top_k = 5`) from the database, the final output may contain fewer than 5 documents.  
