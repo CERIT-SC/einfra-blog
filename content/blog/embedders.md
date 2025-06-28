@@ -29,7 +29,7 @@ These differences affect how well the embedders capture context and retrieve rel
 
 ## What we did
 ### Models
-We tested these models below. The ones from OpenAI are paid (roughly $0.02--$0.13 for processing 7,500 prompts, each around 100 words), the other models are open-source.
+We tested these models below. The ones from OpenAI are paid (roughly 0.02--0.13 for processing 7,500 prompts, each around 100 words), the other models are open-source.
 
 | Name                                                                                  | Provider     | Dimensions |
 |---------------------------------------------------------------------------------------|--------------|------------------|
