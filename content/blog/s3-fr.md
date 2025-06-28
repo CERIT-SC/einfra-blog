@@ -3,7 +3,7 @@ date: '2025-05-26T10:00:32Z'
 title: 'S3 Object Storage for MetaCentrum Workflows'
 thumbnail: '/img/s3-fr/big_data_gpt.png'
 description: "Storing and Handling Big Data"
-tags: ["Jan Pospíšil", "User Experience", "S3", "FR CESNET", "ZCU"]
+tags: ["Jan Pospíšil, Vladimíra Kimlová, Dominik Zappe", "User Experience", "S3", "FR CESNET", "ZCU"]
 colormode: true
 draft: false
 ---
@@ -13,6 +13,7 @@ draft: false
 > 💡 **Note** 
 > This blog post is brought to you directly by our users as part of our ongoing effort to share knowledge and real-world experience across the community. 
 > The content you’re about to read is the result of a project supported through the FR CESNET (Development Fund).
+> Final report (in Czech) is available at http://hdl.handle.net/11025/61737
 
 
 Big data is only as useful as your ability to access and manage it.
