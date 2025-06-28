@@ -57,3 +57,16 @@ The dataset consists of 5 questions for each document. There are separate datase
 | 4     | omero web ingress konfigurace      |  omero docker options       |
 
 The embedder was then given the question, and returned 5 most relevant documents using the cosine similarity metric. We assumed that **only one** document was relevant, although in reality the answer may partially be found in more of these (or at least in both Czech and English copy of the same content). The ground truth were generated questions described above.
+
+#### Metrics
+For evaluation, we used a single metric: **Mean Reciprocal Rank at 5 (MRR@5)**.
+
+MRR@5 = (1 / N) * Σ (1 / rank)
+- **N** is the total number of queries.
+- **rank** is the position (1 to 5) of the correct document in the top 5 results.
+- If the correct document is not in the top 5, the reciprocal rank is 0.
+
+This showed us how well the embedder ranked the correct document among the top 5 results. If the correct document is ranked 1st, it gets a score of 1.0; if it’s 2nd, the score is 0.5; 3rd is 0.33, and so on. If the correct document is not in the top 5, the score is 0.
+
+We chose MRR@5 because it not only checks if the correct document is found, but also rewards placing it higher in the results -- giving us a better sense of ranking quality than simple recall.
+
