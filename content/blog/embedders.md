@@ -70,3 +70,17 @@ This showed us how well the embedder ranked the correct document among the top 5
 
 We chose MRR@5 because it not only checks if the correct document is found, but also rewards placing it higher in the results -- giving us a better sense of ranking quality than simple recall.
 
+#### Visualization
+To visualize the embeddings, we applied **Principal Component Analysis (PCA)** to reduce the high-dimensional embeddings down to two dimensions for plotting.
+PCA helps reveal how embeddings are distributed in space by projecting them along the directions that capture the most variance.
+While it simplifies the structure a lot (e.g. from 1024 to 2 dimensions), it gives a useful approximation of how close or distant points are in the original space.
+
+### Implementation
+We continued with the same implementation as [before](https://blog.cerit.io/blog/simple-rag/#the-embedding-api-and-database), using API and PostgreSQL with `pg_vector` extension -- the only change was that we stored vectors of different dimensionality in the same database.
+
+We also added **automatic language detection** -- if the query language was Czech, the db search space was pruned to only Czech language, which was expected to both improve the results and to speed up the search a little. For that we used [langdetect](https://pypi.org/project/langdetect/) library. After recognizing the language, a "where" clause was added to search query used for retrieving documents. This filtering was applied after the database returned results, so sometimes fewer than the requested number of documents were ultimately included in the final result set.
+
+> **Note:**
+> Although the system requests the top 5 results (`top_k = 5`) from the database, the final output may contain fewer than 5 documents.
+> This happens because multiple top-ranked chunks may belong to the same original document (identified by the same `metadata['path']`).
+> The application merges such chunks after retrieval, returning only one entry per document to avoid redundancy.
