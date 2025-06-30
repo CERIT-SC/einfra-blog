@@ -5,7 +5,7 @@ description: "Testing embedding models with CERIT-SC documentation."
 tags: ["Šárka Blaško","embedding", "RAG", "CERIT-SC", "AI"]
 thumbnail: '/img/embedders/intro.png'
 colormode: true
-draft: true
+draft: false
 ---
 
 # Embedders
