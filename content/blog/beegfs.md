@@ -13,7 +13,6 @@ draft: true
 ## What is BeeGFS?
 
 **BeeGFS (Beyond Extensible Enterprise File System)** is a **parallel distributed filesystem** designed specifically for the needs of high-performance computing (HPC). It is used in computing clusters, scientific simulations, machine learning, genomics, and everywhere large datasets and fast parallel access are essential.
-Developed with a strong focus on performance and designed for ease of use, simple installation, and management, BeeGFS is one of the leading parallel file systems that continues to grow and gain significant popularity in the community. BeeGFS has evolved into a world-wide valued filesystem offering maximum performance, scalability, high flexibility, and robustness.
 
 BeeGFS combines multiple storage servers to provide a highly scalable shared network file system with striped file contents. This way, it allows users to overcome the tight performance limitations of single servers, single network interconnects, a limited number of hard drives, etc. In such a system, high throughput demands of large numbers of clients can easily be satisfied, but even a single client can benefit from the aggregated performance of all the storage servers in the system.
 
