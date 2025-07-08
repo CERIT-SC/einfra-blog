@@ -35,11 +35,11 @@ On the server side, BeeGFS runs as normal user-space daemons without any special
 
 ### Limitations
 
-- No native full POSIX distributed locking (may cause issues with applications relying on strict file locking)
-- No disk quotas (limits on storage usage per user or group)
-- Sensitive to node failures in the cluster (can impact performance and availability)
-- Potential software layer errors (may require troubleshooting and debugging)
-- More complex administration compared to traditional file systems (requires specialized knowledge and expertise)
+- No native full POSIX distributed locking (may cause issues with applications relying on strict file locking),
+- No disk quotas (limits on storage usage per user or group),
+- Sensitive to node failures in the cluster (can impact performance and availability),
+- Potential software layer errors (may require troubleshooting and debugging),
+- More complex administration compared to traditional file systems (requires specialized knowledge and expertise).
 
 ## Implementation in MetaCentrum
 
@@ -49,9 +49,6 @@ In contrast to local scratch spaces on other clusters, our implementation of Bee
 
 At MetaCenter, we’ve adopted BeeGFS to meet the increasing challenges of data-intensive research across various scientific disciplines. 
 BeeGFS is available as a **temporary working directory** via the `scratch_shared` resource on cluster `bee.cerit-sc.cz`. With BeeGFS, you can work with large files, utilize multiple threads or processes, and span multiple compute nodes with ease.
-
-
-### When to Use BeeGFS
 
 BeeGFS is particularly well-suited for demanding jobs that require:
 
@@ -67,12 +64,9 @@ Typical Use Cases:
 - **Machine Learning and AI** – With BeeGFS, you can train machine learning models faster by accessing large volumes of data with high-throughput and low-latency.
 - **Simulations, Rendering, Genomics, and Big Data Research** – BeeGFS is perfect for handling massive datasets, such as those found in 3D rendering, complex simulations, genomic sequencing, and big data research.
 
-
 ## 📊 Performance Results: BeeGFS vs. Local Scratch
 
 We compared the performance of BeeGFS (`scratch_shared` on the bee cluster) and node-local scratch (`scratch_local`) using synthetic benchmarks with parallel I/O.
-
-### Performance Comparison: BeeGFS vs. Local Scratch
 
 | Test                 | BeeGFS (128 threads)   | scratch_local (8 threads) | Comment                                       |
 | -------------------- | ---------------------- | -------------------------- | --------------------------------------------- |
@@ -90,7 +84,7 @@ Here's a bar chart comparing BeeGFS and Local Scratch across key performance met
 
 {{< image src="img/beegfs/beegfs_chart.png" class="rounded" wrapper="text-center w-40" >}}
 
-### Interpretation
+Interpretation
 
 - **BeeGFS** BeeGFS excels at random I/O and sequential write performance
 - **Local scratch** Local scratch excels in sequential read performance and total read volume on single node.
@@ -116,6 +110,7 @@ If your computational work involves:
 - Processing large datasets in parallel,
 - High-throughput or high-IOPS requirements,
 - Multi-node jobs in an HPC environment,
+- Sequential computations with sharing intermediate results.
 
 then `BeeGFS` is an excellent choice. With BeeGFS, you can achieve **multi-GB/s throughput and hundreds of thousands of IOPS**, helping your applications run faster and more efficiently.
 
