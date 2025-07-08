@@ -84,7 +84,8 @@ Here's a bar chart comparing BeeGFS and Local Scratch across key performance met
 
 {{< image src="img/beegfs/beegfs_chart.png" class="rounded" wrapper="text-center w-40" >}}
 
-Interpretation
+
+Interpretation:
 
 - **BeeGFS** BeeGFS excels at random I/O and sequential write performance
 - **Local scratch** Local scratch excels in sequential read performance and total read volume on single node.
