@@ -78,6 +78,8 @@ We compared the performance of BeeGFS (`scratch_shared` on the bee cluster) and 
 | **Random Write**     | 486k IOPS, 1899 MiB/s  | 168k IOPS, 656 MiB/s       | BeeGFS delivers \~3× more IOPS                |
 | **Random Read**      | 598k IOPS, 2335 MiB/s  | 238k IOPS, 930 MiB/s       | BeeGFS leads again in random access           |
 
+It's worth noting that BeeGFS's peak performance is achieved by utilizing resources from multiple nodes, which assumes a favorable statistical interleaving of disk-intensive and less demanding tasks. Unlike local scratch, it's unlikely to achieve such high performance on all nodes in the cluster simultaneously.
+
 Here's a bar chart comparing BeeGFS and Local Scratch across key performance metrics. As shown:
 
 - BeeGFS dominates in random I/O (both read and write).
