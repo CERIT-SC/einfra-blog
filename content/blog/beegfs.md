@@ -40,7 +40,10 @@ On the server side, BeeGFS runs as normal user-space daemons without any special
 - Sensitive to node failures in the cluster (can impact performance and availability)
 - Potential software layer errors (may require troubleshooting and debugging)
 - More complex administration compared to traditional file systems (requires specialized knowledge and expertise)
-     
+
+## Implementation in MetaCentrum
+
+In contrast to local scratch spaces on other clusters, our implementation of BeeGFS in MetaCentrum features a RAID configuration that protects jobs from the consequences of a single disk failure, even on the local scratch space. This comes at the cost of slightly lower sequential write performance compared to sequential reads. Similarly, our shared scratch space is also protected against disk failures. However, in the event of a node failure, data on the shared scratch space may become temporarily inaccessible. This design decision was made to ensure the reliability and availability of data on our shared storage systems.
 
 ## When to Use BeeGFS in MetaCentrum
 
