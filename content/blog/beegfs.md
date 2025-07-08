@@ -5,7 +5,7 @@ thumbnail: '/img/beegfs/beegfs.png'
 description: "Performance of High-Speed Filesystem for Demanding Computations"
 tags: ["Jan Krčmář, Ivana Křenková", "CESNET", "MetaCentrum", "BeeGFS"]
 colormode: true
-draft: true
+draft: false
 ---
 
 
