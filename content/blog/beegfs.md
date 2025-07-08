@@ -35,8 +35,12 @@ On the server side, BeeGFS runs as normal user-space daemons without any special
 
 ### Limitations
 
-- No native full POSIX distributed locking – some applications expecting strict file locking may behave incorrectly.
-
+- No native full POSIX distributed locking (may cause issues with applications relying on strict file locking)
+- No disk quotas (limits on storage usage per user or group)
+- Sensitive to node failures in the cluster (can impact performance and availability)
+- Potential software layer errors (may require troubleshooting and debugging)
+- More complex administration compared to traditional file systems (requires specialized knowledge and expertise)
+     
 
 ## When to Use BeeGFS in MetaCentrum
 
