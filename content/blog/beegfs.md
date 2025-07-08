@@ -76,11 +76,11 @@ We compared performance of BeeGFS (`scratch_shared` on bee cluster) and node-loc
 
 ## Overview: Scratch Storage Types in MetaCentrum
 
-| Scratch Type     | Speed                        | Persistence                     | Best For                                   |
-| ---------------- | ---------------------------- | ------------------------------- | ------------------------------------------ |
-| `scratch_shm`    | 🟢 Fastest (RAM)             | Lost after job ends             | Ultra-fast, short-lived temp data          |
-| `scratch_local`  | 🟡 Very fast (local SSD/HDD) | Temp data survives node failure | Single-node jobs with high throughput      |
-| `scratch_shared` | 🔵 Scalable parallel I/O     | Shared, cleaned after \~14 days | Multi-node, parallel jobs needing fast I/O |
+| Scratch Type     | Speed                        | Best For                                   |
+| ---------------- | ---------------------------- | ------------------------------------------ |
+| `scratch_shm`    | 🟢 Fastest (RAM)             | Ultra-fast, short-lived temp data          |
+| `scratch_local`  | 🟡 Very fast (local SSD/HDD) | Single-node jobs with high throughput      |
+| `scratch_shared` | 🔵 Scalable parallel I/O     | Multi-node, parallel jobs needing fast I/O |
 
 
 Here's a bar chart comparing BeeGFS and Local Scratch across key performance metrics. As shown:
