@@ -24,7 +24,6 @@ On the server side, BeeGFS runs as normal user-space daemons without any special
 {{< image src="img/beegfs/beegfs_architecture.png" class="rounded" wrapper="text-center w-40" >}}
 
 
-
 ### Key Advantages
 
 - **HPC Technologies** – BeeGFS is built on highly efficient and scalable multithreaded core components with native RDMA support. File system nodes can serve RDMA (InfiniBand, Omni-Path, RoCE) and TCP/IP network connections at the same time and automatically switch to a redundant connection path in case any of them fails.
@@ -36,7 +35,6 @@ On the server side, BeeGFS runs as normal user-space daemons without any special
 
 - No native full POSIX distributed locking – some applications expecting strict file locking may behave incorrectly.
 
----
 
 ## When to Use BeeGFS in MetaCentrum
 
@@ -55,8 +53,6 @@ Here's when BeeGFS is the right choice for your jobs:
 
 - **Beyond NFS and SMB** – Traditional shared file systems like NFS or SMB often struggle with I/O bottlenecks, especially under heavy load. BeeGFS eliminates these limitations by distributing both metadata and data across multiple servers, enabling balanced and high-speed access across the entire cluster.
 
-
----
 
 ## Performance Results: BeeGFS vs. Local Scratch
 
@@ -78,7 +74,6 @@ We compared performance of BeeGFS (`scratch_beegfs`) and node-local scratch (`sc
 - **Use BeeGFS** for workloads with high random I/O and mixed-read/write patterns.
 - **Use local scratch** for read-heavy sequential workloads (e.g., data analysis).
 
----
 
 ## Overview: Scratch Storage Types in MetaCentrum
 
@@ -95,8 +90,6 @@ Here's a bar chart comparing BeeGFS and Local Scratch across key performance met
 - Local Scratch excels in sequential read bandwidth.
 
 {{< image src="img/beegfs/beegfs_chart.png" class="rounded" wrapper="text-center w-40" >}}
-
----
 
 ## Summary
 
