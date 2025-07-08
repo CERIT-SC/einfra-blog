@@ -68,12 +68,12 @@ Typical Use Cases:
 
 We compared the performance of BeeGFS (`scratch_shared` on the bee cluster) and node-local scratch (`scratch_local`) using synthetic benchmarks with parallel I/O.
 
-| Test                 | BeeGFS (128 threads)   | scratch_local (8 threads) | Comment                                       |
-| -------------------- | ---------------------- | -------------------------- | --------------------------------------------- |
-| **Sequential Write** | 22.8 GiB/s (24.5 GB/s) | 7946 MiB/s (8.3 GB/s)      | BeeGFS \~3× faster due to massive parallelism |
-| **Sequential Read**  | 23.7 GiB/s (25.4 GB/s) | **43.8 GiB/s (47.0 GB/s)** | Local disk is faster in read – low overhead   |
-| **Random Write**     | 486k IOPS, 1899 MiB/s  | 168k IOPS, 656 MiB/s       | BeeGFS delivers \~3× more IOPS                |
-| **Random Read**      | 598k IOPS, 2335 MiB/s  | 238k IOPS, 930 MiB/s       | BeeGFS leads again in random access           |
+| Test                 | BeeGFS (128 threads)     | scratch_local (8 threads) | Comment                                       |
+| -------------------- | ------------------------ | -------------------------- | -------------------------------------------- |
+| **Sequential Write** | 22.8 GiB/s (24.5 GB/s)   | 7946 MiB/s (8.3 GB/s)      | BeeGFS \~3× faster due to massive parallelism |
+| **Sequential Read**  | 23.7 GiB/s (25.4 GB/s)   | **43.8 GiB/s (47.0 GB/s)** | Local disk is faster in read – low overhead   |
+| **Random Write**     | 486k IOPS, 1899 MiB/s    | 168k IOPS, 656 MiB/s       | BeeGFS delivers \~3× more IOPS                |
+| **Random Read**      | 598k IOPS, 2335 MiB/s    | 238k IOPS, 930 MiB/s       | BeeGFS leads again in random access           |
 
 It's worth noting that BeeGFS's peak performance is achieved by utilizing resources from multiple nodes, which assumes a favorable statistical interleaving of disk-intensive and less demanding tasks. Unlike local scratch, it's unlikely to achieve such high performance on all nodes in the cluster simultaneously.
 
