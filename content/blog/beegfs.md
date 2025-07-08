@@ -39,7 +39,7 @@ On the server side, BeeGFS runs as normal user-space daemons without any special
 ## When to Use BeeGFS in MetaCentrum
 
 At MetaCenter, we’ve adopted BeeGFS (the BeeGFS General File System) to meet the increasing challenges of data-intensive research across various scientific disciplines. 
-BeeGFS is available as a **temporary working directory** via the `scratch.shared` resource on cluster `bee.cerit-sc.cz`.
+BeeGFS is available as a **temporary working directory** via the `scratch_shared` resource on cluster `bee.cerit-sc.cz`.
 
 Here's when BeeGFS is the right choice for your jobs:
 
@@ -56,11 +56,11 @@ Here's when BeeGFS is the right choice for your jobs:
 
 ## Performance Results: BeeGFS vs. Local Scratch
 
-We compared performance of BeeGFS (`scratch_beegfs`) and node-local scratch (`scratch_local`) using synthetic benchmarks with parallel I/O.
+We compared performance of BeeGFS (`scratch_shared` on bee cluster) and node-local scratch (`scratch_local`) using synthetic benchmarks with parallel I/O.
 
 ### 📊 Performance Comparison: BeeGFS vs. Local Scratch
 
-| Test                 | BeeGFS (128 threads)   | scratch\_local (8 threads) | Comment                                       |
+| Test                 | BeeGFS (128 threads)   | scratch_local (8 threads) | Comment                                       |
 | -------------------- | ---------------------- | -------------------------- | --------------------------------------------- |
 | **Sequential Write** | 22.8 GiB/s (24.5 GB/s) | 7946 MiB/s (8.3 GB/s)      | BeeGFS \~3× faster due to massive parallelism |
 | **Sequential Read**  | 23.7 GiB/s (25.4 GB/s) | **43.8 GiB/s (47.0 GB/s)** | Local disk is faster in read – low overhead   |
@@ -81,7 +81,7 @@ We compared performance of BeeGFS (`scratch_beegfs`) and node-local scratch (`sc
 | ---------------- | ---------------------------- | ------------------------------- | ------------------------------------------ |
 | `scratch_shm`    | 🟢 Fastest (RAM)             | Lost after job ends             | Ultra-fast, short-lived temp data          |
 | `scratch_local`  | 🟡 Very fast (local SSD/HDD) | Temp data survives node failure | Single-node jobs with high throughput      |
-| `scratch_beegfs` | 🔵 Scalable parallel I/O     | Shared, cleaned after \~14 days | Multi-node, parallel jobs needing fast I/O |
+| `scratch_shared` | 🔵 Scalable parallel I/O     | Shared, cleaned after \~14 days | Multi-node, parallel jobs needing fast I/O |
 
 
 Here's a bar chart comparing BeeGFS and Local Scratch across key performance metrics. As shown:
