@@ -51,22 +51,25 @@ BeeGFS is available as a **temporary working directory** via the `scratch_shared
 ### When to Use BeeGFS
 
 BeeGFS is particularly well-suited for demanding jobs that require:
-- Work with large files or a huge number of small files.
-- Utilize many threads or processes that read or write in parallel.
-- Spanning multiple compute nodes.
 
-**Typical Use Cases:**    
+- **Work with large files or a huge number of small files** – efficiently handle massive datasets, making it an ideal choice for applications that require fast and scalable storage.
+- **Utilize many threads or processes that read or write in parallel** – allows for high-performance and concurrent access to data, making it perfect for applications that require simultaneous reads nd writes.
+- **Spanning multiple compute nodes** – can handle workloads that span multiple compute nodes, allowing for seamless scalability and performance.
+- **Sequential computations with intermediate results** – well-suited for workflows where subsequent computations can pick up intermediate results left in the scratch directory, eliminating the need to copy data to permanent storage or run on the same machine as the previous step.
+
+
+Typical Use Cases:    
 
 - **High-Performance Computing (HPC)** – BeeGFS is designed to efficiently handle large files and parallel input/output operations, making it an ideal choice for scientific computing workloads.
 - **Machine Learning and AI** – With BeeGFS, you can train machine learning models faster by accessing large volumes of data with high-throughput and low-latency.
 - **Simulations, Rendering, Genomics, and Big Data Research** – BeeGFS is perfect for handling massive datasets, such as those found in 3D rendering, complex simulations, genomic sequencing, and big data research.
 
 
-## Performance Results: BeeGFS vs. Local Scratch
+## 📊 Performance Results: BeeGFS vs. Local Scratch
 
-We compared performance of BeeGFS (`scratch_shared` on bee cluster) and node-local scratch (`scratch_local`) using synthetic benchmarks with parallel I/O.
+We compared the performance of BeeGFS (`scratch_shared` on the bee cluster) and node-local scratch (`scratch_local`) using synthetic benchmarks with parallel I/O.
 
-### 📊 Performance Comparison: BeeGFS vs. Local Scratch
+### Performance Comparison: BeeGFS vs. Local Scratch
 
 | Test                 | BeeGFS (128 threads)   | scratch_local (8 threads) | Comment                                       |
 | -------------------- | ---------------------- | -------------------------- | --------------------------------------------- |
@@ -75,7 +78,14 @@ We compared performance of BeeGFS (`scratch_shared` on bee cluster) and node-loc
 | **Random Write**     | 486k IOPS, 1899 MiB/s  | 168k IOPS, 656 MiB/s       | BeeGFS delivers \~3× more IOPS                |
 | **Random Read**      | 598k IOPS, 2335 MiB/s  | 238k IOPS, 930 MiB/s       | BeeGFS leads again in random access           |
 
-### 📝 Interpretation
+Here's a bar chart comparing BeeGFS and Local Scratch across key performance metrics. As shown:
+
+- BeeGFS dominates in random I/O (both read and write).
+- Local Scratch excels in sequential read bandwidth.
+
+{{< image src="img/beegfs/beegfs_chart.png" class="rounded" wrapper="text-center w-40" >}}
+
+### Interpretation
 
 - **BeeGFS** BeeGFS excels at random I/O and sequential write performance
 - **Local scratch** Local scratch excels in sequential read performance and total read volume on single node.
@@ -83,7 +93,7 @@ We compared performance of BeeGFS (`scratch_shared` on bee cluster) and node-loc
 - **Use local scratch** for read-heavy sequential workloads (e.g., data analysis).
 
 
-## Overview: Scratch Storage Types in MetaCentrum
+### Overview: Scratch Storage Types in MetaCentrum
 
 | Scratch Type     | Speed                        | Best For                                   |
 | ---------------- | ---------------------------- | ------------------------------------------ |
@@ -92,12 +102,7 @@ We compared performance of BeeGFS (`scratch_shared` on bee cluster) and node-loc
 | `scratch_shared` | 🔵 Scalable parallel I/O     | Multi-node, parallel jobs needing fast I/O |
 
 
-Here's a bar chart comparing BeeGFS and Local Scratch across key performance metrics. As shown:
 
-- BeeGFS dominates in random I/O (both read and write).
-- Local Scratch excels in sequential read bandwidth.
-
-{{< image src="img/beegfs/beegfs_chart.png" class="rounded" wrapper="text-center w-40" >}}
 
 ## Summary
 
