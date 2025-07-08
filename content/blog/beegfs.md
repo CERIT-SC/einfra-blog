@@ -88,7 +88,7 @@ Here's a bar chart comparing BeeGFS and Local Scratch across key performance met
 Interpretation:
 
 - **BeeGFS** BeeGFS excels at random I/O and sequential write performance
-- **Local scratch** Local scratch excels in sequential read performance and total read volume on single node.
+- **Local scratch** excels in sequential read performance and total read volume on single node.
 - **Use BeeGFS** for workloads with high random I/O and mixed-read/write patterns.
 - **Use local scratch** for read-heavy sequential workloads (e.g., data analysis).
 
