@@ -21,7 +21,9 @@ This is made possible by a separation of metadata and file contents. While stora
 
 On the server side, BeeGFS runs as normal user-space daemons without any special requirements on the operating system. The BeeGFS client is implemented as a Linux kernel module which provides a normal mount-point so that your applications can directly access the BeeGFS storage system and do not need to be modified to take advantage of BeeGFS. The module can be installed on all supported Linux kernels without the need for any patches.
 
-{{< image src="img/beegfs/beegfs_architecture.png" mode="false" class="rounded-3 mt-3" wrapper="col-6 mx-auto" >}}
+{{< image src="img/beegfs/beegfs_architecture.png" class="rounded" wrapper="text-center w-40" >}}
+
+
 
 ### Key Advantages
 
@@ -92,8 +94,7 @@ Here's a bar chart comparing BeeGFS and Local Scratch across key performance met
 - BeeGFS dominates in random I/O (both read and write).
 - Local Scratch excels in sequential read bandwidth.
 
-
-{{< image src="img/beegfs/beegfs_chart.png" mode="false" class="rounded-3 mt-3" wrapper="col-6 mx-auto" >}}
+{{< image src="img/beegfs/beegfs_chart.png" class="rounded" wrapper="text-center w-40" >}}
 
 ---
 
