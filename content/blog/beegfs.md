@@ -92,14 +92,13 @@ Interpretation
 - **Use local scratch** for read-heavy sequential workloads (e.g., data analysis).
 
 
-### Overview: Scratch Storage Types in MetaCentrum
+To compare scratch storage types in MetaCentrum:
 
-| Scratch Type     | Speed                        | Best For                                   |
-| ---------------- | ---------------------------- | ------------------------------------------ |
-| `scratch_shm`    | 🟢 Fastest (RAM)             | Ultra-fast, short-lived temp data          |
-| `scratch_local`  | 🟡 Very fast (local SSD/HDD) | Single-node jobs with high throughput      |
-| `scratch_shared` | 🔵 Scalable parallel I/O     | Multi-node, parallel jobs needing fast I/O |
-
+| Scratch Type     | Speed                        | Best For                                            |
+| ---------------- | ---------------------------- | --------------------------------------------------- |
+| `scratch_shm`    | 🟢 Fastest (RAM)             | Ultra-fast, short-lived temp data                   |
+| `scratch_local`  | 🟡 Very fast (local SSD/HDD) | Single-node jobs with high throughput               |
+| `scratch_shared` | 🔵 Scalable parallel I/O     | Multi-node, parallel jobs needing fast I/O (BeeGFS) |
 
 
 
