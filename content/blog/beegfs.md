@@ -25,10 +25,13 @@ On the server side, BeeGFS runs as normal user-space daemons without any special
 
 ### Key Advantages
 
-- **HPC Technologies** – BeeGFS is built on highly efficient and scalable multithreaded core components with native RDMA support. File system nodes can serve RDMA (InfiniBand, Omni-Path, RoCE) and TCP/IP network connections at the same time and automatically switch to a redundant connection path in case any of them fails.
-- **Distributed architecture** – One of the most fundamental concepts of BeeGFS is the strict avoidance of architectural bottlenecks. Striping file contents across multiple storage servers is only one part of this concept. Another important aspect is the distribution of file system metadata (e.g., directory information) across multiple metadata servers. Large systems and metadata intensive applications, in general, can greatly profit from the latter feature.
-- **High Throughput** – BeeGFS is designed to deliver high bandwidth and low latency, making it suitable for data-intensive HPC workloads. Simple remote file systems like NFS do not only have serious performance problems in case of highly concurrent access, they can even corrupt data when multiple clients write to the same shared file, which is a typical use-case for cluster applications. BeeGFS was specifically designed with such use-cases in mind to deliver optimal robustness and performance in situations of high I/O load.
-- **Scalable Metadata and Storage** – Metadata and storage servers can be scaled independently, allowing for flexible and efficient scaling as workloads grow.
+- **Access from Multiple Machines** – One of the primary benefits of BeeGFS is the ability to access it from multiple machines, allowing for: 
+  - Large Parallel Computations: BeeGFS enables large parallel computations, where multiple machines can access data simultaneously, significantly increasing performance.
+  - Sequential Computations: BeeGFS also enables sequential computations, where intermediate results left in the scratch directory can be picked up by subsequent computations, eliminating the need to copy data to permanent storage or require execution on the same machine as the previous step.
+- **Scalability** – As the number of nodes increases, BeeGFS's performance scales accordingly, making it an excellent choice for large-scale HPC applications. BeeGFS efficiently handles massive datasets (tens of terabytes to petabytes) and scales with your needs. Its multithreaded design and native RDMA support enable high-performance and redundancy, making it perfect for large-scale research projects and HPC applications. 
+- **Distributed Architecture** – BeeGFS avoids bottlenecks by distributing file contents and metadata across multiple servers, ensuring high performance and scalability for large systems and metadata-intensive applications.
+- **High Throughput** – BeeGFS is optimized for parallel input/output operations, ensuring fast and efficient data access.
+- **Fault Tolerance** – BeeGFS is designed to be highly fault-tolerant, with features such as automatic failover and self-healing, ensuring that data is always available and minimizing downtime.
 
 ### Limitations
 
@@ -37,20 +40,22 @@ On the server side, BeeGFS runs as normal user-space daemons without any special
 
 ## When to Use BeeGFS in MetaCentrum
 
-At MetaCenter, we’ve adopted BeeGFS (the BeeGFS General File System) to meet the increasing challenges of data-intensive research across various scientific disciplines. 
-BeeGFS is available as a **temporary working directory** via the `scratch_shared` resource on cluster `bee.cerit-sc.cz`.
+At MetaCenter, we’ve adopted BeeGFS to meet the increasing challenges of data-intensive research across various scientific disciplines. 
+BeeGFS is available as a **temporary working directory** via the `scratch_shared` resource on cluster `bee.cerit-sc.cz`. With BeeGFS, you can work with large files, utilize multiple threads or processes, and span multiple compute nodes with ease.
 
-Here's when BeeGFS is the right choice for your jobs:
 
-- **High-Performance Computing (HPC)** – Scientific computing often involves working with massive datasets and parallel workloads. BeeGFS is designed to efficiently handle large files and parallel input/output operations, which are critical for performance in HPC environments.
+### When to Use BeeGFS
 
-- **Machine Learning and AI** – Training machine learning models requires fast, concurrent access to large volumes of data. BeeGFS provides the high-throughput and low-latency access needed to accelerate the training process, helping researchers iterate and innovate faster.
+BeeGFS is particularly well-suited for demanding jobs that require:
+- Work with large files or a huge number of small files.
+- Utilize many threads or processes that read or write in parallel.
+- Spanning multiple compute nodes.
 
-- **Simulations, Rendering, Genomics, and Big Data Research** – BeeGFS excels in scenarios where datasets range from tens of terabytes to petabytes—such as 3D rendering, complex simulations, genomic sequencing, or any domain where data scale and speed matter. Its ability to distribute data across multiple storage servers ensures both scalability and performance.
+**Typical Use Cases:**    
 
-- **University Compute Clusters** – Managing storage across academic clusters can be complex. BeeGFS simplifies administration with its modular design, while providing high availability and fault tolerance—key requirements in multi-user, shared environments.
-
-- **Beyond NFS and SMB** – Traditional shared file systems like NFS or SMB often struggle with I/O bottlenecks, especially under heavy load. BeeGFS eliminates these limitations by distributing both metadata and data across multiple servers, enabling balanced and high-speed access across the entire cluster.
+- **High-Performance Computing (HPC)** – BeeGFS is designed to efficiently handle large files and parallel input/output operations, making it an ideal choice for scientific computing workloads.
+- **Machine Learning and AI** – With BeeGFS, you can train machine learning models faster by accessing large volumes of data with high-throughput and low-latency.
+- **Simulations, Rendering, Genomics, and Big Data Research** – BeeGFS is perfect for handling massive datasets, such as those found in 3D rendering, complex simulations, genomic sequencing, and big data research.
 
 
 ## Performance Results: BeeGFS vs. Local Scratch
