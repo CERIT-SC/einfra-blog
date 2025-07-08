@@ -3,7 +3,7 @@ date: '2025-07-08T08:00:00Z'
 title: 'BeeGFS in MetaCentrum'
 thumbnail: '/img/beegfs/beegfs.png'
 description: "Performance of High-Speed Filesystem for Demanding Computations"
-tags: ["Jan Krčmář", "Ivana Křenková", "CESNET", "MetaCentrum", "BeeGFS"]
+tags: ["Jan Krčmář, Ivana Křenková", "CESNET", "MetaCentrum", "BeeGFS"]
 colormode: true
 draft: true
 ---
