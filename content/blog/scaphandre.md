@@ -13,71 +13,90 @@ In recent years, environmental concerns—particularly those related to energy c
 As part of this shift, there is a need for more fine-grained monitoring of energy consumption. Traditional approaches—measuring power usage at the level of Power Distribution Units (PDUs) or individual power supplies—are no longer sufficient. To support more accurate and responsible reporting, power consumption must increasingly be measured at the level of individual processes running on each node.
 
 ## Scaphandre and Technical Background
-[Scaphandre](https://github.com/hubblo-org/scaphandre) is an open-source tool designed to measure power consumption at the process level and export power metrics in several ways. The tool is designed for Linux and Windows systems and is distributed as a binary, or packaged as docker image. For Kubernetes users helm chart is available for an easy deployment.
 
-First, let's understand the magic behind Scaphandre.
+[Scaphandre](https://github.com/hubblo-org/scaphandre) is an open-source tool designed to measure power consumption at the process level and export power metrics through various methods. It supports both Linux and Windows systems and is available as a standalone binary or a Docker image. For Kubernetes environments, a Helm chart is also provided to simplify deployment.
+
+Before diving deeper, let’s explore the technology that powers Scaphandre.
 
 ### RAPL Sensors
-To measure energy consumption per process, hardware support is essential. Modern x86 CPUs from both Intel and AMD include integrated *RAPL* (*Running Average Power Limit*) sensors. RAPL provides estimated energy consumption data for several domains, such as the entire CPU package, block with cores, iGPU, DRAM etc. Availability of the particular RAPL domains can vary, depending on the CPU generation and vendor.
+
+Measuring energy consumption at the process level requires hardware support. Most modern x86 CPUs from Intel and AMD include integrated *RAPL* (*Running Average Power Limit*) sensors, which provide estimated energy usage data across several domains—such as the entire CPU package, CPU cores, integrated GPU (iGPU), and DRAM. The availability of specific RAPL domains depends on the CPU generation and vendor.
 
 ![rapl](/img/scaphandre/rapl.png)  
-*RAPL domains. Taken from the [Scaphandre documentation](https://hubblo-org.github.io/scaphandre-documentation/explanations/rapl-domains.html)*
+*RAPL domains. Source: [Scaphandre documentation](https://hubblo-org.github.io/scaphandre-documentation/explanations/rapl-domains.html)*
 
-On Linux, the access to these sensors provides `powercap` subsystem (`/sys/class/powercap/`).
-An example of the consumed energy by the first CPU socket:
+On Linux, RAPL sensors are exposed through the `powercap` subsystem, accessible via `/sys/class/powercap/`. For example, to read the energy consumed by the first CPU socket:
+
 ```bash
-> sudo cat /sys/class/powercap/intel-rapl:0/energy_uj
+sudo cat /sys/class/powercap/intel-rapl:0/energy_uj
 9758110032
 ```
 
-These energy counters report consumption in microjoules per CPU socket. Although they provide estimates rather than exact measurements, they are generally considered reliable enough for comparative analysis and usage-based reporting.
+These counters report energy usage in microjoules per CPU socket. While the values are estimations rather than precise measurements, they are generally accurate enough for comparative analysis and usage-based reporting.
 
-RAPL is essential, but on modern systems with multitasking with hundreds tasks, and even multiple CPU sockets, correctly assigning energy consumption to specific processes can be challenging.
-
+Although RAPL provides critical insights, attributing energy consumption to individual processes becomes increasingly complex on modern systems with multiple CPU sockets and hundreds of concurrent tasks.
 
 ### Jiffy
-A *jiffy* in Linux represents the kernel's basic unit of time, defined as the interval between two timer interrupts. Its duration depends on the system configuration, typically 1ms (for 1000 Hz), 4ms (for 250 Hz), or 10ms (for 100 Hz), as set by the `CONFIG_HZ` in the kernel parameter. The system uses jiffies to track uptime, CPU utilization, process runtime, and for various scheduling tasks. The kernel maintains several jiffy counters to track the number of ticks since system boot, or tracking time consumed by individual processes. These values are found in `/proc/stat` and `/proc/[pid]/stat`, respectively.
+
+In Linux, a *jiffy* is the kernel's fundamental unit of time, defined as the interval between two timer interrupts. Its duration is determined by the system's configuration—typically 1ms (1000 Hz), 4ms (250 Hz), or 10ms (100 Hz)—as set by the `CONFIG_HZ` kernel parameter.
+
+The Linux kernel uses jiffies for various timekeeping and scheduling tasks, including tracking system uptime, CPU usage, and individual process runtime. Several jiffy counters are maintained by the kernel, and relevant data can be found in `/proc/stat` (for system-wide statistics) and `/proc/[pid]/stat` (for per-process data).
 
 ![total-time-share](/img/scaphandre/total-time-share.png)  
-*Simple visualization of the time intervals (jiffies) that system counts for individual processes and the whole machine. Taken from the [Scaphandre documentation](https://hubblo-org.github.io/scaphandre-documentation/explanations/how-scaph-computes-per-process-power-consumption.html)*
-
+*A simple visualization of time intervals (jiffies) tracked by the system for individual processes and the entire machine. Source: [Scaphandre documentation](https://hubblo-org.github.io/scaphandre-documentation/explanations/how-scaph-computes-per-process-power-consumption.html)*
 
 ### From Jiffies to Joules
 
-By periodically sampling the elapsed time (measured in *jiffies*) and energy usage data from the `powercap` subsystem, it is possible to estimate the energy consumption of individual processes. The total energy consumed by a socket can be distributed among the processes running on it based on their relative CPU time (*jiffies*) during the sampling interval.
+By periodically sampling both CPU time (measured in jiffies) and energy consumption data from the `powercap` subsystem, it becomes possible to estimate energy usage per process. The total energy consumed by a CPU socket during a sampling interval can be proportionally distributed among the processes based on their share of CPU time.
 
 ![power-and-share-of-usage](/img/scaphandre/power-and-share-of-usage.png)  
-*The figure shows interleaved jiffies of individual processes that participates on the total power consumption. Taken from the [Scaphandre documentation](https://hubblo-org.github.io/scaphandre-documentation/explanations/how-scaph-computes-per-process-power-consumption.html)*
+*This figure illustrates how individual processes, through their interleaved jiffy intervals, contribute to total power consumption. Source: [Scaphandre documentation](https://hubblo-org.github.io/scaphandre-documentation/explanations/how-scaph-computes-per-process-power-consumption.html)*
 
-This is the whole technical magic behind the Scapahandre.
+This is the core mechanism that powers Scaphandre’s per-process energy attribution: combining time (jiffies) and energy (joules) to estimate process-level power consumption with minimal overhead.
 
-## Using the Scaphandre
+## Using Scaphandre
 
-### Processes in containers
-In the container era, it would be beneficial to map the energy consumption of processes to their respective containers and also Kubernetes pods. Scaphandre can do that.
+### Processes in Containers
 
-In containerized environments, processes run within *cgroups*, which isolate and manage resource usage. Scaphandre can connect to the Docker socket or Kubernetes API and map the individual processes to their respective containers, pods, namespaces and more.
+In the containerized world, it's essential to attribute energy consumption not just to individual processes, but also to the containers and Kubernetes pods they belong to. Scaphandre supports this out of the box.
+
+In such environments, processes are managed within *cgroups* (control groups), which provide resource isolation and accounting. Scaphandre can interface with the Docker socket or Kubernetes API to map processes to their corresponding containers, pods, namespaces, and more—enabling accurate energy attribution in containerized workloads.
 
 ### Exporters
-Scaphandre provides several *exporters* -- methods to provide the final metrics. It could be simple `stdout` but also `json`, `prometheus`, `qemu` and more. We utilized `prometheus` exporter.
+
+Scaphandre offers several *exporters*—mechanisms to expose collected power metrics. Available exporters include:
+
+- `stdout` – for simple console output
+- `json` – structured output for programmatic use
+- `prometheus` – for integration with Prometheus-based monitoring
+- `qemu` – for usage in virtualized environments
+- and others
+
+In our setup, we used the `prometheus` exporter to make power metrics available for scraping and visualization.
 
 ## Visualization
-To visualize the metrics, we use Grafana and PromQL to query the Prometheus.
 
-Since we provide large Kubernetes clusters and their resources to the academic community, directly visualizing individual processes or pods offers limited insight. This is partly because pods belonging to the same computational workflow may be distributed across different nodes, and often behave more like short-lived *tasks* than persistent *services*. In this context, the most meaningful level of aggregation is the Kubernetes *Namespace*, which groups related workloads under a common organizational unit.
+To visualize the metrics, we use Grafana along with PromQL to query Prometheus.
+
+Since we provide large Kubernetes clusters and computing resources to the academic community, visualizing individual processes or pods often offers limited insight. This is because pods that belong to the same computational workflow may be distributed across multiple nodes and typically act as short-lived *tasks* rather than persistent *services*. 
+
+In this context, the most meaningful level of aggregation is the Kubernetes *Namespace*, which logically groups related workloads under a common organizational unit.
 
 ![grafana-power-specific-namespace](/img/scaphandre/grafana-power-specific-namespace.png)  
-*This chart shows 2 queries together to visualize the difference between power consumption of the individual Kubernetes Pods within specific Namespace and the total power consumption of the whole Namespace.*
+*This chart combines two queries to show the difference between power consumption by individual pods within a specific namespace and the total power consumption of the entire namespace.*
 
-In our case, the total consumption is the useful information. Used queries are:
+In our case, the total consumption at the namespace level is the most useful metric. Here are the queries used:
 
-A simple query to show all pods in specific namespace (metrics are in microwatts):
-```
+A simple PromQL query to show the power consumption of all pods in a specific namespace (values in microwatts):
+
+```promql
 scaph_process_power_consumption_microwatts{kubernetes_pod_namespace="loslab-comp"} / 1e6
 ```
-A query aggregating the pods consumption for the whole namespace (metrics are in microwatts):
-```
-quantile_over_time(0.9, 
+
+An aggregated query to estimate total power consumption of the namespace, using a 90th percentile over a 5-minute window (values in microwatts):
+
+```promql
+quantile_over_time(0.9,
     (sum by(kubernetes_pod_namespace) (
         scaph_process_power_consumption_microwatts{kubernetes_pod_namespace="loslab-comp"})
     )[5m:1m]
@@ -85,10 +104,11 @@ quantile_over_time(0.9,
 ```
 
 ![grafana-power-dashboard](/img/scaphandre/grafana-power-dashboard.png)  
-*Final dashboard with two charts -- first showing the power consumption per namespace for the whole Kubernetes cluster in watts, and the second showing pie chart with the amount of energy in watthours consumed by the individual namespaces within selected time range.*
+*Final dashboard showing two charts: one displaying power consumption per namespace across the cluster (in watts), and another pie chart showing energy consumption (in watt-hours) by namespace over a selected time range.*
 
-The query of the first chart is essentially the similar like in the previous example. The query of the pie chart consist of computing an average over the selected time range multiplied by the time range:
-```
+The first chart uses a query similar to the one above. The pie chart, however, calculates energy consumption by averaging power usage over the selected time range and converting it to watt-hours:
+
+```promql
 (
     avg_over_time(
         (sum by (kubernetes_pod_namespace) (
@@ -98,14 +118,20 @@ The query of the first chart is essentially the similar like in the previous exa
 ) * ($__range_s / 3600)
 ```
 
-
 ## Limitations
 
-The RAPL sensors are limited only to CPUs and memory, not for the rest of components. If the cluster is equipped with a lot of drives or even GPUs, power consumption of the CPU may easily become insignificant.
-The support for GPU measurement in Scaphandre seems to be [planned](https://github.com/hubblo-org/scaphandre/issues/24). For now, it is needed to arrange the GPU measurement differently. For NVIDIA GPUs, simple tools like `nvidia-smi` or more advanced like [`NVIDIA DCGM`](https://github.com/NVIDIA/DCGM) can be used.
+RAPL sensors provide power consumption data only for CPU and memory components—they do **not** cover other hardware such as GPUs, storage drives, or network interfaces. In clusters with power-hungry components like GPUs or numerous disks, CPU-related power usage can represent only a small fraction of the total energy footprint.
+
+Support for GPU measurement in Scaphandre is [planned](https://github.com/hubblo-org/scaphandre/issues/24), but not yet available. In the meantime, GPU power monitoring must be handled separately. For NVIDIA GPUs, tools such as `nvidia-smi` or the more advanced [`NVIDIA DCGM`](https://github.com/NVIDIA/DCGM) can be used to collect power metrics.
+
+---
 
 ## Additional Notes
-In addition to basic process measurement and container mapping, Scaphandre also supports analyzing processes running inside KVM/QEMU-based virtual machines. Because RAPL sensors are not directly accessible from within virtual machines, it is necessary to deploy a Scaphandre agent on the hypervisor in such setups. When doing so, `qemu` processes are exported by Scaphandre to monitor VM resource usage.
 
-During the writing of this article (July 2025), Scaphandre has several imperfections such as missing support for *cgroup v2* and insufficient handling of the overflowing energy counters. Therefore, we made a [fork](https://github.com/CERIT-SC/scaphandre) of the original repo that tries to improve this shortages.
+Beyond basic process-level measurement and container mapping, Scaphandre also supports tracking energy consumption of processes running inside KVM/QEMU-based virtual machines. Since RAPL sensors are not exposed to guest VMs, a Scaphandre agent must be deployed on the **hypervisor**. In this setup, Scaphandre exports `qemu` processes to represent resource usage by the virtual machines.
 
+As of July 2025, Scaphandre still has several known limitations, including:
+- Lack of support for **cgroup v2**
+- Incomplete handling of **overflowing energy counters**
+
+To address these issues, we created a [fork](https://github.com/CERIT-SC/scaphandre) of the original Scaphandre repository with targeted improvements and fixes for these shortcomings.
