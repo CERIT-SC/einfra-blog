@@ -114,4 +114,4 @@ If your computational work involves:
 
 then `BeeGFS` is an excellent choice. With BeeGFS, you can achieve **multi-GB/s throughput and hundreds of thousands of IOPS**, helping your applications run faster and more efficiently.
 
-More details: [MetaCentrum Scratch Documentation](https://docs.metacentrum.cz/en/docs/computing/resources/resources#scratch-directory)
+More details: [MetaCentrum Scratch Documentation](https://docs.metacentrum.cz/en/docs/computing/infrastructure/scratch-storages#shared-scratch-on-cluster-beecerit-sccz))
