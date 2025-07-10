@@ -5,7 +5,7 @@ thumbnail: '/img/scaphandre/scaphandre.png'
 description: "Measuring Power Consumption per Process by Scaphandre"
 tags: ["Josef Handl", "CERIT-SC", "Scaphandre", "RAPL", "Power Measurement"]
 colormode: true
-draft: true
+draft: false
 ---
 
 In recent years, environmental concerns—particularly those related to energy consumption—have become a major focus across most sectors. This includes the field of IT infrastructure, where growing awareness of the carbon footprint associated with computation is prompting a shift in how infrastructure usage is accounted. More organizations are now starting to include environmental impact as a metric alongside performance and cost when evaluating their systems.
