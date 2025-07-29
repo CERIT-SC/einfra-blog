@@ -14,9 +14,14 @@ Running local instances of large language models (LLMs) is becoming increasingly
 
 As a result, many data centers now host local instances of AI models. At e-INFRA CZ, for example, we occasionally observe users running their own instances of [Ollama](https://ollama.com/) to test or experiment with LLMs.
 
-However, running almost any LLM locally requires dedicated GPU hardware, which remains in use for as long as the instance is running—regardless of whether the model is actively being used. This is particularly true in Kubernetes environments, where a Pod running Ollama continuously occupies GPU resources, or in HPC jobs, which behave similarly.
+However, running almost any LLM locally requires dedicated GPU hardware, which remains occupied for as long as the instance is running—**regardless of whether the model is actively used**.
 
-Furthermore, in many cases, Ollama utilizes the GPU only briefly, leading to inefficient use of valuable resources. Since the GPU is allocated exclusively to that instance, it becomes unavailable to others even when idle.
+There are two main reasons for this:
+
+1. **Model loading time** – Loading large models can take anywhere from several minutes to nearly an hour. It's generally not acceptable to delay user requests while waiting for the model to initialize. Additionally, the loading process itself often consumes **more energy than typical inference requests**, making it inefficient to load models on-demand.
+2. **Resource locking** – In environments where GPUs are allocated through systems like virtual machines, Kubernetes Pods, or HPC jobs, the GPU becomes **exclusively reserved**, even when the model is idle or no longer in use.
+
+However, tools like **Ollama** often utilize the GPU only briefly—just during actual inference, which is sporadic for personal use—while still holding on to the GPU allocation for the entire lifetime of the instance. This leads to **inefficient use of valuable and limited GPU resources**.
 
 For these reasons, users are encouraged to avoid running personal LLM instances and instead utilize centrally managed deployments. Centralization offers the potential for significantly better GPU utilization and resource efficiency.
 
@@ -41,7 +46,7 @@ Ollama primarily distributes models in the GGUF format.
 
 ##### Internal Data Format
 
-The internal data format of the model weights significantly impacts performance and memory usage. Most models are originally released in [BF16](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format), a 16-bit floating point format well-supported by modern GPUs. However, BF16 requires a large amount of memory. For instance, a model with 400 billion parameters would need approximately 800 GB in BF16—both on disk and in GPU memory.
+The internal data format of the model weights significantly impacts performance and memory usage. Most models are originally released in [BF16](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format), a 16-bit floating point format well-supported by modern GPUs. However, BF16 requires a large amount of memory. For instance, a model with 400 billion parameters would need approximately 800 GB in BF16—both on disk and in GPU memory, while typical memory size of graphics cards suitable for this task is 5-10times smaller.
 
 To address this, **quantized formats** offer a trade-off between model accuracy and memory efficiency. Some common formats include:
 
@@ -189,7 +194,7 @@ Through this process, we discovered the `--tensor-parallel-size` parameter in vL
 
 Running LLaMA 4 Scout across **two H100 NVL GPUs**, we achieved:
 
-- **~50 tokens per second** (~200 characters per second), generating long-form outputs like historical story chapters.
+- **~50 tokens per second** (~200 characters per second), generating unstructured plain texts like chapter of a short story.
 
 #### Scaling Up to Larger Models
 
@@ -208,7 +213,7 @@ Although vLLM also supports `--pipeline-parallel-size`, which can split the mode
 
 With this configuration, we achieved:
 
-- **~80 tokens per second**, generating long-form outputs like historical story chapters.
+- **~80 tokens per second**, generating unstructured plain texts like a chapter of a short story.
 
 #### The Open-WebUI “Catch”
 
