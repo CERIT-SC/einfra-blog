@@ -77,7 +77,8 @@ Key features:
 
 - Supports multiple models loaded simultaneously (requires enabling via environment variables)  
 - Sets a static number of concurrent requests  
-- Automatically terminates the inference process after 5 minutes of inactivity (by default)  
+- Automatically terminates the inference process after 5 minutes of inactivity (by default)
+- Uses the minimum required GPU memory—controlled by context size and parallelism
 
 ##### 2. **vLLM**
 
@@ -89,7 +90,8 @@ Key characteristics:
 - Optimized for models in `safetensors` (BF16 or FP8); performs worse with GGUF  
 - Can only serve **one model per instance**  
 - More memory-hungry compared to Ollama  
-- Automatically configures concurrency based on available GPU memory  
+- Automatically configures concurrency based on available GPU memory
+- Allocates all configured GPU memory up front and may require additional memory over time, exceeding the initial limit (`--gpu-memory-utilization`)
 
 vLLM also supports **dynamic quantization**, allowing you to:
 
