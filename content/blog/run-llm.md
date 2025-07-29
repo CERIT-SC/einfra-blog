@@ -21,7 +21,7 @@ There are two main reasons for this:
 1. **Model loading time** – Loading large models can take anywhere from several minutes to nearly an hour. It's generally not acceptable to delay user requests while waiting for the model to initialize. Additionally, the loading process itself often consumes **more energy than typical inference requests**, making it inefficient to load models on-demand.
 2. **Resource locking** – In environments where GPUs are allocated through systems like virtual machines, Kubernetes Pods, or HPC jobs, the GPU becomes **exclusively reserved**, even when the model is idle or no longer in use.
 
-However, tools like **Ollama** often utilize the GPU only briefly—just during actual inference, which is sporadic for personal use—while still holding on to the GPU allocation for the entire lifetime of the instance. This leads to **inefficient use of valuable and limited GPU resources**.
+While handling conversation with a user, tools like **Ollama** often utilize the GPU only briefly—just during actual inference, which is sporadic for personal use—while still holding on to the GPU allocation for the entire lifetime of the instance. This leads to **inefficient use of valuable and limited GPU resources**.
 
 For these reasons, users are encouraged to avoid running personal LLM instances and instead utilize centrally managed deployments. Centralization offers the potential for significantly better GPU utilization and resource efficiency.
 
