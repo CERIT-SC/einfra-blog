@@ -130,7 +130,7 @@ Therefore, inference on a **single multi-GPU node** is generally faster and more
 
 Another important hardware consideration is **what quantization formats your GPU architecture can accelerate efficiently**:
 
-- **NVIDIA Hopper (H100/B100/B200)**:
+- **NVIDIA Hopper and newer (H100/B100/B200)**:
   - Accelerates **FP8** (8-bit floating point) formats efficiently
 - **NVIDIA Blackwell (e.g., B200, newer)**:
   - Adds efficient support for **FP4** and other lower-bit formats
@@ -138,3 +138,44 @@ Another important hardware consideration is **what quantization formats your GPU
 The choice of hardware directly impacts what model formats can be used effectively, so model format and hardware capabilities must be aligned.
 
 ## Lessons Learned
+
+We have been operating LLMs for over half a year, starting primarily with **Ollama-based serving**. In the beginning, we focused on running **multiple models per instance**, which allowed for flexible testing and better utilization. Over time, we learned that **model weights are not the only greedy consumers (vampires) of GPU memory**—a key contributor is the **KV (Key-Value) buffer**, which is essential for efficient inference.
+
+### Understanding the KV Buffer
+
+Inference in LLMs is a repetitive, step-wise process:
+
+1. Take the input prompt.
+2. Generate a few characters (typically 2–4--called token).
+3. Append the generated output to the prompt.
+4. Repeat.
+
+Many parts of the computation, such as attention keys and values, are reused across these steps. To avoid recalculating them, inference engines store this information in a **KV cache**—a memory-resident buffer that must remain on the **GPU** for performance (though CPU offloading is technically possible, it incurs a heavy performance penalty).
+
+### Why KV Cache Matters
+
+The **size of the KV buffer** depends primarily on two factors:
+
+- **Context size** — the maximum input length (e.g., prompt + generated output), which is fixed for a given model instance
+- **Parallelism** — the number of concurrent requests the model can serve
+
+Importantly, **context size is static** and cannot be dynamically adjusted based on available memory. This makes careful memory planning critical, especially when serving multiple users or handling large inputs.
+
+### GPU Memory Usage Example (Ollama)
+
+The table below illustrates GPU memory usage for various **models**, **quantization levels**, **context sizes**, and **parallelism settings**. “Base size” refers to the memory required just to load the model weights (without any KV buffer).
+
+| Model                    | Quantization | Base Size | 2k/1 | 4k/1 | 8k/1 | 8k/2 | 16k/2 | 2k/10 | 2k/16 | 2k/32 |
+|--------------------------|--------------|-----------|------|------|------|------|-------|-------|-------|-------|
+| gemma3:27b               | q4_k_m       | 17 GB     | 20 GB| 20 GB| 21 GB| 22 GB| 25 GB |       |       |       |
+| gemma3:27b               | q8_0         | 29 GB     | 32 GB| 33 GB| 33 GB| 35 GB| 37 GB |       |       |       |
+| qwen-2.5-coder:32b       | q4_k_m       | 19 GB     | 21 GB| 21 GB| 23 GB| 25 GB| 31 GB | 27 GB | 31 GB | 43 GB |
+| qwen-2.5-coder:32b       | q8_0         | 34 GB     | 35 GB| 36 GB| 37 GB| 40 GB| 46 GB | 42 GB | 46 GB | 57 GB |
+
+**Legend**:
+- `2k/1`: Context size of 2048 tokens, 1 concurrent request
+- `8k/2`: Context size of 8192 tokens, 2 concurrent requests
+- `2k/32`: Context size of 2048 tokens, 32 concurrent requests
+
+As shown, **KV buffer memory can easily exceed the base model size**, especially at high concurrency or large context windows. This is a critical factor in planning hardware usage for real-world deployments.
+
