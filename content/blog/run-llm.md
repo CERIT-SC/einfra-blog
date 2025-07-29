@@ -137,3 +137,4 @@ Another important hardware consideration is **what quantization formats your GPU
 
 The choice of hardware directly impacts what model formats can be used effectively, so model format and hardware capabilities must be aligned.
 
+## Lessons Learned
