@@ -251,6 +251,26 @@ We observed:
 
 Currently, our best hope is that **in real-world usage**, simultaneous requests to both models **won’t occur frequently enough** to severely impact performance.
 
+### Memory Problems
+
+With **Ubuntu 24 HWE kernels** (version 6.11 and newer), there appears to be an issue with **CUDA and vLLM allocating pinned CPU memory**. Specifically, memory allocation blocks larger than 2 GB are rejected by the kernel and the NVIDIA driver, resulting in errors such as:
+
+```
+Cannot map memory with base addr 0x719da0000000 and size of 0x40000 pages
+```
+
+This occurs **regardless of how much system memory is available**.
+
+A partial workaround is to **drop caches** before starting vLLM by running:
+
+```bash
+echo 3 > /proc/sys/vm/drop_caches
+```
+
+However, this workaround is not sufficient for some operations, such as the **sleep functionality**. In those cases, memory allocation still fails unless the vLLM source code is modified to perform **CUDA memory allocations in chunks of 2 GB or smaller**.
+
+This issue is currently under investigation in collaboration with the **vLLM authors**.
+
 ---
 
 Stay tuned for **Chapter 2**, where we'll share detailed **performance evaluations and benchmarks**.
