@@ -179,3 +179,71 @@ The table below illustrates GPU memory usage for various **models**, **quantizat
 
 As shown, **KV buffer memory can easily exceed the base model size**, especially at high concurrency or large context windows. This is a critical factor in planning hardware usage for real-world deployments.
 
+### Utilizing Multiple GPUs
+
+With the release of **LLaMA 4 Scout (109B parameters)**, we began exploring **vLLM** and **multi-GPU deployments** to preserve model quality using **FP8 quantization**. Our best hardware at the time included **NVIDIA H100 NVL GPUs**, each with **94 GB of memory**. It was immediately clear that we would need at least **two GPUs** to run the model effectively.
+
+At that point, **no pre-quantized versions of LLaMA 4 Scout** were available. We used **vLLM's dynamic quantization** and enabled **CPU offloading** to accommodate the full BF16 model, which couldn't fit entirely into 2×94 GB GPU memory.
+
+Through this process, we discovered the `--tensor-parallel-size` parameter in vLLM, which allows model weights to be split across multiple GPUs. By monitoring GPU utilization via `nvidia-smi`, we confirmed that both GPUs were **fully utilized (close to 100%)**.
+
+Running LLaMA 4 Scout across **two H100 NVL GPUs**, we achieved:
+
+- **~50 tokens per second** (~200 characters per second), generating long-form outputs like historical story chapters.
+
+#### Scaling Up to Larger Models
+
+With newer, more powerful hardware available, we set our sights on running **larger, higher-performing models**, such as:
+
+- **DeepSeek R1 0528**  
+  - **685B parameters**  
+  - **Uses native FP8 weights** (no quantization)
+
+To support this model with a **32k context window**, approximately **880 GB of GPU memory** is required. In theory, **5 NVIDIA B200 GPUs (180 GB each)** should be sufficient. However, vLLM imposes a limitation: the value of `--tensor-parallel-size` must divide evenly into the number of **attention heads** used by the model.
+
+- DeepSeek R1 0528 has **64 attention heads**, meaning:
+  - Supported values for `tensor-parallel-size`: **2, 4, or 8**
+
+Although vLLM also supports `--pipeline-parallel-size`, which can split the model across any number of GPUs, setting this to `5` caused vLLM to crash in our case. As a result, we opted to use **all 8 GPUs**, fully utilizing the **NVIDIA DGX B200** system (8×B200 = 1440 GB total memory).
+
+With this configuration, we achieved:
+
+- **~80 tokens per second**, generating long-form outputs like historical story chapters.
+
+#### The Open-WebUI “Catch”
+
+DeepSeek R1 is a **reasoning model**, which pairs well with **Open-WebUI**. However, newer versions of the UI automatically request **suggested follow-up questions** after each user interaction.
+
+Each follow-up is generated through separate reasoning processes, which slows down the interface. It can take **up to 40 seconds** for follow-ups to appear due to the model's computational complexity.
+
+{{< image src="/img/llm/followup.png" class="rounded" wrapper="text-center w-40" >}}
+
+#### Hosting Multiple Models on the Same GPU Set
+
+To make use of remaining GPU memory, we deployed a **second model**:
+
+- **Qwen3-Coder-480B-A35B-Instruct-FP8**  
+  - Pre-quantized  
+  - 480B parameters  
+  - Fits within remaining memory using `tensor-parallel-size=8`  
+  - Not a reasoning model → **high inference speed (~100 tokens/sec)**
+
+This seemed promising—until we noticed a major drawback.
+
+#### Unexpected Performance Drop
+
+When both models are used **simultaneously**, **performance degrades sharply**, despite:
+
+- No memory swapping
+- No explicit hardware conflicts
+
+We observed:
+
+- Inference speeds dropped to as low as **5 tokens per second**
+- Likely caused by **interleaved scheduling** and contention over GPU compute
+
+Currently, our best hope is that **in real-world usage**, simultaneous requests to both models **won’t occur frequently enough** to severely impact performance.
+
+---
+
+Stay tuned for **Chapter 2**, where we'll share detailed **performance evaluations and benchmarks**.
