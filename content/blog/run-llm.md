@@ -3,9 +3,9 @@ date: '2025-07-29T12:00:00Z'
 title: 'Silicon Vampires'
 thumbnail: '/img/llm/llm.png'
 description: "How Do We Run LLMs"
-tags: ["L. Hejtmánek", "CERIT-SC", "AI", "LLM"]
+tags: ["Lukáš Hejtmánek", "CERIT-SC", "AI", "LLM"]
 colormode: true
-draft: true
+draft: false
 ---
 
 ## What Does It Take to Run LLMs On-Premise?
