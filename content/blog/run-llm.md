@@ -287,6 +287,9 @@ These optimizations yielded significant improvements across models:
 | Qwen 3 Coder     | 10 minutes       | 2 minutes         |
 | LLaMA 4 Scout    | 16 minutes       | 3.5 minutes       |
 
+### Greedy Idle Models
+Even when idle, vLLM consumes one CPU core per GPU (or per `tensor-parallel-size` group). This idle consumption increases operational costs and energy usage. To reduce these, set the environment variable `VLLM_SLEEP_WHEN_IDLE` to `1`. This causes vLLM to release CPU resources during idle periods, though it introduces a slight delay when inference starts.
+
 ---
 
 Stay tuned for **Chapter 2**, where we'll share detailed **performance evaluations and benchmarks**.
