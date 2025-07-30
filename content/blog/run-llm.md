@@ -271,6 +271,22 @@ However, this workaround is not sufficient for some operations, such as the **sl
 
 This issue is currently under investigation in collaboration with the **vLLM authors**.
 
+### Model Startup Optimization
+Initially, launching containers with vLLM and DeepSeek R1 model required nearly one hour, primarily spent loading model weights into GPU memory. While vLLM version 0.10.0 introduced significant speed improvements, weight loading remained the dominant startup bottleneck. 
+
+After investigating this issue, we discovered:
+- Model inference requires minimal CPU resources, but weight loading demands substantial CPU capacity
+- Increasing CPU allocation limit to 64 cores reduced DeepSeek R1 startup time from 60 minutes to 20 minutes (vLLM 0.10.0)
+- vLLM performs tensor compilation during initialization, generating cache files in `~/.nv` and `~/.cache`
+- Preserving these directories across restarts further reduced startup time to 5.5 minutes
+
+These optimizations yielded significant improvements across models:
+| Model            | Original Startup | Optimized Startup |
+|------------------|------------------|-------------------|
+| DeepSeek R1      | 60 minutes       | 5.5 minutes       |
+| Qwen 3 Coder     | 10 minutes       | 2 minutes         |
+| LLaMA 4 Scout    | 16 minutes       | 3.5 minutes       |
+
 ---
 
 Stay tuned for **Chapter 2**, where we'll share detailed **performance evaluations and benchmarks**.
