@@ -9,4 +9,8 @@ actions:
     url: "/about"
     title: "About us"
     icon: "fas book-open"
+  contribute:
+    url: "/contribution"
+    title: "How to Contribute"
+    icon: "fas display"
 ---
