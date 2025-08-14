@@ -8,9 +8,9 @@ actions:
   get-started:
     url: "/about"
     title: "About us"
-    icon: "fas book-open"
+    icon: "fas users"
   contribute:
     url: "/contribution"
     title: "How to Contribute"
-    icon: "fas display"
+    icon: "fas handshake"
 ---
