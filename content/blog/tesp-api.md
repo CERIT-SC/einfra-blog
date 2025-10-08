@@ -15,7 +15,7 @@ draft: false
 
 The Galaxy Project thrives on interoperability — connecting tools, data, and compute resources seamlessly. To extend this philosophy to broader research infrastructures, we’ve been developing TESP-API, a service that implements the GA4GH Task Execution Service (TES) standard and acts as a bridge between Galaxy, Pulsar, and the wider TES ecosystem.
 
-My name is Boris Jurič, and I’ve been working on TESP-API at CESNET as part of our ongoing effort to enhance Galaxy’s integration with national and international compute infrastructures. The project is available at [Galaxy TESP-API repository https://github.com/CESNET/tesp-api] (https://github.com/CESNET/tesp-api).
+My name is Boris Jurič, and I’ve been working on TESP-API at CESNET as part of our ongoing effort to enhance Galaxy’s integration with national and international compute infrastructures. The project is available at [Galaxy TESP-API repository: https://github.com/CESNET/tesp-api](https://github.com/CESNET/tesp-api).
 
 {{< image src="/img/tesp-api/tesp_diagram.png" class="rounded" wrapper="text-center w-40" >}}
 
@@ -51,6 +51,6 @@ The TESP API enables:
 
 ## Outlook
 
-TESP-API is a practical bridge that enables another set of real scientific workloads on Galaxy–Pulsar infrastructures. It helps Galaxy to be a more connected and interoperable platform — one step closer to a unified compute ecosystem across research infrastructures. You can follow the project or contribute at [Galaxy TESP-API repository] (https://github.com/CESNET/tesp-api).
+TESP-API is a practical bridge that enables another set of real scientific workloads on Galaxy–Pulsar infrastructures. It helps Galaxy to be a more connected and interoperable platform — one step closer to a unified compute ecosystem across research infrastructures. You can follow the project or contribute at [Galaxy TESP-API repository](https://github.com/CESNET/tesp-api).
 
 
