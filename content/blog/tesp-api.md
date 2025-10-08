@@ -6,7 +6,7 @@ author: "Boris Jurič"
 description: "Bridging Galaxy, Pulsar, and the GA4GH TES Standard"
 tags: ["Boris Jurič", "CERIT-SC", "TESP-API", "Galaxy"]
 colormode: true
-draft: true
+draft: false
 ---
 
 # TESP-API: Bridging Galaxy, Pulsar, and the GA4GH TES Standard
