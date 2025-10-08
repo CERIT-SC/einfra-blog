@@ -4,7 +4,7 @@ title: 'Galaxy TESP-API'
 thumbnail: '/img/tesp-api/pulsar.png'
 author: "Boris Jurič"
 description: "Bridging Galaxy, Pulsar, and the GA4GH TES Standard"
-tags: ["Boris Jurič", "CERIT-SC", "TESP-API", "Galaxy"]
+tags: ["Boris Jurič", "CERIT-SC", "CESNET", "TESP-API", "Galaxy"]
 colormode: true
 draft: false
 ---
