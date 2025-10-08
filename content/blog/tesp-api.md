@@ -17,7 +17,7 @@ The Galaxy Project thrives on interoperability — connecting tools, data, and c
 
 My name is Boris Jurič, and I’ve been working on TESP-API at CESNET as part of our ongoing effort to enhance Galaxy’s integration with national and international compute infrastructures. The project is available at [Galaxy TESP-API repository https://github.com/CESNET/tesp-api] (https://github.com/CESNET/tesp-api).
 
-{{< image src="/img/tesp-api/test_diagram.png" class="rounded" wrapper="text-center w-40" >}}
+{{< image src="/img/tesp-api/tesp_diagram.png" class="rounded" wrapper="text-center w-40" >}}
 
 ## What is TESP-API?
 
