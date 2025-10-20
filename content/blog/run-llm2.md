@@ -8,24 +8,37 @@ colormode: true
 draft: true
 ---
 
+## Previously on the e-INFRA Blog ...
+
+In [our previous post](https://blog.e-infra.cz/blog/run-llm/), we described how we use the **Ollama** and **vLLM** inference software stacks to run large language models (LLMs) within **e-INFRA CZ**. We explained what’s required to operate LLMs on-premises — including model weights, their formats, and the necessary hardware (GPUs). Most importantly, we shared the lessons we learned from serving these models on our own infrastructure.  
+
+We explored what the KV cache (key-value buffer) is and how it affects memory requirements, how to effectively use multiple GPUs, and why CPUs aren’t ideal for inference. We concluded the post by noting that we successfully ran two models simultaneously on the same GPU set — with the hope that everything would perform smoothly.
+
 ## Part Two — SGLang Enters the Stage
 
 Our assumption that DeepSeek R1 and Qwen3-Coder models would not conflict when running in parallel turned out to be incorrect. We observed significant slowdowns, particularly when some users ran continuous benchmarking workloads. Initially, we split the models across GPUs — five for DeepSeek R1 and three for Qwen3-Coder — and executed them in **pipeline-parallel** mode using vLLM. This setup eventually stabilized, but a new issue appeared.
 
-Pipeline-parallel mode is known to be slower than tensor-parallel mode, but we discovered the slowdown was much worse than expected: throughput dropped to only ~20 tokens per second per model. Moreover, Qwen3-Coder in FP8 consistently failed in tensor-parallel mode — a known issue even acknowledged by Qwen on their Hugging Face model page.
+Pipeline-parallel mode is generally known to be slower than tensor-parallel mode, but in our case, the slowdown was far more severe than expected. Throughput dropped from approximately **60 tokens per second per model** to only **~20 tokens per second per model**.  
+
+Additionally, **Qwen3-Coder** running in **FP8 precision** consistently failed in tensor-parallel mode — a known issue acknowledged by the Qwen team on their [Hugging Face model page](https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8#note-on-fp8).
 
 ### Discovering SGLang
 
-While troubleshooting Qwen3-Coder, we tried **SGLang** and immediately noticed substantial speed improvements compared to vLLM:
+While troubleshooting **Qwen3-Coder** failing in tensor-parallel mode, we deployed **SGLang** — and immediately observed substantial performance improvements compared to **vLLM**:
 
-- LLaMA 4 Scout: **50 → 120 tokens/s**
-- DeepSeek R1: stable at **80 tokens/s** (compared to lower throughput on vLLM)
-- Qwen3-Coder: stable at **~60 tokens/s**
-- Multi-request throughput: exceeded **1000 tokens/s**
+- **LLaMA 4 Scout:** 50 → **120 tokens/s**
+- **DeepSeek R1:** stable at **80 tokens/s** (compared to lower throughput on vLLM)
+- **Qwen3-Coder:** stable at **~60 tokens/s**
 
-However, Qwen3-Coder still crashed reproducibly in tensor-parallel mode, even under SGLang. We also observed that pipeline-parallel mode had very low GPU utilization (max ~26%). This inspired us to experiment: run **DeepSeek R1 in tensor-parallel mode across all 8 GPUs**, while simultaneously running **Qwen3-Coder in pipeline-parallel mode** on the same 8 GPUs.
+The performance above reflects **single-request throughput**, meaning the inference API was handling only one request at a time. However, LLM inference systems are typically capable of serving **multiple requests concurrently**, and in such multi-request scenarios, we observed a **significant increase in total throughput**:
 
-The expectation was that Qwen3-Coder’s low utilization wouldn’t degrade DeepSeek R1’s performance. This turned out to be correct: both models ran together stably, with DeepSeek R1 optimized for speed and Qwen3-Coder stable (though slower).
+- **Multi-request throughput:** exceeded **1000 tokens/s**
+
+Despite these gains, **Qwen3-Coder** continued to crash consistently in **tensor-parallel mode**, even when using SGLang. We also noticed that **pipeline-parallel mode** suffered from **very low GPU utilization** (peaking around 26%).  
+
+This prompted an experiment: we ran **DeepSeek R1 in tensor-parallel mode across all 8 GPUs**, while simultaneously running **Qwen3-Coder in pipeline-parallel mode** on the same GPU set.  
+
+Our hypothesis was that Qwen3-Coder’s low GPU utilization would not significantly impact DeepSeek R1’s performance — and this proved correct. Both models operated stably together: **DeepSeek R1** remained optimized for speed, while **Qwen3-Coder** ran stably (albeit slower).
 
 ### Unlocking Qwen3-Coder Tensor-Parallel
 
