@@ -59,7 +59,12 @@ We opted for the **`HostIPC` solution**, which proved stable.
 
 ## Current Status
 
-We now have a **stable, high-speed solution** using **CUDA MPS + SGLang** for both DeepSeek R1 and Qwen3-Coder and SGLang for GPT-OSS-120B as main models.
+We have achieved a **stable, high-performance setup** using **CUDA MPS** combined with **SGLang** for both **DeepSeek R1** and **Qwen3-Coder**, as well as **SGLang** for **GPT-OSS-120B**, which serves as one of our main models.
+
+We conducted several rounds of testing:
+1. **Throughput comparison** — measuring raw inference speed across different models.
+2. **Czech language proficiency** — evaluating performance in Czech, as it’s an important capability for our user base.  
+3. **Coding ability** — benchmarking coding performance using the **Aider benchmark**.
 
 ### Performance Comparison
 
