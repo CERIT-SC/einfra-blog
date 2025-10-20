@@ -12,7 +12,7 @@ draft: true
 
 In [our previous post](https://blog.e-infra.cz/blog/run-llm/), we described how we use the **Ollama** and **vLLM** inference software stacks to run large language models (LLMs) within **e-INFRA CZ**. We explained what’s required to operate LLMs on-premises — including model weights, their formats, and the necessary hardware (GPUs). Most importantly, we shared the lessons we learned from serving these models on our own infrastructure.  
 
-We explored what the KV cache (key-value buffer) is and how it affects memory requirements, how to effectively use multiple GPUs, and why CPUs aren’t ideal for inference. We concluded the post by noting that we successfully ran two models simultaneously on the same GPU set — with the hope that everything would perform smoothly.
+We explored what the KV cache (key-value buffer) is and how it affects memory requirements, how to effectively use multiple GPUs, and why CPUs aren’t ideal for inference. We concluded the post by noting that we successfully ran two models (DeepSeek R1 and Qwen3-Coder) simultaneously on the same GPU set — with the hope that everything would perform smoothly.
 
 ## Part Two — SGLang Enters the Stage
 
