@@ -16,7 +16,7 @@ We explored what the KV cache (key-value buffer) is and how it affects memory re
 
 ## Part Two — SGLang Enters the Stage
 
-Our assumption that DeepSeek R1 and Qwen3-Coder models would not conflict when running in parallel turned out to be incorrect. We observed significant slowdowns, particularly when some users ran continuous benchmarking workloads. Initially, we split the models across GPUs — five for DeepSeek R1 and three for Qwen3-Coder — and executed them in **pipeline-parallel** mode using vLLM. This setup eventually stabilized, but a new issue appeared.
+Our assumption that DeepSeek R1 and Qwen3-Coder models would not conflict when running in parallel turned out to be incorrect. We observed significant slowdowns, particularly when some users ran continuous benchmarking workloads. To speed things up, initially, we split the models across GPUs — five for DeepSeek R1 and three for Qwen3-Coder — and executed them in **pipeline-parallel** mode using vLLM. This setup eventually stabilized, but a new issue appeared.
 
 Pipeline-parallel mode is generally known to be slower than tensor-parallel mode, but in our case, the slowdown was far more severe than expected. Throughput dropped from approximately **60 tokens per second per model** to only **~20 tokens per second per model**.  
 
@@ -28,7 +28,7 @@ While troubleshooting **Qwen3-Coder** failing in tensor-parallel mode, we deploy
 
 - **LLaMA 4 Scout:** 50 → **120 tokens/s**
 - **DeepSeek R1:** stable at **80 tokens/s** (compared to lower throughput on vLLM)
-- **Qwen3-Coder:** stable at **~60 tokens/s**
+- **Qwen3-Coder:** stable rate at **~60 tokens/s** (in tensor-parallel mode, but crashes), rate at **~20 tokens/s** (in pipeline-paralel mode, no crashes)
 
 The performance above reflects **single-request throughput**, meaning the inference API was handling only one request at a time. However, LLM inference systems are typically capable of serving **multiple requests concurrently**, and in such multi-request scenarios, we observed a **significant increase in total throughput**:
 
@@ -38,7 +38,7 @@ Despite these gains, **Qwen3-Coder** continued to crash consistently in **tensor
 
 This prompted an experiment: we ran **DeepSeek R1 in tensor-parallel mode across all 8 GPUs**, while simultaneously running **Qwen3-Coder in pipeline-parallel mode** on the same GPU set.  
 
-Our hypothesis was that Qwen3-Coder’s low GPU utilization would not significantly impact DeepSeek R1’s performance — and this proved correct. Both models operated stably together: **DeepSeek R1** remained optimized for speed, while **Qwen3-Coder** ran stably (albeit slower).
+Our hypothesis was that Qwen3-Coder’s low GPU utilization would not significantly impact DeepSeek R1’s performance — and this proved correct. We achieved stable concurrent operation of both models. The performance of **DeepSeek R1** was fully satisfactory, **Qwen3-Coder** was working fine (no crashes), but its speed could be significantly improved.
 
 ### Unlocking Qwen3-Coder Tensor-Parallel
 
@@ -48,9 +48,9 @@ Surprisingly, this version was stable for Qwen3-Coder even in **tensor-parallel 
 
 ### Enter CUDA MPS
 
-Running two tensor-parallel models on the same GPU set still caused significant slowdowns. The solution: **CUDA MPS (Multi-Process Service)**, which allows multiple processes to access GPUs simultaneously without major performance drops. The caveat: if one process crashes, all processes crash.
+Running two tensor-parallel models on the same GPU set still caused significant slowdowns. The solution is **CUDA MPS (Multi-Process Service)**, which allows multiple processes to access GPUs simultaneously without major performance drops. The caveat: if one process crashes, all processes crash.
 
-Although NVIDIA GPU Operator claims to support CUDA MPS, in practice it does not — so manual setup is required. CUDA MPS relies on shared IPC memory, which conflicts with Kubernetes’ default model of running containers in separate kernel namespaces. We identified two workarounds:
+Our entire setup runs in Kubernetes, with the NVIDIA GPU Operator handling low-level NVIDIA driver management. Although the operator claims to support CUDA MPS, in practice it does not — requiring manual configuration. CUDA MPS depends on shared IPC memory, which conflicts with Kubernetes’ default model of isolating containers in separate kernel namespaces. We identified two potential workarounds:
 
 1. **Sidecar approach**: Run all model instances and the CUDA MPS server within the same Pod. This avoids namespace isolation but introduces port conflicts: sidecars share the Pod’s network namespace so every process must bind to a distinct port — which some routers don’t support, they assume a fixed port (e.g., 8000) for each model.
 2. **`HostIPC` approach**: Deploy models and the MPS server separately, but enable `HostIPC=true` to share the host IPC namespace. This requires privileged containers, but GPU sharing requires elevated permissions anyway.
@@ -110,7 +110,7 @@ Command-A | 12 * |
 Gemma 3 | 4.9 * |
 LLaMA 4 Scout | 4.9 | 20.2
 
-(* Asterisk indicates results taken directly from the Aider leaderboard.)
+(* An asterisk indicates results taken directly from the Aider leaderboard; all others are from our own measurements.)
 
 The GPT‑5 model is included only as a reference point, representing the best performance observed to date. Among the models we actually run, **GPT‑OSS‑120B** offers the most favorable performance‑to‑cost ratio: it can be executed on a single **NVIDIA H100** GPU, whereas **Qwen3‑Coder** requires at least three **B200** GPUs and **DeepSeek‑R1‑0528** needs five. The H100 is roughly half the capacity of a B200, making **GPT‑OSS‑120B** the most economical choice.
 
