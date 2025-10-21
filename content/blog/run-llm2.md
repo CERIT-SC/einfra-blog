@@ -5,7 +5,7 @@ thumbnail: '/img/llm/llm.png'
 description: "How Do We Run LLMs"
 tags: ["Lukáš Hejtmánek", "CERIT-SC", "AI", "LLM"]
 colormode: true
-draft: true
+draft: false
 ---
 
 ## Previously on the e-INFRA Blog ...
