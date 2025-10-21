@@ -292,4 +292,4 @@ Even when idle, vLLM consumes one CPU core per GPU (or per `tensor-parallel-size
 
 ---
 
-Stay tuned for **Chapter 2**, where we'll share detailed **performance evaluations and benchmarks**.
+Stay tuned for [**Chapter 2**](https://blog.e-infra.cz/blog/run-llm2/), where we'll share detailed **performance evaluations and benchmarks**.
