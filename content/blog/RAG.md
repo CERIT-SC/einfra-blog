@@ -25,12 +25,28 @@ Now we introduce our further work, leading to a working chatbot, that can read o
 With llamaindex we were able to link togehter document storage, retrieval and LLM, and connect it with WebUI (https://chat.ai.e-infra.cz/) - TODO factcheck
 It also enables modularity and easy switching between models, parameters or whole pipeline flow.
 ### Answer -> Question
-Llamaindex works in modular "boxes," here we describe the simple, newly implemented pipeline:
-1) 
+Llamaindex works in modular "boxes," that can be reorganized, extended or finetuned. 
+Here we describe the simple, newly implemented pipeline:
 pipeline explanation picture
+
+#### 0) If needed, reload all documents
+All documents are discarded and loaded new using the sitemap (https://docs.cerit.io/en/sitemap). Then, documents are splitted to smaller chunks by MarkdownSplitter, which takes into account markdown headings - the chunks are divided into logical parts, not just by number of tokens, and are not divided in the middle of a sentence. These chunks are embedded (converted to vectors) and saved into an OpenSeach database along with metadata like filename, url, language etc.
+#### 1) Detect language (czech/english)
+Using langdetect library, this simply adds a tag `cs` or `en` to user's query. Since then, everything is language-specific.
+#### 2) Refine question for synthesizer
+Answers are much better when we have longer and specific question. If the user is very brief, another LLM tries to "guess" the intention and rewrite the query to be more consise.
+#### 3a) Refine question for retrieval
+In order to improve retrieval, another LLM generates possible keywords to improve search. For example, to query `` are added these: ``. TODO add examples
+#### 3) Retrieve context 
+Choose top 5 most relevant documents to user's query. 
+#### 4) Synthesize answer
+Finally, an answer is generated based on system prompt, refined query for synthesis and retrieved context.
+#### 5) Cite sources
+To that final answers we manually add markdown links to sources of provided context.
+
 ## Evaluation (How do we know the answers improved?)
 [Previously](https://blog.cerit.io/blog/embedders/#testing-methodology), we evaluated only retrieval. Now it was time to improve chatbot's answers alone. But how?
-LLM-as-a-judge
+concept of LLM-as-a-judge (https://docs.evidentlyai.com/metrics/customize_llm_judge)
 ## Results
 screenshots, where to find and try it
 ## Future improvements
