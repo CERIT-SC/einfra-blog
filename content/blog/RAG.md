@@ -12,7 +12,7 @@ We created a new chatbot that can use cerit-sc documentation for answering quest
 picture of example conversation
 
 ## Previous work
-In [this](https://blog.cerit.io/blog/embedders/) article, we introduced testing of different embedders for retrieval (find relevant document to a given query). Our conclusions were:
+In [this article](https://blog.cerit.io/blog/embedders/), we introduced testing of different embedders for retrieval (find relevant document to a given query). Our conclusions were:
 - longer, more specific questions helped with finding the right documents
 - which embedders are suitable for our purposes (language, cost)
 - when language detection improves retrieval results
@@ -20,7 +20,7 @@ In [this](https://blog.cerit.io/blog/embedders/) article, we introduced testing 
 Now we introduce our further work, leading to a working chatbot, that can read our documentation before answering, and therefore give more context-aware and precise reponses.
 ## How does it work?
 ### Llamaindex library
-[LlamaIndex](https://www.llamaindex.ai/) is an open-source framework that helps build LLM applications by simplifying how data is organized and used in Retrieval-Augmented Generation (RAG) systems. With llamaindex we were able to link together document storage, retrieval and LLM, and connect it with WebUI (https://chat.ai.e-infra.cz/) - TODO factcheck
+[LlamaIndex](https://www.llamaindex.ai/) is an open-source framework that helps build LLM applications by simplifying how data is organized and used in Retrieval-Augmented Generation (RAG) systems. With llamaindex we were able to link together document storage, retrieval and LLM, and connect it with WebUI (https://chat.ai.e-infra.cz/) - **TODO** factcheck
 
 
 It also enables modularity and easy switching between models, parameters and whole pipeline flow.
@@ -69,8 +69,18 @@ We used the same questions dataset like [before](https://blog.cerit.io/blog/embe
 We compared our newly created pipeline with Jarvis - former chatbot that was used for searching in the documentation, but which did not work well.
 In this graph, 
 graph comparison
+**TODO**
 ## Want to try it?
-screenshots, where to find and try it
+**TODO **screenshots, where to find and try it
 
-## Future improvements
-experiment with boxes, multiple retrieval, add history... work with real user's questions (conversation histories)
+## What next?
+This is just the beginning. To continue, we can change and possibly improve the pipeline in many ways:
+- switch LLMs (e. g. gpt-4.1 instead of current llama-4-scout-17b-16e-instruct)
+- switch embedder (currently qwen3-embedding-4b)
+- experiment with order of steps in the pipelie
+- experiment with retrieval weights and algorithms
+- add chat history
+- add user tags (expert/beginner) to personalize the expertise level
+
+Finally, when the chatbot is implemented, we can work with real data and react on actual users' questions.
+
