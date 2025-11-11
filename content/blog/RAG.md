@@ -27,7 +27,7 @@ Below the diagram, we describe the newly implemented pipeline step by step.
 <img width="1280" height="720" alt="RAG_schema" src="https://github.com/user-attachments/assets/a084ae26-f433-46f6-a2a0-f2f53e48b2c9" />
 
 ### (Re)Load all documents
-All documents are discarded and loaded new using the sitemap of e-infra documentation (https://docs.cerit.io/en/sitemap). Then, documents are splitted to smaller chunks by MarkdownSplitter, which takes into account markdown headings - the docs are divided into logical parts, which avoids cutting the document in the middle of a compact part. If the resulting pieces are too big, sentence split is used. These chunks are embedded (converted to vectors) and saved into an OpenSeach database along with raw text and metadata like filename, url, language etc.
+All documents are discarded and loaded new using the sitemap of e-infra documentation (https://docs.cerit.io/en/sitemap). Then, documents are splitted to smaller chunks by MarkdownSplitter, which takes into account markdown headings - the docs are divided into logical parts, which avoids cutting the document in the middle of a compact part. If the resulting pieces are too big, sentence split is used. These chunks are embedded (converted to vectors) and saved into an OpenSeach database along with raw text and metadata like filename, url, language etc. Chunk length is also a tunable parameter
 ### Detect language (czech/english)
 Using the langdetect library, this simply adds a tag `cs` or `en` to user's query. From that point on, everything (system prompts, retrieval) becomes language-specific. Why is this important? Imagine the question is in Czech and the context is in English — the LLM would then be confused about which language to use for the answer, and might even mix them together.
 
@@ -71,13 +71,6 @@ provide at least partial information based on the context, and answer "I don't k
 ### Cite sources
 To the end of generated answer we manually add markdown links to sources of provided context, so the user can check the documentation on his/her own. It is better than relying on chatbot, because in the links cannot be any typo and in some cases the chatbot made up non-existing links.
 
-### Modularity
-The final answer can be influenced in many ways, by changing for example:
-- LLM temperature - the lower the temperature, the more predictable the model is. High temperature enables more "creativity"
-- Synthesis system prompt - how to combine the question and context and how to answer
-- Refining system prompt - whether and how to improve user's question
-- Chunk length - embed whole document or document's parts separately - also depends on the embedding model, and influences the retireval
-
 ## Evaluation (How do we know the answers improved?)
 ### Methodology
 [Previously](https://blog.cerit.io/blog/embedders/#testing-methodology), we evaluated only retrieval. Now it was time to improve chatbot's answers alone. But how? Turns out that chatbot not only generates answers, but is also quite good at evaluating text quality. It is easier to critique than create - this is valid for humans and for chatbots as well. Therefore, we can ask LLM to assess another LLM's answer. This was implemented with help of [Evidently library](https://docs.evidentlyai.com/metrics/customize_llm_judge) - see the illustration table below.
@@ -91,13 +84,34 @@ We used the same questions dataset like [before](https://blog.cerit.io/blog/embe
 | 4     | omero web ingress konfigurace      |  omero docker options       |
 
 ### Metrics
-Which metrics to choose? For us, the most important is avoiding hallucination and don't omit any important information provided in the documentation, and to answer in the same language like question asked.
-In Evidently, there are methods achieving exactly that: FaithfulnessLLMEval() and CompletenessLLMEval
-
-
+For us, the most important is avoiding hallucination and don't omit any important information provided in the documentation, and to answer in the same language like question asked.
+In Evidently, there are methods implementing this:
+```
+An unfaithful RESPONSE is any RESPONSE that:                                                                        
+- Contradicts the information provided in the SOURCE.                                                               
+- Adds new information that is not present in the SOURCE.                                                           
+- Provides a RESPONSE that is not grounded in the SOURCE, unless it is a refusal to answer or a clarifying question.
+                                                                                                                    
+A faithful RESPONSE is a RESPONSE that:                                                                             
+- Accurately uses information from the SOURCE, even if only partially.                                              
+- Declines to answer when the SOURCE does not provide enough information.                                           
+- Asks a clarifying question when needed instead of making unsupported assumptions.                                 
+```
+```
+An OUTPUT is complete if:                                                                              
+- It includes all relevant facts and details from the SOURCE.                                          
+- It does not omit key information necessary for a full understanding of the response.                 
+- It preserves the structure and intent of the SOURCE while ensuring all critical elements are covered.
+                                                                                                       
+An OUTPUT is incomplete if:                                                                            
+- It is missing key facts or details present in the SOURCE.                                            
+- It omits context that is necessary for a full and accurate response.                                 
+- It shortens or summarizes the SOURCE in a way that leads to loss of essential information.           
+```
+We also added custom metrics 
 ### Results
 We compared our newly created pipeline with Jarvis - former chatbot that was used for searching in the documentation, but which did not work well - for example, it had only english documentation available, answered partially or sometimes hallucinated.
-In this graph, we can see the overall percentage of questions (both languages, all versions) that were complete/incomplete and faithful/unfaithful. There is huge improvement. However, we need to have in mind that this evaluation is still stochastic, and that there was LLM behind these conclusions.
+In this graph, we can see the overall percentage of questions (both languages, all versions) that were complete/incomplete and faithful/unfaithful. There is huge improvement. However, we need to have in mind that this evaluation is still stochastic, and that there was an LLM behind these conclusions.
 
 
 <img width="3647" height="1137" alt="overall_ideal_combination" src="https://github.com/user-attachments/assets/8061cec6-6551-4e81-9e2c-22cae709166b" />
@@ -113,18 +127,18 @@ By now (11.11.2025), the chatbot is implemented under the name "pipeline" at (ht
 <img width="1295" height="640" alt="screenshot" src="https://github.com/user-attachments/assets/f51b2b6d-40c0-4dfd-b8ae-a3a053ad9fa8" />
 
 ## Conclusion
-
+The new chatbot significantly improves how users interact with CERIT-SC documentation. By combining language detection, refined retrieval, and context-aware answer generation, it provides more accurate, complete, and language-aligned responses than the previous version. The modular LlamaIndex-based design allows easy tuning and future extensions, laying a solid foundation for continued development of smarter, more helpful documentation assistants.
 
 ## What next?
 This is just the beginning. To continue, we can change and possibly improve the pipeline in many ways like:
+- **add chat history**
+- make the chatbot ask additional question (Do you mean rather X or Y? Should I focus on Z?) before running the retrieval
+- iteratively improve chabot's answers
+- add user tags (expert/beginner) to personalize the expertise level
 - switch LLMs (e. g. gpt-4.1 instead of current llama-4-scout-17b-16e-instruct)
 - switch embedder (currently qwen3-embedding-4b)
 - experiment with order of steps in the pipeline
 - experiment with retrieval weights and algorithms
-- make the chatbot ask additional question (Do you mean rather X or Y? Should I focus on Z?) before running the retrieval
-- add chat history
-- iteratively improve chabot's answers
-- add user tags (expert/beginner) to personalize the expertise level
 
 Finally, when the chatbot is implemented, we can work with real data and react on actual users' questions.
 
