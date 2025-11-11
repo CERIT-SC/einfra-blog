@@ -18,28 +18,57 @@ In [this article](https://blog.cerit.io/blog/embedders/), we introduced testing 
 - when language detection improves retrieval results
 
 Now we introduce our further work, leading to a working chatbot, that can read our documentation before answering, and therefore give more context-aware and precise reponses.
-## How does it work?
-### Llamaindex library
-[LlamaIndex](https://www.llamaindex.ai/) is an open-source framework that helps build LLM applications by simplifying how data is organized and used in Retrieval-Augmented Generation (RAG) systems.
-It also enables modularity and easy switching between models, parameters and whole pipeline flow.
-### Behind the scenes: From question to answer
-When the user types in the query, it is further processed, enhanced and used to search. In the end, the chatbot answers. The user is happy.
-Under the diagram, we describe the newly implemented pipeline step by step.
+## Behind the scenes: from question to answer
+The core is implemented in [LlamaIndex](https://www.llamaindex.ai/), which is an open-source framework that helps build LLM applications by simplifying how data is organized and used in Retrieval-Augmented Generation (RAG) systems. Llamaindex works in modular "boxes," that can be reorganized, extended or finetuned - that is great, as it will enable and simplify future extension or modification, like switching between models, changing parameters and whole pipeline flow.
+
+
+When the user types in the query, it is further processed, enhanced and used for retrieval in the documentation. In the end, the chatbot answers. The user is happy.
+Below the diagram, we describe the newly implemented pipeline step by step.
 <img width="1280" height="720" alt="RAG_schema" src="https://github.com/user-attachments/assets/a084ae26-f433-46f6-a2a0-f2f53e48b2c9" />
 
-#### (Re)Load all documents
-All documents are discarded and loaded new using the sitemap of e-infra documentation (https://docs.cerit.io/en/sitemap). Then, documents are splitted to smaller chunks by MarkdownSplitter, which takes into account markdown headings - the docs are divided into logical parts, not just by number of tokens, which can cut the document in the middle of a sentence. If the resulting pieces are too big, Sentence split is used. These chunks are embedded (converted to vectors) and saved into an OpenSeach database along with metadata like filename, url, language etc.
-#### Detect language (czech/english)
-Using langdetect library, this simply adds a tag `cs` or `en` to user's query. From that point on, everything (system prompts, retrieval) becomes language-specific. Why is this important? Imagine the question is in Czech and the context is in English — the LLM would then be confused about which language to use for the answer, and might even mix them together.
-#### Refine question for synthesizer
-Answers are much better when we have longer and specific question. If the user is very brief, another LLM tries to "guess" the intention and rewrite the query to be more consise.
-#### Refine question for retrieval
-In order to improve retrieval, another LLM generates possible keywords to improve the lexical part of the search. 
-#### Retrieve context 
-Choose top 5 most relevant documents to user's query. During our testing, usually only one or two most relevant documents were retrieved. This is good, as the chatbot is less likely to hallucinate, than if more context was retrieved. We use hybrid search, which combines results from lexical retrieval (keyword, BM25), and from vector retrieval (KNN search usi)
-#### Synthesize answer
-Finally, an answer is generated based on system prompt, refined query for synthesis and retrieved context.
-#### Cite sources
+### (Re)Load all documents
+All documents are discarded and loaded new using the sitemap of e-infra documentation (https://docs.cerit.io/en/sitemap). Then, documents are splitted to smaller chunks by MarkdownSplitter, which takes into account markdown headings - the docs are divided into logical parts, which avoids cutting the document in the middle of a compact part. If the resulting pieces are too big, sentence split is used. These chunks are embedded (converted to vectors) and saved into an OpenSeach database along with raw text and metadata like filename, url, language etc.
+### Detect language (czech/english)
+Using the langdetect library, this simply adds a tag `cs` or `en` to user's query. From that point on, everything (system prompts, retrieval) becomes language-specific. Why is this important? Imagine the question is in Czech and the context is in English — the LLM would then be confused about which language to use for the answer, and might even mix them together.
+
+### Refine question for retrieval
+In order to improve the retrieval, another LLM generates possible keywords to improve the lexical part of the search. The output can be balanced by setting LLM temperature - the lower the temperature, the more predictable the model is. High temperature enables more "creativity," which in this case is not desirable. Refining means contacting another LLM with something like this: 
+```
+Generate keywords that can help finding relevant documents for the question. Omit phrases like "Here is your question".
+Return only this format and nothing more: Question, keyword1, keyword2."""
+```
+### Retrieve context 
+Choose top 5 most relevant documents to user's query. During our testing, usually only one or two most relevant documents were retrieved. This is good, as the chatbot is less likely to hallucinate, than if more context was retrieved. We use hybrid search, which combines results from lexical retrieval (keyword, BM25), and from vector retrieval (KNN search). The weighted importance of keyword/vector can be set.
+### Refine question for synthesizer
+Answers are much better when we have longer and specific question. If the user is very brief, another LLM tries to "guess" the intention and rewrite the query to be more consise. Low-temperature LLM gets instructions:
+```
+Rewrite, don’t answer.
+If pronouns are used, replace them with explicit entities if implied by the question.
+Do not add any intentions; only rephrase for clarity.
+If the question is already clear, return it unchanged.
+Return only the rewritten question and nothing else. No prefix or any suffix."""
+```
+### Synthesize answer
+Finally, an answer is generated based on refined query for synthesis, retrieved context and system prompt:
+```
+You are a question-answering assistant, providing answers about documentation of einfra.cz organization.
+Answer the QUESTION below using the information provided parts of the DOCUMENTATION.
+Rules:
+• If the QUESTION cannot be answered without providing false information or non-existent sources, 
+provide at least partial information based on the context, and answer "I don't know" for the rest.
+• If any part of the DOCUMENTATION is irrelevant to the QUESTION, use only the relevant parts.
+• Respond in a way that is useful and informative to the user. Be concise and clear. Provide details and argue your answer when appropriate.
+• If the question is basic, assume the user has no prior knowledge and explain concepts simply.
+• Preserve numbers, units, names and dates exactly as they appear in DOCUMENTATION.
+<DOCUMENTATION>
+{context_str}
+</DOCUMENTATION>
+
+<QUESTION>
+{query_str}
+</QUESTION>
+```
+### Cite sources
 To the end of generated answer we manually add markdown links to sources of provided context, so the user can check the documentation on his/her own. It is better than relying on chatbot, because in the links cannot be any typo and in some cases the chatbot made up non-existing links.
 
 ### Modularity
@@ -47,15 +76,7 @@ The final answer can be influenced in many ways, by changing for example:
 - LLM temperature - the lower the temperature, the more predictable the model is. High temperature enables more "creativity"
 - Synthesis system prompt - how to combine the question and context and how to answer
 - Refining system prompt - whether and how to improve user's question
-- weights of hybrid search - rely more on BM25 (keywords) or on vector search
 - Chunk length - embed whole document or document's parts separately - also depends on the embedding model, and influences the retireval
-
-
-Llamaindex works in modular "boxes," that can be reorganized, extended or finetuned. 
-This will allow us in the future to do many things, for instance:
-- work with chat history,
-- iteratively improve chabot's answers,
-- add grammar check and more
 
 ## Evaluation (How do we know the answers improved?)
 ### Methodology
@@ -69,34 +90,40 @@ We used the same questions dataset like [before](https://blog.cerit.io/blog/embe
 | 3     | Co dělat, když je databáze pomalá při zpracování zátěže?      |  Postgres random password vs explicit password?       |
 | 4     | omero web ingress konfigurace      |  omero docker options       |
 
-#### Metrics
+### Metrics
 Which metrics to choose? For us, the most important is avoiding hallucination and don't omit any important information provided in the documentation, and to answer in the same language like question asked.
 In Evidently, there are methods achieving exactly that: FaithfulnessLLMEval() and CompletenessLLMEval
 
 
 ### Results
 We compared our newly created pipeline with Jarvis - former chatbot that was used for searching in the documentation, but which did not work well - for example, it had only english documentation available, answered partially or sometimes hallucinated.
-In this graph, we can see the overall percentage of questions (both languages, all versions) that were complete/incomplete and faithful/unfaithful. There is huge improvement.
+In this graph, we can see the overall percentage of questions (both languages, all versions) that were complete/incomplete and faithful/unfaithful. There is huge improvement. However, we need to have in mind that this evaluation is still stochastic, and that there was LLM behind these conclusions.
 
 
 <img width="3647" height="1137" alt="overall_ideal_combination" src="https://github.com/user-attachments/assets/8061cec6-6551-4e81-9e2c-22cae709166b" />
 
-Our new chatbot is also much better in language aligment: in 97 % of cases it responds in the same language like the question asked, which is both convenient for the user and furhter hepful when working with chat history.
-<img width="1804" height="1135" alt="lang_match" src="https://github.com/user-attachments/assets/3d6958db-ef30-4eff-9404-f3c57ad8150a" />
-Retriveal was also improved a lot, probably because of the new keywords added and better chunking strategy.
-<img width="1793" height="1128" alt="retrieval" src="https://github.com/user-attachments/assets/dc067a21-e020-4bd4-9509-ba34568c4cf3" />
+
+
+**Retriveal** was improved a lot with Mean Reciprocal Rank reaching to 100 % in our test data, probably because of the new keywords added and better chunking strategy. Our new chatbot is also much better in **language aligment**: in 97 % of cases it responds in the same language like the question asked, which is both convenient for the user and possibly hepful if working with chat history. 
+<img width="3633" height="1118" alt="retrieval_lang_combined" src="https://github.com/user-attachments/assets/716c3d76-440c-480a-a414-c3ee86acf7d3" />
+
 
 ## Want to try it?
-**TODO **screenshots, where to find and try it
+By now (11.11.2025), the chatbot is implemented under the name "pipeline" at (https://chat-dev.ai.e-infra.cz/), where you can try it.
+<img width="1295" height="640" alt="screenshot" src="https://github.com/user-attachments/assets/f51b2b6d-40c0-4dfd-b8ae-a3a053ad9fa8" />
+
+## Conclusion
+
 
 ## What next?
-This is just the beginning. To continue, we can change and possibly improve the pipeline in many ways:
+This is just the beginning. To continue, we can change and possibly improve the pipeline in many ways like:
 - switch LLMs (e. g. gpt-4.1 instead of current llama-4-scout-17b-16e-instruct)
 - switch embedder (currently qwen3-embedding-4b)
 - experiment with order of steps in the pipeline
 - experiment with retrieval weights and algorithms
-- make the chatbot ask additional question (Do you mean rather X or Y? Should I focus on Z?) before running the retrieval.
+- make the chatbot ask additional question (Do you mean rather X or Y? Should I focus on Z?) before running the retrieval
 - add chat history
+- iteratively improve chabot's answers
 - add user tags (expert/beginner) to personalize the expertise level
 
 Finally, when the chatbot is implemented, we can work with real data and react on actual users' questions.
