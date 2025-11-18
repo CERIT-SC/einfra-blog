@@ -73,7 +73,7 @@ provide at least partial information based on the context, and answer "I don't k
 ### Cite sources
 To the end of generated answer we manually add markdown links to sources of provided context, so the user can check the documentation on his/her own. It is better than relying on chatbot, because in the links cannot be any typo and in some cases the chatbot made up non-existing links.
 
-## Evaluation (How do we know the answers improved?)
+## How do we evaluate the answers?
 ### Methodology
 [Previously](https://blog.cerit.io/blog/embedders/#testing-methodology), we evaluated only retrieval. Now it was time to improve chatbot's answers alone. But how? Turns out that chatbot not only generates answers, but is also quite good at evaluating text quality. It is easier to critique than create - this is valid for humans and for chatbots as well. Therefore, we can **ask LLM to assess another LLM's answer**. 
 
@@ -115,6 +115,9 @@ An OUTPUT is incomplete if:
 - It shortens or summarizes the SOURCE in a way that leads to loss of essential information.           
 ```
 We also added custom metrics for language match, using again the landetect library.
+
+Each answer was labeled complete/incomplete, faithful/unfaithful and same language/different language. For each combination we measured 
+
 ### Results
 We compared our newly created pipeline with Jarvis - former chatbot that was used for searching in the documentation, but which did not work well - for example, it had only english documentation available, answered partially or sometimes hallucinated.
 In this graph, we can see the overall percentage of questions (both languages, all versions) that were complete/incomplete and faithful/unfaithful. There is huge improvement. However, we need to have in mind that this evaluation is still stochastic, and that there was an LLM behind these conclusions.
