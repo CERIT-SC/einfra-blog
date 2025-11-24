@@ -1,56 +1,51 @@
 ---
 date: '2025-10-08T12:26:32Z'
-title: 'Galaxy TESP-API'
+title: 'TESP-API: Enabling Standardized Task Execution in e-Infrastructur'
 thumbnail: '/img/tesp-api/pulsar.png'
 author: "Boris Jurič"
-description: "Bridging Galaxy, Pulsar, and the GA4GH TES Standard"
+description: "Enabling Standardized Task Execution in e-Infrastructure"
 tags: ["Boris Jurič", "CERIT-SC", "CESNET", "TESP-API", "Galaxy"]
 colormode: true
 draft: false
 ---
 
-# TESP-API: Bridging Galaxy, Pulsar, and the GA4GH TES Standard
+# CESNET introduces TESP-API — a lightweight microservice implementing the GA4GH Task Execution Service (TES) standard, bridging scientific platforms with distributed compute resources
 
-*Introducing TESP — a microservice connecting Galaxy and Pulsar through the GA4GH Task Execution Service (TES) interface, enabling standardized and efficient job execution across distributed environments.*
 
-The Galaxy Project thrives on interoperability — connecting tools, data, and compute resources seamlessly. To extend this philosophy to broader research infrastructures, we’ve been developing TESP-API, a service that implements the GA4GH Task Execution Service (TES) standard and acts as a bridge between Galaxy, Pulsar, and the wider TES ecosystem.
+The ability to submit and manage computing tasks across different environments is essential for modern e-infrastructure. The **GA4GH Task Execution Service (TES)** defines a standard interface for doing exactly this, ensuring that diverse workflow systems can interoperate with shared computational backends.
 
-My name is Boris Jurič, and I’ve been working on TESP-API at CESNET as part of our ongoing effort to enhance Galaxy’s integration with national and international compute infrastructures. The project is available at [Galaxy TESP-API repository: https://github.com/CESNET/tesp-api](https://github.com/CESNET/tesp-api).
+To bring this standard into real use, **CESNET** has developed **TESP-API** — a standalone microservice that translates TES requests into executable tasks for **Pulsar**, a distributed job execution system widely used in the Galaxy Project ecosystem.  
+The source code is available at [github.com/CESNET/tesp-api](https://github.com/CESNET/tesp-api)
+
+
 
 {{< image src="/img/tesp-api/tesp_diagram.png" class="rounded" wrapper="text-center w-40" >}}
 
-## What is TESP-API?
 
-The TESP API is a RESTful interface specification that enables Galaxy to delegate tool execution to external services while maintaining consistent job management capabilities. This new API builds upon lessons learned from previous integration approaches and provides a more robust framework for connecting Galaxy with specialized computational resources.
+## How TESP Works
 
-TESP is a lightweight microservice that translates TES-compliant job submissions into Pulsar tasks. It exposes a REST API following the GA4GH TES specification, allowing Galaxy and other TES clients to submit jobs to remote compute resources in a standardized way.
+TESP-API implements the GA4GH TES specification and acts as a bridge between TES clients and computational backends.  
+When a task is submitted, TESP generates the corresponding **Pulsar execution commands**, manages job staging, and delegates file transfers directly to the compute node.  
+This **direct storage–worker–storage** approach avoids unnecessary data hops, improving performance and reliability.  
+TESP currently supports **HTTP, FTP, and S3** transfer protocols.
 
-A key feature of TESP is direct data staging — input and output files move end-to-end between storage and compute nodes, bypassing intermediaries like Galaxy, TESP, or Pulsar itself. This design minimizes data transfers, improves performance, and aligns with Galaxy’s distributed compute model. TESP currently supports HTTP, FTP, and S3 data transfers.
+## Deployment and Use
 
+TESP can be deployed via Docker Compose in two configurations:
+- **Self-contained mode** – runs both TESP and a Pulsar instance, suitable for testing or local development.  
+- **Standalone mode** – connects to an existing Pulsar service, ideal for integration into production systems.
 
-
-## Deployment and Integration
-
-TESP can be deployed via Docker Compose in two modes:
-
- - Embedded mode – runs both TESP and a Pulsar instance, suitable for local testing and development.
- - Standalone mode – connects to an existing Pulsar service, ideal for production or hybrid setups.
-
-At usegalaxy.cz, operated by CESNET, TESP is already running in proof-of-concept conditions. Galaxy submits TES jobs to TESP, which manages their execution through Pulsar. Although it currently handles selected workloads, TESP is being actively optimized toward full production integration.
-
-
-## Benefits for the Community
-
-The TESP API enables:
-- Easier integration of specialized computational resources
-- Better resource utilization across distributed infrastructures
-- Simplified development of tool execution backends
-- Improved scalability for large-scale analyses
-
-
+At **usegalaxy.cz**, the national Galaxy instance operated by **CESNET**, TESP-API is already used for selected workloads under production-like conditions.  
+This demonstrates its ability to integrate distributed data storage, computing nodes, and user-facing platforms in a unified, standards-based workflow.
 
 ## Outlook
 
-TESP-API is a practical bridge that enables another set of real scientific workloads on Galaxy–Pulsar infrastructures. It helps Galaxy to be a more connected and interoperable platform — one step closer to a unified compute ecosystem across research infrastructures. You can follow the project or contribute at [Galaxy TESP-API repository](https://github.com/CESNET/tesp-api).
+TESP-API shows how open standards such as GA4GH TES can be turned into **practical, deployable services** within national and international research e-infrastructures.  
+By connecting high-level scientific environments like Galaxy to underlying compute and storage resources, TESP helps move toward **fully interoperable, production-ready distributed computing**.
+
+---
+
+**TESP-API** is an evolving component of CESNET’s infrastructure toolkit — bridging research workflows, compute resources, and data services through open, standardized interfaces.
+
 
 
