@@ -1,7 +1,7 @@
 ---
 date: '2025-10-19T22:00:00Z'
 title: 'Documentaion chatbot'
-thumbnail: '/img/documentation-chatbot/diagram.png'
+thumbnail: '/img/chatbot/diagram.png'
 description: "New chatbot that answers based on cerit-sc documentation"
 tags: ["Šárka Blaško", "CERIT-SC", "AI", "RAG"]
 colormode: true
@@ -25,7 +25,7 @@ The core is implemented in [LlamaIndex](https://www.llamaindex.ai/), which is an
 When the user types in the query, it is further processed, enhanced and used for retrieval in the documentation. In the end, the chatbot answers. The user is happy.
 Below the diagram, we describe the newly implemented pipeline step by step.
 <img width="1280" height="720" alt="RAG_schema" src="https://github.com/user-attachments/assets/a084ae26-f433-46f6-a2a0-f2f53e48b2c9" />
-{{< image src="/img/documentation-chatbot/diagram.png" class="rounded w-60" wrapper="text-center" >}}
+{{< image src="/img/chatbot/diagram.png" class="rounded w-60" wrapper="text-center" >}}
 
 
 ### (Re)Load all documents
@@ -79,7 +79,7 @@ To the end of generated answer we manually add markdown links to sources of prov
 
 We implemented this by using Evidently AI library. Check [their blog](https://www.evidentlyai.com/llm-guide/llm-as-a-judge) for more info about the concept of LLM judge.
 <img width="1919" height="1080" alt="llm-as-a-judge-illustration" src="https://github.com/user-attachments/assets/0798b983-12c3-4f74-a44c-f631b3a01442" />
-{{< image src="/img/documentation-chatbot/llm-as-a-judge-illustration.png" class="rounded w-60" wrapper="text-center" >}}
+{{< image src="/img/chatbot/llm-as-a-judge-illustration.png" class="rounded w-60" wrapper="text-center" >}}
 
 We used the same custom-made questions dataset like [before](https://blog.cerit.io/blog/embedders/#testing-datasets), containing 4 types of variously complete questions in czech and english. Each question was generated based on one ground truth document - so we could evaluate the retrieval.
 | Variant | Czech | English |
@@ -123,16 +123,21 @@ We compared our newly created pipeline with Jarvis - former chatbot that was use
 In this graph, we can see the overall percentage of questions (both languages, all versions) that were complete/incomplete and faithful/unfaithful. There is huge improvement. However, we need to have in mind that this evaluation is still stochastic, and that there was an LLM behind these conclusions.
 
 <img width="3647" height="1137" alt="overall_ideal_combination" src="https://github.com/user-attachments/assets/8061cec6-6551-4e81-9e2c-22cae709166b" />
-{{< image src="/img/documentation-chatbot/overall_ideal_combination.png class="rounded w-60" wrapper="text-center" >}}
+{{< image src="/img/chatbot/overall_ideal_combination.png class="rounded w-60" wrapper="text-center" >}}
 
 However, when checking the results in detail, we see that this "improvement" is caused only by incompelte czech questions. This means our solution improved the result a lot in terms of this type of questions, and is comparable to original Jarvis in the rest of usecases. 
 <img width="3667" height="1140" alt="czech-4-combined" src="https://github.com/user-attachments/assets/f970f72e-e318-4363-b0dc-724016a74a7d" />
-{{< image src="/img/documentation-chatbot/czech-4-combined.png class="rounded w-60" wrapper="text-center" >}}
+{{< image src="/img/chatbot/czech-4-combined.png class="rounded w-60" wrapper="text-center" >}}
 
 
 **Retriveal** was improved a lot with Mean Reciprocal Rank reaching to 100 % in our test data, probably because of the new keywords added and better chunking strategy. Our new chatbot is also much better in **language aligment**: in 97 % of cases it responds in the same language like the question asked, which is both convenient for the user and possibly hepful if working with chat history. 
 <img width="3633" height="1118" alt="retrieval_lang_combined" src="https://github.com/user-attachments/assets/716c3d76-440c-480a-a414-c3ee86acf7d3" />
-{{< image src="/img/documentation-chatbot/retrieval_lang_combined.png" class="rounded w-60" wrapper="text-center" >}}
+{{< image src="/img/chatbot/retrieval_lang_combined.png" class="rounded w-60" wrapper="text-center" >}}
+
+## Want to try it?
+By now (24.11.2025), the chatbot is implemented under the name "pipeline" at (https://chat-dev.ai.e-infra.cz/), where you can try it. It will soon be directly in the documentation at (https://docs.cerit.io/)
+<img width="1295" height="640" alt="screenshot" src="https://github.com/user-attachments/assets/f51b2b6d-40c0-4dfd-b8ae-a3a053ad9fa8" />
+{{< image src="/img/chatbot/screenshot.png" class="rounded w-60" wrapper="text-center" >}}
 
 ## Conclusion
 The new chatbot significantly improves how users interact with CERIT-SC documentation. By combining language detection, refined retrieval, and context-aware answer generation, it provides more accurate, complete, and language-aligned responses than the previous version. Because it’s built with separate LlamaIndex parts, we can fine‑tune it or add new functions quickly, setting a strong base for future improvements.
