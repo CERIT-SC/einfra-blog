@@ -1,6 +1,6 @@
 ---
 date: '2025-10-08T12:26:32Z'
-title: 'TESP-API: Enabling Standardized Task Execution in e-Infrastructur'
+title: 'Galaxy TESP-API'
 thumbnail: '/img/tesp-api/pulsar.png'
 author: "Boris Jurič"
 description: "Enabling Standardized Task Execution in e-Infrastructure"
