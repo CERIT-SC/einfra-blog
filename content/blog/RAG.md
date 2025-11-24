@@ -3,7 +3,7 @@ date: '2025-10-19T22:00:00Z'
 title: 'Documentaion chatbot'
 thumbnail: '/img/documentation-chatbot/diagram.png'
 description: "New chatbot that answers based on cerit-sc documentation"
-tags: ["Šárka Blaško","Kristián Kováč", "CERIT-SC", "AI", "RAG"]
+tags: ["Šárka Blaško", "CERIT-SC", "AI", "RAG"]
 colormode: true
 draft: true
 ---
@@ -133,14 +133,6 @@ However, when checking the results in detail, we see that this "improvement" is 
 **Retriveal** was improved a lot with Mean Reciprocal Rank reaching to 100 % in our test data, probably because of the new keywords added and better chunking strategy. Our new chatbot is also much better in **language aligment**: in 97 % of cases it responds in the same language like the question asked, which is both convenient for the user and possibly hepful if working with chat history. 
 <img width="3633" height="1118" alt="retrieval_lang_combined" src="https://github.com/user-attachments/assets/716c3d76-440c-480a-a414-c3ee86acf7d3" />
 {{< image src="/img/documentation-chatbot/retrieval_lang_combined.png" class="rounded w-60" wrapper="text-center" >}}
-
-
-## Want to try it?
-By now (11.11.2025), the chatbot is implemented under the name "pipeline" at (https://chat-dev.ai.e-infra.cz/), where you can try it.
-<img width="1295" height="640" alt="screenshot" src="https://github.com/user-attachments/assets/f51b2b6d-40c0-4dfd-b8ae-a3a053ad9fa8" />
-{{< image src="/img/documentation-chatbot/screenshot.png" class="rounded w-60" wrapper="text-center" >}}
-
-TODO
 
 ## Conclusion
 The new chatbot significantly improves how users interact with CERIT-SC documentation. By combining language detection, refined retrieval, and context-aware answer generation, it provides more accurate, complete, and language-aligned responses than the previous version. Because it’s built with separate LlamaIndex parts, we can fine‑tune it or add new functions quickly, setting a strong base for future improvements.
