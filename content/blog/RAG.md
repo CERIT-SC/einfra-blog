@@ -1,5 +1,5 @@
 ---
-date: '2025-10-19T22:00:00Z'
+date: '2025-11-27T12:00:00Z'
 title: 'Documentaion chatbot'
 thumbnail: '/img/chatbot/RAG_schema.png'
 description: "New chatbot that answers based on CERIT-SC documentation"
