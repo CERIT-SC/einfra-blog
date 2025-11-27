@@ -1,7 +1,7 @@
 ---
 date: '2025-10-19T22:00:00Z'
 title: 'Documentaion chatbot'
-thumbnail: '/img/chatbot/diagram.png'
+thumbnail: '/img/chatbot/RAG_schema.png'
 description: "New chatbot that answers based on CERIT-SC documentation"
 tags: ["Šárka Blaško", "CERIT-SC", "AI", "RAG"]
 colormode: true
@@ -24,8 +24,7 @@ The core is implemented in [LlamaIndex](https://www.llamaindex.ai/), which is an
 
 When the user types in the query, it is further processed, enhanced and used for retrieval in the documentation. In the end, the chatbot answers. The user is happy.
 Below the diagram, we describe the newly implemented pipeline step by step.
-<img width="1280" height="720" alt="RAG_schema" src="https://github.com/user-attachments/assets/a084ae26-f433-46f6-a2a0-f2f53e48b2c9" />
-{{< image src="/img/chatbot/diagram.png" class="rounded w-60" wrapper="text-center" >}}
+{{< image src="/img/chatbot/RAG_schema.png" class="rounded w-60" wrapper="text-center" >}}
 
 
 ### (Re)Load all documents
