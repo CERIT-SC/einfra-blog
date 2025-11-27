@@ -77,7 +77,6 @@ To the end of generated answer we manually add markdown links to sources of prov
 [Previously](https://blog.cerit.io/blog/embedders/#testing-methodology), we evaluated only retrieval. Now it was time to improve chatbot's answers alone. But how? Turns out that chatbot not only generates answers, but is also quite good at evaluating text quality. It is easier to critique than create - this is valid for humans and for chatbots as well. Therefore, we can **ask LLM to assess another LLM's answer**. 
 
 We implemented this by using Evidently AI library. Check [their blog](https://www.evidentlyai.com/llm-guide/llm-as-a-judge) for more info about the concept of LLM judge.
-<img width="1919" height="1080" alt="llm-as-a-judge-illustration" src="https://github.com/user-attachments/assets/0798b983-12c3-4f74-a44c-f631b3a01442" />
 {{< image src="/img/chatbot/llm-as-a-judge-illustration.png" class="rounded w-60" wrapper="text-center" >}}
 
 We used the same custom-made questions dataset like [before](https://blog.cerit.io/blog/embedders/#testing-datasets), containing 4 types of variously complete questions in czech and english. Each question was generated based on one ground truth document - so we could evaluate the retrieval.
