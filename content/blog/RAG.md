@@ -123,11 +123,11 @@ We compared our newly created pipeline with Jarvis - former chatbot that was use
 In this graph, we can see the overall percentage of questions (both languages, all versions) that were complete/incomplete and faithful/unfaithful. There is huge improvement. However, we need to have in mind that this evaluation is still stochastic, and that there was an LLM behind these conclusions.
 
 <img width="3647" height="1137" alt="overall_ideal_combination" src="https://github.com/user-attachments/assets/8061cec6-6551-4e81-9e2c-22cae709166b" />
-{{< image src="/img/chatbot/overallidealcombination.png class="rounded w-60" wrapper="text-center" >}}
+{{< image src="/img/chatbot/overallidealcombination.png" class="rounded w-60" wrapper="text-center" >}}
 
 However, when checking the results in detail, we see that this "improvement" is caused only by incompelte czech questions. This means our solution improved the result a lot in terms of this type of questions, and is comparable to original Jarvis in the rest of usecases. 
 <img width="3667" height="1140" alt="czech-4-combined" src="https://github.com/user-attachments/assets/f970f72e-e318-4363-b0dc-724016a74a7d" />
-{{< image src="/img/chatbot/czech-4-combined.png class="rounded w-60" wrapper="text-center" >}}
+{{< image src="/img/chatbot/czech-4-combined.png" class="rounded w-60" wrapper="text-center" >}}
 
 
 **Retriveal** was improved a lot with Mean Reciprocal Rank reaching to 100 % in our test data, probably because of the new keywords added and better chunking strategy. Our new chatbot is also much better in **language aligment**: in 97 % of cases it responds in the same language like the question asked, which is both convenient for the user and possibly hepful if working with chat history. 
