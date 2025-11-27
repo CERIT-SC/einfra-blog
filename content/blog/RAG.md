@@ -2,10 +2,10 @@
 date: '2025-10-19T22:00:00Z'
 title: 'Documentaion chatbot'
 thumbnail: '/img/chatbot/diagram.png'
-description: "New chatbot that answers based on cerit-sc documentation"
+description: "New chatbot that answers based on CERIT-SC documentation"
 tags: ["Šárka Blaško", "CERIT-SC", "AI", "RAG"]
 colormode: true
-draft: true
+draft: false
 ---
 # Chatbot on Cerit-SC documentation
 We created a new chatbot that can use cerit-sc documentation for answering questions. Along with fulltext search, the chatbot should improve user's explerience and help with understanding of the services described in [documentation](https://docs.cerit.io/en/docs/news), supporting both English and Czech languages.
