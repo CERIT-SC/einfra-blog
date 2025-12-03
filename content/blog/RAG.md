@@ -1,15 +1,14 @@
 ---
 date: '2025-11-27T12:00:00Z'
-title: 'Documentaion chatbot'
+title: 'Documentation chatbot'
 thumbnail: '/img/chatbot/RAG_schema.png'
 description: "New chatbot that answers based on CERIT-SC documentation"
 tags: ["Šárka Blaško", "CERIT-SC", "AI", "RAG"]
 colormode: true
 draft: false
 ---
-# Chatbot on Cerit-SC documentation
-We created a new chatbot that can use cerit-sc documentation for answering questions. Along with fulltext search, the chatbot should improve user's explerience and help with understanding of the services described in [documentation](https://docs.cerit.io/en/docs/news), supporting both English and Czech languages.
-picture of example conversation
+# Chatbot on CERIT-SC documentation
+We created a new chatbot that can use CERIT-SC documentation for answering questions. Along with fulltext search, the chatbot should improve user's experience and help with understanding of the services described in [documentation](https://docs.cerit.io/en/docs/news), supporting both English and Czech languages.
 
 ## Previous work
 In [this article](https://blog.cerit.io/blog/embedders/), we introduced testing of different embedders for retrieval (find relevant document to a given query). Our conclusions were:
@@ -17,7 +16,7 @@ In [this article](https://blog.cerit.io/blog/embedders/), we introduced testing 
 - which embedders are suitable for our purposes (language, cost)
 - when language detection improves retrieval results
 
-Now we introduce our further work, leading to a working chatbot, that can read our documentation before answering, and therefore give more context-aware and precise reponses.
+Now we introduce our further work, leading to a working chatbot, that can read our documentation before answering, and therefore give more context-aware and precise responses.
 ## Behind the scenes: from question to answer
 The core is implemented in [LlamaIndex](https://www.llamaindex.ai/), which is an open-source framework that helps build LLM applications by simplifying how data is organized and used in Retrieval-Augmented Generation (RAG) systems. Llamaindex works in modular "boxes," that can be reorganized, extended or finetuned - that is great, as it will enable and simplify future extension or modification, like switching between models, changing parameters and whole pipeline flow.
 
@@ -28,9 +27,9 @@ Below the diagram, we describe the newly implemented pipeline step by step.
 
 
 ### (Re)Load all documents
-All documents are discarded and loaded new using the sitemap of e-infra documentation (https://docs.cerit.io/en/sitemap). Then, documents are splitted to smaller chunks by MarkdownSplitter, which takes into account markdown headings - the docs are divided into logical parts, which avoids cutting the document in the middle of a compact part. If the resulting pieces are too big, sentence split is used. These chunks are embedded (converted to vectors) and saved into an OpenSeach database along with raw text and metadata like filename, url, language etc. Chunk length is also a tunable parameter
+All documents are discarded and loaded new using the sitemap of e-infra documentation (https://docs.cerit.io/en/sitemap). Then, documents are split to smaller chunks by MarkdownSplitter, which takes into account markdown headings - the docs are divided into logical parts, which avoids cutting the document in the middle of a compact part. If the resulting pieces are too big, sentence split is used. These chunks are embedded (converted to vectors) and saved into an OpenSeach database along with raw text and metadata like filename, URL, language etc. Chunk length is also a tunable parameter
 ### Detect language (czech/english)
-Using the langdetect library, this simply adds a tag `cs` or `en` to user's query. From that point on, everything (system prompts, retrieval) becomes language-specific. Why is this important? Imagine the question is in Czech and the context is in English — the LLM would then be confused about which language to use for the answer, and might even mix them together.
+Using the `langdetect` library, this simply adds a tag `cs` or `en` to user's query. From that point on, everything (system prompts, retrieval) becomes language-specific. Why is this important? Imagine the question is in Czech and the context is in English — the LLM would then be confused about which language to use for the answer, and might even mix them together.
 
 ### Refine question for retrieval
 In order to improve the retrieval, another LLM generates possible keywords to improve the lexical part of the search. The output can be balanced by setting LLM temperature - the lower the temperature, the more predictable the model is. High temperature enables more "creativity," which in this case is not desirable. Refining means contacting another LLM with something like this: 
@@ -41,7 +40,7 @@ Return only this format and nothing more: Question, keyword1, keyword2."""
 ### Retrieve context 
 Choose top 5 most relevant documents to user's query. During our testing, usually only one or two most relevant documents were retrieved. This is good, as the chatbot is less likely to hallucinate, than if more context was retrieved. We use hybrid search, which combines results from lexical retrieval (keyword, BM25), and from vector retrieval (KNN search). The weighted importance of keyword/vector can be set.
 ### Refine question for synthesizer
-Answers are much better when we have longer and specific question. If the user is very brief, another LLM tries to "guess" the intention and rewrite the query to be more consise. Low-temperature LLM gets instructions:
+Answers are much better when we have longer and specific question. If the user is very brief, another LLM tries to "guess" the intention and rewrite the query to be more concise. Low-temperature LLM gets instructions:
 ```
 Rewrite, don’t answer.
 If pronouns are used, replace them with explicit entities if implied by the question.
@@ -112,23 +111,23 @@ An OUTPUT is incomplete if:
 - It omits context that is necessary for a full and accurate response.                                 
 - It shortens or summarizes the SOURCE in a way that leads to loss of essential information.           
 ```
-We also added custom metrics for language match, using again the landetect library.
+We also added custom metrics for language match, using again the `langdetect` library.
 
 Each answer was labeled complete/incomplete, faithful/unfaithful and same language/different language. For each combination we measured 
 
 ### Results
-We compared our newly created pipeline with Jarvis - former chatbot that was used for searching in the documentation, but which did not work well - for example, it had only english documentation available, answered partially or sometimes hallucinated.
+We compared our newly created pipeline with Jarvis - former chatbot that was used for searching in the documentation, but which did not work well - for example, it had only English documentation available, answered partially or sometimes hallucinated.
 In this graph, we can see the overall percentage of questions (both languages, all versions) that were complete/incomplete and faithful/unfaithful. There is huge improvement. However, we need to have in mind that this evaluation is still stochastic, and that there was an LLM behind these conclusions.
 
 <img width="3647" height="1137" alt="overall_ideal_combination" src="https://github.com/user-attachments/assets/8061cec6-6551-4e81-9e2c-22cae709166b" />
 {{< image src="/img/chatbot/overallidealcombination.png" class="rounded w-60" wrapper="text-center" >}}
 
-However, when checking the results in detail, we see that this "improvement" is caused only by incompelte czech questions. This means our solution improved the result a lot in terms of this type of questions, and is comparable to original Jarvis in the rest of usecases. 
+However, when checking the results in detail, we see that this "improvement" is caused only by incomplete Czech questions. This means our solution improved the result a lot in terms of this type of questions, and is comparable to original Jarvis in the rest of usecases. 
 <img width="3667" height="1140" alt="czech-4-combined" src="https://github.com/user-attachments/assets/f970f72e-e318-4363-b0dc-724016a74a7d" />
 {{< image src="/img/chatbot/czech-4-combined.png" class="rounded w-60" wrapper="text-center" >}}
 
 
-**Retriveal** was improved a lot with Mean Reciprocal Rank reaching to 100 % in our test data, probably because of the new keywords added and better chunking strategy. Our new chatbot is also much better in **language aligment**: in 97 % of cases it responds in the same language like the question asked, which is both convenient for the user and possibly hepful if working with chat history. 
+**Retrieval** was improved a lot with Mean Reciprocal Rank reaching to 100 % in our test data, probably because of the new keywords added and better chunking strategy. Our new chatbot is also much better in **language alignment**: in 97 % of cases it responds in the same language like the question asked, which is both convenient for the user and possibly helpful if working with chat history. 
 <img width="3633" height="1118" alt="retrieval_lang_combined" src="https://github.com/user-attachments/assets/716c3d76-440c-480a-a414-c3ee86acf7d3" />
 {{< image src="/img/chatbot/retrievallangcombined.png" class="rounded w-60" wrapper="text-center" >}}
 
