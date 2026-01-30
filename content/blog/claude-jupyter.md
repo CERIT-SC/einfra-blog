@@ -4,7 +4,7 @@ title: 'From "Vibe Coding" to Production'
 thumbnail: '/img/claude-jupyter/claudecode.png'
 author: "Ivana Krenkova"
 description: "Mastering Claude Code in Jupyter Notebooks"
-tags: ["Ivana Křenková", "CERIT-SC", "VibeCoding", "Tutorial"]
+tags: ["Ivana Křenková", "CERIT-SC", "Jupyterhub", "VibeCoding", "Tutorial"]
 colormode: true
 draft: true
 ---
