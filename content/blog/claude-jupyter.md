@@ -8,7 +8,6 @@ colormode: true
 draft: true
 ---
 
-
 # How Claude Code Turns Jupyter Notebooks into a Collaborative AI Workspace
 
 Jupyter Notebook is a fantastic tool for data science, research, and exploratory programming. But what if you had an AI assistant right inside your notebook, one that can understand your project context, help debug complex code, and even navigate your file system?
