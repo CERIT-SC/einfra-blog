@@ -1,5 +1,6 @@
 ---
-date: '2026-01-30T10:26:32Z'From "Vibe Coding" to Production'
+date: '2026-01-30T10:26:32Z'
+title: 'From "Vibe Coding" to Production'
 thumbnail: '/img/claude-jupyter/claudecode.png'
 author: "Ivana Krenkova"
 description: "Mastering Claude Code in Jupyter Notebooks"
