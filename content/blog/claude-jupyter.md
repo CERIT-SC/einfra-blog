@@ -1,4 +1,3 @@
-
 ---
 date: '2026-01-30T10:26:32Z'From "Vibe Coding" to Production'
 thumbnail: '/img/claude-jupyter/claudecode.png'
@@ -8,7 +7,6 @@ tags: ["Ivana Křenková", "CERIT-SC", "VibeCoding", "Tutorial"]
 colormode: true
 draft: true
 ---
-
 
 
 # How Claude Code Turns Jupyter Notebooks into a Collaborative AI Workspace
