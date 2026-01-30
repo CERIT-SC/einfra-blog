@@ -46,12 +46,11 @@ Getting started is simple, but requires the right environment:
         cerit.io/hubs/datasciencenb:2026-01-23-ai
         
  This ensures the AI assistant is properly integrated.
-* Request resources → For data-heavy tasks, start with 2-4 CPUs and 8-16GB RAM.
-> If you need GPU acceleration, Claude can help manage that too!
+* Request resources → For data-heavy tasks, start with 2-4 CPUs and 8-16GB RAM. If you need GPU acceleration, Claude can help manage that too!
 
 When your notebook launches, you’ll see the Claude Code interface—usually as a sidebar or chat panel—ready for conversation.
 
-> Security reassurance → Since everything runs on e-INFRA CZ’s internal LLM platform, your sensitive research data stays protected.
+Security reassurance → Since everything runs on e-INFRA CZ’s internal LLM platform, your sensitive research data stays protected.
    
 
 Key commands you'll use frequently within Claude:
@@ -62,15 +61,12 @@ Key commands you'll use frequently within Claude:
 	# Clear conversation history
 	/clear
 
-	# Login if needed
-	/login
-
 	# Exit Claude
 	/exit
 
->  Tab completion works for commands
-> 
-> Type / and press Tab to see available commands
+Tab completion works for commands
+
+Type / and press Tab to see available commands
 
 
 
@@ -254,7 +250,7 @@ What’s happening?
 
 ✅ Laser-focused: "Create a scatter plot of revenue vs. customer_age, color-coded by region, with a LOESS trend line and dynamic hover labels using Plotly" → Now that’s production-grade visualization.
 
->  🔍 Tip: Use variable names from your notebook. Claude looks for exact matches.
+🔍 Tip: Use variable names from your notebook. Claude looks for exact matches.
 
 **2. Embrace File System Navigation**
 
@@ -288,7 +284,7 @@ Now Claude:
 * Creates the `.py` module
 * Modifies notebook cells to import from it.
 
->  📁 Safety reminder: Any file-system changes trigger human-in-the-loop permission.
+📁 Safety reminder: Any file-system changes trigger human-in-the-loop permission.
 
 **5. Comparative Project Analysis**
 
