@@ -61,9 +61,6 @@ Key commands you'll use frequently within Claude:
 	# Clear conversation history
 	/clear
 
-	# Login if needed
-	/login
-
 	# Exit Claude
 	/exit
 
