@@ -465,7 +465,7 @@ Remember: Vibe coding isn't about replacing your skills – it's about amplifyin
 
 Start with simple tasks. Generate a function. Create a test. Build a script. As you gain confidence, tackle larger projects. Before long, you'll wonder how you ever coded without AI assistance.
 
-Ready to try it out? Launch your Claude Code-enabled Jupyter Notebook today and experience the future of interactive data science.
+Ready to try it out? Launch your Claude Code-enabled Jupyter Notebook today and experience the future of interactive coding.
 
 
 Reference:
