@@ -44,30 +44,35 @@ Getting started is simple, but requires the right environment:
 * Select the Claude Code image:
 
         cerit.io/hubs/datasciencenb:2026-01-23-ai
+
+TODO claude-image.png  
         
  This ensures the AI assistant is properly integrated.
 * Request resources → For data-heavy tasks, start with 2-4 CPUs and 8-16GB RAM. If you need GPU acceleration, Claude can help manage that too!
+* Start empty notebook.
 
 When your notebook launches, you’ll see the Claude Code interface—usually as a sidebar or chat panel—ready for conversation.
+
+TODO claude-welcome.png
 
 Security reassurance → Since everything runs on e-INFRA CZ’s internal LLM platform, your sensitive research data stays protected.
    
 
 Key commands you'll use frequently within Claude:
 
-	# Get help and see all available commands
-	/help
+```bash
+# Get help and see all available commands
+/help
 
-	# Clear conversation history
-	/clear
+# Clear conversation history
+/clear
 
-	# Exit Claude
-	/exit
+# Exit Claude
+/exit
 
-Tab completion works for commands
-
-Type / and press Tab to see available commands
-
+#Tab completion works for commands
+#Type / and press Tab to see available commands
+```
 
 
 ## Mastering Claude Code: Three Levels of AI-Assisted Programming
@@ -84,18 +89,16 @@ You: *"I have a CSV file called 'age_data.csv' in my current directory. Can you 
 
 Claude Code: "I can see age_data.csv in your directory. Here's the code to load it using pandas:
 
-    import pandas as pd
+```bash
+import pandas as pd
 
-    # Load the CSV file
-    df = pd.read_csv('age_data.csv')
+# Load the CSV file
+df = pd.read_csv('age_data.csv')
 
-    # Show the first 5 rows
-    print(df.head())
-
-    # Show basic information about the dataframe
-    print(df.info())
-
-Would you like me to execute this code for you?"
+# Show the first few rows
+print(df.head())
+```
+TODO claude-example1.png
 
 What’s happening?
 
@@ -115,39 +118,86 @@ Once you start working with datasets, Claude’s true power emerges: it uses the
 **Example: Handling Missing Values**
 
 Suppose you've already loaded some data and done initial exploration:
- 
-  	# Previous cells in your notebook
-	import pandas as pd
-	import numpy as np
 
-	df = pd.read_csv('age_data.csv')
-	print(f"Dataset shape: {df.shape}")
-	print(df.columns)
+```bash
+# Previous cells in your notebook
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv('age_data.csv')
+print(f"Dataset shape: {df.shape}")
+print(df.columns)
+```
 
 You: *"Claude, I notice there are missing values in the 'age' column. What’s the best way to handle them?"*
 
 Before answering, Claude:
 
 1. Inspects your dataframe (evaluates shape, columns, and data distribution).
-2. Calculates miss rate (e.g., 15% missing values in 'age').
+2. Calculates miss rate (e.g., 14% missing values in 'age').
 3. Considers relationships between variables to infer whether data is missing at random (e.g., "Older people might avoid disclosing age").
 
 Claude’s Response:
 
-Here's code to implement option 2:
+Perfect! I can see you have 7 missing values (14%) in the 'age' column. Here are the best ways to handle them, depending on your analysis goals:
+Recommended Strategies for Handling Missing Age Values:
 
-	# Calculate median age from non-missing values
-	median_age = df['age'].median()
+1. Mean/Median Imputation (Quick & Simple)
+    * Median is often better for age (less affected by outliers)
+    * Good when your data distribution is roughly symmetric
+    * Median of your data: 61
 
-	# Fill missing values
-	df['age_filled'] = df['age'].fillna(median_age)
+2. Group-based Imputation (More Accurate)
 
-	# Verify the operation
-	print(f"Missing values before: {df['age'].isna().sum()}")
-	print(f"Missing values after: {df['age_filled'].isna().sum()}")
-	print(f"Median age used: {median_age}")
+    * Impute missing ages using the median age of groups (e.g., by sex, city, or country)
+    * Captures patterns - different demographics may have different age distributions
 
-Would you like me to execute this, or would you prefer to explore another approach?"
+3. Drop Rows (Conservative)
+
+    * Remove rows with missing ages
+    * Only recommended if you have plenty of data (50 rows is borderline)
+    * You'd lose 14% of your data
+
+
+My recommendation: Start with median imputation or group-based imputation (by sex) since it's simple yet effective. Which approach would you like me to implement? Or would you like to see a comparison of multiple methods?
+
+TODO picture claude-example2-1.png
+
+You: *Fix the problem using option 1*
+
+Here's code to implement option 1:
+
+```bash
+# Store original for comparison
+original_age = df['age'].copy()
+
+# Calculate median age
+median_age = df['age'].median()
+print(f"Median age: {median_age}")
+
+# Impute missing values with median
+df['age'] = df['age'].fillna(median_age)
+
+# Verify no more missing values
+print(f"\nMissing values after imputation: {df['age'].isnull().sum()}")
+
+# Show comparison
+print("\n=== Before vs After ===")
+print(f"Original missing count: {original_age.isnull().sum()}")
+print(f"After imputation: {df['age'].isnull().sum()}")
+print(f"Mean age before: {original_age.mean():.2f}")
+print(f"Mean age after: {df['age'].mean():.2f}")
+```
+
+Claude: Summary of what was done:
+*  Median age calculated: 61.0 years
+*  Original missing values: 7 (14% of data)
+*  Missing values after imputation: 0
+*  Mean age before: 56.28 → Mean age after: 56.94,...
+
+Your dataset is now complete and ready for analysis!
+
+TODO picture claude-example2-2.png
 
 What’s happening?
 
@@ -170,41 +220,42 @@ You: *"Claude, I have sales data split across 12 monthly CSV files (sales_jan.cs
 
 Claude’s Solution:
 
-	import pandas as pd
-	import glob
-	import matplotlib.pyplot as plt
+```bash
+import pandas as pd
+import glob
+import matplotlib.pyplot as plt
 
-	# Find all sales files
-	sales_files = glob.glob('sales_*.csv')
+# Find all sales files
+sales_files = glob.glob('sales_*.csv')
 
-	# Read and combine all files
-	dfs = []
-	for file in sorted(sales_files):  # Sort to maintain month order
-   		month = file.split('_')[1].split('.')[0]  # Extract month name
-    	temp_df = pd.read_csv(file)
-    	temp_df['month'] = month
-    	dfs.append(temp_df)
+# Read and combine all files
+dfs = []
+for file in sorted(sales_files):  # Sort to maintain month order
+	month = file.split('_')[1].split('.')[0]  # Extract month name
+   	temp_df = pd.read_csv(file)
+   	temp_df['month'] = month
+   	dfs.append(temp_df)
 
-	combined_df = pd.concat(dfs, ignore_index=True)
+combined_df = pd.concat(dfs, ignore_index=True)
 
-	# Calculate monthly totals
-	monthly_totals = combined_df.groupby('month')['revenue'].sum()
+# Calculate monthly totals
+monthly_totals = combined_df.groupby('month')['revenue'].sum()
 
-	# Create visualization
-	plt.figure(figsize=(10, 6))
-	monthly_totals.plot(kind='bar', color='skyblue')
-	plt.title('Monthly Revenue Totals')
-	plt.xlabel('Month')
-	plt.ylabel('Revenue ($)')
-	plt.xticks(rotation=45)
-	plt.tight_layout()
+# Create visualization
+plt.figure(figsize=(10, 6))
+monthly_totals.plot(kind='bar', color='skyblue')
+plt.title('Monthly Revenue Totals')
+plt.xlabel('Month')
+plt.ylabel('Revenue ($)')
+plt.xticks(rotation=45)
+plt.tight_layout()
 
-	# Save the combined data
-	combined_df.to_csv('annual_sales_combined.csv', index=False)
+# Save the combined data
+combined_df.to_csv('annual_sales_combined.csv', index=False)
 
-	print(f"Combined {len(sales_files)} files with {len(combined_df)} total records")
-	print(f"Total annual revenue: ${monthly_totals.sum():,.2f}")
-
+print(f"Combined {len(sales_files)} files with {len(combined_df)} total records")
+print(f"Total annual revenue: ${monthly_totals.sum():,.2f}")
+```
 
 Permission Request: This code will create a new file `annual_sales_combined.csv`. Do you want to proceed?"
 
@@ -228,7 +279,9 @@ Claude: "Ah, I see! `df1` has 10 columns, but `df2` has only 9. This is causing 
 
 I recommend option 2—here’s the corrected code:
 
-	combined_df = pd.concat([df1, df2], ignore_index=True)
+```bash
+combined_df = pd.concat([df1, df2], ignore_index=True)
+```
 
 What’s happening?
 
@@ -272,7 +325,9 @@ Let's see this in action with a real data science project:
 
 Step 1: Initialize your project
 
- 	/init
+```bash
+/init
+```
 
 Step 2: Check the generated `CLAUDE.md` file. Claude creates something like:
 
