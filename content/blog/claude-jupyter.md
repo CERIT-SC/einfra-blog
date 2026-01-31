@@ -99,7 +99,7 @@ print(df.head())
 What’s happening?
 * Claude scanned your filesystem and found the file.
 * It wrote clean, executable Python using pandas.
-* Before running anything, it asks for confirmation—MetaCentrum’s "Human-in-the-loop" safety feature ensures no unexpected changes happen without your approval.
+* Before running anything, it asks for confirmation—"Human-in-the-loop" safety feature ensures no unexpected changes happen without your approval.
 
 {{< image src="/img/claude-jupyter/claude-example1.png" class="rounded" wrapper="text-center w-80" >}}
 
