@@ -45,7 +45,7 @@ Getting started is simple, but requires the right environment:
 
         cerit.io/hubs/datasciencenb:2026-01-23-ai
 
-{{< image src="/img/claude-jupyter/claude-image.png" class="rounded" wrapper="text-center w-80" >}}
+{{< image src="/img/claude-jupyter/claude-image.png" class="rounded" wrapper="text-center w-40" >}}
         
  This ensures the AI assistant is properly integrated.
 * Request resources → For data-heavy tasks, start with 2-4 CPUs and 8-16GB RAM. If you need GPU acceleration, Claude can help manage that too!
@@ -53,7 +53,7 @@ Getting started is simple, but requires the right environment:
 
 When your notebook launches, you’ll see the Claude Code interface—usually as a sidebar or chat panel—ready for conversation.
 
-{{< image src="/img/claude-jupyter/claude-welcome.png" class="rounded" wrapper="text-center w-80" >}}
+{{< image src="/img/claude-jupyter/claude-welcome.png" class="rounded" wrapper="text-center w-40" >}}
 
 Security reassurance → Since everything runs on e-INFRA CZ’s internal LLM platform, your sensitive research data stays protected.
    
