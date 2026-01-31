@@ -426,7 +426,7 @@ Now Claude:
 * Creates the `.py` module
 * Modifies notebook cells to import from it.
 
-> 📁 Safety reminder: Any file-system changes trigger human-in-the-loop permission.
+📁 Safety reminder: Any file-system changes trigger human-in-the-loop permission.
 
 **5. Comparative Project Analysis**
 
@@ -438,7 +438,7 @@ Claude recursively scans `.ipynb files`, parses prior experiments, and generates
 
 
 
-## Safety and Best Practices
+## Best Practices
 
 Our Jupyter's Claude integration prioritizes research integrity:
 
