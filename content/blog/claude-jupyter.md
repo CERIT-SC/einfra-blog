@@ -463,7 +463,7 @@ Next time you open a Jupyter notebook with Claude Code, try this:
 
 Remember: Vibe coding isn't about replacing your skills – it's about amplifying them. You still need to understand what good code looks like, what secure systems require, and what users need. AI is your implementation partner, not your replacement.
 
-Start with simple tasks. Generate a function. Create a test. Build a script. As you gain confidence, tackle larger projects. Before long, you'll wonder how you ever coded without AI assistance.
+Start with simple tasks. Generate a function. Create a test. Build a script. As you gain confidence, tackle larger projects. 
 
 Ready to try it out? Launch your Claude Code-enabled Jupyter Notebook today and experience the future of interactive coding.
 
