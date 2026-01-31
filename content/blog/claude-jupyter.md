@@ -74,7 +74,7 @@ Key commands you'll use frequently within Claude:
 
 ## Mastering Claude Code: Four Levels of AI-Assisted Programming
 
-### Level 1: Beginner – "Vibe Coding" with Claude
+### Level 1 Beginner – "Vibe Coding" with Claude
 You describe the task, Claude writes the code.
 
 Even if you're new to Python, you can get useful results by simply explaining your goals. This is "vibe coding"—where you focus on the what, and Claude handles the how.
@@ -102,7 +102,7 @@ What’s happening?
 
 {{< image src="/img/claude-jupyter/claude-example1.png" class="rounded" wrapper="text-center w-80" >}}
 
-### Level 2: Intermediate: Context-Aware Assistance
+### Level 2 Intermediate: Context-Aware Assistance
 Claude remembers what you’ve done so far and suggests smarter solutions.
 
 Once you start working with datasets, Claude’s true power emerges: it uses the notebook’s memory to provide tailored advice.
@@ -200,7 +200,7 @@ What’s happening?
 
 
 
-### Level 3: Advanced: Complex Workflows and File Operations
+### Level 3 Advanced: Complex Workflows and File Operations
 Claude becomes your research co-pilot.
 
 Here, Claude handles complex, multi-file workflows, debugging, and even refactoring—saving you hours of tedious work.
