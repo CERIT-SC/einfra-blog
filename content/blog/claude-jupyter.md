@@ -6,7 +6,7 @@ author: "Ivana Krenkova"
 description: "Mastering Claude Code in Jupyter Notebooks"
 tags: ["Ivana Křenková", "CERIT-SC", "Jupyterhub", "VibeCoding", "Tutorial"]
 colormode: true
-draft: true
+draft: false
 ---
 
 # How Claude Code Turns Jupyter Notebooks into a Collaborative AI Workspace
