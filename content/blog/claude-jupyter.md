@@ -84,7 +84,7 @@ Even if you're new to Python, you can get useful results by simply explaining yo
 
 You: *"I have a CSV file called 'age_data.csv' in my current directory. Can you help me load it and show the first few rows?"*
 
-Claude Code: "I can see age_data.csv in your directory. Here's the code to load it using pandas:
+Claude Code: I can see age_data.csv in your directory. Here's the code to load it using pandas:
 
 ```bash
 import pandas as pd
@@ -132,29 +132,25 @@ Before answering, Claude:
 2. Calculates miss rate (e.g., 14% missing values in 'age').
 3. Considers relationships between variables to infer whether data is missing at random (e.g., "Older people might avoid disclosing age").
 
-Claude’s Response:
+Claude’s Response: Perfect! I can see you have 7 missing values (14%) in the 'age' column. Here are the best ways to handle them, depending on your analysis goals. Recommended Strategies for Handling Missing Age Values:
 
-	Perfect! I can see you have 7 missing values (14%) in the 'age' column. 
-	Here are the best ways to handle them, depending on your analysis goals:
-	Recommended Strategies for Handling Missing Age Values:
-
-	Option 1: Mean/Median Imputation (Quick & Simple)
+Option 1: Mean/Median Imputation (Quick & Simple)
 	- Median is often better for age (less affected by outliers)
 	- Good when your data distribution is roughly symmetric
 	- Median of your data: 61
 
-	Option 2: Group-based Imputation (More Accurate)
+Option 2: Group-based Imputation (More Accurate)
 	- Impute missing ages using the median age of groups (e.g., by sex, city, or country)
 	- Captures patterns - different demographics may have different age distributions
 
-	Option 3: Drop Rows (Conservative)
+Option 3: Drop Rows (Conservative)
 	- Remove rows with missing ages
 	- Only recommended if you have plenty of data (50 rows is borderline)
 	- You'd lose 14% of your data
 
-	My recommendation: Start with median imputation or group-based imputation (by sex) 
-	since it's simple yet effective. Which approach would you like me to implement? 
-	Or would you like to see a comparison of multiple methods?
+My recommendation: Start with median imputation or group-based imputation (by sex) 
+since it's simple yet effective. Which approach would you like me to implement? 
+Or would you like to see a comparison of multiple methods?
 
 {{< image src="/img/claude-jupyter/claude-example2-1.png" class="rounded" wrapper="text-center w-80" >}}
 
@@ -187,10 +183,10 @@ print(f"Mean age after: {df['age'].mean():.2f}")
 ```
 
 Claude: Summary of what was done:
-*  Median age calculated: 61.0 years
-*  Original missing values: 7 (14% of data)
-*  Missing values after imputation: 0
-*  Mean age before: 56.28 → Mean age after: 56.94,...
+-  Median age calculated: 61.0 years
+-  Original missing values: 7 (14% of data)
+-  Missing values after imputation: 0
+-  Mean age before: 56.28 → Mean age after: 56.94,...
 
 Your dataset is now complete and ready for analysis!
 
@@ -256,7 +252,7 @@ print(f"Combined {len(sales_files)} files with {len(combined_df)} total records"
 print(f"Total annual revenue: ${monthly_totals.sum():,.2f}")
 ```
 
-Permission Request: This code will create a new file `annual_sales_combined.csv`. Do you want to proceed?"
+Permission Request: This code will create a new file `annual_sales_combined.csv`. Do you want to proceed?
 
 What’s happening?
 
@@ -271,7 +267,7 @@ You: *"The previous cell raised a ValueError. Look at the dataframe shape and su
 
 Before you: Claude reevaluates prior cells, recognizes a mismatch in column indices during concatenation, and proposes:
 
-Claude: "Ah, I see! `df1` has 10 columns, but `df2` has only 9. This is causing the concatenation to fail. We can either:
+Claude: Ah, I see! `df1` has 10 columns, but `df2` has only 9. This is causing the concatenation to fail. We can either:
 
 1. Manually align columns (safer, but tedious)
 2. Use ignore_index=True to reset indices"
@@ -418,7 +414,7 @@ Instead of monolithic queries, build step-by-step:
 * "Identify outliers in price using isolation forest"
 * "Visualize distribution of outliers vs normal data with binning"
 
-Claude remembers each step and adjusts the context dynamically.
+Claude remembers each step and dynamically adjusts the context.
 
 **4. Autonomous Pipeline Generation**
 
@@ -430,14 +426,15 @@ Now Claude:
 * Creates the `.py` module
 * Modifies notebook cells to import from it.
 
-📁 Safety reminder: Any file-system changes trigger human-in-the-loop permission.
+> 📁 Safety reminder: Any file-system changes trigger human-in-the-loop permission.
 
 **5. Comparative Project Analysis**
 
 Claude understands multiple notebooks:
-"Find all notebooks using `XGBoost` in my project and summarize hyperparameters used"
 
-It recursively scans `.ipynb files`, parses prior experiments, and generates a comparative markdown table injected right into your notebook.
+You: *"Find all notebooks using `XGBoost` in my project and summarize hyperparameters used".*
+
+Claude recursively scans `.ipynb files`, parses prior experiments, and generates a comparative markdown table injected right into your notebook.
 
 
 
@@ -451,7 +448,7 @@ Our Jupyter's Claude integration prioritizes research integrity:
 * Transparent reasoning: Claude explains its logic before acting—ensuring bias awareness and algorithmic accountability.
 
 
-## Conclusion: From Assistant to Partner
+## Conclusion
 
 Claude Code transforms Jupyter Notebook from a passive coding environment into an interactive collaboration space. As you progress from basic queries to complex, context-aware requests, you'll find it becomes less of a tool and more of a partner in your data science workflow.
 
