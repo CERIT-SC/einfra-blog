@@ -115,7 +115,6 @@ Once you start working with datasets, Claude’s true power emerges: it uses the
 **Example: Handling Missing Values**
 
 Suppose you've already loaded some data and done initial exploration:
-python
  
   	# Previous cells in your notebook
 	import pandas as pd
