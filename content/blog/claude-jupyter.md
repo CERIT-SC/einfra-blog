@@ -53,7 +53,9 @@ When your notebook launches, you’ll see the Claude Code interface—usually as
 
 {{< image src="/img/claude-jupyter/claude-welcome.png" class="rounded" wrapper="text-center w-40" >}}   
 
-####Key commands you'll use frequently within Claude:
+.
+
+Key commands you'll use frequently within Claude:
 
 ```bash
 # Get help and see all available commands
@@ -157,6 +159,7 @@ My recommendation: Start with median imputation or group-based imputation (by se
 {{< image src="/img/claude-jupyter/claude-example2-1.png" class="rounded" wrapper="text-center w-80" >}}
 
 .
+
 You: *Fix the problem using option 1*
 
 Claude: Here's the code to implement option 1:
@@ -194,6 +197,7 @@ Your dataset is now complete and ready for analysis!
 {{< image src="/img/claude-jupyter/claude-example2-2.png" class="rounded" wrapper="text-center w-80" >}}
 
 .
+
 What’s happening?
 
 * Claude doesn’t just suggest a solution—it explains the reasoning based on your data.
@@ -326,44 +330,49 @@ Step 1: Initialize your project
 
 Step 2: Check the generated `CLAUDE.md` file. Claude creates something like:
 
-	# Project Context: Customer Analytics
+```bash
+# Project Context: Customer Analytics
 
-	## Key Files
-	- `data/raw/customers.csv` - Main customer dataset (50,000 records)
-	- `src/preprocessing.py` - Data cleaning pipeline
-	- `notebooks/exploration.ipynb` - Initial EDA
+## Key Files
+- `data/raw/customers.csv` - Main customer dataset (50,000 records)
+- `src/preprocessing.py` - Data cleaning pipeline
+- `notebooks/exploration.ipynb` - Initial EDA
 
-	## Project Structure
-	- Data goes in `data/raw/`
-	- Processed data in `data/processed/`
-	- Models in `models/`
+## Project Structure
+- Data goes in `data/raw/`
+- Processed data in `data/processed/`
+- Models in `models/`
 
-	## Common Patterns
-	- We use scikit-learn for modeling
-	- All visualizations use the 'Set2' color palette
-	- Date columns are formatted as YYYY-MM-DD
+## Common Patterns
+- We use scikit-learn for modeling
+- All visualizations use the 'Set2' color palette
+- Date columns are formatted as YYYY-MM-DD
 
-	## Useful Commands
-	- `python src/preprocessing.py --clean` - Run full cleaning pipeline
-	- `python -m pytest tests/` - Run test suite
+## Useful Commands
+- `python src/preprocessing.py --clean` - Run full cleaning pipeline
+- `python -m pytest tests/` - Run test suite
+```
 
 Step 3: Add team guidelines
 
 Edit `CLAUDE.md` to add:
-
-	## Team Guidelines
-	- Always validate data types before processing
-	- Include unit tests for new functions
-	- Document data source and transformation steps
+```bash
+## Team Guidelines
+- Always validate data types before processing
+- Include unit tests for new functions
+- Document data source and transformation steps
+```
 
 Step 4: Add personal preferences
 
 Create `CLAUDE.local.md`:
 
-	## Personal Workflow
-	- I work in Central European Time
-	- Prefer interactive plots (plotly) for exploration
-	- Save model checkpoints every 1000 iterations
+```bash
+## Personal Workflow
+- I work in Central European Time
+- Prefer interactive plots (plotly) for exploration
+- Save model checkpoints every 1000 iterations
+```
 
 Now, when you ask Claude for help, it understands your project structure, follows team conventions, and respects your personal preferences—all without you having to repeat yourself.
 
@@ -375,8 +384,7 @@ When properly configured, Claude becomes dramatically more effective:
 | Claude: Generic response that might not fit your project structure | Claude: "Looking at your project structure, I see you typically store raw data in `data/raw/`. Let me check if there are existing preprocessing scripts in `src/` that we should reuse. Based on your team guidelines, I'll also include data validation steps." |
 
 
-By managing these files properly, you ensure Claude is always working with the right context, making its suggestions far more accurate and relevant.
-
+By properly managing these files, you ensure Claude is always working with the right context, making its suggestions far more accurate and relevant.
 
 
 
