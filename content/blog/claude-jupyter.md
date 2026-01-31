@@ -45,11 +45,12 @@ Getting started is simple, but requires the right environment:
 
         cerit.io/hubs/datasciencenb:2026-01-23-ai
 
-{{< image src="/img/claude-jupyter/claude-image.png" class="rounded" wrapper="text-center w-40" >}}
+{{< image src="/img/claude-jupyter/claude-image.png" class="rounded" wrapper="text-center w-30" >}}
         
- This ensures the AI assistant is properly integrated.
+
+This ensures the AI assistant is properly integrated.
 * Request resources → For data-heavy tasks, start with 2-4 CPUs and 8-16GB RAM. If you need GPU acceleration, Claude can help manage that too!
-* Start empty notebook.
+* Start an empty notebook.
 
 When your notebook launches, you’ll see the Claude Code interface—usually as a sidebar or chat panel—ready for conversation.
 
@@ -101,8 +102,8 @@ print(df.head())
 
 {{< image src="/img/claude-jupyter/claude-example1.png" class="rounded" wrapper="text-center w-80" >}}
 
-What’s happening?
 
+What’s happening?
 * Claude scanned your filesystem and found the file.
 * It wrote clean, executable Python using pandas.
 * Before running anything, it asks for confirmation—MetaCentrum’s "Human-in-the-loop" safety feature ensures no unexpected changes happen without your approval.
@@ -164,9 +165,10 @@ My recommendation: Start with median imputation or group-based imputation (by se
 
 {{< image src="/img/claude-jupyter/claude-example2-1.png" class="rounded" wrapper="text-center w-80" >}}
 
+
 You: *Fix the problem using option 1*
 
-Here's code to implement option 1:
+Here's the code to implement option 1:
 
 ```bash
 # Store original for comparison
