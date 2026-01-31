@@ -134,25 +134,27 @@ Before answering, Claude:
 
 Claude’s Response:
 
-Perfect! I can see you have 7 missing values (14%) in the 'age' column. Here are the best ways to handle them, depending on your analysis goals:
-Recommended Strategies for Handling Missing Age Values:
+	Perfect! I can see you have 7 missing values (14%) in the 'age' column. 
+	Here are the best ways to handle them, depending on your analysis goals:
+	Recommended Strategies for Handling Missing Age Values:
 
-**Option 1: Mean/Median Imputation (Quick & Simple)**
-* Median is often better for age (less affected by outliers)
-* Good when your data distribution is roughly symmetric
-* Median of your data: 61
+	Option 1: Mean/Median Imputation (Quick & Simple)
+	- Median is often better for age (less affected by outliers)
+	- Good when your data distribution is roughly symmetric
+	- Median of your data: 61
 
-**Option 2: Group-based Imputation (More Accurate)**
-* Impute missing ages using the median age of groups (e.g., by sex, city, or country)
-* Captures patterns - different demographics may have different age distributions
+	Option 2: Group-based Imputation (More Accurate)
+	- Impute missing ages using the median age of groups (e.g., by sex, city, or country)
+	- Captures patterns - different demographics may have different age distributions
 
-**Option 3: Drop Rows (Conservative)**
-* Remove rows with missing ages
-* Only recommended if you have plenty of data (50 rows is borderline)
-* You'd lose 14% of your data
+	Option 3: Drop Rows (Conservative)
+	- Remove rows with missing ages
+	- Only recommended if you have plenty of data (50 rows is borderline)
+	- You'd lose 14% of your data
 
-
-My recommendation: Start with median imputation or group-based imputation (by sex) since it's simple yet effective. Which approach would you like me to implement? Or would you like to see a comparison of multiple methods?
+	My recommendation: Start with median imputation or group-based imputation (by sex) 
+	since it's simple yet effective. Which approach would you like me to implement? 
+	Or would you like to see a comparison of multiple methods?
 
 {{< image src="/img/claude-jupyter/claude-example2-1.png" class="rounded" wrapper="text-center w-80" >}}
 
