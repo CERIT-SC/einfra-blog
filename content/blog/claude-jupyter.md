@@ -45,7 +45,7 @@ Getting started is simple, but requires the right environment:
 
         cerit.io/hubs/datasciencenb:2026-01-23-ai
 
-TODO claude-image.png  
+{{< image src="/img/claude-jupyter/claude-image.png" class="rounded" wrapper="text-center w-80" >}}
         
  This ensures the AI assistant is properly integrated.
 * Request resources → For data-heavy tasks, start with 2-4 CPUs and 8-16GB RAM. If you need GPU acceleration, Claude can help manage that too!
@@ -53,7 +53,7 @@ TODO claude-image.png
 
 When your notebook launches, you’ll see the Claude Code interface—usually as a sidebar or chat panel—ready for conversation.
 
-TODO claude-welcome.png
+{{< image src="/img/claude-jupyter/claude-welcome.png" class="rounded" wrapper="text-center w-80" >}}
 
 Security reassurance → Since everything runs on e-INFRA CZ’s internal LLM platform, your sensitive research data stays protected.
    
@@ -98,7 +98,8 @@ df = pd.read_csv('age_data.csv')
 # Show the first few rows
 print(df.head())
 ```
-TODO claude-example1.png
+
+{{< image src="/img/claude-jupyter/claude-example1.png" class="rounded" wrapper="text-center w-80" >}}
 
 What’s happening?
 
@@ -161,7 +162,7 @@ Recommended Strategies for Handling Missing Age Values:
 
 My recommendation: Start with median imputation or group-based imputation (by sex) since it's simple yet effective. Which approach would you like me to implement? Or would you like to see a comparison of multiple methods?
 
-TODO picture claude-example2-1.png
+{{< image src="/img/claude-jupyter/claude-example2-1.png" class="rounded" wrapper="text-center w-80" >}}
 
 You: *Fix the problem using option 1*
 
@@ -197,7 +198,7 @@ Claude: Summary of what was done:
 
 Your dataset is now complete and ready for analysis!
 
-TODO picture claude-example2-2.png
+{{< image src="/img/claude-jupyter/claude-example2-2.png" class="rounded" wrapper="text-center w-80" >}}
 
 What’s happening?
 
