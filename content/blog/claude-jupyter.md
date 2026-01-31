@@ -44,7 +44,8 @@ Getting started is simple, but requires the right environment:
 * Add a new server → Give it a descriptive name (e.g., ai-research-lab).
 * Select the Claude Code special image `cerit.io/hubs/datasciencenb:2026-01-23-ai`; this ensures the AI assistant is properly integrated. 
 
-{{< image src="/img/claude-jupyter/claude-image.png" class="rounded" wrapper="text-center w-30" >}}       
+{{< image src="/img/claude-jupyter/claude-image.png" class="rounded col-12 col-md-6" wrapper="text-center w-30" >}}       
+
 
 * Request resources → For data-heavy tasks, start with 2-4 CPUs and 8-16GB RAM. If you need GPU acceleration, Claude can help manage that too!
 * Start an empty notebook.
