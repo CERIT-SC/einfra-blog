@@ -72,7 +72,7 @@ Key commands you'll use frequently within Claude:
 ```
 
 
-## Mastering Claude Code: Three Levels of AI-Assisted Programming
+## Mastering Claude Code: Four Levels of AI-Assisted Programming
 
 ### Level 1: Beginner – "Vibe Coding" with Claude
 
