@@ -237,6 +237,96 @@ What’s happening?
 * Context-aware suggestions: Fixes are tailored to the actual failure reason.
 * Learning opportunity: You understand why the error occurred and how to avoid it.
 
+### Expert Level: Managing Code Context with '/init' Command
+
+Context is everything with Claude Code. Here's the secret to getting the most out of your AI assistant.
+
+Claude Code works best when it focuses on the right files, not your entire codebase. Feeding it too much irrelevant code doesn't make it smarter—it can actually slow it down and confuse it. Think of it like trying to explain a single bug to someone while showing them your entire repository; it's overwhelming and counterproductive.
+
+The first thing to do when starting a project is to run `/init`. Think of this command as giving Claude a map of your codebase.
+
+**How it works**
+
+* Claude scans your project files
+* It learns the architecture and identifies key components
+* It generates a CLAUDE.md file that summarizes:
+   * The most important files
+   * Recurring coding patterns
+   * Useful commands and workflows
+   * Project-specific instructions
+
+Essentially, you're creating a cheat sheet that Claude can refer to throughout the project, making it much faster and smarter as you work.
+
+**Understanding the Three Types of CLAUDE.md Files**
+
+The `CLAUDE.md` file acts as a persistent system prompt—a set of instructions that Claude remembers for your project. There are three types you should know about:
+
+| File Type | Location | Purpose | Example Use Case |
+|-----------|----------|---------|------------------|
+| **Team Version** | `CLAUDE.md` (root directory) | Shared project context | "Our project uses SQLAlchemy for database access. Always include connection pooling in database queries." |
+| **Personal Instructions** | `CLAUDE.local.md` | Your private workflow notes | "I prefer matplotlib over seaborn for quick plots. Always add gridlines to my visualizations." |
+| **Global Rules** | `~/.claude/CLAUDE.md` | Cross-project preferences | "Always write docstrings in Google format. Use type hints for all function definitions." |
+
+**Example: Setting Up Project Context**
+
+Let's see this in action with a real data science project:
+
+Step 1: Initialize your project
+
+ 	/init
+
+Step 2: Check the generated `CLAUDE.md` file. Claude creates something like:
+
+	# Project Context: Customer Analytics
+
+	## Key Files
+	- `data/raw/customers.csv` - Main customer dataset (50,000 records)
+	- `src/preprocessing.py` - Data cleaning pipeline
+	- `notebooks/exploration.ipynb` - Initial EDA
+
+	## Project Structure
+	- Data goes in `data/raw/`
+	- Processed data in `data/processed/`
+	- Models in `models/`
+
+	## Common Patterns
+	- We use scikit-learn for modeling
+	- All visualizations use the 'Set2' color palette
+	- Date columns are formatted as YYYY-MM-DD
+
+	## Useful Commands
+	- `python src/preprocessing.py --clean` - Run full cleaning pipeline
+	- `python -m pytest tests/` - Run test suite
+
+Step 3: Add team guidelines
+
+Edit `CLAUDE.md` to add:
+
+	## Team Guidelines
+	- Always validate data types before processing
+	- Include unit tests for new functions
+	- Document data source and transformation steps
+
+Step 4: Add personal preferences
+
+Create `CLAUDE.local.md`:
+
+	## Personal Workflow
+	- I work in Central European Time
+	- Prefer interactive plots (plotly) for exploration
+	- Save model checkpoints every 1000 iterations
+
+Now, when you ask Claude for help, it understands your project structure, follows team conventions, and respects your personal preferences—all without you having to repeat yourself.
+
+When properly configured, Claude becomes dramatically more effective:
+
+| Before context management | After context management |
+|----------------------------|------------------|
+| You: *"Help me analyze this data"* | You: *"Help me analyze this data"* |
+| Claude: Generic response that might not fit your project structure | Claude: "Looking at your project structure, I see you typically store raw data in `data/raw/`. Let me check if there are existing preprocessing scripts in `src/` that we should reuse. Based on your team guidelines, I'll also include data validation steps." |
+
+
+By managing these files properly, you ensure Claude is always working with the right context, making its suggestions far more accurate and relevant.
 
 
 
@@ -244,13 +334,12 @@ What’s happening?
 ## Pro Tips: How to Get the Most Out of Claude Code 
 
 
-**1. Be Specific – Precision Yields Better Results**
+**1. Be Specific with Your Requests**
 
 ❌ Vague: "Help me with this data" → Claude responds with generic advice.
 
-✅ Laser-focused: "Create a scatter plot of revenue vs. customer_age, color-coded by region, with a LOESS trend line and dynamic hover labels using Plotly" → Now that’s production-grade visualization.
+✅ Try: "Create a scatter plot of revenue vs. customer_age, color-coded by region, with a LOESS trend line and dynamic hover labels using Plotly" → Now that’s production-grade visualization.
 
-🔍 Tip: Use variable names from your notebook. Claude looks for exact matches.
 
 **2. Embrace File System Navigation**
 
@@ -272,7 +361,7 @@ Instead of monolithic queries, build step-by-step:
 * "Identify outliers in price using isolation forest"
 * "Visualize distribution of outliers vs normal data with binning"
 
-Claude remembers each step, adjusting context dynamically.
+Claude remembers each step and adjusts the context dynamically.
 
 **4. Autonomous Pipeline Generation**
 
@@ -294,9 +383,10 @@ Claude understands multiple notebooks:
 It recursively scans `.ipynb files`, parses prior experiments, and generates a comparative markdown table injected right into your notebook.
 
 
+
 ## Safety and Best Practices
 
-Our Jupyters' Claude integration prioritizes research integrity:
+Our Jupyter's Claude integration prioritizes research integrity:
 
 * No external APIs: All LLM processing occurs inside e-INFRA CZ’s trusted environment—your data is not leaked.
 * No silent executions: Code only runs with your Shift + Enter keystroke or explicit chat approval.
@@ -308,17 +398,19 @@ Our Jupyters' Claude integration prioritizes research integrity:
 
 Claude Code transforms Jupyter Notebook from a passive coding environment into an interactive collaboration space. As you progress from basic queries to complex, context-aware requests, you'll find it becomes less of a tool and more of a partner in your data science workflow.
 
-**Your Challenge**: Next time you open a Jupyter notebook with Claude Code, try this:
+**Your Challenge**: 
+Next time you open a Jupyter notebook with Claude Code, try this:
 
  * Load any dataset you're working with
  * Ask Claude: *"What's the most interesting question I haven't asked about this data yet?"*
  * Review Claude’s reasoning.
  * Execute and extend what it suggests.
 
-
 Remember: Vibe coding isn't about replacing your skills – it's about amplifying them. You still need to understand what good code looks like, what secure systems require, and what users need. AI is your implementation partner, not your replacement.
 
 Start with simple tasks. Generate a function. Create a test. Build a script. As you gain confidence, tackle larger projects. Before long, you'll wonder how you ever coded without AI assistance.
+
+Ready to try it out? Launch your Claude Code-enabled Jupyter Notebook today and experience the future of interactive data science.
 
 
 Reference:
