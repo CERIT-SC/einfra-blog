@@ -280,7 +280,7 @@ What’s happening?
 * Context-aware suggestions: Fixes are tailored to the actual failure reason.
 * Learning opportunity: You understand why the error occurred and how to avoid it.
 
-### Expert Level: Managing Code Context with '/init' Command
+### Level 4 Expert: Managing Code Context with '/init' Command
 
 Context is everything with Claude Code. Here's the secret to getting the most out of your AI assistant.
 
