@@ -33,6 +33,7 @@ Claude Code, however, is agentic: it doesn’t just respond—it acts intelligen
 
 This means your workflow evolves from *"Let me copy-paste this solution"* to *"Let’s build this together—what do you think?"*
 
+Security reassurance → Since everything runs on e-INFRA CZ’s internal LLM platform, your sensitive research data stays protected.
 
 
 ## Getting Started: Setting Up Your AI-Powered Notebook
@@ -41,25 +42,18 @@ Getting started is simple, but requires the right environment:
 
 * Log in [hub.cloud.e-infra.cz](https://hub.cloud.e-infra.cz) with your MetaCentrum credentials.
 * Add a new server → Give it a descriptive name (e.g., ai-research-lab).
-* Select the Claude Code image:
+* Select the Claude Code special image `cerit.io/hubs/datasciencenb:2026-01-23-ai`; this ensures the AI assistant is properly integrated. 
 
-        cerit.io/hubs/datasciencenb:2026-01-23-ai
+{{< image src="/img/claude-jupyter/claude-image.png" class="rounded" wrapper="text-center w-30" >}}       
 
-{{< image src="/img/claude-jupyter/claude-image.png" class="rounded" wrapper="text-center w-30" >}}
-        
-
-This ensures the AI assistant is properly integrated.
 * Request resources → For data-heavy tasks, start with 2-4 CPUs and 8-16GB RAM. If you need GPU acceleration, Claude can help manage that too!
 * Start an empty notebook.
 
 When your notebook launches, you’ll see the Claude Code interface—usually as a sidebar or chat panel—ready for conversation.
 
-{{< image src="/img/claude-jupyter/claude-welcome.png" class="rounded" wrapper="text-center w-40" >}}
+{{< image src="/img/claude-jupyter/claude-welcome.png" class="rounded" wrapper="text-center w-40" >}}   
 
-Security reassurance → Since everything runs on e-INFRA CZ’s internal LLM platform, your sensitive research data stays protected.
-   
-
-Key commands you'll use frequently within Claude:
+####Key commands you'll use frequently within Claude:
 
 ```bash
 # Get help and see all available commands
@@ -100,15 +94,12 @@ df = pd.read_csv('age_data.csv')
 print(df.head())
 ```
 
-{{< image src="/img/claude-jupyter/claude-example1.png" class="rounded" wrapper="text-center w-80" >}}
-
-
 What’s happening?
 * Claude scanned your filesystem and found the file.
 * It wrote clean, executable Python using pandas.
 * Before running anything, it asks for confirmation—MetaCentrum’s "Human-in-the-loop" safety feature ensures no unexpected changes happen without your approval.
 
-
+{{< image src="/img/claude-jupyter/claude-example1.png" class="rounded" wrapper="text-center w-80" >}}
 
 ### Level 2: Intermediate: Context-Aware Assistance
 
@@ -165,10 +156,10 @@ My recommendation: Start with median imputation or group-based imputation (by se
 
 {{< image src="/img/claude-jupyter/claude-example2-1.png" class="rounded" wrapper="text-center w-80" >}}
 
-
+.
 You: *Fix the problem using option 1*
 
-Here's the code to implement option 1:
+Claude: Here's the code to implement option 1:
 
 ```bash
 # Store original for comparison
@@ -202,6 +193,7 @@ Your dataset is now complete and ready for analysis!
 
 {{< image src="/img/claude-jupyter/claude-example2-2.png" class="rounded" wrapper="text-center w-80" >}}
 
+.
 What’s happening?
 
 * Claude doesn’t just suggest a solution—it explains the reasoning based on your data.
