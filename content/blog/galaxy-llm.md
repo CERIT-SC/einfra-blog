@@ -1,9 +1,9 @@
 ---
 date: '2026-03-03T23:59:59Z'
-title: 'Elementary, My Dear Galaxy: Using LLMs to Profile Your Photo Library'
+title: 'Elementary, My Dear Galaxy: Just Call LLM'
 thumbnail: '/img/galaxy-llm/allinone.png'
 author: "Aleš Křenek"
-description: "Step by step assembly of Galaxy workflow containing LLM calls"
+description: "Profile your photo library and much more in LLM-enabled Galaxy workflows"
 tags: ["Aleš Křenek", "Galaxy", "LLM", "Workflow"]
 colormode: true
 draft: false
@@ -30,7 +30,7 @@ At the same time, the powerful computing resources are still at hand.
 
 We provide a [dedicated installation of Galaxy](https://usegalaxy.cz) for the users of e-Infra CZ.
 The software is the same as the "global", generally available installations 
-at (usegalaxy.org)[https://usegalaxy.org] and (usegalaxy.eu)[https://usegalaxy.eu]
+at [usegalaxy.org](https://usegalaxy.org) and [usegalaxy.eu](https://usegalaxy.eu)
 but the registered users get much higher storage and computing quotas.
 
 See also [specific usegalaxy.cz documentation](https://docs.metacentrum.cz/en/docs/graphical/usegalaxy).
@@ -46,7 +46,7 @@ By wrapping the calls to a Galaxy tool, the LLM functionality is fully integrate
 in manually or automatically run workflows, being combined with thousands of other maintained Galaxy tools.
 
 
-## Demo workflow
+## Profile-the-photos workflow
 
 Previous Galaxy experience is not strictly expected but the tutorial is still quite brief to keep it reasonably short. 
 If you get lost, refer to [documentation and tutorials](https://galaxyproject.org) 
@@ -188,7 +188,15 @@ history menu in the upper right corner of the interface.
 Working with it can be a bit tricky, detailed description is beyond the scope of this article,
 refer to the documentation or proceed with trial and error.
 
-My extracted worfklow is [available here](https://usegalaxy.cz/published/workflow?id=ff5044efdb2c4f18).
+The workflow is a graph of tools connected by edges whenever the output of one is used as an input
+of another (see also the heading image of this article).  
+Besides this connectivity, the additional parameters and settings of tools invocation are recorded
+as well.
+
+With a well-designed workflow, the user just provides the inputs, he/she tunes some parameters
+eventually, and everything gets executed automatically, producing the final results.
+
+My extracted and polished worfklow of the profile-the-photos example is [available here](https://usegalaxy.cz/published/workflow?id=ff5044efdb2c4f18).
 
 <div class="clearfix"></div>
 
