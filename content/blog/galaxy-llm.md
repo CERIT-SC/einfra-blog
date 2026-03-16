@@ -211,4 +211,7 @@ We will be happy to provide support at [galaxy@cesnet.cz](mailto:galaxy@cesnet.c
 
 It's all up to you, enjoy.
 
+## Reference
+
+Documentation [usegalaxy.cz](https://docs.metacentrum.cz/en/docs/graphical/usegalaxy)
 
