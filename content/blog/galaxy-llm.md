@@ -182,12 +182,24 @@ to take the LLM high and produce more hallucinating outputs.
 
 <div class=`clearfix`></div>
 
-As a result, you receive a detailed detective-style description of your characters, created by analyzing the pictures you provided to the LLM. Based on these observations, it produces a vivid profile similar to a detective’s case report—highlighting distinctive features
-
-
-
+As a result, you receive a detailed detective-style description of your characters, created by analyzing the pictures you provided to the LLM. Based on these observations, it produces a vivid profile similar to a detective’s case report—highlighting distinctive features.
 
 {{< image src="/img/galaxy-llm/galaxy-llm-result.png" class="rounded" wrapper="text-center w-40" >}}
+
+Tip:
+* Switch to a model such as **kimi‑k2.5** or **Deepseek-3.5-thinking**.
+* Increase the temperature setting to **1.8** for more creative outputs.
+* Then feed the model the prompt provided below.
+
+```
+You have been given a set of data that corresponds to the various objects appearing in a random assortment of photos taken by an individual’s phone. Based on these object counts alone, devise a plausible profile of the person’s character and approximate age.
+Style: Write your analysis in the voice and deductive tone of Sherlock Holmes—precise, observant, and a touch theatrical.
+Scope: Limit the speculation to what can reasonably be inferred from the object frequencies; avoid unfounded or overly speculative claims.
+Structure:
+- Opening Observation: Briefly note what the data suggest at first glance.
+- Deductive Reasoning: Walk through the logical steps linking specific objects (e.g., sports equipment, books, kitchenware, pets) to personality traits and likely age ranges.
+- Conclusion: Summarize the most likely character profile and age bracket, phrasing it as Holmes would—confident yet open to revision should new evidence arise.
+```
 
 ## Putting it all together
 
