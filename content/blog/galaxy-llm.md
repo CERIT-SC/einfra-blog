@@ -112,16 +112,16 @@ Galaxy provides specific support for handling multiple (even numerous) files in 
 Stick with a dozen or two -- the more you have, the more fun will come, but also the more time you will have to wait. 
 3. Click `Start` followed by `Build` (once the latter is enabled)
 4. Enter `images` as the list name and click `Create list`
-5. Invoke the `LLM Hub` tool again; this time, choose the folder icon for `Image Context` and pick `classes.txt` as the `Text context` and pick the `images` list as the input.
-6. Provide a suitable prompt to tell the model what to do (from the previous example).
-7. Click `Run Tool`.
+5. Invoke the `LLM Hub` tool again; this time, choose the folder icon for `Image Context` and pick the collection of images to the field, and as the `Text context` pick `classes.txt` file.
+7. Provide a suitable prompt to tell the model what to do (use that from the previous example).
+8. Click `Run Tool`.
 
 Depending on the number of files and the current LLM load, processing will take a while now. Have coffee in the meantime.
 The result is a list of single-line files again, each corresponding to an image in the input list.
 
 ### Concatenate classifications into a single table
 
-The raw output needs normalization. Instead of manual datatype changes, use the `Text reformating` tool.
+The raw output needs normalization. Instead of manual datatype changes, use the `Text reformatting` tool.
 
 1. LLMs tend to output incomplete lines, which may break the result concatenation.
 This can be fixed by calling the `Text reformating` tool.
