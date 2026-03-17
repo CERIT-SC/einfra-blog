@@ -182,6 +182,12 @@ to take the LLM high and produce more hallucinating outputs.
 
 <div class=`clearfix`></div>
 
+As a result, you receive a detailed detective-style description of your characters, created by analyzing the pictures you provided to the LLM. Based on these observations, it produces a vivid profile similar to a detective’s case report—highlighting distinctive features
+
+
+
+
+{{< image src="/img/galaxy-llm/galaxy-llm-result.png" class="rounded" wrapper="text-center w-40" >}}
 
 ### Putting it all together
 
