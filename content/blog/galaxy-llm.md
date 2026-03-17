@@ -187,7 +187,7 @@ As a result, you receive a detailed detective-style description of your characte
 {{< image src="/img/galaxy-llm/galaxy-llm-result.png" class="rounded" wrapper="text-center w-40" >}}
 
 Tip:
-* Switch to a model such as **kimi‑k2.5** or **Deepseek-3.5-thinking**.
+* Switch to a model such as **kimi‑k2.5** or **Deepseek-3.2-thinking**.
 * Increase the temperature setting to **1.8** for more creative outputs.
 * Then feed the model the prompt provided below.
 
