@@ -1,10 +1,10 @@
 ---
-date: '2026-03-03T23:59:59Z'
-title: 'Elementary, My Dear Galaxy: Just Call LLM'
-thumbnail: '/img/galaxy-llm/allinone.png'
-author: `Aleš Křenek`
-description: `Profile your photo library and much more in LLM-enabled Galaxy workflows`
-tags: [`Aleš Křenek`, `Galaxy`, `LLM`, `Workflow`]
+date: "2026-03-03T23:59:59Z"
+title: "Elementary, My Dear Galaxy: Just Call LLM"
+thumbnail: "/img/galaxy-llm/allinone.png"
+author: "Aleš Křenek"
+description: "Profile your photo library and much more in LLM-enabled Galaxy workflows"
+tags: ["Aleš Křenek", "Galaxy", "LLM", "Workflow"]
 colormode: true
 draft: false
 ---
