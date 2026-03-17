@@ -189,7 +189,7 @@ As a result, you receive a detailed detective-style description of your characte
 
 {{< image src="/img/galaxy-llm/galaxy-llm-result.png" class="rounded" wrapper="text-center w-40" >}}
 
-### Putting it all together
+## Putting it all together
 
 {{< image src=`/img/galaxy-llm/history.png` class=`rounded float-end ms-3 mb-3 w-25` >}}
 In previous steps we demonstrated manual, exploratory approach to data analysis in Galaxy.
