@@ -31,9 +31,9 @@ At the same time, the powerful computing resources are still at hand.
 ### E-infra CZ installation: usegalaxy.cz
 
 We provide a [dedicated installation of Galaxy](https://usegalaxy.cz) for the users of e-Infra CZ.
-The software is the same as the `global`, generally available installations 
+The software toolkit is similar to the global, generally available installations 
 at [usegalaxy.org](https://usegalaxy.org) and [usegalaxy.eu](https://usegalaxy.eu)
-but the registered users get much higher storage and computing quotas.
+and the computations rae backed by the MetaCentrum Grid.
 
 See also [specific usegalaxy.cz documentation](https://docs.metacentrum.cz/en/docs/graphical/usegalaxy).
 
@@ -55,13 +55,11 @@ If you get lost, refer to [documentation and tutorials](https://galaxyproject.or
 or ask your favourite LLM for help (they are fairly good in it).
 
 {{< image src=`/img/galaxy-llm/login.png` class=`rounded float-end ms-3 mb-3 w-25` >}}
-[Metacentrum account](https://metavo.metacentrum.cz/en/application/index.html) is required.
-Once your registration is approved, proceed to [usegalaxy.cz](https://usegalaxy.cz) 
-and click on the e-Infra CZ logo in the upper left corner of the login page.
+Proceed to [usegalaxy.cz](https://usegalaxy.cz) and click on the e-Infra CZ logo in the upper left corner of the login page.
 
 
-The workflow described bellow looks complicated a little.
-Don't be scared, we make the sequence of manual steps to show them in detail. 
+The workflow described bellow looks a little complicated.
+Don't be scared, we take short steps and show them in detail. 
 They can be glued together to *Galaxy workflow* and run with a single click, as shown at the end of the section.
 
 <div class=`clearfix`></div>
