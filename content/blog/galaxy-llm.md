@@ -12,7 +12,7 @@ draft: false
 # Step by step assembly of Galaxy workflow containing LLM calls
 
 In this article we go step by step in assembling a Galaxy workflow from LLM calls and several conventional Galaxy tools.
-The use case itself is ridiculous, its only purpose (besides making fun) 
+The use case itself is ridiculous, its only purpose (besides the fun of it) 
 is a demonstration how these can work together and what is the added value of the Galaxy environment
 in such tasks.
 
@@ -33,14 +33,14 @@ At the same time, the powerful computing resources are still at hand.
 We provide a [dedicated installation of Galaxy](https://usegalaxy.cz) for the users of e-Infra CZ.
 The software toolkit is similar to the global, generally available installations 
 at [usegalaxy.org](https://usegalaxy.org) and [usegalaxy.eu](https://usegalaxy.eu)
-and the computations rae backed by the MetaCentrum Grid.
+and the computations are backed by the MetaCentrum Grid.
 
 See also [specific usegalaxy.cz documentation](https://docs.metacentrum.cz/en/docs/graphical/usegalaxy).
 
 ### Large language models at usegalaxy.cz
 
 usegalaxy.cz is connected with our [AI as a service](https://docs.cerit.io/en/docs/ai-as-a-service/introduction)
-via the LLM Hub tool (see [original anouncement](https://galaxyproject.org/news/2025-10-10-llm-hub/)).
+via the LLM Hub tool (see [original announcement](https://galaxyproject.org/news/2025-10-10-llm-hub/)).
 
 Technically, usegalaxy.cz keeps credentials to talk to the LLM service, sending inputs (prompts) to the selected
 LLM, and receiving its outputs. 
@@ -58,7 +58,7 @@ or ask your favourite LLM for help (they are fairly good in it).
 Proceed to [usegalaxy.cz](https://usegalaxy.cz) and click on the e-Infra CZ logo in the upper left corner of the login page.
 
 
-The workflow described bellow looks a little complicated.
+The workflow described below looks a little complicated.
 Don't be scared, we take short steps and show them in detail. 
 They can be glued together to *Galaxy workflow* and run with a single click, as shown at the end of the section.
 
@@ -207,7 +207,7 @@ This is typical in the initial stage when the user defines the exact processing 
 
 Once the procedure settles down, it is desirable to make a reproducible
 record of it.
-Galaxy is particularly good in it, the is `Extract Workflow` command in the
+Galaxy is particularly good in it, there is `Extract Workflow` command in the
 history menu in the upper right corner of the interface. 
 Working with it can be a bit tricky, detailed description is beyond the scope of this article,
 refer to the documentation or proceed with trial and error.
@@ -218,9 +218,9 @@ Besides this connectivity, the additional parameters and settings of tools invoc
 as well.
 
 With a well-designed workflow, the user just provides the inputs, he/she tunes some parameters
-eventually, and everything gets executed automatically, producing the final results.
+if needed, and everything gets executed automatically, producing the final results.
 
-My extracted and polished worfklow of the profile-the-photos example is [available here](https://usegalaxy.cz/published/workflow?id=ff5044efdb2c4f18).
+My extracted and polished workflow of the profile-the-photos example is [available here](https://usegalaxy.cz/published/workflow?id=ff5044efdb2c4f18).
 
 <div class=`clearfix`></div>
 
@@ -230,7 +230,7 @@ One could extend the workflow with other image processing tools, there are dozen
 Additional image features can be merged with classification, added as input to the final assessment, getting it 
 more accurate.
 
-Or stop playing with this artificial example and head towards serious scientific usege directly. 
+Or stop playing with this artificial example and move on to serious scientific usage. 
 We will be happy to provide support at [galaxy@cesnet.cz](mailto:galaxy@cesnet.cz).
 
 It's all up to you, enjoy.
