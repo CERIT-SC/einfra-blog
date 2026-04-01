@@ -3,7 +3,7 @@ date: "2026-04-01T00:00:00Z"
 title: "Training a language model from scratch with e-INFRA AI agents"
 thumbnail: "/img/autoresearch/thumbnail.png"
 author: "Terézia Slanináková"
-description: "Running autoresearch run on e-INFRA services and I'm monitoring the progress at https://autoresearch.dyn.cloud.e-infra.cz/."
+description: "Running autoresearch run on e-INFRA services and monitoring the progress at https://autoresearch.dyn.cloud.e-infra.cz/."
 tags: ["Terézia Slanináková", "LLM", "AI", "Agentic AI", "autoresearch"]
 colormode: true
 draft: false
@@ -172,7 +172,7 @@ EOF
 
 ## Guiding the experimentation
 
-With the default instructions, the agent starts off running a hyperparameter search on the model, for the most part. This is [well-documented](https://x.com/hooeem/status/2030720614752039185). This is fine at the beginning but then it starts to cause diminishing returns (typical improvement scale: ~0.0003–0.001 `val_bpb`).
+With the default instructions, the agent starts off running a hyperparameter search on the model, for the most part. This is [well-documented](https://x.com/hooeem/status/2030720614752039185) and fine at the beginning but then it starts to cause diminishing returns (typical improvement scale: ~0.0003–0.001 `val_bpb`).
 
 This is, therefore, a time for a human (finally!) to step up and provide guidance to unstuck the agent. I consulted an independent agent and I put the following additional guidance into `program.md`:
 
@@ -257,6 +257,7 @@ The [nanochat](https://github.com/karpathy/nanochat) model is trained on a datas
 
 <details>
 <summary>Example story from the training dataset</summary>
+
 ```
 Once upon a time there was a tomato. The tomato was ready to rot. One day it said hello to its friends, a carrot and a cabbage.
 The tomato said to its friends, "Let's start an adventure. It'll be so fun!"
@@ -266,6 +267,7 @@ So, the three friends started their adventure. They raced over the sand, jumping
 Soon, the sun began to set and the three friends knew it was time to go home. They hugged goodbye, and the tomato said, "Let's come back soon and start a new adventure!"
 The carrot and the cabbage agreed and they all waved goodbye until they were out of sight. The tomato knew that it had one more adventure before it was ready to rot.
 ```
+
 </details>
 
 As such, the language is quite simple, low entropy and focused on a narrow domain. Also, it's important to note that as opposed to modern LLMs whose training has many stages, in this LM we're optimizing only on token prediction, i.e. no post-training is run to make this a question-answering machine.
