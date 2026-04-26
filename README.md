@@ -60,7 +60,7 @@ Hinode is a theme that uses [Hugo modules][hugo_modules] to install and maintain
 3. **Install the npm packages and hugo modules**
 
     ```bash
-    npm install && npm run mod:update
+    npm install
     ```
 
 You can now run `npm run start` to start a local development server.
