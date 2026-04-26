@@ -124,7 +124,7 @@ This is not, to be clear, a complaint. The Deadeaters are doing useful work — 
 
 We arrive at the section in which the household books are opened. There is, we should note in advance, more than one ledger at work here, and the picture changes considerably depending on which one is consulted. We shall consult them in order.
 
-### Movement One: The Price Tag
+### Movement One — The Price Tag
 
-We charge what **Chinese providers** 
+We charge what **Chinese providers** charge for these same models served from their countries of origin.
 
