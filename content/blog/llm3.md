@@ -125,3 +125,7 @@ This is not, to be clear, a complaint. The Deadeaters are doing useful work — 
 We arrive at the section in which the household books are opened. There is, we should note in advance, more than one ledger at work here, and the picture changes considerably depending on which one is consulted. We shall consult them in order.
 
 ### Movement One — The Price Tag
+
+We charge what the **Chinese providers** charge for these same models served from their countries of origin. **Kimi at $0.60 per million input tokens, GLM at $0.60, DeepSeek at $0.28, Qwen at $0.26.** These are the prices a researcher would see if they pointed an API key at the source.
+
+Last month, our published rates produced approximately **$25,800** in user-facing accounting against the traffic served. A useful reference point, and a number worth remembering: the researchers know what these tokens cost at their origin.
