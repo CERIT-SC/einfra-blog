@@ -1,8 +1,8 @@
 ---
 date: '2026-04-26T19:00:00Z'
-title: 'On the Curious Arithmetic of Serving Language Models'
+title: '100 Billion Tokens'
 thumbnail: ''
-description: "On the Curious Arithmetic of Serving Language Models"
+description: "The Curious case of 100 Billion Tokens."
 tags: ["Lukáš Hejtmánek", "CERIT-SC", "AI", "LLM"]
 colormode: true
 draft: true
