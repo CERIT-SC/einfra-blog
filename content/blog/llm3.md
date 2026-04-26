@@ -157,3 +157,27 @@ We are not, in other words, working around the rules. We are the architecture th
 The household books, in summary, only appear poorly kept until one understands which ledger one is supposed to be reading. Read from the user-facing ledger, the prices are commercial-equivalent. Read from the operations ledger, the service runs at a modest subsidy. Read from the institutional ledger, the federation saves over a hundred thousand euros every month while keeping its data inside its own borders. Three ledgers, three pictures, and only one of them is the picture that matters.
 
 ---
+
+## VIII. Bring Your Own Hardware
+
+The invitation, plainly extended.
+
+Researchers and groups who own suitable GPU hardware are most welcome to connect it to the e-INFRA CZ fabric and have us help operate it. The minimum bar is straightforward: **at least H100-class GPUs (or equivalent capability)**, and **preferably four or more per machine**.
+
+Below that threshold the operational overhead of integration tends to exceed the value delivered, both to the contributing group and to the broader user base — the establishment, regrettably, cannot make a consistent profit (or even a consistent break-even) from a pair of older accelerators in a closet, however lovingly maintained. Above that threshold, we can typically find an arrangement that works for everyone involved: integration into the Kubernetes-based serving fabric, optional dedicated allocation for the contributing group, and surplus capacity returned to the shared pool.
+
+The details vary; the principle does not. Inquire, and we shall be pleased to discuss the matter over the appropriate beverage.
+
+---
+
+## IX. Onward
+
+The first hundred billion tokens were the difficult ones. The next hundred billion will, with any luck, be merely interesting.
+
+We extend our thanks to the users whose appetite — agentic, conversational, and otherwise — made the milestone possible, and to the institutions whose patience made the operation viable in the first place. We look forward to **DeepSeek V4 Pro**, to whatever Kimi and GLM produce next, to fewer parser bugs, and to whatever the next dispatch finds worth reporting. There will, almost certainly, be something.
+
+The hardware is on premises. The data does not leave. The models, however foreign their training, run under our roof and our rules. And the books, read from the correct ledger, are in remarkably good order.
+
+The establishment remains open. The kettle is on. The GPUs are warm.
+
+— *Lukáš Hejtmánek, CERIT-SC, e-INFRA CZ*
