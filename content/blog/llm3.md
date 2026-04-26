@@ -126,5 +126,5 @@ We arrive at the section in which the household books are opened. There is, we s
 
 ### Movement One — The Price Tag
 
-We charge what **Chinese providers** charge for these same models served from their countries of origin.
+We charge what **Chinese providers** charge for these same models served from their countries of origin. **Kimi at &dollar;0.60 per million input tokens, GLM at &dollar;0.60, DeepSeek at &dollar;0.28, Qwen at &dollar;0.26.**
 
