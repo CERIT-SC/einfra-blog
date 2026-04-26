@@ -27,3 +27,15 @@ The kettle is on. We may as well begin.
 ## II. Why Input Dominates: A Short Detour Through Prefill and Decode
 
 Those new to operating language models at scale are sometimes surprised to discover that their machines spend most of their time *reading*, and only a modest fraction *writing*. The asymmetry is not accidental. It is, in fact, baked into the architecture of inference itself.
+
+A modern transformer processes a request in two distinct phases. The first is **prefill**: the model ingests the entire prompt at once, in parallel, computing the attention state across all input tokens simultaneously. This phase is *compute-bound* — limited by the raw floating-point capability of the GPU, and remarkably fast on a per-token basis. A modern accelerator can plough through tens of thousands of input tokens in the time it takes to clear one's throat.
+
+The second phase is **decode**: the model generates output tokens one at a time, each new token requiring a full pass through the network conditioned on every token that came before. This phase is *memory-bandwidth-bound* — limited not by how fast the GPU can compute, but by how fast it can move weights and KV-cache entries through its memory subsystem. Decode is, in a word, slow. Per token, it is typically an order of magnitude slower than prefill.
+
+The natural consequence: a single user turn might consist of forty thousand input tokens and eight hundred output tokens. The user perceives this as "asking a question and getting an answer." The hardware perceives it as "an enormous prefill followed by a modest decode." Both views are correct; only the second pays the bills.
+
+The evidence from our last month of traffic confirms the pattern with some emphasis. Across our serving fleet, prompt tokens outweighed completion tokens by roughly an order of magnitude. **GLM 5.1 ran at a 17.3× input-to-output ratio. Kimi K2.6 at 18.5×.** These are not anomalies. They are the fingerprint of how modern language models are actually used — a topic to which we shall return when we discuss the Deadeaters.
+
+A well-served cluster, then, must be competent at both phases of inference. It must have the compute to absorb large prefills without complaint, and the memory bandwidth to sustain decode at acceptable rates. Excellence in one and mediocrity in the other produces a serving experience that is either snappy and incoherent or thorough and glacial. Neither is what one wants.
+
+---
