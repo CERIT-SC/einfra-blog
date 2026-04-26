@@ -126,4 +126,18 @@ We arrive at the section in which the household books are opened. There is, we s
 
 ### Movement One: The Price Tag
 
-We charge what 
+We charge what **Chinese providers** charge for these same models served from their countries of origin. **Kimi at $0.60 per million input tokens, GLM at $0.60, DeepSeek at $0.28, Qwen at $0.26.** These are the prices a researcher would see if they pointed an API key at the source.
+
+Last month, our published rates produced approximately **$25,800** in user-facing accounting against the traffic served. A useful reference point, and a number worth remembering: the researchers know what these tokens cost at their origin.
+
+### Movement Two: The Hardware Reality
+
+The actual cost of serving these tokens is, regrettably, another matter entirely. The establishment runs on hardware that was not provided gratis. Two DGX systems at approximately **$500,000 each, totaling $1,000,000.** Add **20% for operational overhead** — power, cooling, the appropriate share of staff time, the assorted indignities of running production hardware — and one arrives at **$1,200,000.** Amortized over a three-year service life, this works out to **approximately $33,300 per month.**
+
+Last month we recovered $25,800 against $33,300 of cost. **Roughly 77 cents on the dollar.** By any conventional standard of unit economics, the operation is a polite financial embarrassment — the kind of arithmetic one does not bring up at the institute's annual review without surrounding context. The federation absorbs a subsidy of approximately **$7,500 per month** to keep the service running at its current pricing.
+
+It should be noted, in the interests of strict honesty, that the figure above does not include electricity beyond the 20% bracket, full data-center loading, or the broader institutional infrastructure that makes the operation possible. The true cost-per-token is somewhat higher than what the simple arithmetic suggests. We mention this not to flagellate ourselves but to be clear about which ledger we are reading from.
+
+So: a household running at a modest loss, charging the going rate, absorbing the difference. One can see how this would not, on its own, justify the operation.
+
+And then we open the third ledger.
