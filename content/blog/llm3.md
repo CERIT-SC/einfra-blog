@@ -116,11 +116,11 @@ The numbers from last month make the pattern visible with some emphasis. The **m
 | Kimi K2.6 | 2,179 | **99,746** |
 | GLM 5.1 | 709 | **90,351** |
 | DeepSeek V3.2 | 879 | 23,776 |
-| gpt-oss-120b | 193 | 2,842 |
+| GPT-OSS-120B | 193 | 2,842 |
 
 The contrast tells the whole story. The typical request is modest — a few hundred to a couple of thousand tokens, the natural shape of a question politely asked. The **95th-percentile request**, for the agentic models, runs into the tens or hundreds of thousands. The gap between p50 and p95 *is* the Deadeater effect made visible: a relatively small number of agentic sessions consume the overwhelming majority of input tokens served.
 
-The contrast with **gpt-oss-120b** — p95 of just 2,842 — is instructive. That model is used conversationally rather than agentically, and its appetite reflects the difference. One might describe it as the well-mannered guest of the establishment, capable of an interesting conversation without first requiring the entire library to be brought into the parlour.
+The contrast with **GPT-OSS-120B** — p95 of just 2,842 — is instructive. That model is used conversationally rather than agentically, and its appetite reflects the difference. One might describe it as the well-mannered guest of the establishment, capable of an interesting conversation without first requiring the entire library to be brought into the parlour.
 
 This is not, to be clear, a complaint. The Deadeaters are doing useful work — important work, in many cases. They are simply doing it expansively, and we mention the appetite because it is responsible for the lion's share of where our hundred billion tokens went. A proper accounting requires acknowledging where the food was eaten.
 
@@ -132,7 +132,7 @@ We arrive at the section in which the household books are opened. There is, we s
 
 ### Movement One — The Price Tag
 
-We charge what **Chinese providers** charge for these same models served from their countries of origin. **Kimi at &dollar;0.60 per million input tokens, GLM at &dollar;0.60, DeepSeek at &dollar;0.28, Qwen at &dollar;0.26.**
+We virtually charge what **Chinese providers** charge for these same models served from their countries of origin. **Kimi at &dollar;0.60 per million input tokens, GLM at &dollar;0.60, DeepSeek at &dollar;0.28, Qwen at &dollar;0.26.**
 
 Last month, our published rates produced approximately **&dollar;25,800** in user-facing accounting against the traffic served. A useful reference point, and a number worth remembering: the researchers know what these tokens cost at their origin.
 
@@ -142,7 +142,7 @@ The actual cost of serving these tokens is, regrettably, another matter entirely
 
 Last month we recovered &dollar;25,800 against &dollar;33,300 of cost. **Roughly 77 cents on the dollar.** By any conventional standard of unit economics, the operation is a polite financial embarrassment — the kind of arithmetic one does not bring up at the institute's annual review without surrounding context. The federation absorbs a subsidy of approximately **&dollar;7,500 per month** to keep the service running at its current pricing.
 
-It should be noted, in the interests of strict honesty, that the figure above does not include electricity beyond the 20% bracket, full data-center loading, or the broader institutional infrastructure that makes the operation possible. The true cost-per-token is somewhat higher than what the simple arithmetic suggests. We mention this not to flagellate ourselves but to be clear about which ledger we are reading from.
+It should be noted, in the interests of strict honesty, that the 20% bracket covers electricity and the day-to-day operational costs, but does not extend to full data-center loading or the broader institutional infrastructure that makes the operation possible. The true cost-per-token is somewhat higher than what the simple arithmetic suggests. We mention this not to flagellate ourselves but to be clear about which ledger we are reading from.
 
 So: a household running at a modest loss, charging the going rate, absorbing the difference. One can see how this would not, on its own, justify the operation.
 
