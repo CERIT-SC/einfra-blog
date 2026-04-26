@@ -8,11 +8,13 @@ colormode: true
 draft: true
 ---
 
+## Previously on the e-INFRA Blog ...
+
+In [our previous post](https://blog.e-infra.cz/blog/run-llm2/), we described how we adopted the SGLang inference framework and started running a few more advanced models, such as the full version of DeepSeek R1. 
+Since then, we improved our hardware -- serving from two NVIDIA DGX machines, a B200 and a B300, with 1.4 TB and 2.1 TB of GPU memory respectively.
+We adopted new open-weighted models. We run, we served, we sometimes failed, and today, the LLM service at CERIT-SC has processed **100 billion tokens**.
+
 ## I. The Hundred Billion
-
-It is the duty of a well-run establishment to keep proper records, and it is the further duty of those records to occasionally produce a number that gives one pause. Last month, ours produced such a number.
-
-**One hundred billion tokens.**
 
 > *[SCREENSHOT: LiteLLM dashboard showing the cumulative token counter at 100B]*
 
