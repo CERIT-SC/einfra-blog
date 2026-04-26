@@ -156,7 +156,7 @@ The realistic alternative is the Western commercial market — Anthropic, OpenAI
 
 Against *that* baseline, the federation absorbs its &dollar;7,500 monthly subsidy and saves the institution something on the order of **&dollar;104,000 every month.** The annual figure approaches **&dollar;1.25 million** — which is, by a coincidence we find pleasing, roughly the entire amortized hardware cost of the operation, recovered each year through the simple expedient of not sending the money outside the federation.
 
-There is a further point that deserves to be surfaced explicitly. The open-weights models we serve — Kimi, GLM, DeepSeek, Qwen — are themselves of Chinese origin. The NÚKIB restriction concerns *hosting location and data sovereignty*, not model provenance. Running these models on **on-premises European hardware, under European jurisdiction, with no data leaving the infrastructure at any point**, is precisely the arrangement the restriction is designed to encourage. Our models are hosted solely on premise hardware. The data stays where it was sent. Nothing leaks.
+There is a further point that deserves to be surfaced explicitly. The open-weights models we serve — Kimi, GLM, DeepSeek, Qwen — are themselves of Chinese origin. The NÚKIB restriction concerns *hosting location and data sovereignty*, not model provenance. Running these models on hardware that is, admittedly, not European in origin — but which sits on European premises, operates under European jurisdiction, and lets no data leave its boundaries — is precisely the arrangement the restriction is designed to encourage. The data stays where it was sent. Nothing leaks.
 
 We are not, in other words, working around the rules. We are the architecture the rules presume.
 
