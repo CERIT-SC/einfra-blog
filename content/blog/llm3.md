@@ -59,3 +59,19 @@ Kimi runs on **four B300 systems**, sustaining peak throughput of **1,670 tokens
 Alongside these principal residents, we host a small cohort of lighter-duty models — Qwen3-coder-next, gpt-oss-120b, and others — which serve more conversational workloads without ceremony or incident. They are the well-behaved guests who never require the establishment's full attention, and we are grateful for them.
 
 ---
+
+## IV. The Serving Stack and Its Theatre
+
+It would be misleading to suggest that the foregoing operates frictionlessly. Serving open-weights models at production quality is not, in 2026, a solved problem. It is a moving target on a moving platform, and the platform is moving rather faster than the target.
+
+We use both **vLLM** and **SGLang**, depending on the model and the moment, and each brings its own collection of behaviours one must learn to anticipate.
+
+**vLLM** emits its reasoning output under the field name `reasoning`, where **LiteLLM** — sitting one layer up in our serving topology — expects `reasoning_content`. A small naming mismatch, with surprisingly far-reaching consequences for any downstream tooling that cares about the distinction (which is, increasingly, all of it). We work around the discrepancy. In our specific configuration, vLLM has also proven measurably slower than SGLang for the workloads we serve — not by a small margin, and not for reasons we have fully diagnosed. The investigation continues, with the patient resignation of those who have done this sort of investigation before.
+
+**SGLang**, for its part, has its own and rather more theatrical failure modes. The **tool parser** — the same component discussed earlier — is a persistent source of operational interest. We see **tool calls leaking into reasoning output**, and **reasoning leaking into tool calls**, in roughly equal measure. The model emits a perfectly formed tool invocation; the parser, in a moment of confusion, treats it as part of the chain-of-thought and presents it to the user as commentary. Or precisely the inverse: a stretch of internal reasoning is mistakenly classified as a tool call and dispatched to the agent, which finds itself executing nonsense. Neither variety improves the user experience.
+
+SGLang also, on certain occasions, **crashes outright**, or — more interestingly — **gets stuck** in a state from which only intervention will release it. These events are gracefully rare, but not so rare that we have stopped noticing.
+
+We mention these difficulties not in complaint but as honest reportage. Anyone running production inference at this scale is fighting some version of the same dragons, and the appropriate response is fellowship rather than alarm. The dragons are, on balance, slowly becoming smaller.
+
+---
