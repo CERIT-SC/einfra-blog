@@ -150,7 +150,7 @@ And then we open the third ledger.
 
 ### Movement Three — The Point
 
-The prices in Movement One are a reference, not a realistic alternative. The **Czech National Cyber and Information Security Agency — NÚKIB — has restricted the use of models hosted in China for institutional and sensitive workloads.** The "cheap option" researchers see priced at &dollar;25,800 is, for most public-sector and sensitive Czech use, **not legally available.** They can see the price. They cannot use the service.
+The prices in Movement One are a reference, not a realistic alternative. The **Czech National Cyber and Information Security Agency — NÚKIB — has restricted the use of models hosted in China for institutional and sensitive workloads.** The "cheap option" researchers see priced at &dollar;25,800 is, for most public-sector and for any workload involving sensitive data, **not legally available.** They can see the price. They cannot use the service.
 
 The realistic alternative is the Western commercial market — Anthropic, OpenAI, and similar — at premium-tier rates. The same traffic, priced at **Anthropic Sonnet-equivalent rates**, would have cost researchers approximately **&dollar;137,900 last month.**
 
