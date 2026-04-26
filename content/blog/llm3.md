@@ -2,7 +2,7 @@
 date: '2026-04-26T19:00:00Z'
 title: 'On the Curious Arithmetic of Serving Language Models'
 thumbnail: ''
-description: "How Do We Run LLMs"
+description: "On the Curious Arithmetic of Serving Language Models"
 tags: ["Lukáš Hejtmánek", "CERIT-SC", "AI", "LLM"]
 colormode: true
 draft: true
@@ -44,19 +44,19 @@ A well-served cluster, then, must be competent at both phases of inference. It m
 
 Let us turn to the matter of *which* models we currently host, and on what hardware. We shall introduce them in roughly the order of their temperament.
 
-**Qwen 3.5** — the dependable workhorse, whose virtues are sometimes overlooked precisely because it never causes trouble. It runs in **FP8 quantization** (which, despite occasional confusion on the matter, is not the model's native precision — it is a deliberate quantization choice, executed carefully). It resides on **two B300 systems**, sustains a peak throughput of **2,077 tokens per second**, and tops out at **22 concurrent requests**. Reliable, unfussy, occasionally underappreciated.
+**Qwen 3.5** — the dependable workhorse, good coder, whose virtues are sometimes overlooked precisely because it never causes trouble. It runs in **FP8 quantization** (which, despite occasional confusion on the matter, is not the model's native precision — it is a deliberate quantization choice, executed carefully). It resides on **two B300 GPUs**, sustains a peak throughput of **2,077 tokens per second**, and tops out at **22 concurrent requests**. Reliable, unfussy, occasionally underappreciated.
 
 **Kimi K2.6** — and here we must pause for a story. We deployed Kimi K2.6 on the day of its release. Not the week of, not the month after the dust had settled — the **day**. This is what is known in the trade as a *0-day deployment*, and it brings with it the predictable consequences: early instabilities, configuration surprises, and the occasional component behaving in ways its authors had not entirely anticipated. Most of these have since been resolved or domesticated, with one notable holdout: the **tool parser**.
 
 A brief digression, since the matter is important. A tool parser is the component responsible for extracting structured tool and function calls from the model's free-form output stream. When a model emits something like `<tool_call>{"name": "search", "args": {...}}</tool_call>`, it is the parser's task to recognize the boundary, extract the structured payload, and forward it to the agent's execution layer. When the parser misreads a token boundary, mishandles a special marker, or becomes confused by an unfamiliar format variation, the agent silently fails — or, more troublingly, executes the wrong action with the right confidence. Every agentic workflow in modern existence — coding assistants, research agents, anything that calls functions — sits on this thin and surprisingly fragile layer of parsing logic. A subtly broken parser produces the kind of bug that appears, to the user, as the model "having a bad day." It is, with regrettable consistency, never the model.
 
-Kimi runs on **four B300 systems**, sustaining peak throughput of **1,670 tokens per second** and reaching a maximum of **74 concurrent requests with 48 queued** — a figure to which we shall return shortly.
+Kimi runs on **four B300 GPUs**, sustaining peak throughput of **1,670 tokens per second** and reaching a maximum of **74 concurrent requests, and queue depths that have at times reached 48** — a figure to which we shall return shortly.
 
-**DeepSeek V3.2** — currently in residence and shortly to retire in favor of the forthcoming **DeepSeek V4 Pro**. It runs on the largest hardware footprint of any of our models: **eight B200 systems**. Peak throughput **2,022 tokens per second**, maximum 54 concurrent requests. A transition we await with interest.
+**DeepSeek V3.2** — currently in residence and shortly to retire in favor of the forthcoming **DeepSeek V4 Pro**. It runs on the largest hardware footprint of any of our models: **eight B200 GPUs**. Peak throughput **2,022 tokens per second**, maximum 54 concurrent requests. A transition we await with interest.
 
-**GLM 5.1** — the unusual case, running in **NVFP4** quantization where its peers run FP8 or native. It resides on **two B300 systems**, sustains peak throughput of **1,395 tokens per second**, and reaches a maximum of **36 concurrent requests with 99 queued**. That last figure is not a typo. GLM, as we shall see, has a clientele of conspicuous patience.
+**GLM 5.1** — the unusual case, running in **NVFP4** quantization where its peers run FP8 or native. It resides on **two B300 GPUs**, sustains peak throughput of **1,395 tokens per second**, and reaches a maximum of **36 concurrent requests, with queue depths sometimes reaching 99**. That last figure is not a typo. GLM, as we shall see, has a clientele of conspicuous patience.
 
-Alongside these principal residents, we host a small cohort of lighter-duty models — Qwen3-coder-next, gpt-oss-120b, and others — which serve more conversational workloads without ceremony or incident. They are the well-behaved guests who never require the establishment's full attention, and we are grateful for them.
+Alongside these principal residents, we host a small cohort of lighter-duty models — Qwen3.5-122B, GPT-OSS-120B, Mistral Small 4, and others — which serve more conversational workloads without ceremony or incident. They are the well-behaved guests who never require the establishment's full attention, and we are grateful for them.
 
 ---
 
