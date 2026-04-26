@@ -86,7 +86,7 @@ For some considerable time we maintained the position that **24 parallel request
 
 Then came the first day of Kimi K2.6.
 
-> *[SCREENSHOT: Grafana dashboard showing the sudden vertical rise in request rate on the day of Kimi K2.6's 0-day deployment]*
+{{< image src="/img/llm/kimi-usage.png" class="rounded w-60" wrapper="text-center" >}}
 
 **Seventy-four concurrent requests at peak.** Forty-eight more politely waiting their turn in the queue. Throughput held; latency did not. Every response elongated in proportion to the collective enthusiasm, and the system performed exactly as it had been designed to perform — which is to say, slowly, but reliably, and without dropping anyone on the floor.
 
