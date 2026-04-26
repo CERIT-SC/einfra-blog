@@ -88,7 +88,8 @@ Then came the first day of Kimi K2.6.
 
 {{< image src="/img/llm/kimi-usage.png" class="rounded w-60" wrapper="text-center" >}}
 
-**Seventy concurrent requests at peak.** Queue depths reaching forty-eight at their worst. Throughput held; latency did not. Every response elongated in proportion to the collective enthusiasm, and the system performed exactly as it had been designed to perform — which is to say, slowly, but reliably, and without dropping anyone on the floor.
+<br/>
+**Seventy concurrent requests at peak.** Queue depths reaching forty-eight at their worst. Throughput held; latency did not. Every response elongated in proportion to the collective enthusiasm, and the system performed exactly as it had been designed to perform — which is to say, slowly but reliably, save for those whose place in the queue exceeded the twenty-minute client timeout. Those, we regret to report, were quietly dropped on the floor..
 
 GLM 5.1 has produced its own moments of quiet operational interest. **Queue depths have reached 99 requests** during peak periods, while throughput remained respectable and the patience of the user base, somewhat less so. There is, we have observed, a particular variety of researcher who regards a deep queue not as an obstacle but as confirmation that they have chosen the right model.
 
