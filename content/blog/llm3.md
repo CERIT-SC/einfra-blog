@@ -87,7 +87,6 @@ For some considerable time we maintained the position that **24 parallel request
 Then came the first day of Kimi K2.6.
 
 {{< image src="/img/llm/kimi-usage.png" class="rounded w-60" wrapper="text-center" >}}
-{{<br/>}}
 
 **Seventy concurrent requests at peak.** Queue depths reaching forty-eight at their worst. Throughput held; latency did not. Every response elongated in proportion to the collective enthusiasm, and the system performed exactly as it had been designed to perform — which is to say, slowly, but reliably, and without dropping anyone on the floor.
 
