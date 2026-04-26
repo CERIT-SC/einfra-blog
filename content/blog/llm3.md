@@ -75,3 +75,19 @@ SGLang also, on certain occasions, **crashes outright**, or — more interesting
 We mention these difficulties not in complaint but as honest reportage. Anyone running production inference at this scale is fighting some version of the same dragons, and the appropriate response is fellowship rather than alarm. The dragons are, on balance, slowly becoming smaller.
 
 ---
+
+## V. When the Floodgates Opened: Scale and Saturation
+
+For some considerable time we maintained the position that **24 parallel requests** marked the boundary between *comfortably serving researchers* and what might politely be termed **large-scale serving waters**. The figure was somewhat arbitrary, somewhat empirical, and entirely correct in spirit: above it, the operational character of the work changes. Queues form. Latencies stretch. The phrase "we should probably look at the dashboards" enters the working vocabulary more frequently than one might wish.
+
+Then came the first day of Kimi K2.6.
+
+> *[SCREENSHOT: Grafana dashboard showing the sudden vertical rise in request rate on the day of Kimi K2.6's 0-day deployment]*
+
+**Seventy-four concurrent requests at peak.** Forty-eight more politely waiting their turn in the queue. Throughput held; latency did not. Every response elongated in proportion to the collective enthusiasm, and the system performed exactly as it had been designed to perform — which is to say, slowly, but reliably, and without dropping anyone on the floor.
+
+GLM 5.1 has produced its own moments of quiet operational interest. **Queue depths have reached 99 requests** during peak periods, while throughput remained respectable and the patience of the user base, somewhat less so. There is, we have observed, a particular variety of researcher who regards a deep queue not as an obstacle but as confirmation that they have chosen the right model.
+
+A small observation seems in order. Enthusiasm, when sufficiently parallel, becomes its own form of denial-of-service. The remedy is rarely to discourage the enthusiasm — that would defeat the purpose of the establishment entirely. One simply provides more hardware, or more queue, or, in the absence of either, more philosophical composure. The numbers in aggregate suggest that we are operating near the edge of capacity during peak hours: a position we view with a mixture of professional satisfaction and mild apprehension, in roughly equal proportion.
+
+---
