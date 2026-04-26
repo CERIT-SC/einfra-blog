@@ -91,3 +91,31 @@ GLM 5.1 has produced its own moments of quiet operational interest. **Queue dept
 A small observation seems in order. Enthusiasm, when sufficiently parallel, becomes its own form of denial-of-service. The remedy is rarely to discourage the enthusiasm — that would defeat the purpose of the establishment entirely. One simply provides more hardware, or more queue, or, in the absence of either, more philosophical composure. The numbers in aggregate suggest that we are operating near the edge of capacity during peak hours: a position we view with a mixture of professional satisfaction and mild apprehension, in roughly equal proportion.
 
 ---
+
+## VI. The Deadeaters
+
+We owe the reader an explanation, at last, of where the hundred billion tokens went. The answer involves a phenomenon we have come to call, with a certain dry affection, *the Deadeaters*: those modern agentic tools — Claude Code chief among them, with its various imitators and descendants close behind — whose appetite for tokens is, by any historical standard, prodigious.
+
+The mechanics are worth setting out plainly. Each turn of an agentic session typically:
+
+resends the entire conversation history; includes the full inventory of tool definitions, frequently dozens of them, regardless of which are relevant to the immediate task; reads whole files into context, sometimes the same file repeatedly across successive turns; performs multi-step reasoning in which each intermediate step is another full round-trip through the model; and allows context to grow monotonically until compaction kicks in, at which point it begins growing again from a slightly compressed baseline.
+
+The cumulative effect is, to put it mildly, expansive. A single afternoon of "fix this bug across the codebase" can quietly account for several million tokens before lunch. Multiply by a busy researcher having a productive week, and the matter of where one hundred billion tokens went stops looking quite so abstract.
+
+The numbers from last month make the pattern visible with some emphasis. The **median (p50) prompt** tells one story; the **95th percentile (p95)** tells quite another:
+
+| Model | p50 prompt | p95 prompt |
+|---|---|---|
+| Qwen 3.5 | 1,100 | 33,958 |
+| Kimi K2.6 | 2,179 | **99,746** |
+| GLM 5.1 | 709 | **90,351** |
+| DeepSeek V3.2 | 879 | 23,776 |
+| gpt-oss-120b | 193 | 2,842 |
+
+The contrast tells the whole story. The typical request is modest — a few hundred to a couple of thousand tokens, the natural shape of a question politely asked. The **95th-percentile request**, for the agentic models, runs into the tens or hundreds of thousands. The gap between p50 and p95 *is* the Deadeater effect made visible: a relatively small number of agentic sessions consume the overwhelming majority of input tokens served.
+
+The contrast with **gpt-oss-120b** — p95 of just 2,842 — is instructive. That model is used conversationally rather than agentically, and its appetite reflects the difference. One might describe it as the well-mannered guest of the establishment, capable of an interesting conversation without first requiring the entire library to be brought into the parlour.
+
+This is not, to be clear, a complaint. The Deadeaters are doing useful work — important work, in many cases. They are simply doing it expansively, and we mention the appetite because it is responsible for the lion's share of where our hundred billion tokens went. A proper accounting requires acknowledging where the food was eaten.
+
+---
