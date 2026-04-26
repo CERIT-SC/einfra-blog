@@ -141,3 +141,19 @@ It should be noted, in the interests of strict honesty, that the figure above do
 So: a household running at a modest loss, charging the going rate, absorbing the difference. One can see how this would not, on its own, justify the operation.
 
 And then we open the third ledger.
+
+### Movement Three — The Point
+
+The prices in Movement One are a reference, not a realistic alternative. The **Czech National Cyber and Information Security Agency — NÚKIB — has restricted the use of models hosted in China for institutional and sensitive workloads.** The "cheap option" researchers see priced at &dollar;25,800 is, for most public-sector and sensitive Czech use, **not legally available.** They can see the price. They cannot use the service.
+
+The realistic alternative is the Western commercial market — Anthropic, OpenAI, and similar — at premium-tier rates. The same traffic, priced at **Anthropic Sonnet-equivalent rates**, would have cost researchers approximately **&dollar;137,900 last month.**
+
+Against *that* baseline, the federation absorbs its &dollar;7,500 monthly subsidy and saves the institution something on the order of **&dollar;104,000 every month.** The annual figure approaches **&dollar;1.25 million** — which is, by a coincidence we find pleasing, roughly the entire amortized hardware cost of the operation, recovered each year through the simple expedient of not sending the money outside the federation.
+
+There is a further point that deserves to be surfaced explicitly. The open-weights models we serve — Kimi, GLM, DeepSeek, Qwen — are themselves of Chinese origin. The NÚKIB restriction concerns *hosting location and data sovereignty*, not model provenance. Running these models on **on-premises European hardware, under European jurisdiction, with no data leaving the infrastructure at any point**, is precisely the arrangement the restriction is designed to encourage. Our models are hosted solely on premise hardware. The data stays where it was sent. Nothing leaks.
+
+We are not, in other words, working around the rules. We are the architecture the rules presume.
+
+The household books, in summary, only appear poorly kept until one understands which ledger one is supposed to be reading. Read from the user-facing ledger, the prices are commercial-equivalent. Read from the operations ledger, the service runs at a modest subsidy. Read from the institutional ledger, the federation saves over a hundred thousand euros every month while keeping its data inside its own borders. Three ledgers, three pictures, and only one of them is the picture that matters.
+
+---
