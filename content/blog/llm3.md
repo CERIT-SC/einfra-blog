@@ -1,11 +1,11 @@
 ---
-date: '2026-04-26T19:00:00Z'
+date: '2026-04-27T10:00:00Z'
 title: '100 Billion Tokens'
 thumbnail: '/img/llm/llm3-logo.png'
 description: "The Curious case of 100 Billion Tokens."
 tags: ["Lukáš Hejtmánek", "CERIT-SC", "AI", "LLM"]
 colormode: true
-draft: true
+draft: false
 ---
 
 ## Previously on the e-INFRA Blog ...
