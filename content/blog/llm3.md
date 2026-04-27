@@ -14,7 +14,9 @@ In [our previous post](https://blog.e-infra.cz/blog/run-llm2/), we described how
 
 ## I. The Hundred Billion
 
-> *[SCREENSHOT: LiteLLM dashboard showing the cumulative token counter at 100B]*
+{{< image src="/img/llm/100b.png" class="rounded w-60" wrapper="text-center" >}}
+
+<br/>
 
 The vast majority of these were input tokens — a fact which deserves, and shall presently receive, a proper explanation. There is, in fact, rather a lot worth explaining.
 
