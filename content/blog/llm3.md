@@ -34,7 +34,7 @@ The second phase is **decode**: the model generates output tokens one at a time,
 
 The natural consequence: a single user turn might consist of forty thousand input tokens and eight hundred output tokens. The user perceives this as "asking a question and getting an answer." The hardware perceives it as "an enormous prefill followed by a modest decode." Both views are correct; only the second pays the bills.
 
-The evidence from our last month of traffic confirms the pattern with some emphasis. Across our serving fleet, prompt tokens outweighed completion tokens by roughly an order of magnitude. **GLM 5.1 ran at a 17.3× input-to-output ratio. Kimi K2.6 at 18.5×.** These are not anomalies. They are the fingerprint of how modern language models are actually used — a topic to which we shall return when we discuss the Deadeaters.
+The evidence from our last month of traffic confirms the pattern with some emphasis. Across our serving fleet, prompt tokens outweighed completion tokens by roughly an order of magnitude. **GLM 5.1 ran at a 17.3× input-to-output ratio. Kimi K2.6 at 18.5×.** These are not anomalies. They are the fingerprint of how modern language models are actually used — a topic to which we shall return when we discuss the Deatheaters.
 
 A well-served cluster, then, must be competent at both phases of inference. It must have the compute to absorb large prefills without complaint, and the memory bandwidth to sustain decode at acceptable rates. Excellence in one and mediocrity in the other produces a serving experience that is either snappy and incoherent or thorough and glacial. Neither is what one wants.
 
@@ -98,9 +98,9 @@ A small observation seems in order. Enthusiasm, when sufficiently parallel, beco
 
 ---
 
-## VI. The Deadeaters
+## VI. The Deatheaters
 
-We owe the reader an explanation, at last, of where the hundred billion tokens went. The answer involves a phenomenon we have come to call, with a certain dry affection, *the Deadeaters*: those modern agentic tools — Claude Code chief among them, with its various imitators and descendants close behind — whose appetite for tokens is, by any historical standard, prodigious.
+We owe the reader an explanation, at last, of where the hundred billion tokens went. The answer involves a phenomenon we have come to call, with a certain dry affection, *the Deatheaters*: those modern agentic tools — Claude Code chief among them, with its various imitators and descendants close behind — whose appetite for tokens is, by any historical standard, prodigious.
 
 The mechanics are worth setting out plainly. Each turn of an agentic session typically:
 
@@ -118,11 +118,11 @@ The numbers from last month make the pattern visible with some emphasis. The **m
 | DeepSeek V3.2 | 879 | 23,776 |
 | GPT-OSS-120B | 193 | 2,842 |
 
-The contrast tells the whole story. The typical request is modest — a few hundred to a couple of thousand tokens, the natural shape of a question politely asked. The **95th-percentile request**, for the agentic models, runs into the tens or hundreds of thousands. The gap between p50 and p95 *is* the Deadeater effect made visible: a relatively small number of agentic sessions consume the overwhelming majority of input tokens served.
+The contrast tells the whole story. The typical request is modest — a few hundred to a couple of thousand tokens, the natural shape of a question politely asked. The **95th-percentile request**, for the agentic models, runs into the tens or hundreds of thousands. The gap between p50 and p95 *is* the Deatheater effect made visible: a relatively small number of agentic sessions consume the overwhelming majority of input tokens served.
 
 The contrast with **GPT-OSS-120B** — p95 of just 2,842 — is instructive. That model is used conversationally rather than agentically, and its appetite reflects the difference. One might describe it as the well-mannered guest of the establishment, capable of an interesting conversation without first requiring the entire library to be brought into the parlour.
 
-This is not, to be clear, a complaint. The Deadeaters are doing useful work — important work, in many cases. They are simply doing it expansively, and we mention the appetite because it is responsible for the lion's share of where our hundred billion tokens went. A proper accounting requires acknowledging where the food was eaten.
+This is not, to be clear, a complaint. The Deatheaters are doing useful work — important work, in many cases. They are simply doing it expansively, and we mention the appetite because it is responsible for the lion's share of where our hundred billion tokens went. A proper accounting requires acknowledging where the food was eaten.
 
 ---
 
