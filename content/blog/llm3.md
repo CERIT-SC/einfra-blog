@@ -142,8 +142,6 @@ The actual cost of serving these tokens is, regrettably, another matter entirely
 
 Last month we recovered &dollar;25,800 against &dollar;33,300 of cost. **Roughly 77 cents on the dollar.** By any conventional standard of unit economics, the operation is a polite financial embarrassment — the kind of arithmetic one does not bring up at the institute's annual review without surrounding context. The federation absorbs a subsidy of approximately **&dollar;7,500 per month** to keep the service running at its current pricing.
 
-It should be noted, in the interests of strict honesty, that the 20% bracket covers electricity and the day-to-day operational costs, but does not extend to full data-center loading or the broader institutional infrastructure that makes the operation possible. The true cost-per-token is somewhat higher than what the simple arithmetic suggests. We mention this not to flagellate ourselves but to be clear about which ledger we are reading from.
-
 So: a household running at a modest loss, charging the going rate, absorbing the difference. One can see how this would not, on its own, justify the operation.
 
 And then we open the third ledger.
@@ -160,7 +158,7 @@ There is a further point that deserves to be surfaced explicitly. The open-weigh
 
 We are not, in other words, working around the rules. We are the architecture the rules presume.
 
-The household books, in summary, only appear poorly kept until one understands which ledger one is supposed to be reading. Read from the user-facing ledger, the prices are commercial-equivalent. Read from the operations ledger, the service runs at a modest subsidy. Read from the institutional ledger, the federation saves over a hundred thousand euros every month while keeping its data inside its own borders. Three ledgers, three pictures, and only one of them is the picture that matters.
+The household books, in summary, only appear poorly kept until one understands which ledger one is supposed to be reading. Read from the user-facing ledger, the prices are commercial-equivalent. Read from the operations ledger, the service runs at a modest subsidy. Read from the institutional ledger, the federation saves over a hundred thousand dollars every month while keeping its data inside its own borders. Three ledgers, three pictures, and only one of them is the picture that matters.
 
 ---
 
