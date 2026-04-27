@@ -106,7 +106,7 @@ The mechanics are worth setting out plainly. Each turn of an agentic session typ
 
 resends the entire conversation history; includes the full inventory of tool definitions, frequently dozens of them, regardless of which are relevant to the immediate task; reads whole files into context, sometimes the same file repeatedly across successive turns; performs multi-step reasoning in which each intermediate step is another full round-trip through the model; and allows context to grow monotonically until compaction kicks in, at which point it begins growing again from a slightly compressed baseline.
 
-The cumulative effect is, to put it mildly, expansive. A single afternoon of "fix this bug across the codebase" can quietly account for several million tokens before lunch. Multiply by a busy researcher having a productive week, and the matter of where one hundred billion tokens went stops looking quite so abstract.
+The cumulative effect is, to put it mildly, expansive. A single morning of "fix this bug across the codebase" can quietly account for several million tokens before lunch. Multiply by a busy researcher having a productive week, and the matter of where one hundred billion tokens went stops looking quite so abstract.
 
 The numbers from last month make the pattern visible with some emphasis. The **median (p50) prompt** tells one story; the **95th percentile (p95)** tells quite another:
 
