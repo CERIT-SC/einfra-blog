@@ -6,7 +6,7 @@ author: "Martin Cifra"
 description: "A 600-run headless benchmark"
 tags: ["Martin Cifra", "benchmark", "LLM", "UFE CAS"]
 colormode: true
-draft: true
+draft: false
 ---
 
 # Claude Code on Czech academic AI infrastructure: a 600-run headless benchmark
