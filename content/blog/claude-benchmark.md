@@ -1,5 +1,5 @@
 ---
-date: '2026-20-06T08:00:00Z'
+date: '2026-19-06T08:00:00Z'
 title: 'Claude Code on Czech academic AI infrastructure'
 thumbnail: '/img/claude-benchmark/cifra-fig1.png'
 author: "Martin Cifra"
@@ -8,6 +8,7 @@ tags: ["Martin Cifra", "benchmark", "LLM", "UFE CAS"]
 colormode: true
 draft: true
 ---
+
 # Claude Code on Czech academic AI infrastructure: a 600-run headless benchmark
 
 CERIT-SC, part of the Czech national e-INFRA CZ research infrastructure, runs an LLM gateway at `llm.ai.e-infra.cz` that speaks the Anthropic API protocol and is accessible to Czech academic users with no per-token billing. Redirecting Claude Code to it takes one environment variable. I wanted to know whether the open-weight models available there are actually competitive — so I ran 600+ headless agentic benchmark runs across 10 real development tasks in April 2026 and compared the results against native Claude.
