@@ -1,5 +1,5 @@
 ---
-date: '2026-19-06T08:00:00Z'
+date: '2026-06-19T08:00:00Z'
 title: 'Claude Code on Czech academic AI infrastructure'
 thumbnail: '/img/claude-benchmark/cifra-fig1.png'
 author: "Martin Cifra"
