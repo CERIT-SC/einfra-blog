@@ -3,7 +3,7 @@ date: '2025-05-26T10:00:32Z'
 title: 'S3 Object Storage for MetaCentrum Workflows'
 thumbnail: '/img/s3-fr/big_data_gpt.png'
 description: "Storing and Handling Big Data"
-tags: ["Jan Pospíšil, Vladimíra Kimlová, Dominik Zappe", "User Experience", "S3", "FR CESNET", "ZCU"]
+tags: ["Jan Pospíšil, Vladimíra Kimlová, Dominik Zappe", "VoxPopuli", "S3", "FR CESNET", "ZCU"]
 colormode: true
 draft: false
 ---
