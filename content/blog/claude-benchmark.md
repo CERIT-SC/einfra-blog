@@ -4,7 +4,7 @@ title: 'Claude Code on Czech academic AI infrastructure'
 thumbnail: '/img/claude-benchmark/cifra-tit.jpg'
 author: "Martin Cifra"
 description: "A 600-run headless benchmark"
-tags: ["Martin Cifra", "benchmark", "LLM", "UFE CAS"]
+tags: ["Martin Cifra", "benchmark", "LLM", "VoxPopuli", "UFE CAS"]
 colormode: true
 draft: false
 ---
