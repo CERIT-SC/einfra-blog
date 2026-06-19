@@ -1,7 +1,8 @@
 ---
 date: '2026-20-67T12:00:00Z'
 title: 'Claude Code on Czech academic AI infrastructure'
-thumbnail: '/img/claude-benchmark/cifra-fig1.jpg'
+thumbnail: '/img/claude-benchmark/cifra-fig1.png'
+author: "Martin Cifra"
 description: "A 600-run headless benchmark"
 tags: ["Martin Cifra", "benchmark", "LLM", "UFE CAS"]
 colormode: true
@@ -9,7 +10,7 @@ draft: true
 ---
 # Claude Code on Czech academic AI infrastructure: a 600-run headless benchmark
 
-> CERIT-SC, part of the Czech national e-INFRA CZ research infrastructure, runs an LLM gateway at `llm.ai.e-infra.cz` that speaks the Anthropic API protocol and is accessible to Czech academic users with no per-token billing. Redirecting Claude Code to it takes one environment variable. I wanted to know whether the open-weight models available there are actually competitive — so I ran 600+ headless agentic benchmark runs across 10 real development tasks in April 2026 and compared the results against native Claude.
+CERIT-SC, part of the Czech national e-INFRA CZ research infrastructure, runs an LLM gateway at `llm.ai.e-infra.cz` that speaks the Anthropic API protocol and is accessible to Czech academic users with no per-token billing. Redirecting Claude Code to it takes one environment variable. I wanted to know whether the open-weight models available there are actually competitive — so I ran 600+ headless agentic benchmark runs across 10 real development tasks in April 2026 and compared the results against native Claude.
 
 ## How it works
 
@@ -63,24 +64,12 @@ Tests ran in April 2026. The table below covers all models that behaved correctl
 | agentic alias (Qwen3) | D | 0.755 | 148.7 s | 43 748 | no direct cost* | 70 % |
 | mistral-small-4 | D | 0.692 | 46.1 s | 1 030 | no direct cost* | 25 % |
 
-*"Completion rate" = percentage of runs where Claude Code actually produced output files and exited cleanly. Token averages for Track A are from successful runs (earlier 30-trial run, 93% completion); the 100-trial average is pulled down by zero-output failures. 
+* "Completion rate" = percentage of runs where Claude Code actually produced output files and exited cleanly. Token averages for Track A are from successful runs (earlier 30-trial run, 93% completion); the 100-trial average is pulled down by zero-output failures. 
 * CERIT-SC' academic users pay no per-token fee, but CERIT-SC bears real infrastructure costs to operate this service — higher token consumption is not free at the system level.*
 
-{{< image src="/img/claude-benchmark/cifra-fig1.jpg" class="rounded" wrapper="text-center w-40" >}}
+{{< image src="/img/claude-benchmark/cifra-fig1.png" class="rounded" wrapper="text-center w-40" >}}
 
 **Fig. 1 — Composite score (0–1).** Teal = native Claude (Track A), green = CERIT via Claude Code (Track D), blue = CERIT via custom harness (Track B). DeepSeek-Thinking models excluded due to a tool-call serialization bug.
-
-| Model | Composite |
-|---|---|
-| Claude Opus 4.6 (A) | 0.889 |
-| Claude Sonnet 4.6 (A) | 0.841 |
-| Gemma 4 (D) | 0.807 |
-| Kimi K2.5 (B) | 0.804 |
-| Kimi K2.6 (D) | 0.782 |
-| Coder alias / Qwen3 (D) | 0.762 |
-| GLM-5 (D) | 0.762 |
-| Qwen3-Coder-30B (D) | 0.759 |
-| Agentic alias / Qwen3 (D) | 0.755 |
 
 **The headline number: gemma4 on CERIT scored 0.807, Claude Sonnet scored 0.841.** The gap is 0.034 — three hundredths on a 0–1 scale — with no direct billing to the academic user.
 
@@ -97,9 +86,9 @@ The composite score blends four things that tell very different stories. Here ar
 | glm-5 (CERIT D) | 0.872 | 1.000 | 0.667 | 0.562 | 0.762 |
 | kimi-k2.5 (CERIT B) | 0.892 | 1.000 | 0.667 | 0.509 | 0.804 |
 
-The surprising finding: **CERIT models passed more automated tests than Claude Sonnet** — gemma4 correctness 0.882 vs Sonnet 0.797. These are pytest tests with no LLM involvement, so this is the cleanest signal in the benchmark.
+The surprising finding: **CERIT-SC models passed more automated tests than Claude Sonnet** — gemma4 correctness 0.882 vs Sonnet 0.797. These are pytest tests with no LLM involvement, so this is the cleanest signal in the benchmark.
 
-Where Claude wins clearly is **code quality**. Sonnet scored 0.944 vs 0.667 for CERIT models on the quality dimension, which evaluates error handling, security patterns, and readability. Native Claude writes tidier code. The CERIT models get the job done, but without the polish.
+Where Claude wins clearly is **code quality**. Sonnet scored 0.944 vs 0.667 for CERIT-SC models on the quality dimension, which evaluates error handling, security patterns, and readability. Native Claude writes tidier code. The CERIT-SC models get the job done, but without the polish.
 
 Token efficiency also heavily favors Claude — around 4 000 tokens per successful run vs 17 000–45 000 for CERIT Track D. But for CERIT users this doesn't matter in practice, since the service doesn't charge per token.
 
