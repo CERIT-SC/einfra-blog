@@ -3,7 +3,7 @@ date: '2025-05-26T08:00:32Z'
 title: 'Training Neural Networks using MetaCentrum'
 thumbnail: '/img/wandb-fr/wandb.png'
 description: "Integrated Monitoring via Weights & Biases"
-tags: ["Jan Pospíšil, Vladimíra Kimlová, Dominik Zappe", "User Experience", "AI", "FR CESNET", "ZCU"]
+tags: ["Jan Pospíšil, Vladimíra Kimlová, Dominik Zappe", "VoxPopuli", "AI", "FR CESNET", "ZCU"]
 colormode: true
 draft: false
 ---
