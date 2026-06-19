@@ -1,7 +1,7 @@
 ---
 date: '2026-06-19T08:00:00Z'
 title: 'Claude Code on Czech academic AI infrastructure'
-thumbnail: '/img/claude-benchmark/cifra-fig1.png'
+thumbnail: '/img/claude-benchmark/cifra-fig1-tit.png'
 author: "Martin Cifra"
 description: "A 600-run headless benchmark"
 tags: ["Martin Cifra", "benchmark", "LLM", "UFE CAS"]
