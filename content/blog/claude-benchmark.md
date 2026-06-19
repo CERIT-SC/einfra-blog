@@ -201,7 +201,7 @@ These tests are from April 2026, and the CERIT LLM gateway is actively improving
 
 **Thanks** to CERIT-SC for running the LLM gateway and making it freely accessible to Czech academia. Specific thanks to Lukáš Hejtmánek for the quick response to the DeepSeek bug report and for the interest in reproducing it together.
 
-Benchmark code, raw JSON results, and reproduction scripts are available on request. Raw data lives in `~/.claude-benchmark/` on ufeclaude.
+Benchmark code, raw JSON results, and reproduction scripts are available on request. Raw data lives in `~/.claude-benchmark/` on ufeclaude. Adapted from [https://michalcifra.com/blogs/BL2602-cerit-llm/](https://michalcifra.com/blogs/BL2602-cerit-llm/)
 
 ## About the Author
 Michal Cifra, Ph.D., is a researcher and team leader at the Institute of Photonics and Electronics (ÚFE) of the Czech Academy of Sciences (CAS) in Prague. He leads the Bioelectrodynamics research team, which focuses on exploring how electromagnetic fields interact with biological matter at the molecular level, with applications in biotechnology and medicine.
