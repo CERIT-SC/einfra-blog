@@ -1,6 +1,6 @@
 ---
 date: "2026-07-14T00:00:00Z"
-title: "Claude Code on Czech Academic AI 2"
+title: "Claude Code on Czech Academic AI Infrastructure 2"
 thumbnail: "/img/cc-cifra/cifra-claudecode.jpg"
 author: "Michal Cifra"
 description: "Agentic Coding via CERIT LLMs"
@@ -9,7 +9,7 @@ tags: ["Michal Cifra", "Claude-Code", "CERIT-SC", "LLM", "VoxPopuli"]
 
 
 
-# Claude Code on Czech academic AI 2
+# Claude Code on Czech academic AI Infrastructure 2
 
 A **local rewrite proxy** routes Claude Code to the free CERIT LLM gateway. Adds **MCP** delegation for codebase exploration, working **WebSearch**, and confirmed setup on both Windows and Linux servers. Zero API cost for MetaCentrum / MUNI members.
 
