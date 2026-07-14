@@ -173,9 +173,9 @@ Prerequisite: the `ddgs` Python package must be installed on the machine running
 
 ## Benchmark results
 
-- 494 s, 7/7 tasks  GLM-5.2
-- 88%,  103/117 extended tasks
-- 0 idle stops (all runs)
+| ⏱ Time | ✅ Success | 🛑 Idle stops |
+|--------:|-----------:|--------------:|
+| **494 s**<br>7/7 tasks · GLM-5.2 | **88%**<br>103/117 extended tasks | **0**<br>idle stops (all runs) |
 
 Core benchmark — 7 tasks (run9)
 
