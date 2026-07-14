@@ -247,7 +247,6 @@ The `install.sh` script copies the proxy, MCP server, subagent files, and settin
 Each function automatically passes `--settings`, `--mcp-config`, `--strict-mcp-config`, and `--append-system-prompt`. No manual flags needed.
 
 >Tested environment
-
 >- All settings tested with Claude Code launched from a **Git Bash terminal** (Windows) and a standard bash shell (Linux server)
 >- Native Windows PowerShell and cmd.exe are not tested — use Git Bash on Windows
 
