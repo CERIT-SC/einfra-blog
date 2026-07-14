@@ -14,7 +14,6 @@ tags: ["Michal Cifra", "Claude-Code", "CERIT-SC", "LLM", "VoxPopuli"]
 A local rewrite proxy routes Claude Code to the free CERIT LLM gateway. Adds MCP delegation for codebase exploration, working WebSearch, and confirmed setup on both Windows and Linux servers. Zero API cost for MetaCentrum / MUNI members.
 
 >TL;DR
-
 >- Free LLM API at **llm.ai.e-infra.cz** — MetaCentrum or MUNI account required
 >- Local proxy handles model routing, tool compatibility, thinking-mode control, and idle prevention
 >- MCP delegation layer routes Read/Grep/Glob calls through a real Claude Code subagent
@@ -47,7 +46,6 @@ CERIT-SC / e-INFRA CZ operates **llm.ai.e-infra.cz** — an Anthropic-compatible
 
 
 >Access
-
 >- MetaCentrum or MUNI account required — apply at [metavo.metacentrum.cz](https://metavo.metacentrum.cz)
 >- API token generated at [chat.ai.e-infra.cz](https://chat.ai.e-infra.cz) (Settings → Account → API Keys) after login with your MUNI/MetaCentrum identity — `llm.ai.e-infra.cz` is the API endpoint itself, not the key portal
 >- Store token: `echo 'YOUR_TOKEN' > ~/.config/cerit/token && chmod 600 ~/.config/cerit/token`
@@ -149,7 +147,6 @@ cerit-claude-settings.json (excerpt)
 ```
 
 >Known limitation
-
 >- The MCP delegation server can crash mid-session. When it does, every subsequent call to `delegate_explorer`/`delegate_summarizer`/`delegate_bash_worker` fails with `No such tool available`, and it does **not** self-heal — there is no automatic MCP-server restart mid-session
 >- Observed failure mode: with Read/Grep/Glob denied and the delegation layer dead, a model can get stuck between “no working tool” and an agentic system prompt that discourages ending the turn — and escape by declaring the task complete with no actual output
 >- Mitigation (prompt-level, not a real fix): the system prompt now instructs the model to treat one `No such tool available` as session-wide breakage, tell the user immediately, and fall back to `Bash` + `python -c …` for file reads/search/glob instead of retrying the dead tool. The underlying cause of the MCP crash itself is still unresolved
@@ -167,7 +164,6 @@ Claude Code’s WebSearch tool works end-to-end in all three `claude-cerit-*` se
 7. Model receives real results, synthesises answer, and responds
 
 > Confirmed working — remote server interactive session test
-
 >- 11 / 11 tests pass on a Linux server with real Claude Code 2.1.185 + proxy
 >- Query: *“What is the latest release of GROMACS?”*
 >- Answer: **GROMACS 2025.4**, released November 23, 2025 — correct
@@ -193,7 +189,6 @@ Core benchmark — 7 tasks (run9)
 Extended benchmark — 117 tests, GLM-5.2 thinking OFF (run10)
 
 > Overall
-> 
 > - **103 / 117 (88%)** tasks completed · 0 idle stops · 947 tool calls · avg quality **5.37 / 10**
 
 | Category | Tests | Done | Avg quality |
