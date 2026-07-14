@@ -189,7 +189,8 @@ Core benchmark — 7 tasks (run9)
 Extended benchmark — 117 tests, GLM-5.2 thinking OFF (run10)
 
 > Overall
-> - **103 / 117 (88%)** tasks completed · 0 idle stops · 947 tool calls · avg quality **5.37 / 10**
+> - **103 / 117 (88%)** tasks completed
+> - 0 idle stops · 947 tool calls · avg quality **5.37 / 10**
 
 | Category | Tests | Done | Avg quality |
 | --- | --- | --- | --- |
