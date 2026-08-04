@@ -112,13 +112,5 @@ For more information about SpecTUS, please refer to the following resources:
 * For quick, zero-install demonstration, SpecTUS inference (with limited throughput) is exposed via REST API at our cluster, accessible with a Binder-ready Jupyter notebook at https://github.com/ljocha/spectus-demo.
 * Complete source code of SpecTUS is available on GitHub: https://github.com/hejjack/SpecTUS.
 * Pretrained model and synthetic datasets are published at https://huggingface.co/MS-ML.
-* [Original research paper](https://arxiv.org/abs/2502.05114)
+* Original research paper [SpecTUS: Spectral Translator for Unknown Structures Annotation from EI-MS Spectra](https://doi.org/10.1021/acs.analchem.6c02423)
      
-
-
- 
- 
-   
-  
-
-
